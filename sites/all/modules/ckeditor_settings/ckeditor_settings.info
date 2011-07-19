@@ -1,0 +1,3 @@
+name = CKeditor Settings
+description = Allows for custom CKeditor settings
+core = 7.x

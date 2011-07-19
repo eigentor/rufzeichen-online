@@ -1,0 +1,12 @@
+name = Dandelion rufzeichen
+description = My personal version of the beautiful Dandelion Wordpress Theme
+package = Core
+version = VERSION
+base theme = basic
+core = 7.x
+
+stylesheets[all][] = css/layouts.css
+stylesheets[all][] = css/styles.css
+stylesheets[all][] = css/views.css
+stylesheets[all][] = css/block.css
+stylesheets[all][] = css/node.css
