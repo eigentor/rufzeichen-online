@@ -5,6 +5,8 @@
 /** End Admin Menu **/
 
 body, html {
+  min-height: 100%;
+  height: auto!important;
   height: 100%;
   width: 100%;
 }
@@ -47,9 +49,9 @@ body {
 	height: 5px;
 }
 
+
 .center {
 	height: auto;
-	width: 980px;
 	margin: auto;
 	text-align: left;
 	padding: 0px;
@@ -63,6 +65,7 @@ body {
 #header {
   height: 330px;
   background: url(../images/new-adapted/header-schreibmaschine.jpg) no-repeat;
+  background: url(../images/new-adapted/header-asian-cars.jpg) no-repeat;
 }
 #logo {
   float: left;
@@ -504,13 +507,12 @@ a.sf-with-ul {
 	background-position: top;
 }
 
-/*#content {
-	float: left;
+#content-inner {
 	height: auto;
 	min-height: 200px;
 	width: 590px;
 	margin: 40px;
-}*/
+}
 
 #full-width {
 	float: left;
@@ -1368,15 +1370,16 @@ img.attachment-post_box_img {
 }
 
 /*-------------------------SIDEBAR----------------------------*/
-/*.sidebar {
-	height: auto;
-	min-height: 200px;
-	float: right;
-	width: 270px;
-	margin-top: 36px;
-	margin-bottom:30px;
-	margin-right: 40px;
-}*/
+#sidebar-second {
+float: right;
+    height: auto;
+    margin-bottom: 30px;
+    margin-right: 40px;
+    margin-top: 36px;
+    min-height: 200px;
+    width: 270px;
+    background: none;
+}
 
 .sidebar a {
 	font-style: normal;
@@ -1395,7 +1398,7 @@ img.attachment-post_box_img {
 	margin-top:-10px;
 }
 
-.sidebar-box ul li a {
+#sidebar-second ul li a {
 	display: block;
 	width: 258px;
 	color: #6a6a6a;
