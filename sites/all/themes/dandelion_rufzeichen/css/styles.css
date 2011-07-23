@@ -40,6 +40,14 @@ a {
 	background: transparent;
 	outline: none;
 }
+.imagefloatleft {
+   float: left;
+   margin: 5px 15px 5px 0;
+}
+.imagefloatright {
+   float: right;
+   margin: 0 5px 5px 15px;
+}
 
 ins {
 	background-color: #ff9;

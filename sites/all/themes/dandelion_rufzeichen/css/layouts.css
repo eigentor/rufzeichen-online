@@ -1,5 +1,5 @@
 #admin-menu ul li {
-  font-size: 12px;
+  font-size: 11px;
 }
 
 /** End Admin Menu **/
@@ -604,26 +604,29 @@ h1.page-heading{
 	font-style: normal;
 }
 
-.post-info {
+.submitted {
 	color: #6a6a6a;
 	float: left;
 	font-size: 11px;
 	margin-bottom: 20px;
-	text-transform: uppercase;
 	width: 100%;
 	position: relative;
 	border-bottom: 1px solid #ebebeb;
 	border-top: 1px solid #ebebeb;
 	padding-bottom: 7px;
+  padding-top: 7px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+	font-style: italic;
 }
 
-.post-info ul{
+.submitted ul{
 	margin-left:0px;	
 }
 
-.post-info a {
+.submitted a {
 	font-style: normal;
 	color: #ed8137;
+	text-transform: uppercase;
 }
 
 a.read-more {
@@ -638,24 +641,23 @@ a.read-more {
 	text-transform: lowercase;
 }
 
-.post-info ul li {
+.submitted ul li {
 	display: inline;
 	float: left;
 	padding-right: 15px;
-	padding-top: 7px;
 }
 
-.post-info ul li.post-info-comments {
+.submitted ul li.post-info-comments {
 	border-right: 0px;
 	float: right;
 	padding-right: 0px;
 }
 
-.post-info ul li.post-info-comments img {
+.submitted ul li.post-info-comments img {
 	float: left;
 }
 
-.post-info ul li.post-info-categories {
+.submitted ul li.post-info-categories {
 	border-right: 0px;
 	padding-right: 5px;
 }
