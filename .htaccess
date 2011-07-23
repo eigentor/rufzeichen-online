@@ -141,6 +141,6 @@ AuthUserFile /var/www/clients/client26/site289/docroot/.htpasswd
 Require valid-user
 
 # Allow requests from localhost without authentication
-Allow from 127.0.0
-Allow from localhost
-Satisfy Any
+#Allow from 127.0.0
+#Allow from localhost
+#Satisfy Any
