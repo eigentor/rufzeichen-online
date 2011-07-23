@@ -135,9 +135,9 @@ DirectoryIndex index.php index.html index.htm
     </FilesMatch>
   </IfModule>
 </IfModule>
-#AuthType Basic
+AuthType Basic
 AuthName "Protected"
-AuthUserFile /var/www/clients/client26/site289/docroot/.htpasswd
+AuthUserFile	/var/www/clients/client26/site289/docroot/.htpasswd
 Require valid-user
 
 # Allow requests from localhost without authentication
