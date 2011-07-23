@@ -81,6 +81,14 @@ input,select {
 	vertical-align: middle;
 }
 
+/** Tabs **/
+ul.primary li a span,
+ul.primary li a,
+ul.primary li {
+  padding: 0;
+  line-height: 1.3;
+}
+
 /* ----------- End Restart-----------------*/
 	/*---------------------------- TEXT STYLES ----------------------------*/
 a:link,

@@ -4,9 +4,7 @@
 
 /** End Admin Menu **/
 
-body, html {
-  min-height: 100%;
-  height: auto!important;
+body, html {  
   height: 100%;
   width: 100%;
 }
@@ -18,6 +16,8 @@ body {
 	background-color: #aaa9a9;
 } 
 #page-wrapper {
+  min-height: 100%;
+  height: auto!important;
 	height: 100%;
 	width: 100%;
 	background: #aaa url(../images/patterns/pattern16.png);
