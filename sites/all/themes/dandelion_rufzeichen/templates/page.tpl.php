@@ -60,7 +60,7 @@
             <?php print $messages; ?>
             <?php print render($page['help']); ?>
 
-            <?php if ($tabs): ?>
+            <?php if ($tabs['#primary'] != ''): ?>
               <div class="tabs"><?php print render($tabs); ?></div>
             <?php endif; ?>
 

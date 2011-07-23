@@ -63,9 +63,12 @@ body {
 	height: 100px;
 }
 #header {
-  height: 330px;
+  height: 140px;
   background: url(../images/new-adapted/header-schreibmaschine.jpg) no-repeat;
   background: url(../images/new-adapted/header-asian-cars.jpg) no-repeat;
+}
+.front #header {
+   height: 330px;
 }
 #logo {
   float: left;
@@ -512,6 +515,7 @@ a.sf-with-ul {
 	min-height: 200px;
 	width: 590px;
 	margin: 40px;
+	margin-top: 0;
 }
 
 #full-width {
