@@ -20,8 +20,10 @@ body {
   height: auto!important;
 	height: 100%;
 	width: 100%;
-	background: #aaa url(../images/patterns/pattern16.png);
-	padding: 15px 0;
+	background: #aaa url(../images/patterns/pattern16-b.png);
+	/*background: #aaa url(../images/patterns/pattern20.png);*/
+	/*background: #aaa url(../images/patterns/pattern21.png);*/
+	padding: 23px 0;
 }
 #page {
   width: 980px;
@@ -30,6 +32,8 @@ body {
   min-height: 750px;
   height: auto!important;
   height: 750px;
+  /*border: 1px dashed #555;*/
+  box-shadow: 0px 0px 10px #888;
 }
 
 #site {
@@ -72,8 +76,18 @@ body {
 }
 #logo {
   float: left;
-  width: 200px;
-  padding: 35px 0 0 35px;
+  width: 350px;
+  padding: 27px 0 0 45px;
+  position: relative;
+}
+#site-slogan {
+  position: absolute;
+  top: 60px;
+  left: 77px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-style: italic;
+  color: #aaa;
+  font-size: 14px;
 }
 
 /*---------------------------- LOGO ----------------------------*/
@@ -97,7 +111,7 @@ body {
 /*-------------------------MENU---------------------------------*/
 #navigation {
 	float: right;
-	margin-top: 40px;
+	margin-top: 43px;
 	margin-right: 25px;
 	max-width: 700px;
 	width: auto!important;

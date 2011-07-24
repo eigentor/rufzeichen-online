@@ -7,7 +7,7 @@
      <div id="header-top">
       <div id="logo">
        <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="logo">
-        <img src="<?php print url($directory) ?>/images/new-adapted/logo-rufzeichen.png" alt="<?php print t('Home'); ?>"/>
+        <img src="<?php print url($directory) ?>/images/new-adapted/rufzeichen-logo.png" alt="<?php print t('Home'); ?>"/>
       </a>
        <?php if ($site_slogan): ?>
           <div id="site-slogan"><?php print $site_slogan; ?></div>
