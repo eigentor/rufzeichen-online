@@ -694,6 +694,12 @@ img.img-frame,img.shadow-frame,img.attachment-post_box_img, .img-frame img,
 	background-color: #fefefe;
 	border: 1px solid #d9d9d9;
 }
+#content-area img.no-frame,
+#sidebar-second img.no-frame {
+  padding: 0;
+  background: none;
+  border: none;
+}
 
 img.attachment-post_box_img {
 	float: left;
