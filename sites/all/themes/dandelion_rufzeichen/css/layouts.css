@@ -519,7 +519,7 @@ a.sf-with-ul {
 }
 
 .content-gradient {
-	background-image: url(images/content_bg.png);
+	background-image: url(../images/content_bg.png);
 	background-repeat: repeat-x;
 	background-position: top;
 }
@@ -687,7 +687,9 @@ a.read-more {
 }
 
 
-img.img-frame,img.shadow-frame,img.attachment-post_box_img, .img-frame img {
+img.img-frame,img.shadow-frame,img.attachment-post_box_img, .img-frame img,
+#content-area img, #sidebar-second img
+ {
 	padding: 4px;
 	background-color: #fefefe;
 	border: 1px solid #d9d9d9;
@@ -1405,20 +1407,20 @@ float: right;
 	font-style: normal;
 }
 
-.sidebar-box {
+.sidebar block {
 	margin-bottom: 25px;
 	height:auto;
 	overflow:hidden;
 }
 
-.sidebar-box ul {
+.sidebar ul {
 	text-decoration: none;
 	list-style: none;
 	margin-left:0px;
 	margin-top:-10px;
 }
 
-#sidebar-second ul li a {
+.sidebar ul li a {
 	display: block;
 	width: 258px;
 	color: #6a6a6a;
@@ -1426,7 +1428,7 @@ float: right;
 	font-size: 13px;
 }
 
-.sidebar-box ul li{
+.sidebar ul li{
 	padding: 6px;
 	border-bottom: 1px solid #ebebeb;
 }
@@ -1436,7 +1438,7 @@ float: right;
 	color: #373737;
 }
 
-.sidebar-box h4 {
+.sidebar h2.block-title {
 	font-family: Georgia, "Times New Roman", Times, serif;
 	font-size: 16px;
 	font-style: normal;

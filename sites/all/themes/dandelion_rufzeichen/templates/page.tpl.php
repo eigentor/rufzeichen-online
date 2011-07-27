@@ -38,7 +38,7 @@
 
   <!-- ______________________ MAIN _______________________ -->
 
-  <div id="main" class="clearfix">
+  <div id="main" class="clearfix content-gradient">
 
     <div id="content">
       <div id="content-inner" class="inner column center">
