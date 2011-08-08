@@ -70,6 +70,14 @@ body {
   height: 140px;
   background: url(../images/new-adapted/header-schreibmaschine.jpg) no-repeat;
   background: url(../images/new-adapted/header-asian-cars.jpg) no-repeat;
+  position: relative;
+}
+#header-top-line {
+   position:absolute;
+   height: 6px;
+   width: 100%;
+   background: rgba(50, 50, 50, 0.4);
+    
 }
 .front #header {
    height: 330px;
@@ -531,6 +539,9 @@ a.sf-with-ul {
 	margin: 40px;
 	margin-top: 0;
 }
+.node-type-news #content-inner {
+  width: 640px;
+}
 
 #full-width {
 	float: left;
@@ -645,6 +656,22 @@ h1.page-heading{
 	font-style: normal;
 	color: #ed8137;
 	text-transform: uppercase;
+}
+.submitted .taxonomy {
+  padding-left: 10px;
+  font-size: 11px;
+}
+.submitted .field-type-taxonomy-term-reference {
+  padding-left: 3px;
+}
+.submitted .field-type-taxonomy-term-reference .field-item  {
+   padding-right: 7px;
+}
+.submitted .field-type-taxonomy-term-reference .field-label {
+  display: none;
+}
+.submitted div {
+   display: inline;
 }
 
 a.read-more {
@@ -1407,6 +1434,9 @@ float: right;
     min-height: 200px;
     width: 270px;
     background: none;
+}
+.node-type-news #sidebar-second {
+  width: 210px;
 }
 
 .sidebar a {

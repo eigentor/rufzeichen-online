@@ -186,7 +186,7 @@ hr {
 
 p {
 	margin-bottom: 15px;
-	margin-top: 15px;
+	margin-top: 8px;
 }
 
 ol {
@@ -218,3 +218,13 @@ em {
 .relative {
 	position: relative;
 }
+
+/*** Comment Counter ***/
+.comment-count {
+  float: right;
+  background: url(../images/comm.png) no-repeat;
+  padding-left: 28px;
+  padding-right: 2px;
+  font-family: verdana,arial,helvetica,sans-serif;
+}
+

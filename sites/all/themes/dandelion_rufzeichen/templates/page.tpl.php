@@ -21,12 +21,8 @@
 
   
   <div id="header">
-
-   
-     
-   
-
-    
+  <div id="header-top-line">
+  </div>    
 
     <?php if ($page['header']): ?>
       <div id="header-region">
