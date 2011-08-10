@@ -1,0 +1,11 @@
+<?php
+function ckeditor_settings_wysiwyg_editor_settings_alter(&$settings, $context) {
+  if ($context['profile']->editor == 'ckeditor') {
+    // disable 'spell-check-as-you-type' option by default on startup
+    $settings['scayt_autoStartup'] = false;
+    // Example of setting customConfig option. Just note it gets overridden by values in $settings.
+    //$style_path = drupal_get_path('module', 'ckeditor_settings') . '/styles';
+    $style_path = drupal_get_path('theme', 'undpaul_weiss') . '/js';
+    $settings['stylesSet'] = 'custom:'. url($style_path) .'/ckeditor_styles.js';
+  }
+}
