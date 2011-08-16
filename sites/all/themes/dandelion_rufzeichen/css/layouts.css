@@ -1458,15 +1458,17 @@ float: right;
 
 .sidebar ul li a {
 	display: block;
-	width: 258px;
 	color: #6a6a6a;
 	text-decoration: none;
 	font-size: 13px;
-}
-
-.sidebar ul li{
 	padding: 6px;
 	border-bottom: 1px solid #ebebeb;
+	width: 100%;
+}
+
+.sidebar ul li ul{
+  padding-top: 6px;	
+  padding-left: 13px;
 }
 
 

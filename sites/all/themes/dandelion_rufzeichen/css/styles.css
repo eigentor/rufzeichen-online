@@ -88,6 +88,9 @@ hr {
 input,select {
 	vertical-align: middle;
 }
+input {
+  width: auto;
+}
 
 /** Tabs **/
 ul.primary li a span,
