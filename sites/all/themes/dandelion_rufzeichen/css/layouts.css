@@ -535,7 +535,7 @@ a.sf-with-ul {
 #content-inner {
 	height: auto;
 	min-height: 200px;
-	width: 590px;
+	width: 580px;
 	margin: 40px;
 	margin-top: 0;
 }
@@ -660,6 +660,10 @@ h1.page-heading{
 .submitted .taxonomy {
   padding-left: 10px;
   font-size: 11px;
+}
+.submitted .field-name-author,
+.submitted .field-name-post-date {
+  padding-right: 10px;
 }
 .submitted .field-type-taxonomy-term-reference {
   padding-left: 3px;
@@ -1435,10 +1439,22 @@ float: right;
     width: 270px;
     background: none;
 }
-.node-type-news #sidebar-second {
+.page-node #sidebar-second {
   width: 210px;
 }
-
+.page-node #content-inner {
+  width: 630px;
+}
+.node .content:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.node .content {
+  display: inline-block;
+}
 .sidebar a {
 	font-style: normal;
 }

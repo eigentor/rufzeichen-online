@@ -1,0 +1,16 @@
+.node-news .field-name-field-hauptbild {
+  float: right;
+  margin: 5px 0 5px 15px;
+}
+
+/** Gallery **/
+.node-image-gallery .field-name-field-gallery-image .field-item {
+  float: left;
+  margin: 0 20px 17px 0;
+}
+
+.node-image-gallery ul.links,
+.node-image-gallery ul.links.inline {
+  clear: left;
+  display: block;
+}

@@ -93,6 +93,9 @@ input {
 }
 
 /** Tabs **/
+.tabs {
+  border-bottom: none; 
+}
 ul.primary li a span,
 ul.primary li a,
 ul.primary li {
