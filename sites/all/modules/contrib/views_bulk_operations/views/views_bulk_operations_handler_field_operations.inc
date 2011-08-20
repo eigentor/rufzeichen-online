@@ -70,7 +70,7 @@ class views_bulk_operations_handler_field_operations extends views_handler_field
     $form['vbo']['display_result'] = array(
       '#type' => 'checkbox',
       '#title' => t('Display processing result'),
-      '#description' => t('Check this box to let Drupal display a message with the result of processing the selected objects.'),
+      '#description' => t('Check this box to let Drupal display a message with the result of processing the selected items.'),
       '#default_value' => $this->options['vbo']['display_result'],
     );
     $form['vbo']['merge_single_action'] = array(
@@ -94,17 +94,19 @@ class views_bulk_operations_handler_field_operations extends views_handler_field
       '#collapsed' => FALSE,
     );
     foreach ($this->get_operations_options() as $key => $label) {
-      $dom_id = 'edit-options-vbo-operations-' . str_replace('_', '-', $key);
+      $options = isset($this->options['vbo']['operations'][$key]) ? $this->options['vbo']['operations'][$key] : array();
+
+      $dom_id = 'edit-options-vbo-operations-' . str_replace(array('_', ':'), array('-', ''), $key);
       $form['vbo']['operations'][$key]['selected'] = array(
         '#type' => 'checkbox',
         '#title' => $label,
-        '#default_value' => @$this->options['vbo']['operations'][$key]['selected'],
+        '#default_value' => !empty($options['selected']),
       );
       if (!$this->all_operations[$key]['aggregate']) {
         $form['vbo']['operations'][$key]['use_queue'] = array(
           '#type' => 'checkbox',
           '#title' => t('Enqueue the operation instead of executing it directly'),
-          '#default_value' => @$this->options['vbo']['operations'][$key]['use_queue'],
+          '#default_value' => !empty($options['use_queue']),
           '#dependency' => array(
             $dom_id . '-selected' => array(1),
           ),
@@ -113,16 +115,16 @@ class views_bulk_operations_handler_field_operations extends views_handler_field
       $form['vbo']['operations'][$key]['skip_confirmation'] = array(
         '#type' => 'checkbox',
         '#title' => t('Skip confirmation step'),
-        '#default_value' => @$this->options['vbo']['operations'][$key]['skip_confirmation'],
+        '#default_value' => !empty($options['skip_confirmation']),
         '#dependency' => array(
           $dom_id . '-selected' => array(1),
         ),
       );
-      $label = @$this->options['vbo']['operations'][$key]['label'];
+      $show_label = isset($options['label']) ? $options['label'] : '';
       $form['vbo']['operations'][$key]['override_label'] = array(
         '#type' => 'checkbox',
         '#title' => t('Override label'),
-        '#default_value' => $label !== '',
+        '#default_value' => $show_label !== '',
         '#dependency' => array(
           $dom_id . '-selected' => array(1),
         ),
@@ -131,7 +133,7 @@ class views_bulk_operations_handler_field_operations extends views_handler_field
         '#type' => 'textfield',
         '#title' => t('Provide label'),
         '#title_display' => 'invisible',
-        '#default_value' => $label,
+        '#default_value' => $show_label,
         '#dependency' => array(
           $dom_id . '-selected' => array(1),
           $dom_id . '-override-label' => array(1),
@@ -140,15 +142,17 @@ class views_bulk_operations_handler_field_operations extends views_handler_field
       );
       $form_function = $this->all_operations[$key]['callback'] . '_views_bulk_operations_form';
       if (function_exists($form_function)) {
-        $form_settings = call_user_func($form_function, @$this->options['vbo']['operations'][$key]['settings']);
-        foreach (element_children($form_settings) as $child) {
-          $form_settings[$child] += array(
-            '#dependency' => array(
-              $dom_id => array(1),
-            ),
-          );
-        }
-        $form['vbo']['operations'][$key]['settings'] = $form_settings;
+        $settings = isset($options['settings']) ? $options['settings'] : array();
+        $form_settings = call_user_func($form_function, $settings);
+        $form['vbo']['operations'][$key]['settings'] = array(
+          '#type' => 'fieldset',
+          '#title' => t('Operation settings'),
+          '#collapsible' => TRUE,
+          '#dependency' => array(
+            $dom_id . '-selected' => array(1),
+          ),
+        );
+        $form['vbo']['operations'][$key]['settings'] += $form_settings;
       }
     }
   }
@@ -234,27 +238,29 @@ class views_bulk_operations_handler_field_operations extends views_handler_field
     );
     // At this point, the query has already been run, so we can access the results
     // in order to get the base key value (for example, nid for nodes).
-    foreach ($this->view->result as $row_id => $row) {
+    foreach ($this->view->result as $row_index => $row) {
       $entity_id = $this->get_value($row);
 
-      if ($default_rows['select_all'] || isset($default_rows['selection'][$entity_id])) {
-        $default_value = TRUE;
-      }
-      else {
-        $default_value = FALSE;
-      }
       if ($this->options['vbo']['force_single']) {
-        $form[$this->options['id']][$row_id] = array(
+        $form[$this->options['id']][$row_index] = array(
           '#type' => 'radio',
           '#parents' => array($this->options['id']),
           '#return_value' => $entity_id,
         );
       }
       else {
-        $form[$this->options['id']][$row_id] = array(
+        if ($default_rows['select_all'] || (isset($default_rows['selection'][$row_index]) && $default_rows['selection'][$row_index] == $entity_id)) {
+          $default_value = TRUE;
+        }
+        else {
+          $default_value = FALSE;
+        }
+
+        $form[$this->options['id']][$row_index] = array(
           '#type' => 'checkbox',
           '#return_value' => $entity_id,
           '#default_value' => $default_value,
+          '#attributes' => array('class' => array('vbo-select')),
         );
       }
     }
@@ -324,10 +330,6 @@ class views_bulk_operations_handler_field_operations extends views_handler_field
 
     uasort($operations, create_function('$a, $b', 'return strcasecmp($a["label"], $b["label"]);'));
     $this->all_operations = $operations;
-  }
-
-  function get_operation_settings($operation) {
-    return (isset($this->options[$operation['key']]) ? $this->options[$operation['key']] : NULL);
   }
 
   /**

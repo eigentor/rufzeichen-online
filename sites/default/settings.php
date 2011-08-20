@@ -465,3 +465,4 @@ ini_set('session.cookie_lifetime', 2000000);
 if (file_exists('sites/default/local.settings.php')) {
   include('local.settings.php');
 }
+

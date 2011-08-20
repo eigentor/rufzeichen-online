@@ -14,3 +14,25 @@
   clear: left;
   display: block;
 }
+
+/** Comments **/
+.comment .user-picture {
+  float: left;
+  display: inline;
+}
+.comment .comment-content {
+  margin-left: 110px;
+}
+.comment .submitted {
+  float: none;
+}
+/** Taxonomy Menu auf News **/
+.sidebar #block-menu-menu-news-men-- ul li a {
+	display: block;
+	color: #888;
+	text-decoration: none;
+	font-size: 11px;
+	padding: 3px 6px;
+	border-bottom: 1px solid #ebebeb;
+	width: 100%;
+}
