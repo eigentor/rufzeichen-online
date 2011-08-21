@@ -7,7 +7,7 @@
      </div>
     </div>
 		
-   <div class="comment-content">
+   <div class="comment-content clearfix">
      <h3 class="title"><?php print $title ?></h3>
     
     <?php if ($new) : ?>
@@ -16,7 +16,6 @@
     
     
 	    
-    <span class="submitted"><?php print $created; ?> </span>
     
     <div class="content">
       <?php 
@@ -29,7 +28,9 @@
     </div>
     
     <?php if (!empty($content['links'])): ?>
-	    <div class="links"><?php print render($content['links']); ?></div>
+	    <div class="links"> <?php print render($content['links']); ?><div class="comment-date">
+                         <?php print $created; ?>
+                        </div></div>
 	  <?php endif; ?>
    </div>
 

@@ -27,12 +27,15 @@ h2.comment-form,
 form#comment-form {
   margin-left: 5px;
 }
+h2.comment-form {
+  margin-top: 30px;
+}
 .comment .submitted {
   float: none;
 }
 #comments .comment {
   background-color: #FAFAFA;
-  border: 1px solid #EBEBEB;
+  border: 1px solid #e5e5e5;
   border-radius: 2px 2px 2px 2px;
   font-size: 12px;
   margin-top: 20px;
@@ -40,9 +43,15 @@ form#comment-form {
 }
 .comment h3 {
   margin-top: 0;
+  margin-bottom: 2px;
+  font-size: 1.6em;
 }
 .comment .comment-author {
    width: 90px;
+}
+.comment p {
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 .comment .comment-author span,
 .comment .comment-author a {
@@ -50,6 +59,40 @@ form#comment-form {
   line-height: 1;
   font-family: Georgia,"Times New Roman",Times,serif;
   font-style: italic;
+}
+.comment .links {
+  font-family: Georgia,"Times New Roman",Times,serif;
+  font-size: 1em;
+  font-style: italic;
+  color: #999;
+}
+.comment ul.links,
+.comment .comment-date {
+  float: right;
+}
+.comment ul.links {
+  margin-left: 15px;
+}
+.comment ul.links li,
+.comment ul.links li a {
+   
+}
+.comment ul.links li {
+  padding: 3px 0;
+}
+.comment ul.links li.comment-delete {
+  padding-left: 22px;
+  padding-right: 10px;
+  background: url(../images/delete-icon.png) no-repeat 0 center;
+}
+.comment ul.links li.comment-edit {
+  padding-left: 20px;
+  padding-right: 10px;
+  background: url(../images/edit-icon.png) no-repeat 0 center;
+}
+.comment ul.links li.comment-reply {
+  padding-left: 28px;
+  background: url(../images/reply.png) no-repeat 0 center;
 }
  
 /** Taxonomy Menu auf News **/
