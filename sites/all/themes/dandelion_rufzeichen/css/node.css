@@ -23,9 +23,35 @@
 .comment .comment-content {
   margin-left: 110px;
 }
+h2.comment-form,
+form#comment-form {
+  margin-left: 5px;
+}
 .comment .submitted {
   float: none;
 }
+#comments .comment {
+  background-color: #FAFAFA;
+  border: 1px solid #EBEBEB;
+  border-radius: 2px 2px 2px 2px;
+  font-size: 12px;
+  margin-top: 20px;
+  padding: 20px;
+}
+.comment h3 {
+  margin-top: 0;
+}
+.comment .comment-author {
+   width: 90px;
+}
+.comment .comment-author span,
+.comment .comment-author a {
+  font-size: 0.93em;
+  line-height: 1;
+  font-family: Georgia,"Times New Roman",Times,serif;
+  font-style: italic;
+}
+ 
 /** Taxonomy Menu auf News **/
 .sidebar #block-menu-menu-news-men-- ul li a {
 	display: block;

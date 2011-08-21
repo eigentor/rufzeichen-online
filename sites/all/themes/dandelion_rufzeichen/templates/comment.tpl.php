@@ -2,6 +2,9 @@
 	<div class="comment-inner">
 	<div class="user-picture">
      <?php print $picture ?>
+     <div class="comment-author">
+      <?php print $author; ?>
+     </div>
     </div>
 		
    <div class="comment-content">
@@ -13,7 +16,7 @@
     
     
 	    
-    <span class="submitted"><?php print $created; ?> — <?php print $author; ?></span>
+    <span class="submitted"><?php print $created; ?> </span>
     
     <div class="content">
       <?php 
@@ -32,3 +35,4 @@
 
   </div> <!-- /comment-inner -->
 </div> <!-- /comment -->
+<?php dsm($content) ?>
