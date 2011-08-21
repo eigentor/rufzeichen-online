@@ -35,4 +35,3 @@
 
   </div> <!-- /comment-inner -->
 </div> <!-- /comment -->
-<?php dsm($content) ?>
