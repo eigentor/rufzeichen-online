@@ -39,7 +39,7 @@ h2.comment-form {
   border-radius: 2px 2px 2px 2px;
   font-size: 12px;
   margin-top: 20px;
-  padding: 20px;
+  padding: 20px 25px 20px 20px;
 }
 .comment h3 {
   margin-top: 0;
