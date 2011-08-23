@@ -1442,10 +1442,10 @@ float: right;
     width: 270px;
     background: none;
 }
-.page-node #sidebar-second {
+#sidebar-second {
   width: 210px;
 }
-.page-node #content-inner {
+#content-inner {
   width: 630px;
 }
 .node .content:after {
@@ -2154,7 +2154,7 @@ ul.bullet_plus li, div.bullet_plus li {
 	text-align: center;
 	text-decoration: none;
 	color: #6a6a6a;
-	padding: 0px;
+	padding: 0 4px;
 	margin: 0px;
 	position: relative;
 	top: 1px;
