@@ -38,6 +38,16 @@
     <div id="content">
       <div id="content-inner" class="inner column center">
 
+	      <?php
+				    $path = isset($_GET['q']) ? $_GET['q'] : '<front>';
+            $link = url($path, array('absolute' => TRUE));
+            print $link;
+				?>      
+      	
+				<a href="https://www.xing.com/app/user?op=share;url=http://<?php print $link; ?>" target="_blank" title="Ihren XING-Kontakten zeigen">
+<img src="http://www.xing.com/img/n/xing_icon_16x16.png" width="16" height="16" alt="Ihren XING-Kontakten zeigen" />
+</a>
+
         <?php if ($breadcrumb || $title|| $messages || $tabs || $action_links): ?>
           <div id="content-header">
 
