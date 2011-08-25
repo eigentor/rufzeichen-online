@@ -42,7 +42,8 @@
 				    $path = isset($_GET['q']) ? $_GET['q'] : '<front>';
             $link = url($path, array('absolute' => TRUE));
             print $link;
-				?>      
+				?> 
+        	<iframe src="http://www.facebook.com/plugins/like.php?href=http://localhost/jobs-archiv/aionit<?php print $link ?>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>     
       	
 				<a href="https://www.xing.com/app/user?op=share;url=http://<?php print $link; ?>" target="_blank" title="Ihren XING-Kontakten zeigen">
 <img src="http://www.xing.com/img/n/xing_icon_16x16.png" width="16" height="16" alt="Ihren XING-Kontakten zeigen" />
