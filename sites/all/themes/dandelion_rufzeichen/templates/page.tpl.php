@@ -47,6 +47,9 @@
 				<a href="https://www.xing.com/app/user?op=share;url=http://<?php print $link; ?>" target="_blank" title="Ihren XING-Kontakten zeigen">
 <img src="http://www.xing.com/img/n/xing_icon_16x16.png" width="16" height="16" alt="Ihren XING-Kontakten zeigen" />
 </a>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<g:plusone size="medium"></g:plusone>
+
 
         <?php if ($breadcrumb || $title|| $messages || $tabs || $action_links): ?>
           <div id="content-header">
