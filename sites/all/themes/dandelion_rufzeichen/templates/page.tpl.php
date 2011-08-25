@@ -37,10 +37,6 @@
 
     <div id="content">
       <div id="content-inner" class="inner column center">
-      <?php
-$block = module_invoke('google_plusone', 'block_view', 'google_plusone_block');
-print $block['content'];
-?>
 
         <?php if ($breadcrumb || $title|| $messages || $tabs || $action_links): ?>
           <div id="content-header">
