@@ -1,0 +1,40 @@
+/** Block Footer **/
+#footer #block-views-Newsblock_Startseite-block_2 {
+  width: 49%;
+  float: left;
+}
+#footer #block-views-Newsblock_Startseite-block_2 .view-Newsblock-Startseite {
+  padding-right: 15px;
+}
+#footer h2.block-title {
+	color: #575757;
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+	font-style: normal;
+	text-transform: uppercase;
+	margin-top: 0px;
+	border-width:0px;
+}
+#footer #block-views-Newsblock_Startseite-block_2 .views-row {
+	border-bottom: 1px solid #dadada;
+	padding-top: 7px;
+	padding-bottom: 7px;
+}
+#footer #block-views-Newsblock_Startseite-block_2 .views-row-last {
+  border-bottom: none;
+}
+#footer #block-views-Newsblock_Startseite-block_2 .views-row a {
+	display: block;
+	color: #848484;
+}
+#footer #block-views-Newsblock_Startseite-block_2 .views-row a:hover {
+	text-decoration: none;
+	color: #999;
+}
+
+/** Gallery Block Footer **/
+#footer #block-views-gallery_list-block_1 {
+  width: 24,5%;
+  float: left;
+}

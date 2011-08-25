@@ -1,4 +1,4 @@
-<div id="page-wrapper">
+<div id="page-wrapper" class="clearfix">
  <div id="page" class="<?php print $classes; ?>"<?php print $attributes; ?>>
 
   <!-- ______________________ HEADER _______________________ -->
@@ -99,12 +99,22 @@ print $block['content'];
   </div> <!-- /main -->
 
   <!-- ______________________ FOOTER _______________________ -->
-
-  <?php if ($page['footer']): ?>
-    <div id="footer">
-      <?php print render($page['footer']); ?>
+   <?php if ($page['footer']): ?>
+    <div id="footer" class="clearfix">
+     <div class="footer-inner clearfix">
+       <?php print render($page['footer']); ?>
+     </div>
+      
     </div> <!-- /footer -->
   <?php endif; ?>
+ 
+  <div id="footer-bottom" class="clearfix">
+  <div class="footer-bottom-inner" class="clearfix">
+    &copy; rufzeichen <?php print date("Y");?>&nbsp;&nbsp;&nbsp;&nbsp; Danke für das Dandelion Theme an <a href="http://themeforest.net/user/pexeto" target="_blank">Pexeto</a>
+  </div>
+   
+  </div>
+   
 
 </div>
 </div> <!-- /page -->
