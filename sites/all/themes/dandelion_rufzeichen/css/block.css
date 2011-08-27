@@ -1,10 +1,10 @@
 /** Block Footer **/
 #footer #block-views-Newsblock_Startseite-block_2 {
-  width: 49%;
+  width: 50.5%;
   float: left;
 }
 #footer #block-views-Newsblock_Startseite-block_2 .view-Newsblock-Startseite {
-  padding-right: 15px;
+  padding-right: 30px;
 }
 #footer h2.block-title {
 	color: #575757;
@@ -16,25 +16,23 @@
 	margin-top: 0px;
 	border-width:0px;
 }
-#footer #block-views-Newsblock_Startseite-block_2 .views-row {
-	border-bottom: 1px solid #dadada;
-	padding-top: 7px;
-	padding-bottom: 7px;
+
+/** News Block ohne Drupal Footer **/
+#footer #block-views-Newsblock_Startseite-block_3 {
+  width: 28.5%;
+  float: left;
 }
-#footer #block-views-Newsblock_Startseite-block_2 .views-row-last {
-  border-bottom: none;
-}
-#footer #block-views-Newsblock_Startseite-block_2 .views-row a {
-	display: block;
-	color: #848484;
-}
-#footer #block-views-Newsblock_Startseite-block_2 .views-row a:hover {
-	text-decoration: none;
-	color: #999;
+#footer #block-views-Newsblock_Startseite-block_3 .view-Newsblock-Startseite {
+  padding-right: 30px;
 }
 
 /** Gallery Block Footer **/
-#footer #block-views-gallery_list-block_1 {
-  width: 24,5%;
+#footer #block-views-gallery_list-block_2 {
+  width: 20%;
   float: left;
 }
+#footer #block-views-gallery_list-block_2 h2.block-title {
+  margin-bottom: 15px;
+  padding-left: 3px;
+}
+

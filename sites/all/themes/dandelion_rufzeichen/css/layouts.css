@@ -722,7 +722,8 @@ a.read-more {
 
 
 img.img-frame,img.shadow-frame,img.attachment-post_box_img, .img-frame img,
-#content-area img, #sidebar-second img
+#content-area img, #sidebar-second img,
+#footer .view-gallery-list img
  {
 	padding: 4px;
 	background-color: #fefefe;
@@ -1297,7 +1298,7 @@ img.attachment-post_box_img {
   margin: 0;	
 }
 #footer .footer-inner {
-  padding: 20px 40px 15px;
+  padding: 20px 30px 15px 40px;
 }
 
 #footer .columns-wrapper{
