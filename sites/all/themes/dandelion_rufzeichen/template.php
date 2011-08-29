@@ -17,6 +17,21 @@ if (theme_get_setting('dandelion_rufzeichen_tabs')) {
   drupal_add_css( drupal_get_path('theme', 'dandelion_rufzeichen') .'/css/tabs.css');
 }
 
+function dandelion_rufzeichen_preprocess_html(&$vars) {
+  if ($node = menu_get_object()) {
+    // Add the field value for Border or no border in News content type 
+    // into body classes 
+    if($node->type == 'news') {
+      $field_values = field_get_items('node', $node, 'field_news_imagefield_border');   
+      if (isset($field_values[0])) {
+        $vars['classes_array'][] = ($field_values[0]['value'] == 0) 
+          ? 'image-border-none' 
+          : 'image-border';
+      }
+    }
+  }
+}
+
 function dandelion_rufzeichen_preprocess_page(&$vars, $hook) {
   if (isset($vars['node_title'])) {
     $vars['title'] = $vars['node_title'];
@@ -55,11 +70,7 @@ function dandelion_rufzeichen_preprocess_node(&$vars) {
 
   // Merge first/last class (from dandelion_rufzeichen_preprocess_page) into classes array of current node object.
   $node = $vars['node'];
-  // Add the field value for Border or no border in News content type into body classes 
-  if($node->type == 'news') {
-     $vars['classes_array'][] = 'eiaeiaei';
-  }
-  
+
   if (!empty($node->classes_array)) {
     $vars['classes_array'] = array_merge($vars['classes_array'], $node->classes_array);
   }
