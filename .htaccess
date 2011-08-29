@@ -135,3 +135,9 @@ DirectoryIndex index.php index.html index.htm
     </FilesMatch>
   </IfModule>
 </IfModule>
+
+#htpasswd protection as long as site is not live
+AuthType Basic
+AuthName "rufzeichen neu"
+AuthUserFile 	/var/www/clients/client26/site289/docroot/.htpasswd
+Require valid-user
