@@ -2,7 +2,6 @@
  <div id="page" class="<?php print $classes; ?>"<?php print $attributes; ?>>
 
   <!-- ______________________ HEADER _______________________ -->
-
   
      <div id="header-top">
       <div id="logo">

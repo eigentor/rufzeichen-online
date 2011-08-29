@@ -43,3 +43,4 @@
 </div> <!-- /node-->
 
 <?php print render($content['comments']); ?>
+<? dsm($vars); ?>

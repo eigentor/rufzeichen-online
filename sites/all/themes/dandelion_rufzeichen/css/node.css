@@ -105,3 +105,19 @@ h2.comment-form {
 	border-bottom: 1px solid #ebebeb;
 	width: 100%;
 }
+
+/** Jplayer **/
+div.jp-interface {
+  border: 1px solid #ccc;
+}
+div.jp-playlist {
+  background: #fafafa;
+  border: 1px solid #ddd;
+}
+div.jp-type-playlist div.jp-playlist li { 
+  border-bottom: 1px solid #e7e7e7;
+}
+div.jp-audio {
+  width: 100%;;
+}
+
