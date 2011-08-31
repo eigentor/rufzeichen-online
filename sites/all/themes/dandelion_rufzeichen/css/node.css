@@ -75,23 +75,27 @@ h2.comment-form {
 }
 .comment ul.links li,
 .comment ul.links li a {
-   
+  font-size: 11px; 
 }
-.comment ul.links li {
+.comment ul.links li  {
   padding: 3px 0;
 }
-.comment ul.links li.comment-delete {
-  padding-left: 22px;
+.comment ul.links li a {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.comment ul.links li.comment-delete a {
+  padding-left: 21px;
   padding-right: 10px;
   background: url(../images/delete-icon.png) no-repeat 0 center;
 }
-.comment ul.links li.comment-edit {
-  padding-left: 20px;
+.comment ul.links li.comment-edit a {
+  padding-left: 21px;
   padding-right: 10px;
   background: url(../images/edit-icon.png) no-repeat 0 center;
 }
-.comment ul.links li.comment-reply {
-  padding-left: 28px;
+.comment ul.links li.comment-reply a {
+  padding-left: 23px;
   background: url(../images/reply.png) no-repeat 0 center;
 }
  
