@@ -28,3 +28,7 @@
 #footer .view-gallery-list .views-row {
   float: left;
 }
+/** News-Übersicht **/
+.view-News-Hauptseite .views-row {
+  padding-bottom: 20px;
+}

@@ -2,6 +2,10 @@
   float: right;
   margin: 5px 0 5px 15px;
 }
+.image-border-none #content-area .node-news .field-name-field-hauptbild img,
+#content-area .image-border-none .field-name-field-hauptbild img {
+  border: none;
+}
 
 /** Gallery **/
 .node-image-gallery .field-name-field-gallery-image .field-item {
@@ -69,6 +73,7 @@ h2.comment-form {
 .comment ul.links,
 .comment .comment-date {
   float: right;
+  padding-right: 15px;
 }
 .comment ul.links {
   margin-left: 15px;
@@ -96,7 +101,7 @@ h2.comment-form {
 }
 .comment ul.links li.comment-reply a {
   padding-left: 23px;
-  background: url(../images/reply.png) no-repeat 0 center;
+  background: url(../images/reply.png) no-repeat 0 2px;
 }
  
 /** Taxonomy Menu auf News **/
@@ -124,4 +129,32 @@ div.jp-type-playlist div.jp-playlist li {
 div.jp-audio {
   width: 100%;;
 }
+/** News in Übersichtsview **/
+
+ul.inline, ul.links.inline {
+  font-family: Georgia,"Times New Roman",Times,serif;
+  font-size: 1em;
+  font-style: italic;
+  margin-left: 0;
+}
+ul.inline li {
+  padding: 0px 10px 0px 0;
+}
+ul.inline li a {
+  padding: 2px 0;
+}
+ul.inline li.comment-add a {
+  background: url("../images/reply.png") no-repeat scroll 0 2px transparent;
+  padding-left: 23px;
+}
+ul.inline li.comment-comments a {
+  background: url("../images/comment-icon.png") no-repeat scroll 0 2px transparent;
+  padding-left: 23px;
+}
+ul.inline li.node-readmore a {
+  background: url("../images/read-more-icon.png") no-repeat scroll 2px 2px transparent;
+  padding-left: 24px;
+}
+
+
 

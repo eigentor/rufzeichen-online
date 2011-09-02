@@ -70,6 +70,14 @@ function dandelion_rufzeichen_preprocess_node(&$vars) {
 
   // Merge first/last class (from dandelion_rufzeichen_preprocess_page) into classes array of current node object.
   $node = $vars['node'];
+  if($node->type == 'news') {
+      $field_values = field_get_items('node', $node, 'field_news_imagefield_border');   
+      if (isset($field_values[0])) {
+        $vars['classes_array'][] = ($field_values[0]['value'] == 0) 
+          ? 'image-border-none' 
+          : 'image-border';
+      }
+    }
 
   if (!empty($node->classes_array)) {
     $vars['classes_array'] = array_merge($vars['classes_array'], $node->classes_array);

@@ -730,7 +730,9 @@ img.img-frame,img.shadow-frame,img.attachment-post_box_img, .img-frame img,
 	border: 1px solid #d9d9d9;
 }
 #content-area img.no-frame,
-#sidebar-second img.no-frame {
+#sidebar-second img.no-frame,
+#content-area img.image-border-none,
+#sidebar-second img.image-border-none {
   padding: 0;
   background: none;
   border: none;
