@@ -105,7 +105,7 @@ h2.comment-form {
 }
  
 /** Taxonomy Menu auf News **/
-.sidebar #block-menu-menu-news-men-- ul li a {
+.sidebar #block-menu-menu-news-men- ul li a {
 	display: block;
 	color: #888;
 	text-decoration: none;
@@ -151,12 +151,40 @@ ul.inline li.comment-comments a {
   background: url("../images/comment-icon.png") no-repeat scroll 0 2px transparent;
   padding-left: 23px;
 }
-ul.inline li.comment-comments {
-  display: none;
-}
 ul.inline li.node-readmore a {
   background: url("../images/read-more-icon.png") no-repeat scroll 2px 2px transparent;
   padding-left: 24px;
+}
+
+/** Startseite **/
+.front #content-inner {
+  width: 900px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.front #content-header h1 {
+  display: none;
+}
+.front .links {
+  display: none;
+}
+.front h2 {
+  font-size: 1.8em;
+  margin-bottom: 8px;
+}
+.front p {
+  margin-bottom: 7px;
+}
+.front .field-name-field-zweispaltig-links {
+  float: left;
+  width: 540px;
+}
+.front .field-name-field-zweispaltig-rechts {
+  float: right;
+  width: 340px;
+}
+.front .field-name-field-zweispaltig-rechts img {
+  float: right;
 }
 
 
