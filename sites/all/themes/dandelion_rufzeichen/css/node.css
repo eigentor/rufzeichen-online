@@ -103,6 +103,9 @@ h2.comment-form {
   padding-left: 23px;
   background: url(../images/reply.png) no-repeat 0 2px;
 }
+ul.links li a {
+  color: #ED8137;
+}
  
 /** Taxonomy Menu auf News **/
 .sidebar #block-menu-menu-news-men- ul li a {
@@ -160,7 +163,6 @@ ul.inline li.node-readmore a {
 .front #content-inner {
   width: 900px;
   padding-top: 10px;
-  padding-bottom: 10px;
 }
 .front #content-header h1 {
   display: none;
@@ -169,8 +171,9 @@ ul.inline li.node-readmore a {
   display: none;
 }
 .front h2 {
-  font-size: 1.8em;
-  margin-bottom: 8px;
+  font-size: 2.2em;
+  margin-bottom: 7px;
+  margin-top: 5px;
 }
 .front p {
   margin-bottom: 7px;
@@ -185,6 +188,44 @@ ul.inline li.node-readmore a {
 }
 .front .field-name-field-zweispaltig-rechts img {
   float: right;
+}
+/** Zitat der Woche View **/
+.view-zitat-der-woche .views-row .field-name-body p {
+  font-family: georgia,times,serif;
+  font-size: 1.6em;
+  font-style: italic;
+  color: #a1a1a1;
+  line-height: 1.35;
+  background: url(../images/quote-bottom.png) no-repeat bottom right;
+  padding-right: 30px;
+}
+.view-zitat-der-woche .views-row .field-name-body {
+  padding-left: 30px;
+  padding-top: 10px;
+  padding-right: 8px;
+  padding-bottom: 5px;
+  background: #f8f8f8 url(../images/quote-top.png) no-repeat 8px 8px;
+  border: 1px solid #ebebeb;
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+
+
+.view-zitat-der-woche .views-row .field-name-zitat-description {
+  float: left;
+  display: inline;
+  padding-left: 30px;
+}
+.view-zitat-der-woche .views-row .field-name-field-zitat-author {
+  float: right;
+  display: inline;
+  padding-right: 30px;
+}
+.view-zitat-der-woche .views-row .field-name-zitat-description p,
+.view-zitat-der-woche .views-row .field-name-field-zitat-author .field-item {
+     font-size: 0.83em;
+     line-height: 1;
+     color: #999;
 }
 
 
