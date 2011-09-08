@@ -105,6 +105,7 @@ function jplayer_sort_files($raw_files = array(), $player_id, $type = 'single') 
   $files = array();
   $extensions = array();
   $playlist = array();
+  $player_type = 'audio';
   
   // Look through all the files provided and see what we have
   foreach($raw_files as $delta => $item) {
@@ -132,11 +133,11 @@ function jplayer_sort_files($raw_files = array(), $player_id, $type = 'single') 
     // Add file into correct group
     if (in_array($item['ext'], $video_extensions)) {
       $videos = TRUE;
-      $item['type'] = 'audio';
+      $item['type'] = 'video';
     }
     else if (in_array($item['ext'], $audio_extensions)) {
       $audio = TRUE;
-      $item['type'] = 'video';
+      $item['type'] = 'audio';
     }
     else if (in_array($item['ext'], $poster_extensions)) {
       $poster = $item['url'];
@@ -148,9 +149,18 @@ function jplayer_sort_files($raw_files = array(), $player_id, $type = 'single') 
   
   $num = 0;
   foreach ($media as $file) {
-    if ($videos == TRUE && $type != 'playlist') {
-      if ($file['type'] == 'audio') {
-        unset($file);
+     // if there are videos to play, and mode is single,
+    // then ignore any audio files present.
+    if ($videos == TRUE) {
+
+      if ($type == 'playlist') {
+        $player_type = 'video';
+      }
+      else /* single */ {
+	if ($file['type'] == 'audio') {
+	  unset($file);
+	}
+	$player_type = 'video';
       }
       $player_type = 'video';
     }

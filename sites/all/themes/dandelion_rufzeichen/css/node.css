@@ -2,6 +2,10 @@
   float: right;
   margin: 5px 0 5px 15px;
 }
+.image-border-none #content-area .node-news .field-name-field-hauptbild img,
+#content-area .image-border-none .field-name-field-hauptbild img {
+  border: none;
+}
 
 /** Gallery **/
 .node-image-gallery .field-name-field-gallery-image .field-item {
@@ -69,34 +73,42 @@ h2.comment-form {
 .comment ul.links,
 .comment .comment-date {
   float: right;
+  padding-right: 15px;
 }
 .comment ul.links {
   margin-left: 15px;
 }
 .comment ul.links li,
 .comment ul.links li a {
-   
+  font-size: 11px; 
 }
-.comment ul.links li {
+.comment ul.links li  {
   padding: 3px 0;
 }
-.comment ul.links li.comment-delete {
-  padding-left: 22px;
+.comment ul.links li a {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.comment ul.links li.comment-delete a {
+  padding-left: 21px;
   padding-right: 10px;
   background: url(../images/delete-icon.png) no-repeat 0 center;
 }
-.comment ul.links li.comment-edit {
-  padding-left: 20px;
+.comment ul.links li.comment-edit a {
+  padding-left: 21px;
   padding-right: 10px;
   background: url(../images/edit-icon.png) no-repeat 0 center;
 }
-.comment ul.links li.comment-reply {
-  padding-left: 28px;
-  background: url(../images/reply.png) no-repeat 0 center;
+.comment ul.links li.comment-reply a {
+  padding-left: 23px;
+  background: url(../images/reply.png) no-repeat 0 2px;
+}
+ul.links li a {
+  color: #ED8137;
 }
  
 /** Taxonomy Menu auf News **/
-.sidebar #block-menu-menu-news-men-- ul li a {
+.sidebar #block-menu-menu-news-men- ul li a {
 	display: block;
 	color: #888;
 	text-decoration: none;
@@ -120,4 +132,101 @@ div.jp-type-playlist div.jp-playlist li {
 div.jp-audio {
   width: 100%;;
 }
+/** News in Übersichtsview **/
+
+ul.inline, ul.links.inline {
+  font-family: Georgia,"Times New Roman",Times,serif;
+  font-size: 1em;
+  font-style: italic;
+  margin-left: 0;
+}
+ul.inline li {
+  padding: 0px 10px 0px 0;
+}
+ul.inline li a {
+  padding: 2px 0;
+}
+ul.inline li.comment-add a {
+  background: url("../images/reply.png") no-repeat scroll 0 2px transparent;
+  padding-left: 23px;
+}
+ul.inline li.comment-comments a {
+  background: url("../images/comment-icon.png") no-repeat scroll 0 2px transparent;
+  padding-left: 23px;
+}
+ul.inline li.node-readmore a {
+  background: url("../images/read-more-icon.png") no-repeat scroll 2px 2px transparent;
+  padding-left: 24px;
+}
+
+/** Startseite **/
+.front #content-inner {
+  width: 900px;
+  padding-top: 10px;
+}
+.front #content-header h1 {
+  display: none;
+}
+.front .links {
+  display: none;
+}
+.front h2 {
+  font-size: 2.2em;
+  margin-bottom: 7px;
+  margin-top: 5px;
+}
+.front p {
+  margin-bottom: 7px;
+}
+.front .field-name-field-zweispaltig-links {
+  float: left;
+  width: 540px;
+}
+.front .field-name-field-zweispaltig-rechts {
+  float: right;
+  width: 340px;
+}
+.front .field-name-field-zweispaltig-rechts img {
+  float: right;
+}
+/** Zitat der Woche View **/
+.view-zitat-der-woche .views-row .field-name-body p {
+  font-family: georgia,times,serif;
+  font-size: 1.6em;
+  font-style: italic;
+  color: #a1a1a1;
+  line-height: 1.35;
+  background: url(../images/quote-bottom.png) no-repeat bottom right;
+  padding-right: 30px;
+}
+.view-zitat-der-woche .views-row .field-name-body {
+  padding-left: 30px;
+  padding-top: 10px;
+  padding-right: 8px;
+  padding-bottom: 5px;
+  background: #f8f8f8 url(../images/quote-top.png) no-repeat 8px 8px;
+  border: 1px solid #ebebeb;
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+
+
+.view-zitat-der-woche .views-row .field-name-zitat-description {
+  float: left;
+  display: inline;
+  padding-left: 28px;
+}
+.view-zitat-der-woche .views-row .field-name-field-zitat-author {
+  float: right;
+  display: inline;
+  padding-right: 30px;
+}
+.view-zitat-der-woche .views-row .field-name-zitat-description p,
+.view-zitat-der-woche .views-row .field-name-field-zitat-author .field-item {
+     font-size: 0.83em;
+     line-height: 1;
+     color: #999;
+}
+
+
 
