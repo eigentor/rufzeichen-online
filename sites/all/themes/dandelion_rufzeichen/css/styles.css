@@ -54,6 +54,14 @@ a {
    float: right;
    margin: 0 5px 5px 15px;
 }
+ul.action-links,
+ul.action-links li {
+  list-style-type: none;
+  list-style-image: none;
+}
+ul.action-links li a {
+   background: url("../images/add-grey.png") no-repeat 0 center ;
+}
 
 ins {
 	background-color: #ff9;
