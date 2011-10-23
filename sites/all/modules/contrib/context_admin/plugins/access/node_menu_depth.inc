@@ -12,16 +12,16 @@
 $plugin = array(
   'title' => t("Node: Menu Item Depth"),
   'description' => t('Control access based upon the depth within a particular menu of this node.'),
-  'callback' => 'context_access_node_menu_depth_access_check',
+  'callback' => 'context_admin_node_menu_depth_access_check',
   'default' => array('menu' => array()),
-  'settings form' => 'context_access_node_menu_depth_access_settings',
-  'settings form submit' => 'context_access_node_menu_depth_access_settings_submit',
-  'summary' => 'context_access_node_menu_depth_access_summary',
+  'settings form' => 'context_admin_node_menu_depth_access_settings',
+  'settings form submit' => 'context_admin_node_menu_depth_access_settings_submit',
+  'summary' => 'context_admin_node_menu_depth_access_summary',
   'required context' => new ctools_context_required(t('Node'), 'node'),
-  'restrictions' => 'context_access_node_menu_depth_access_restrictions',
+  'restrictions' => 'context_admin_node_menu_depth_access_restrictions',
 );
 
-function context_access_node_menu_depth_get_menus() {
+function context_admin_node_menu_depth_get_menus() {
   $custom_menus = menu_get_menus();
   foreach ($custom_menus as $name => $title) {
     $options[$name] = $title;
@@ -32,8 +32,8 @@ function context_access_node_menu_depth_get_menus() {
 /**
  * Settings form for the 'by node_type' access plugin
  */
-function context_access_node_menu_depth_access_settings($form, $form_state, $conf) {
-  $options = context_access_node_menu_depth_get_menus();
+function context_admin_node_menu_depth_access_settings($form, $form_state, $conf) {
+  $options = context_admin_node_menu_depth_get_menus();
 
   $form['settings']['menu'] = array(
     '#title' => t('Menu'),
@@ -65,14 +65,14 @@ function context_access_node_menu_depth_access_settings($form, $form_state, $con
 /**
  * Compress the node_types allowed to the minimum.
  */
-function context_access_node_menu_depth_access_settings_submit(&$form, &$form_state) {
+function context_admin_node_menu_depth_access_settings_submit(&$form, &$form_state) {
 
 }
 
 /**
  * Check for access.
  */
-function context_access_node_menu_depth_access_check($conf, $context) {
+function context_admin_node_menu_depth_access_check($conf, $context) {
   // Per the example in node type in core ctools
   if (empty($context) || empty($context->data) || empty($context->data->nid)) {
     return FALSE;
@@ -85,7 +85,7 @@ function context_access_node_menu_depth_access_check($conf, $context) {
     ->condition('module', 'menu', '=')
     ->condition('menu_name', $conf['menu'], '=');
   $result = $query->execute()->fetchObject();
-  if ($result->mlid != $result->{$conf['menu_depth']}) {
+  if ($result && $result->mlid != $result->{$conf['menu_depth']}) {
     return TRUE;
   }
 
@@ -96,7 +96,7 @@ function context_access_node_menu_depth_access_check($conf, $context) {
  * Inform the UI that we've eliminated a bunch of possibilities for this
  * context.
  */
-function context_access_node_menu_depth_access_restrictions($conf, &$context) {
+function context_admin_node_menu_depth_access_restrictions($conf, &$context) {
   if (isset($context->restrictions['menu'])) {
     $context->restrictions['menu'] = array_unique(array_merge($context->restrictions['menu'], array_keys(array_filter($conf['menu']))));
   }
@@ -108,7 +108,7 @@ function context_access_node_menu_depth_access_restrictions($conf, &$context) {
 /**
  * Provide a summary description based upon the checked node_types.
  */
-function context_access_node_menu_depth_access_summary($conf, $context) {
+function context_admin_node_menu_depth_access_summary($conf, $context) {
   if (!isset($conf['menu'])) {
     return t('No menu context has been selected for @identifier', array('@identifier' => $context->identifier));
   }

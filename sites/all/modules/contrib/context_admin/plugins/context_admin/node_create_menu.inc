@@ -17,6 +17,7 @@ $plugin = array(
 
 
 function context_admin_node_create_menu_content_form($form, $form_state, $cache = NULL) {
+  $conf = $form_state['conf'];
   ctools_include('dependent');
   $context_options = $form['context']['#options'];
   unset($context_options['empty']);
@@ -24,11 +25,8 @@ function context_admin_node_create_menu_content_form($form, $form_state, $cache 
   foreach ($context_options as $c_key => $c_option) {
     $context_dependencies[] = $c_key;
   }
-  if (isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_options_items'])) {
-    $default = $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_options_items'];
-  }
-  elseif (isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_options_items'])) {
-    $default = $cache->handlers[$form_state['handler_id']]->conf['context_admin_options_items'];
+  if (isset($conf['context_admin_options_items'])) {
+    $default = $conf['context_admin_options_items'];
   }
   else {
     $default = '';
@@ -42,11 +40,8 @@ function context_admin_node_create_menu_content_form($form, $form_state, $cache 
     '#default_value' => $default,
   );
 
-  if (isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_sub_page'])) {
-    $sub = $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_sub_page'];
-  }
-  elseif (isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_sub_page'])) {
-    $sub = $cache->handlers[$form_state['handler_id']]->conf['context_admin_sub_page'];
+  if (isset($conf['context_admin_sub_page'])) {
+    $sub = $conf['context_admin_sub_page'];
   }
   else {
     $sub = 0;
@@ -60,34 +55,42 @@ function context_admin_node_create_menu_content_form($form, $form_state, $cache 
     '#dependency' => array('edit-context' => array(implode(', ', $context_dependencies))),
   );
 
+  if (module_exists('panels')) {
+    if(isset($conf['context_admin_use_node_edit'])) {
+      $node_edit = $conf['context_admin_use_node_edit'];
+    }
+    else {
+      $node_edit = NULL;
+    }
+
+    $form['context_admin_use_node_edit'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Render the Add form using panels and page manager'),
+      '#description' => t('Enable node/%node/edit in page manager. Unchecked renders Add form with Drupal\'s node templating system.'),
+      '#default_value' => $node_edit,
+    );
+  }
+
   return $form;
 }
 
 function context_admin_node_create_menu_content_form_submit($form, &$form_state) {
-  $cache = context_admin_get_page_cache($form_state['page']->subtask_id);
-  if (!is_null($form_state['handler_id'])) {
-    $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_options_items'] = $form_state['values']['context_admin_options_items'];
-  }
-  else {
-    $form_state['page']->new_handler->conf['context_admin_options_items'] = $form_state['values']['context_admin_options_items'];
-  }
+  $form_state['conf']['context_admin_options_items'] = $form_state['values']['context_admin_options_items'];
   if ($form_state['values']['context_admin_sub_page']) {
-    if (!is_null($form_state['handler_id'])) {
-      $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_sub_page'] = $form_state['values']['context_admin_sub_page'];
-    }
-    else {
-      $form_state['page']->new_handler->conf['context_admin_sub_page'] = $form_state['values']['context_admin_sub_page'];
-    }
+    $form_state['conf']['context_admin_sub_page'] = $form_state['values']['context_admin_sub_page'];
   }
-  context_admin_set_page_cache($form_state['page']->subtask_id, $form_state['page']);
-  return $form_state;
+  if (isset($form_state['values']['context_admin_use_node_edit'])) {
+    $form_state['conf']['context_admin_use_node_edit'] = $form_state['values']['context_admin_use_node_edit'];
+  }
 }
 
 function context_admin_node_create_menu_render_page($handler, $base_contexts, $args, $test = TRUE) {
-  $type = $handler->conf['context_admin_options_items'];
   module_load_include('inc', 'node', 'node.pages');
-
-  return node_add($type);
+  $use_panels = FALSE;
+  if (isset($handler->conf['context_admin_use_node_edit'])) {
+    $use_panels = $handler->conf['context_admin_use_node_edit'];
+  }
+  return context_admin_node_add_wrapper($handler->conf['context_admin_options_items'], array(), $use_panels);
 }
 
 function context_admin_node_create_menu_node_insert($node, $page) {

@@ -175,6 +175,22 @@ function context_admin_form_alter(&$form, &$form_state, $form_id) {
     $form_id
   );
   call_user_func_array('context_admin_plugin_callback_invoke', $args);
+
+  // We never want to deal with node_form_validate directly, always utilize our
+  // wrapper function instead.
+  switch($form_id) {
+    case 'context_admin_node_form_wrapper':
+      $node_validate = array_search('node_form_validate', $form['#validate']);
+      $ca_validate = array_search('context_admin_node_form_wrapper_validate', $form['#validate']);
+      if ($node_validate !== FALSE && $ca_validate !== FALSE) {
+        unset($form['#validate'][$ca_validate]);
+        $form['#validate'][$node_validate] = 'context_admin_node_form_wrapper_validate';
+      }
+      elseif ($node_validate !== FALSE) {
+        $form['#validate'][$node_validate] = 'context_admin_node_form_wrapper_validate';
+      }
+      break;
+  }
 }
 
 /**
@@ -182,4 +198,65 @@ function context_admin_form_alter(&$form, &$form_state, $form_id) {
  */
 function context_admin_node_insert($node) {
   context_admin_plugin_callback_invoke('node insert', 'hook', $node);
+}
+
+/**
+ * Build our own node_add style function so that we can do things core does not
+ * support. Also, we need to call a completely different form so that we can
+ * load the node.pages.inc file from drupal_get_form so that ajax fields
+ * continue to work.
+ */
+function context_admin_node_add_wrapper($type, $fields = array(), $use_panels = FALSE) {
+  global $user;
+
+  $types = node_type_get_types();
+  $node = new stdClass();
+  $fields += array(
+    'uid' => $user->uid,
+    'name' => (isset($user->name) ? $user->name : ''),
+    'type' => $type,
+    'language' => LANGUAGE_NONE,
+  );
+  foreach ($fields as $field_id => $value) {
+    if (is_array($value)) {
+      foreach ($value['values'] as $field_value) {
+        $node->{$field_id}[$value['language']][][$value['key']] = $field_value;
+      }
+    }
+    else {
+      $node->{$field_id} = $value;
+    }
+  }
+  if ($use_panels && module_exists('panels')) {
+    // Render form using Page Manager's node/%node/edit page
+    // Requires node/%node/edit page to be enabled.  Check for this and disable checkbox above?  FIXME
+    ctools_include("plugins");
+    $plugin = ctools_get_plugins("page_manager", "tasks", "node_edit");
+    global $user;
+    drupal_set_title(t('Create @name', array('@name' => $types[$type]->name)));
+    return page_manager_node_edit($node);
+  }
+  drupal_set_title(t('Create @name', array('@name' => $types[$type]->name)), PASS_THROUGH);
+  return drupal_get_form('context_admin_node_form_wrapper', $node);
+}
+
+/**
+ * Custom wrapper for node_form() so that we do not have to load node.pages.inc
+ * from a menu item. Being forced into loading it in the menu prevents any
+ * other module from being able to abstractly utilize node_add() since all
+ * field ajax will fail.
+ */
+function context_admin_node_form_wrapper($form, &$form_state, $node) {
+  module_load_include('inc', 'node', 'node.pages');
+  $form = node_form($form, $form_state, $node);
+  return $form;
+}
+
+/**
+ * Poll module and other such ajax appears to die without a wrapper around
+ * node_form_validate as well.
+ */
+function context_admin_node_form_wrapper_validate($form, &$form_state) {
+  module_load_include('inc', 'node', 'node.pages');
+  node_form_validate($form, $form_state);
 }

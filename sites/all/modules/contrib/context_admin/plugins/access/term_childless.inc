@@ -11,21 +11,22 @@
  * by the system that includes this file.
  */
 $plugin = array(
-  'title' => t("Term: Childless"),
+  'title' => t("Taxonomy: term childless"),
   'description' => t('Control access based upon the lack of children on the current term.'),
   'callback' => 'context_admin_term_childless_access_check',
   'default' => array('menu' => array()),
   'settings form' => 'context_admin_term_childless_access_settings',
   'settings form submit' => 'context_admin_term_childless_access_settings_submit',
   'summary' => 'context_admin_term_childless_access_summary',
-  'required context' => new ctools_context_required(t('Term'), array('term', 'terms')),
+  'required context' => new ctools_context_required(t('Term'), array('taxonomy_term', 'term', 'terms')),
 );
 
-function context_admin_term_childless_access_settings(&$form, &$form_state, $conf) {
+function context_admin_term_childless_access_settings($form, &$form_state, $conf) {
   $form['settings']['childless'] = array(
     '#type' => 'markup',
     '#value' => '<p>'. t('Provides a access check against the current term to make sure it is not the parent of any other terms.') .'</p>',
   );
+  return $form;
 }
 
 function context_admin_term_childless_access_settings_submit(&$form, &$form_state) {
@@ -41,7 +42,7 @@ function context_admin_term_childless_access_check($conf, $context) {
     return FALSE;
   }
 
-  $query = db_select('term_hierarchy', 'th')
+  $query = db_select('taxonomy_term_hierarchy', 'th')
     ->fields('th', array('tid'))
     ->condition('parent', $context->data->tid, '=');
   $result = $query->execute()->fetchObject();

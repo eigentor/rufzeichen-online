@@ -43,8 +43,10 @@ function context_admin_vbo_views_bulk_menu_content_form($form, &$form_state, $ca
     '#title' => t('Node Type'),
     '#required' => TRUE,
     '#options' => $options,
-    '#default_value' => $default_type,
   );
+  if ($default_type) {
+    $form['context_admin_vbo_views_bulk_node_type']['#default_value'] = $default_type;
+  }
   $form['context_admin_vbo_views_bulk_published'] = array(
     '#type' => 'radios',
     '#title' => t('Published Options'),

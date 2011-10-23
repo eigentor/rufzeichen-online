@@ -17,34 +17,31 @@ if (module_exists('node_reference')) {
 }
 
 function context_admin_noderef_create_node_content_form($form, &$form_state, $cache = NULL, $contexts = array()) {
+  $conf = $form_state['conf'];
   ctools_include('dependent');
-  if (isset($form_state['handler_id'])) {
-    $default = isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_options_items']) ? 
-      $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_options_items'] : 
-      isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_options_items']) ? 
-        $cache->handlers[$form_state['handler_id']]->conf['context_admin_options_items'] : 
-        NULL;
-    $type_fields = isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_content_types']) ? 
-      $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_content_types'] : 
-      isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_content_types']) ? 
-        $cache->handlers[$form_state['handler_id']]->conf['context_admin_content_types'] : 
-        NULL;
-    $forward = isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_autoforward']) ? 
-      $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_autoforward'] : 
-      isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_autoforward']) ? 
-        $cache->handlers[$form_state['handler_id']]->conf['context_admin_autoforward'] : 
-        NULL;
-    $custom_redirect = isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_custom_redirect']) ? 
-      $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_custom_redirect'] : 
-      isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_custom_redirect']) ? 
-        $cache->handlers[$form_state['handler_id']]->conf['context_admin_custom_redirect'] : 
-        NULL;
+  if (isset($conf['context_admin_options_items'])) {
+    $default = $conf['context_admin_options_items'];
   }
   else {
-    $default = $form_state['page']->new_handler->conf['context_admin_options_items'];
-    $type_fields = $form_state['page']->new_handler->conf['context_admin_content_types'];
-    $forward = $form_state['page']->new_handler->conf['context_admin_autoforward'];
-    $custom_redirect = $form_state['page']->new_handler->conf['context_admin_custom_redirect'];
+    $default = NULL;
+  }
+  if (isset($conf['context_admin_content_types'])) {
+    $type_fields = $conf['context_admin_content_types'];
+  }
+  else {
+    $type_fields = NULL;
+  }
+  if (isset($conf['context_admin_autoforward'])) {
+    $forward = $conf['context_admin_autoforward'];
+  }
+  else {
+    $forward = NULL;
+  }
+  if (isset($conf['context_admin_custom_redirect'])) {
+    $custom_redirect = $conf['context_admin_custom_redirect'];
+  }
+  else {
+    $custom_redirect = NULL;
   }
   $node_entities = entity_get_info('node');
   $types = field_info_instances('node');
@@ -53,7 +50,8 @@ function context_admin_noderef_create_node_content_form($form, &$form_state, $ca
   if ($types) {
     foreach ($types as $type => $field_instances) {
       foreach ($field_instances as $field_name => $field) {
-        if ($field['display']['default']['type'] == 'node_reference_default') {
+        $field_data = field_read_field($field_name);
+        if ($field_data['type'] == 'node_reference') {
           $fields[$type][$field_name] = $field['label'];
           $options[$type] = $node_entities['bundles'][$type]['label'];
         }
@@ -83,7 +81,7 @@ function context_admin_noderef_create_node_content_form($form, &$form_state, $ca
         '#dependency' => array('radio:context_admin[context_admin_options_items]' => array($key)),
         '#prefix' => '<div id="edit-context-admin-content-types-'. str_replace('_', '-', $key) .'-wrapper"><div>',
         '#suffix' => '</div></div>',
-        '#default_value' => $type_fields[$key],
+        '#default_value' => isset($type_fields[$key]) ? $type_fields[$key] : NULL,
       );
     }
     $form['context_admin_autoforward'] = array(
@@ -120,54 +118,62 @@ function context_admin_noderef_create_node_content_form($form, &$form_state, $ca
   else {
     drupal_set_message('There are no node reference fields setup on any existing node types. Please add a node reference field to a node type and try again.', 'error');
   }
+
+  if (module_exists('panels')) {
+    $node_edit = isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_use_node_edit']) ?
+      $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_use_node_edit'] :
+      isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_use_node_edit']) ?
+        $cache->handlers[$form_state['handler_id']]->conf['context_admin_use_node_edit'] :
+        NULL;
+
+    $form['context_admin_use_node_edit'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Render the Add form using panels and page manager'),
+      '#description' => t('Enable node/%node/edit in page manager. Unchecked renders Add form with Drupal\'s node templating system. This will prevent redirects from working.'),
+      '#default_value' => $node_edit,
+    );
+  }
+
   return $form;
 }
 
 function context_admin_noderef_create_node_content_form_submit($form, &$form_state) {
-  $cache = context_admin_get_page_cache($form_state['page']->subtask_id);
-  if (isset($form_state['handler_id']) && isset($form_state['values']['context_admin'])) {
-    $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_options_items'] = $form_state['values']['context_admin']['context_admin_options_items'];
-    unset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_content_types']);
-    $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_content_types'][$form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_options_items']] = $form_state['values']['context_admin']['content_types'][$form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_options_items']];
-    $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_field'] = $form_state['values']['context_admin']['content_types'][$form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_options_items']];
-    $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_autoforward'] = $form_state['values']['context_admin_autoforward'];
-    $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_custom_redirect'] = $form_state['values']['context_admin_custom_redirect'];
+  if (isset($form_state['values']['context_admin'])) {
+    $form_state['conf']['context_admin_options_items'] = $form_state['values']['context_admin']['context_admin_options_items'];
+    unset($form_state['conf']['context_admin_content_types']);
+    $form_state['conf']['context_admin_content_types'][$form_state['conf']['context_admin_options_items']] = $form_state['values']['context_admin']['content_types'][$form_state['conf']['context_admin_options_items']];
+    $form_state['conf']['context_admin_field'] = $form_state['values']['context_admin']['content_types'][$form_state['conf']['context_admin_options_items']];
+    $form_state['conf']['context_admin_autoforward'] = $form_state['values']['context_admin_autoforward'];
+    $form_state['conf']['context_admin_custom_redirect'] = $form_state['values']['context_admin_custom_redirect'];
   }
-  elseif (isset($form_state['values']['context_admin'])) {
-    $form_state['page']->new_handler->conf['context_admin_options_items'] = $form_state['values']['context_admin']['context_admin_options_items'];
-    unset($form_state['page']->new_handler->conf['context_admin_content_types']);
-    $form_state['page']->new_handler->conf['context_admin_content_types'][$form_state['page']->new_handler->conf['context_admin_options_items']] = $form_state['values']['context_admin']['content_types'][$form_state['page']->new_handler->conf['context_admin_options_items']];
-    $form_state['page']->new_handler->conf['context_admin_field'] = $form_state['values']['context_admin']['content_types'][$form_state['page']->new_handler->conf['context_admin_options_items']];
-    $form_state['page']->new_handler->conf['context_admin_autoforward'] = $form_state['values']['context_admin_autoforward'];
-    $form_state['page']->new_handler->conf['context_admin_custom_redirect'] = $form_state['values']['context_admin_custom_redirect'];
+  if (isset($form_state['values']['context_admin_use_node_edit'])) {
+    $form_state['conf']['context_admin_use_node_edit'] = $form_state['values']['context_admin_use_node_edit'];
   }
-  context_admin_set_page_cache($form_state['page']->subtask_id, $form_state['page']);
-  return $form_state;
 }
 
 function context_admin_noderef_create_node_render_page($handler, $base_contexts, $args, $test = TRUE) {
-  $page = page_manager_get_current_page();
-  $type = $handler->conf['context_admin_options_items'];
   module_load_include('inc', 'node', 'node.pages');
-  global $user;
-
-  $types = node_type_get_types();
-  $node = (object) array(
-    'uid' => $user->uid,
-    'name' => (isset($user->name) ? $user->name : ''),
-    'type' => $type,
-    'language' => LANGUAGE_NONE,
-    $handler->conf['context_admin_field'] => array('und' => array(0 => array('nid' => $base_contexts[$handler->conf['submitted_context']]->data->nid))),
+  $type = $handler->conf['context_admin_options_items'];
+  $fields = array(
+    $handler->conf['context_admin_field'] => array(
+      'language' => LANGUAGE_NONE,
+      'key' => 'nid',
+      'values' => array(
+        $base_contexts[$handler->conf['submitted_context']]->data->nid
+      ),
+    ),
   );
-  drupal_set_title(t('Create @name', array('@name' => $types[$type]->name)), PASS_THROUGH);
-  $output = drupal_get_form($type . '_node_form', $node);
+  $use_panels = FALSE;
+  if (isset($handler->conf['context_admin_use_node_edit'])) {
+    $use_panels = $handler->conf['context_admin_use_node_edit'];
+  }
 
-  return $output;
+  return context_admin_node_add_wrapper($type, $fields, $use_panels);
 }
 
 function context_admin_noderef_create_node_form_alter(&$form, &$form_state, $form_id, $page) {
   switch($form_id) {
-    case $page['handler']->conf['context_admin_options_items'] . '_node_form':
+    case 'context_admin_node_form_wrapper':
       if ($form['#node']->type == $page['handler']->conf['context_admin_options_items']) {
         $form[$page['handler']->conf['context_admin_field']]['#access'] = FALSE;
         $form[$page['handler']->conf['context_admin_field']]['und']['#required'] = FALSE;

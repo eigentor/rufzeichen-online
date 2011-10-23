@@ -328,6 +328,7 @@ function context_admin_menu_context_edit_content_settings($form, &$form_state) {
   $cache = context_admin_get_page_cache($form_state['page']->subtask_id);
   $handler_id = $form_state['page']->task_id .'_'. $form_state['page']->subtask_id .'_menu_context';
   $plugin = context_admin_get_plugins('context_admin', array('id' => $form_state['page']->handlers[$handler_id]->conf['context_admin_options']));
+  $form_state['conf'] = $form_state['page']->handlers[$handler_id]->conf;
   module_load_include('inc', 'page_manager', 'plugins/tasks/page');
   // Get the base contexts for this subtask
   $base_contexts = page_manager_page_get_contexts($form_state['task'], $form_state['subtask']);
@@ -376,7 +377,14 @@ function context_admin_menu_context_edit_content_settings_submit($form, &$form_s
   }
   if ($callback = ctools_plugin_load_function('context_admin', 'context_admin', $plugin, 'content form submit')) {
     $callback($form, $form_state);
-  } 
+  }
+  if (!is_null($form_state['handler_id'])) {
+    $form_state['page']->handlers[$form_state['handler_id']]->conf = $form_state['conf'];
+  }
+  else {
+    $form_state['page']->new_handler->conf['submitted_context'] = $form_state['conf'];
+  }
+  context_admin_set_page_cache($form_state['page']->subtask_id, $form_state['page']);
 }
 
 function context_admin_menu_context_save(&$handler, $update) {

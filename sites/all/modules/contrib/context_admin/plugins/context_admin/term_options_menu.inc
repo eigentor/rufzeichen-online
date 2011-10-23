@@ -16,11 +16,11 @@ $plugin = array(
 );
 
 function context_admin_term_options_menu_content_form($form, &$form_state, $cache = NULL) {
-  if (!is_null($form_state['handler_id'])) {
-    $default_options = isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_term_options']) ? $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_term_options'] : isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_term_options']) ? $cache->handlers[$form_state['handler_id']]->conf['context_admin_term_options'] : NULL;
+  if (isset($form_state['conf']['context_admin_term_options'])) {
+    $default_options = $form_state['conf']['context_admin_term_options'];
   }
   else {
-    $default_options = $form_state['page']->new_handler->conf['context_admin_term_options'];
+    $default_options = NULL;
   }
   $form['help'] = array(
     '#type' => 'markup',
@@ -40,15 +40,7 @@ function context_admin_term_options_menu_content_form($form, &$form_state, $cach
 }
 
 function context_admin_term_options_menu_content_form_submit($form, &$form_state) {
-  $cache = context_admin_get_page_cache($form_state['page']->subtask_id);
-  if (isset($form_state['handler_id'])) {
-    $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_term_options'] = $form_state['values']['context_admin_term_options'];
-  }
-  else {
-    $form_state['page']->new_handler->conf['context_admin_term_options'] = $form_state['values']['context_admin_term_options'];
-  }
-  context_admin_set_page_cache($form_state['page']->subtask_id, $form_state['page']);
-  return $form_state;
+  $form_state['conf']['context_admin_term_options'] = $form_state['values']['context_admin_term_options'];
 }
 
 function context_admin_term_options_menu_render_page($handler, $base_contexts, $args, $test = TRUE) {

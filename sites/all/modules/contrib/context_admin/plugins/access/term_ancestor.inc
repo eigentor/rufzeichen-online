@@ -11,21 +11,21 @@
  * by the system that includes this file.
  */
 $plugin = array(
-  'title' => t("Term: Ancestor"),
+  'title' => t("Taxonomy: term ancestor"),
   'description' => t('Control access based upon the a term, or group of terms being in the ancestry of the currently viewed term.'),
   'callback' => 'context_admin_term_ancestor_access_check',
   'default' => array('menu' => array()),
   'settings form' => 'context_admin_term_ancestor_access_settings',
   'settings form submit' => 'context_admin_term_ancestor_access_settings_submit',
   'summary' => 'context_admin_term_ancestor_access_summary',
-  'required context' => new ctools_context_required(t('Term'), array('term', 'terms')),
+  'required context' => new ctools_context_required(t('Term'), array('taxonomy_term', 'term', 'terms')),
   'restrictions' => 'context_admin_term_ancestor_access_restrictions',
 );
 
 /**
  * Settings form for the 'by node_type' access plugin
  */
-function context_admin_term_ancestor_access_settings(&$form, &$form_state, $conf) {
+function context_admin_term_ancestor_access_settings($form, &$form_state, $conf) {
   $form['settings']['ancestors'] = array(
     '#title' => t('Term ancestor(s)'),
     '#type' => 'textfield',
@@ -44,6 +44,7 @@ function context_admin_term_ancestor_access_settings(&$form, &$form_state, $conf
     '#default_value' => $conf['and_or'],
     '#required' => TRUE,
   );
+  return $form;
 }
 
 /**
@@ -82,7 +83,7 @@ function context_admin_term_ancestor_access_check($conf, $context) {
 }
 
 function context_admin_term_ancestor_access_check_or($term, $ancestors) {
-  $query = db_select( 'term_hierarchy', 'th')
+  $query = db_select( 'taxonomy_term_hierarchy', 'th')
     ->fields('th', array('parent'))
     ->condition('tid', $term, '=');
   $result = $query->execute()->fetchObject();
@@ -98,7 +99,7 @@ function context_admin_term_ancestor_access_check_or($term, $ancestors) {
 }
 
 function context_admin_term_ancestor_access_check_and($term, $ancestors) {
-  $query = db_select( 'term_hierarchy', 'th')
+  $query = db_select( 'taxonomy_term_hierarchy', 'th')
     ->fields('th', array('parent'))
     ->condition('tid', $term, '=');
   $result = $query->execute()->fetchObjecT();

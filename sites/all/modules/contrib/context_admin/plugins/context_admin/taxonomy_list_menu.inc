@@ -15,30 +15,18 @@ $plugin = array(
 );
 
 function context_admin_taxonomy_list_menu_content_form($form, &$form_state, $cache = NULL) {
-  if (!is_null($form_state['handler_id'])) {
-    if (isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_vocabulary'])) {
-      $default = $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_vocabulary'];
-    }
-    elseif (isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_vocabulary'])) {
-      $default = $cache->handlers[$form_state['handler_id']]->conf['context_admin_vocabulary'];
-    }
-    else {
-      $default = NULL;
-    }
-
-    if (isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_vocabulary_options'])) {
-      $default_option = $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_vocabulary_options'];
-    }
-    elseif (isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_vocabulary_options'])) {
-      $default_option = $cache->handlers[$form_state['handler_id']]->conf['context_admin_vocabulary_options'];
-    }
-    else {
-      $default_option = NULL;
-    }
+  if (isset($form_state['conf']['context_admin_vocabulary'])) {
+    $default = $form_state['conf']['context_admin_vocabulary'];
   }
   else {
-    $default = $form_state['page']->new_handler->conf['context_admin_vocabulary'];
-    $default_option = $form_state['page']->new_handler->conf['context_admin_vocabulary_options'];
+    $default = NULL;
+  }
+
+  if (isset($form_state['conf']['context_admin_vocabulary_options'])) {
+    $default_option = $form_state['conf']['context_admin_vocabulary_options'];
+  }
+  else {
+    $default_option = NULL;
   }
   $types = taxonomy_get_vocabularies();
   foreach ($types as $type) {
@@ -68,16 +56,8 @@ function context_admin_taxonomy_list_menu_content_form($form, &$form_state, $cac
 
 function context_admin_taxonomy_list_menu_content_form_submit($form, &$form_state) {
   $cache = context_admin_get_page_cache($form_state['page']->subtask_id);
-  if ($form_state['handler_id']) {
-    $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_vocabulary'] = $form_state['values']['context_admin_vocabulary'];
-    $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_vocabulary_options'] = $form_state['values']['context_admin_vocabulary_options'];
-  }
-  else {
-    $form_state['page']->new_handler->conf['context_admin_vocabulary'] = $form_state['values']['context_admin_vocabulary'];
-    $form_state['page']->new_handler->conf['context_admin_vocabulary_options'] = $form_state['values']['context_admin_vocabulary_options'];
-  }
-  context_admin_set_page_cache($form_state['page']->subtask_id, $form_state['page']);
-  return $form_state;
+  $form_state['conf']['context_admin_vocabulary'] = $form_state['values']['context_admin_vocabulary'];
+  $form_state['conf']['context_admin_vocabulary_options'] = $form_state['values']['context_admin_vocabulary_options'];
 }
 
 function context_admin_taxonomy_list_menu_render_page($handler, $base_contexts, $args, $test = TRUE) {

@@ -16,22 +16,14 @@ $plugin = array(
 
 
 function context_admin_user_create_menu_content_form($form, $form_state, $cache = NULL) {
-  if (!is_null($form_state['handler_id'])) {
-    $default = isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_roles']) ? $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_roles'] : isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_user_roles']) ? $cache->handlers[$form_state['handler_id']]->conf['context_admin_user_roles'] : NULL;
-    $default_alter = isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_roles_alter']) ? $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_roles_alter'] : isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_user_roles_alter']) ? $cache->handlers[$form_state['handler_id']]->conf['context_admin_user_roles_alter'] : NULL;
-    $default_status = isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_status']) ? $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_status'] : isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_user_status']) ? $cache->handlers[$form_state['handler_id']]->conf['context_admin_user_status'] : NULL;
-    $default_status_alter = isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_status_alter']) ? $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_status_alter'] : isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_user_status_alter']) ? $cache->handlers[$form_state['handler_id']]->conf['context_admin_user_status_alter'] : NULL;
-    $default_help = isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_registration_help']) ? $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_registration_help'] : isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_user_registration_help']) ? $cache->handlers[$form_state['handler_id']]->conf['context_admin_user_registration_help'] : NULL;
-    $default_notify = isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_notify']) ? $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_notify'] : isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_user_notify']) ? $cache->handlers[$form_state['handler_id']]->conf['context_admin_user_notify'] : NULL;
-  }
-  else {
-    $default = $form_state['page']->new_handler->conf['context_admin_user_roles'];
-    $default_alter = $form_state['page']->new_handler->conf['context_admin_user_roles_alter'];
-    $default_status = $form_state['page']->new_handler->conf['context_admin_user_status'];
-    $default_status_alter = $form_state['page']->new_handler->conf['context_admin_user_status_alter'];
-    $default_help = $form_state['page']->new_handler->conf['context_admin_user_registration_help'];
-    $default_notify = $form_state['page']->new_handler->conf['context_admin_user_notify'];
-  }
+  $conf = $form_state['conf'];
+  $default = isset($conf['context_admin_user_roles']) ? $conf['context_admin_user_roles'] : NULL;
+  $default_alter = isset($conf['context_admin_user_roles_alter']) ? $conf['context_admin_user_roles_alter'] : NULL;
+  $default_status = isset($conf['context_admin_user_status']) ? $conf['context_admin_user_status'] : NULL;
+  $default_status_alter = isset($conf['context_admin_user_status_alter']) ? $conf['context_admin_user_status_alter'] : NULL;
+  $default_help = isset($conf['context_admin_user_registration_help']) ? $conf['context_admin_user_registration_help'] : NULL;
+  $default_notify = isset($conf['context_admin_user_notify']) ? $conf['context_admin_user_notify'] : NULL;
+
   $roles = user_roles(TRUE);
   $options = array();
   foreach ($roles as $key => $role) {
@@ -83,25 +75,12 @@ function context_admin_user_create_menu_content_form($form, $form_state, $cache 
 }
 
 function context_admin_user_create_menu_content_form_submit($form, &$form_state) {
-  $cache = context_admin_get_page_cache($form_state['page']->subtask_id);
-  if (!is_null($form_state['handler_id'])) {
-    $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_roles'] = $form_state['values']['context_admin_user_roles'];
-    $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_roles_alter'] = $form_state['values']['context_admin_user_roles_alter'];
-    $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_status'] = $form_state['values']['context_admin_user_status'];
-    $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_status_alter'] = $form_state['values']['context_admin_user_status_alter'];
-    //$form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_registration_help'] = $form_state['values']['context_admin_user_registration_help'];
-    $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_user_notify'] = $form_state['values']['context_admin_user_notify'];
-  }
-  else {
-    $form_state['page']->new_handler->conf['context_admin_options_items'] = $form_state['values']['context_admin_options_items'];
-    $form_state['page']->new_handler->conf['context_admin_options_items_alter'] = $form_state['values']['context_admin_options_items_alter'];
-    $form_state['page']->new_handler->conf['context_admin_user_status'] = $form_state['values']['context_admin_user_status'];
-    $form_state['page']->new_handler->conf['context_admin_user_status_alter'] = $form_state['values']['context_admin_user_status_alter'];
-    //$form_state['page']->new_handler->conf['context_admin_user_registration_help'] = $form_state['values']['context_admin_user_registration_help'];
-    $form_state['page']->new_handler->conf['context_admin_user_notify'] = $form_state['values']['context_admin_user_notify'];
-  }
-  context_admin_set_page_cache($form_state['page']->subtask_id, $form_state['page']);
-  return $form_state;
+  $form_state['conf']['context_admin_user_roles'] = $form_state['values']['context_admin_user_roles'];
+  $form_state['conf']['context_admin_user_roles_alter'] = $form_state['values']['context_admin_user_roles_alter'];
+  $form_state['conf']['context_admin_user_status'] = $form_state['values']['context_admin_user_status'];
+  $form_state['conf']['context_admin_user_status_alter'] = $form_state['values']['context_admin_user_status_alter'];
+  //$form_state['conf']['context_admin_user_registration_help'] = $form_state['values']['context_admin_user_registration_help'];
+  $form_state['conf']['context_admin_user_notify'] = $form_state['values']['context_admin_user_notify'];
 }
 
 function context_admin_user_create_menu_render_page($handler, $base_contexts, $args, $test = TRUE) {
