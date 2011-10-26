@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Site Menus feature.
- */
-
-include_once('site_menus.features.inc');

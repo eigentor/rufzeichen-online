@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Zitat der Woche Startseite und Übersicht feature.
+ */
+
+include_once('rufzeichen_zitat_der_woche.features.inc');

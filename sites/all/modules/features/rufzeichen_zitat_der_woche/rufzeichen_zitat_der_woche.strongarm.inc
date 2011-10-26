@@ -1,107 +1,107 @@
 <?php
 /**
  * @file
- * site_menus.strongarm.inc
+ * rufzeichen_zitat_der_woche.strongarm.inc
  */
 
 /**
  * Implementation of hook_strongarm().
  */
-function site_menus_strongarm() {
+function rufzeichen_zitat_der_woche_strongarm() {
   $export = array();
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_block_1_admin_title';
-  $strongarm->value = 'Hauptmenü 2. Ebene';
-  $export['menu_block_1_admin_title'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'menu_block_1_depth';
+  $strongarm->name = 'comment_anonymous_zitat';
   $strongarm->value = '0';
-  $export['menu_block_1_depth'] = $strongarm;
+  $export['comment_anonymous_zitat'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_block_1_expanded';
-  $strongarm->value = 0;
-  $export['menu_block_1_expanded'] = $strongarm;
+  $strongarm->name = 'comment_default_mode_zitat';
+  $strongarm->value = 1;
+  $export['comment_default_mode_zitat'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_block_1_follow';
-  $strongarm->value = 0;
-  $export['menu_block_1_follow'] = $strongarm;
+  $strongarm->name = 'comment_default_per_page_zitat';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_zitat'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_block_1_level';
-  $strongarm->value = '2';
-  $export['menu_block_1_level'] = $strongarm;
+  $strongarm->name = 'comment_form_location_zitat';
+  $strongarm->value = 1;
+  $export['comment_form_location_zitat'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_block_1_parent';
+  $strongarm->name = 'comment_preview_zitat';
+  $strongarm->value = '1';
+  $export['comment_preview_zitat'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_zitat';
+  $strongarm->value = 1;
+  $export['comment_subject_field_zitat'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_zitat';
+  $strongarm->value = '1';
+  $export['comment_zitat'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_zitat';
+  $strongarm->value = '0';
+  $export['language_content_type_zitat'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_zitat';
+  $strongarm->value = array();
+  $export['menu_options_zitat'] = $strongarm;
+
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_zitat';
   $strongarm->value = 'main-menu:0';
-  $export['menu_block_1_parent'] = $strongarm;
+  $export['menu_parent_zitat'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_block_1_sort';
-  $strongarm->value = 0;
-  $export['menu_block_1_sort'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'menu_block_1_title_link';
-  $strongarm->value = 0;
-  $export['menu_block_1_title_link'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'menu_block_ids';
+  $strongarm->name = 'node_options_zitat';
   $strongarm->value = array(
-    0 => 1,
+    0 => 'status',
   );
-  $export['menu_block_ids'] = $strongarm;
+  $export['node_options_zitat'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'nice_menus_depth_1';
-  $strongarm->value = '-1';
-  $export['nice_menus_depth_1'] = $strongarm;
+  $strongarm->name = 'node_preview_zitat';
+  $strongarm->value = '1';
+  $export['node_preview_zitat'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'nice_menus_menu_1';
-  $strongarm->value = 'main-menu';
-  $export['nice_menus_menu_1'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'nice_menus_name_1';
-  $strongarm->value = 'Hauptmenü Nice Menu';
-  $export['nice_menus_name_1'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'nice_menus_type_1';
-  $strongarm->value = 'down';
-  $export['nice_menus_type_1'] = $strongarm;
+  $strongarm->name = 'node_submitted_zitat';
+  $strongarm->value = 0;
+  $export['node_submitted_zitat'] = $strongarm;
 
   return $export;
 }
