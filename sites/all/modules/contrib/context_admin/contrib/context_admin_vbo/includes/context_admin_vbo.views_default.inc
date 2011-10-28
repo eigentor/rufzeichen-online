@@ -402,7 +402,7 @@ function context_admin_vbo_default_view($view_name, $type, $pub) {
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = $type;
+  $handler->display->display_options['filters']['type']['value'] = array_filter($type);
   $translatables['context_admin_vbo'] = array(
     t('Defaults'),
     t('more'),

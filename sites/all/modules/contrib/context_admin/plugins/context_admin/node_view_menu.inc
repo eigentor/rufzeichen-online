@@ -14,14 +14,14 @@ $plugin = array(
   'render' => 'context_admin_node_view_menu_render_page',
 );
 
-function context_admin_node_view_menu_content_form($form, $form_state, $cache = NULL) {
+function context_admin_node_view_menu_content_form($form, $form_state) {
   $conf = $form_state['conf'];
   if (module_exists('panels')) {
     $form['context_admin_use_node_view'] = array(
       '#type' => 'checkbox',
       '#title' => t('Render the node using the page manager node override.'),
       '#description' => t('Enable node/%node in page manager. Unchecked renders with the node templating system.'),
-      '#default_value' => $conf['context_admin_use_node_view'],
+      '#default_value' => isset($conf['context_admin_use_node_view']) ? $conf['context_admin_use_node_view'] : NULL,
     );
   }
   return $form;

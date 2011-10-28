@@ -163,6 +163,7 @@ ul.inline li.node-readmore a {
 .front #content-inner {
   width: 900px;
   padding-top: 10px;
+  margin-bottom: 30px;
 }
 .front #content-header h1 {
   display: none;
@@ -185,6 +186,7 @@ ul.inline li.node-readmore a {
 .front .field-name-field-zweispaltig-rechts {
   float: right;
   width: 340px;
+  padding-top: 5px;
 }
 .front .field-name-field-zweispaltig-rechts img {
   float: right;

@@ -16,7 +16,7 @@ if (module_exists('node_reference')) {
   );
 }
 
-function context_admin_noderef_create_node_content_form($form, &$form_state, $cache = NULL, $contexts = array()) {
+function context_admin_noderef_create_node_content_form($form, &$form_state, $contexts = array()) {
   $conf = $form_state['conf'];
   ctools_include('dependent');
   if (isset($conf['context_admin_options_items'])) {
@@ -202,6 +202,7 @@ function context_admin_noderef_create_node_form_alter(&$form, &$form_state, $for
 }
 
 function context_admin_noderef_create_node_submit($form, &$form_state) {
+  $form_state['no_redirect'] = FALSE;
   if (isset($form_state['values']['page_context'])) {
     $redirect = '';
     if (isset($form_state['values']['context_admin_custom_redirect']) && $form_state['values']['context_admin_custom_redirect']) {

@@ -16,16 +16,10 @@ $plugin = array(
 );
 
 function context_admin_vbo_views_bulk_menu_content_form($form, &$form_state, $cache = NULL) {
-  if (!is_null($form_state['handler_id'])) {
-    $machine_name = isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_vbo_machine_name']) ? $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_vbo_machine_name'] : isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_vbo_machine_name']) ? $cache->handlers[$form_state['handler_id']]->conf['context_admin_vbo_machine_name'] : NULL;
-    $default_type = isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_vbo_views_bulk_node_type']) ? $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_vbo_views_bulk_node_type'] : isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_vbo_views_bulk_node_type']) ? $cache->handlers[$form_state['handler_id']]->conf['context_admin_vbo_views_bulk_node_type'] : NULL;
-    $default_pub = isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_vbo_views_bulk_published']) ? $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_vbo_views_bulk_published'] : isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_vbo_views_bulk_published']) ? $cache->handlers[$form_state['handler_id']]->conf['context_admin_vbo_views_bulk_published'] : NULL;
-  }
-  else {
-    $machine_name = $form_state['page']->new_handler->conf['context_admin_vbo_machine_name'];
-    $default_type = $form_state['page']->new_handler->conf['context_admin_vbo_views_bulk_node_type'];
-    $default_pub = $form_state['page']->new_handler->conf['context_admin_vbo_views_bulk_published'];
-  }
+  $machine_name = isset($form_state['conf']['context_admin_vbo_machine_name']) ? $form_state['conf']['context_admin_vbo_machine_name'] : NULL;
+  $default_type = isset($form_state['conf']['context_admin_vbo_views_bulk_node_type']) ? $form_state['conf']['context_admin_vbo_views_bulk_node_type'] : NULL;
+  $default_pub = isset($form_state['conf']['context_admin_vbo_views_bulk_published']) ? $form_state['conf']['context_admin_vbo_views_bulk_published'] : NULL;
+
   $node_entities = entity_get_info('node');
   $types = field_info_instances('node');
   foreach ($types as $type => $field_instances) {
@@ -58,23 +52,20 @@ function context_admin_vbo_views_bulk_menu_content_form($form, &$form_state, $ca
     ),
     '#default_value' => $default_pub,
   );
+  $form['#validate'][] = 'context_admin_vbo_views_bulk_menu_content_form_validate';
   return $form;
 }
 
-function context_admin_vbo_views_bulk_menu_content_form_submit($form, $form_state) {
-  $cache = context_admin_get_page_cache($form_state['page']->subtask_id);
-  if (!is_null($form_state['handler_id'])) {
-    $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_vbo_machine_name'] = $form_state['values']['context_admin_vbo_machine_name'];
-    $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_vbo_views_bulk_node_type'] = $form_state['values']['context_admin_vbo_views_bulk_node_type'];
-    $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_vbo_views_bulk_published'] = $form_state['values']['context_admin_vbo_views_bulk_published'];
+function context_admin_vbo_views_bulk_menu_content_form_validate($form, &$form_state) {
+  if (!empty($form_state['values']['context_admin_vbo_machine_name']) && preg_match('/[^a-zA-Z0-9_]/', $form_state['values']['context_admin_vbo_machine_name'])) {
+    form_error($form['context_admin_vbo_machine_name'], t('View name must be alphanumeric or underscores only.'));
   }
-  else {
-    $form_state['page']->new_handler->conf['context_admin_vbo_machine_name'] = $form_state['values']['context_admin_vbo_machine_name'];
-    $form_state['page']->new_handler->conf['context_admin_vbo_views_bulk_node_type'] = $form_state['values']['context_admin_vbo_views_bulk_node_type'];
-    $form_state['page']->new_handler->conf['context_admin_vbo_views_bulk_published'] = $form_state['values']['context_admin_vbo_views_bulk_published'];
-  }
-  context_admin_set_page_cache($form_state['page']->subtask_id, $form_state['page']);
-  return $form_state;
+}
+
+function context_admin_vbo_views_bulk_menu_content_form_submit($form, &$form_state) {
+  $form_state['conf']['context_admin_vbo_machine_name'] = $form_state['values']['context_admin_vbo_machine_name'];
+  $form_state['conf']['context_admin_vbo_views_bulk_node_type'] = $form_state['values']['context_admin_vbo_views_bulk_node_type'];
+  $form_state['conf']['context_admin_vbo_views_bulk_published'] = $form_state['values']['context_admin_vbo_views_bulk_published'];
 }
 
 function context_admin_vbo_views_bulk_menu_render_page($handler, $base_contexts, $args, $test = TRUE) {
