@@ -35,4 +35,7 @@
   margin-bottom: 15px;
   padding-left: 3px;
 }
-
+/** Newest Images Block Sidebar **/
+#block-views-gallery_list-block_1 .field-content {
+  float: left;		
+}
