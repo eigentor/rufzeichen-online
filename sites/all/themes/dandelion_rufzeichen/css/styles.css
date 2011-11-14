@@ -308,4 +308,8 @@ div.filter-wrapper li   {
 .media-youtube-outer-wrapper {
   border: 1px solid #ccc;
 }
+/** Colorbox general **/
+#colorbox #cboxWrapper {
+  margin: 20px;	
+}
 
