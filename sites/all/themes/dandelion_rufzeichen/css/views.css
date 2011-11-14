@@ -28,6 +28,11 @@
 #footer .view-gallery-list .views-row {
   float: left;
 }
+/** Gallery View Page **/
+.page-galerien .view-gallery-list .views-row {
+  float: left;
+  margin:0 30px 30px 0;		
+}
 /** News-Übersicht **/
 .view-News-Hauptseite .views-row {
   padding-bottom: 20px;
