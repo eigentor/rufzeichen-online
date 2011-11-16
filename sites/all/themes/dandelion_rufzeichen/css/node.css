@@ -219,14 +219,17 @@ ul.inline li.node-readmore a {
   padding-left: 28px;
 }
 .view-zitat-der-woche .views-row .field-name-field-zitat-author {
-  float: right;
   display: inline;
-  padding-right: 30px;
+    float: right;
+    line-height: 10px;
+    padding-right: 30px;
+    text-align: right;
+    width: 280px;
 }
 .view-zitat-der-woche .views-row .field-name-zitat-description p,
 .view-zitat-der-woche .views-row .field-name-field-zitat-author .field-item {
      font-size: 0.83em;
-     line-height: 1;
+     line-height: 1.35;
      color: #999;
 }
 
