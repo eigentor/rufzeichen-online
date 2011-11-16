@@ -12,7 +12,7 @@
     
     <?php if ($new) : ?>
       <span class="new"><?php print drupal_ucfirst($new) ?></span>
-    <?php endif; ?>
+    <?php endif;?>
     
     
 	    

@@ -54,6 +54,17 @@ a {
    float: right;
    margin: 0 5px 5px 15px;
 }
+ul.action-links,
+ul.action-links li {
+  list-style-type: none;
+  list-style-image: none;
+  display: inline;
+  margin-right: 15px;
+}
+ul.action-links li a {
+   background: url("../images/add-grey.png") no-repeat 0 center ;
+   padding-left: 16px;
+}
 
 ins {
 	background-color: #ff9;
@@ -254,7 +265,7 @@ input#edit-submit {
   border-radius: 6px;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
-    display: block;
+    display: inline;
     font-family: Georgia,"Times New Roman",Times,serif;
     font-size: 12px;
     font-style: normal;
@@ -264,7 +275,7 @@ input#edit-submit {
     text-transform: uppercase;
     color: #FFFFFF;
     height: 29px;
-    margin-top: 0;
+    margin: 0 5px 0 0;
     text-decoration: none;
 }
 input#edit-preview:hover,
@@ -296,5 +307,9 @@ div.filter-wrapper li   {
 .media-vimeo-outer-wrapper,
 .media-youtube-outer-wrapper {
   border: 1px solid #ccc;
+}
+/** Colorbox general **/
+#colorbox {
+
 }
 
