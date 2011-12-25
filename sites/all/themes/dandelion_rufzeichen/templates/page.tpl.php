@@ -105,7 +105,12 @@
  
   <div id="footer-bottom" class="clearfix">
   <div class="footer-bottom-inner" class="clearfix">
-    &copy; rufzeichen <?php print date("Y");?>&nbsp;&nbsp;&nbsp;&nbsp; Danke für das Dandelion Theme an <a href="http://themeforest.net/user/pexeto" target="_blank">Pexeto</a>
+    <div id="footer-left">
+    	&copy; rufzeichen <?php print date("Y");?>&nbsp;&nbsp;&nbsp;&nbsp; Danke für das Dandelion Theme an <a href="http://themeforest.net/user/pexeto" target="_blank">Pexeto</a>
+    </div>
+   <div id="footer-bottom-region">
+   	  <?php print render($page['footer_bottom']); ?>
+   </div>
   </div>
    
   </div>
