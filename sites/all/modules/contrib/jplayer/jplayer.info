@@ -11,9 +11,11 @@ files[] = includes/jplayer.theme.inc
 files[] = includes/jplayer.views.inc
 files[] = includes/jplayer_style_plugin.inc
 files[] = theme/jplayer.tpl.php
-; Information added by drupal.org packaging script on 2011-03-24
+
+
+; Information added by drupal.org packaging script on 2011-11-03
 version = "7.x-2.x-dev"
 core = "7.x"
 project = "jplayer"
-datestamp = "1300925464"
+datestamp = "1320279406"
 

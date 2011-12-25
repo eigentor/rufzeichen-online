@@ -120,11 +120,12 @@ function context_admin_noderef_create_node_content_form($form, &$form_state, $co
   }
 
   if (module_exists('panels')) {
-    $node_edit = isset($form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_use_node_edit']) ?
-      $form_state['page']->handlers[$form_state['handler_id']]->conf['context_admin_use_node_edit'] :
-      isset($cache->handlers[$form_state['handler_id']]->conf['context_admin_use_node_edit']) ?
-        $cache->handlers[$form_state['handler_id']]->conf['context_admin_use_node_edit'] :
-        NULL;
+    if (isset($conf['context_admin_use_node_edit'])) {
+      $node_edit = $conf['context_admin_use_node_edit'];
+    }
+    else {
+      $node_edit = NULL;
+    }
 
     $form['context_admin_use_node_edit'] = array(
       '#type' => 'checkbox',
