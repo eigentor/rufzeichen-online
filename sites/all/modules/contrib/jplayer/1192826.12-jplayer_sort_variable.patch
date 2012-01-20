@@ -1,0 +1,198 @@
+From fb5273ff47bfb6570039ec4e923498b4a7ace82a Mon Sep 17 00:00:00 2001
+From: Andrew Berry <deviantintegral@gmail.com>
+Date: Wed, 21 Sep 2011 17:50:53 -0400
+Subject: [PATCH 1/3] Issue #1192826 by rivimey: Clarify jplayer_sort_files().
+
+---
+ includes/jplayer.theme.inc |   32 ++++++++++++++++++++++----------
+ 1 files changed, 22 insertions(+), 10 deletions(-)
+
+diff --git a/includes/jplayer.theme.inc b/includes/jplayer.theme.inc
+index 15fff51..05621b5 100644
+--- a/includes/jplayer.theme.inc
++++ b/includes/jplayer.theme.inc
+@@ -105,6 +105,7 @@ function jplayer_sort_files($raw_files = array(), $player_id, $type = 'single')
+   $files = array();
+   $extensions = array();
+   $playlist = array();
++  $player_type = 'audio';
+ 
+   // Look through all the files provided and see what we have
+   foreach ($raw_files as $delta => $item) {
+@@ -132,11 +133,11 @@ function jplayer_sort_files($raw_files = array(), $player_id, $type = 'single')
+     // Add file into correct group
+     if (in_array($item['ext'], $video_extensions)) {
+       $videos = TRUE;
+-      $item['type'] = 'audio';
++      $item['type'] = 'video';
+     }
+     elseif (in_array($item['ext'], $audio_extensions)) {
+       $audio = TRUE;
+-      $item['type'] = 'video';
++      $item['type'] = 'audio';
+     }
+     elseif (in_array($item['ext'], $poster_extensions)) {
+       $poster = $item['url'];
+@@ -148,19 +149,28 @@ function jplayer_sort_files($raw_files = array(), $player_id, $type = 'single')
+ 
+   $num = 0;
+   foreach ($media as $file) {
+-    if ($videos == TRUE && $type != 'playlist') {
+-      if ($file['type'] == 'audio') {
+-        unset($file);
++
++    // if there are videos to play, and mode is single,
++    // then ignore any audio files present.
++    if ($videos == TRUE) {
++
++      if ($type == 'playlist') {
++        $player_type = 'video';
++      }
++      else /* single */ {
++	if ($file['type'] == 'audio') {
++	  unset($file);
++	}
++	$player_type = 'video';
+       }
+-      $player_type = 'video';
+-    }
+-    elseif ($videos == TRUE && $type == 'playlist') {
+-      $player_type = 'video';
+     }
+     else {
+       $player_type = 'audio';
+     }
+ 
++
++    // accumulate lists of file urls, file extensions, and playlist info
++    // to pass back.
+     if (isset($file) && $file['type'] == 'audio') {
+       $files[][$file['ext']] = $file['url'];
+       $extensions[] = $file['ext'];
+@@ -169,7 +179,8 @@ function jplayer_sort_files($raw_files = array(), $player_id, $type = 'single')
+     }
+     elseif (isset($file) && $file['type'] == 'video') {
+       $files[][$file['ext']] = $file['url'];
+-      if ($poster != NULL) {
++      
++      if ($poster != NULL) { // handle posters (gif's etc) together with video
+         $files[]['poster'] = $poster;
+       }
+       $extensions[] = $file['ext'];
+@@ -178,6 +189,7 @@ function jplayer_sort_files($raw_files = array(), $player_id, $type = 'single')
+     }
+   }
+ 
++  // in single mode, there's no playlist after all - zap it.
+   if ($type == 'single') {
+     $item = array_shift($playlist);
+     $playlist = array();
+-- 
+1.7.6.1
+
+
+From b4f7ae21582dd4e1b650d71e56daba8e9b835f14 Mon Sep 17 00:00:00 2001
+From: Andrew Berry <deviantintegral@gmail.com>
+Date: Wed, 21 Sep 2011 17:56:17 -0400
+Subject: [PATCH 2/3] Issue #1192826: Fix comment style in
+ jplayer_sort_files().
+
+---
+ includes/jplayer.theme.inc |   18 ++++++++++--------
+ 1 files changed, 10 insertions(+), 8 deletions(-)
+
+diff --git a/includes/jplayer.theme.inc b/includes/jplayer.theme.inc
+index 05621b5..1338c6f 100644
+--- a/includes/jplayer.theme.inc
++++ b/includes/jplayer.theme.inc
+@@ -130,7 +130,7 @@ function jplayer_sort_files($raw_files = array(), $player_id, $type = 'single')
+       }
+     }
+ 
+-    // Add file into correct group
++    // Add file into correct group.
+     if (in_array($item['ext'], $video_extensions)) {
+       $videos = TRUE;
+       $item['type'] = 'video';
+@@ -150,8 +150,8 @@ function jplayer_sort_files($raw_files = array(), $player_id, $type = 'single')
+   $num = 0;
+   foreach ($media as $file) {
+ 
+-    // if there are videos to play, and mode is single,
+-    // then ignore any audio files present.
++    // If there are videos to play, and mode is single, then ignore any audio
++    // files present.
+     if ($videos == TRUE) {
+ 
+       if ($type == 'playlist') {
+@@ -169,8 +169,8 @@ function jplayer_sort_files($raw_files = array(), $player_id, $type = 'single')
+     }
+ 
+ 
+-    // accumulate lists of file urls, file extensions, and playlist info
+-    // to pass back.
++    // Accumulate lists of file urls, file extensions, and playlist info to
++    // pass back.
+     if (isset($file) && $file['type'] == 'audio') {
+       $files[][$file['ext']] = $file['url'];
+       $extensions[] = $file['ext'];
+@@ -179,17 +179,19 @@ function jplayer_sort_files($raw_files = array(), $player_id, $type = 'single')
+     }
+     elseif (isset($file) && $file['type'] == 'video') {
+       $files[][$file['ext']] = $file['url'];
+-      
+-      if ($poster != NULL) { // handle posters (gif's etc) together with video
++
++      // Handle posters images together with video.
++      if ($poster != NULL) {
+         $files[]['poster'] = $poster;
+       }
++
+       $extensions[] = $file['ext'];
+       $playlist[] = l($file['label'], $file['url'], array('attributes' => array('id' => $player_id . '_item_' . $num, 'tabindex' => 1)));
+       $num++;
+     }
+   }
+ 
+-  // in single mode, there's no playlist after all - zap it.
++  // In single mode, there's no playlist after all - zap it.
+   if ($type == 'single') {
+     $item = array_shift($playlist);
+     $playlist = array();
+-- 
+1.7.6.1
+
+
+From 9229765d9332573de38c366f6b7c892b971c0918 Mon Sep 17 00:00:00 2001
+From: Andrew Berry <deviantintegral@gmail.com>
+Date: Wed, 21 Sep 2011 17:56:55 -0400
+Subject: [PATCH 3/3] Issue #1192826: Replace tabs with spaces.
+
+---
+ includes/jplayer.theme.inc |   10 +++++-----
+ 1 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/includes/jplayer.theme.inc b/includes/jplayer.theme.inc
+index 1338c6f..ea9857b 100644
+--- a/includes/jplayer.theme.inc
++++ b/includes/jplayer.theme.inc
+@@ -157,11 +157,11 @@ function jplayer_sort_files($raw_files = array(), $player_id, $type = 'single')
+       if ($type == 'playlist') {
+         $player_type = 'video';
+       }
+-      else /* single */ {
+-	if ($file['type'] == 'audio') {
+-	  unset($file);
+-	}
+-	$player_type = 'video';
++      else {
++        if ($file['type'] == 'audio') {
++          unset($file);
++        }
++        $player_type = 'video';
+       }
+     }
+     else {
+-- 
+1.7.6.1
+

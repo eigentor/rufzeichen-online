@@ -109,6 +109,7 @@ function jplayer_sort_files($raw_files = array(), $player_id, $type = 'single') 
   $files = array();
   $extensions = array();
   $playlist = array();
+  $player_type = 'audio';
 
   // Look through all the files provided and see what we have
   foreach ($raw_files as $delta => $item) {
@@ -136,11 +137,11 @@ function jplayer_sort_files($raw_files = array(), $player_id, $type = 'single') 
     // Add file into correct group
     if (in_array($item['ext'], $video_extensions)) {
       $videos = TRUE;
-      $item['type'] = 'audio';
+      $item['type'] = 'video';
     }
     elseif (in_array($item['ext'], $audio_extensions)) {
       $audio = TRUE;
-      $item['type'] = 'video';
+      $item['type'] = 'audio';
     }
     elseif (in_array($item['ext'], $poster_extensions)) {
       $poster = $item['url'];
@@ -152,21 +153,33 @@ function jplayer_sort_files($raw_files = array(), $player_id, $type = 'single') 
 
   $num = 0;
   foreach ($media as $file) {
-    if ($videos == TRUE && $type != 'playlist') {
-      if ($file['type'] == 'audio') {
-        unset($file);
+   
+    // If there are videos to play, and mode is single, then ignore any audio
+    // files present.
+    if ($videos == TRUE) {
+
+      if ($type == 'playlist') {
+        $player_type = 'video';
       }
-      $player_type = 'video';
-    }
-    elseif ($videos == TRUE && $type == 'playlist') {
-      $player_type = 'video';
+      else {
+        if ($file['type'] == 'audio') {
+          unset($file);
+        }
+        $player_type = 'video';
+      }
     }
     else {
       $player_type = 'audio';
     }
+    
+    
+    // Accumulate lists of file urls, file extensions, and playlist info to
+    // pass back.
 
     if (isset($file) && $file['type'] == 'audio') {
       $files[][$file['ext']] = $file['url'];
+      
+      // Handle posters images together with video.
       $extensions[] = $file['ext'];
       $playlist[] = l($file['label'], $file['url'], array('attributes' => array('id' => $player_id . '_item_' . $num, 'tabindex' => 1)));
       $num++;
@@ -181,6 +194,7 @@ function jplayer_sort_files($raw_files = array(), $player_id, $type = 'single') 
       $num++;
     }
   }
+   // In single mode, there's no playlist after all - zap it.
 
   if ($type == 'single') {
     $item = array_shift($playlist);
