@@ -2,10 +2,10 @@
 # Apache/PHP/Drupal settings:
 #
 
-AuthType Basic
-AuthName "rufzeichen"
-AuthUserFile /is/htdocs/wp11006110_R7U2RFT7FG/www/rufzeichen-online-site/.htpasswd
-Require valid-user
+#AuthType Basic
+#AuthName "rufzeichen"
+#AuthUserFile /is/htdocs/wp11006110_R7U2RFT7FG/www/rufzeichen-online-site/.htpasswd
+#Require valid-user
 
 
 
