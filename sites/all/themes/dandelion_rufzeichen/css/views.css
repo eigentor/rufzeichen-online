@@ -37,3 +37,40 @@
 .view-News-Hauptseite .views-row {
   padding-bottom: 20px;
 }
+
+/** Gallery View on Project Node **/
+.node-type-projekt #content-area .view-images-project img {
+  padding: 0;
+}
+
+.node-type-projekt .view-images-project:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+/* IE6 */
+* html .node-type-projekt .view-images-project:after {
+  height: 1%;
+}
+/* IE7 */
+*:first-child + html .node-type-projekt .view-images-project:after {
+  min-height: 1%;
+}
+
+
+.node-type-projekt .view-images-project .views-slideshow-controls-bottom img:hover {
+  cursor: pointer;
+  cursor: hand;
+}
+.node-type-projekt .view-images-project .views_slideshow_cycle_main,
+.node-type-projekt .view-images-project .views-slideshow-controls-bottom {
+  float: left;
+}
+.node-type-projekt .view-images-project .views-slideshow-controls-bottom {
+  margin-left: 30px;
+}
+.node-type-projekt .view-images-project .views-slideshow-controls-bottom .views-slideshow-pager-field-item {
+  margin-bottom: 10px;
+}
