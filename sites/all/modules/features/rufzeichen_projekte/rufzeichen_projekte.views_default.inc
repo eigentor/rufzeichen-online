@@ -62,7 +62,8 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_controls']['type'] = 'views_slideshow_controls_text';
   $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_slide_counter']['weight'] = '1';
   $handler->display->display_options['style_options']['views_slideshow_cycle']['effect'] = 'none';
-  $handler->display->display_options['style_options']['views_slideshow_cycle']['timeout'] = '5000';
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['transition_advanced'] = 1;
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['timeout'] = '0';
   $handler->display->display_options['style_options']['views_slideshow_cycle']['speed'] = '700';
   $handler->display->display_options['style_options']['views_slideshow_cycle']['delay'] = '0';
   $handler->display->display_options['style_options']['views_slideshow_cycle']['start_paused'] = 0;
@@ -99,7 +100,7 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['fields']['field_project_images_1']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_project_images_1']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_project_images_1']['settings'] = array(
-    'image_style' => 'zusatz-thumbs-referenz',
+    'image_style' => 'project-thumb',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_project_images_1']['group_rows'] = 0;
@@ -132,7 +133,7 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['fields']['field_project_images']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_project_images']['type'] = 'colorbox';
   $handler->display->display_options['fields']['field_project_images']['settings'] = array(
-    'colorbox_node_style' => 'news-vollbild',
+    'colorbox_node_style' => 'project-big',
     'colorbox_image_style' => '',
     'colorbox_gallery' => 'post',
     'colorbox_gallery_custom' => '',

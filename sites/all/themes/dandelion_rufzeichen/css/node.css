@@ -233,5 +233,16 @@ ul.inline li.node-readmore a {
      color: #999;
 }
 
+/** Node Type Projekt **/
+.node-type-projekt #header {
+  height: 45px;
+  background: none;
+  background: #EFEFEF;
+  border: 1px solid #ccc;
+}
+.node-type-projekt #header-top-line {
+  display: none;
+}
+
 
 

@@ -58,8 +58,6 @@
 *:first-child + html .node-type-projekt .view-images-project:after {
   min-height: 1%;
 }
-
-
 .node-type-projekt .view-images-project .views-slideshow-controls-bottom img:hover {
   cursor: pointer;
   cursor: hand;
@@ -69,8 +67,8 @@
   float: left;
 }
 .node-type-projekt .view-images-project .views-slideshow-controls-bottom {
-  margin-left: 30px;
+  margin-left: 40px;
 }
 .node-type-projekt .view-images-project .views-slideshow-controls-bottom .views-slideshow-pager-field-item {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }

@@ -212,7 +212,7 @@ function rufzeichen_projekte_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '15',
+          'weight' => '14',
         ),
       ),
       'entity_type' => 'node',
