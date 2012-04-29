@@ -41,6 +41,8 @@
 /** Gallery View on Project Node **/
 .node-type-projekt #content-area .view-images-project img {
   padding: 0;
+  border: 1px solid #ccc;
+  box-shadow: #e7e7e7 0px 2px 5px;
 }
 
 .node-type-projekt .view-images-project:after {
