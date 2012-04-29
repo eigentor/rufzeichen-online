@@ -137,7 +137,7 @@ function rufzeichen_projekte_field_default_fields() {
           'weight' => '4',
         ),
         'full' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
@@ -209,7 +209,7 @@ function rufzeichen_projekte_field_default_fields() {
           'weight' => '2',
         ),
         'full' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
           'weight' => '14',
@@ -299,7 +299,7 @@ function rufzeichen_projekte_field_default_fields() {
           'weight' => '5',
         ),
         'full' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
@@ -373,7 +373,7 @@ function rufzeichen_projekte_field_default_fields() {
           'weight' => '6',
         ),
         'full' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
@@ -440,7 +440,7 @@ function rufzeichen_projekte_field_default_fields() {
           'weight' => '7',
         ),
         'full' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
@@ -510,7 +510,7 @@ function rufzeichen_projekte_field_default_fields() {
           'weight' => '3',
         ),
         'full' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
