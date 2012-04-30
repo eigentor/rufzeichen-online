@@ -257,11 +257,25 @@ ul.inline li.node-readmore a {
 }
 
 .node-type-projekt .group-left {
-  width: 64%;
+  width: 61%;
   margin-right: 4%;
 }
+.node-type-projekt .group-left,
+.node-type-projekt .field-name-title {
+  padding-left: 3px;	
+}
+
 .node-type-projekt .group-right {
-  width: 31%;
+  width: 34%;
+}
+.node-type-projekt .group-right .group-properties-icons h3 {
+  display: none;
+}
+.node-type-projekt .group-right .group-properties-icons {
+  border: 1px solid #e5e5e5;
+  /*background: #f9f9f9;*/
+  padding: 10px 15px 5px;
+  margin-bottom: 30px;
 }
 .node-type-projekt .group-right .field-name-field-project-url, 
 .node-type-projekt .group-right .field-name-field-project-business-area,
