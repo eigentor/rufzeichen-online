@@ -30,15 +30,16 @@ function rufzeichen_projekte_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'formatter' => 'collapsible',
+      'label' => 'Properties with Icons',
       'instance_settings' => array(
+        'classes' => '',
         'description' => '',
-        'show_label' => 1,
+        'show_label' => '0',
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
-        'classes' => '',
       ),
+      'formatter' => 'open',
     ),
   );
   $export['group_properties_icons|node|projekt|full'] = $field_group;

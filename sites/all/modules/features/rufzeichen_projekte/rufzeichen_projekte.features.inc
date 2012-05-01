@@ -9,6 +9,10 @@
  */
 function rufzeichen_projekte_ctools_plugin_api() {
   list($module, $api) = func_get_args();
+  if ($module == "field_group" && $api == "field_group") {
+    return array("version" => "1");
+  }
+  list($module, $api) = func_get_args();
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -19,6 +23,126 @@ function rufzeichen_projekte_ctools_plugin_api() {
  */
 function rufzeichen_projekte_views_api() {
   return array("version" => "3.0");
+}
+
+/**
+ * Implements hook_image_default_styles().
+ */
+function rufzeichen_projekte_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: project-big
+  $styles['project-big'] = array(
+    'name' => 'project-big',
+    'effects' => array(
+      17 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => '690',
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => '2',
+      ),
+      18 => array(
+        'label' => 'Crop',
+        'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
+        'effect callback' => 'image_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_crop_form',
+        'summary theme' => 'image_crop_summary',
+        'module' => 'image',
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => '690',
+          'height' => '380',
+          'anchor' => 'center-top',
+        ),
+        'weight' => '2',
+      ),
+      19 => array(
+        'label' => 'Define canvas',
+        'help' => 'Define the size of the working canvas and background color, this controls the dimensions of the output image.',
+        'effect callback' => 'canvasactions_definecanvas_image',
+        'form callback' => 'canvasactions_definecanvas_form',
+        'summary theme' => 'canvasactions_definecanvas_summary',
+        'module' => 'imagecache_canvasactions',
+        'name' => 'canvasactions_definecanvas',
+        'data' => array(
+          'RGB' => array(
+            'HEX' => 'ffffff',
+          ),
+          'under' => 1,
+          'exact' => array(
+            'width' => '690',
+            'height' => '380',
+            'xpos' => 'center',
+            'ypos' => 'center',
+          ),
+          'relative' => array(
+            'leftdiff' => '',
+            'rightdiff' => '',
+            'topdiff' => '',
+            'bottomdiff' => '',
+          ),
+        ),
+        'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported image style: project-thumb
+  $styles['project-thumb'] = array(
+    'name' => 'project-thumb',
+    'effects' => array(
+      20 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => '150',
+          'height' => '72',
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported image style: projekt-overview
+  $styles['projekt-overview'] = array(
+    'name' => 'projekt-overview',
+    'effects' => array(
+      1 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => '79',
+          'height' => '79',
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  return $styles;
 }
 
 /**

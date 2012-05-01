@@ -141,7 +141,7 @@ function rufzeichen_projekte_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '4',
+          'weight' => '5',
         ),
       ),
       'entity_type' => 'node',
@@ -303,7 +303,7 @@ function rufzeichen_projekte_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '5',
+          'weight' => '7',
         ),
       ),
       'entity_type' => 'node',
@@ -377,7 +377,7 @@ function rufzeichen_projekte_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '6',
+          'weight' => '8',
         ),
       ),
       'entity_type' => 'node',
@@ -467,6 +467,94 @@ function rufzeichen_projekte_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-projekt-field_project_thumb_overview'
+  $fields['node-projekt-field_project_thumb_overview'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_project_thumb_overview',
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'image',
+      'settings' => array(
+        'default_image' => 0,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'image',
+    ),
+    'field_instance' => array(
+      'bundle' => 'projekt',
+      'deleted' => '0',
+      'description' => 'Dieser Thumb wird in Übersichtsviews angezeigt',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => 8,
+        ),
+        'full' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_project_thumb_overview',
+      'label' => 'Thumb für Übersicht',
+      'required' => 0,
+      'settings' => array(
+        'alt_field' => 0,
+        'file_directory' => '',
+        'file_extensions' => 'png gif jpg jpeg',
+        'max_filesize' => '',
+        'max_resolution' => '300x300',
+        'min_resolution' => '',
+        'title_field' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'media',
+        'settings' => array(
+          'allowed_schemes' => array(
+            'public' => 'public',
+            'vimeo' => 0,
+            'youtube' => 0,
+          ),
+          'allowed_types' => array(
+            'audio' => 0,
+            'default' => 0,
+            'image' => 'image',
+            'video' => 0,
+          ),
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'media_generic',
+        'weight' => '39',
+      ),
+    ),
+  );
+
   // Exported field: 'node-projekt-field_project_url'
   $fields['node-projekt-field_project_url'] = array(
     'field_config' => array(
@@ -514,7 +602,7 @@ function rufzeichen_projekte_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => '3',
+          'weight' => '4',
         ),
       ),
       'entity_type' => 'node',
@@ -555,8 +643,10 @@ function rufzeichen_projekte_field_default_fields() {
   t('Aufgaben Rufzeichen');
   t('Bilder');
   t('Branche des Kunden');
+  t('Dieser Thumb wird in Übersichtsviews angezeigt');
   t('Projektbeschreibung Hauptteil');
   t('Technische Besonderheiten');
+  t('Thumb für Übersicht');
   t('URL der Seite');
   t('Zusatztext');
 

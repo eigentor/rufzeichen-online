@@ -194,5 +194,97 @@ function rufzeichen_projekte_views_default_views() {
   );
   $export['images_project'] = $view;
 
+  $view = new view;
+  $view->name = 'projekte_overview';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Projekte Übersicht';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Projekte Übersicht';
+  $handler->display->display_options['use_more_text'] = 'Weiter';
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Zurücksetzen';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Feld: Inhalt: Thumb für Übersicht */
+  $handler->display->display_options['fields']['field_project_thumb_overview']['id'] = 'field_project_thumb_overview';
+  $handler->display->display_options['fields']['field_project_thumb_overview']['table'] = 'field_data_field_project_thumb_overview';
+  $handler->display->display_options['fields']['field_project_thumb_overview']['field'] = 'field_project_thumb_overview';
+  $handler->display->display_options['fields']['field_project_thumb_overview']['label'] = '';
+  $handler->display->display_options['fields']['field_project_thumb_overview']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_project_thumb_overview']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_project_thumb_overview']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_project_thumb_overview']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_project_thumb_overview']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_project_thumb_overview']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_project_thumb_overview']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_project_thumb_overview']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_project_thumb_overview']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_project_thumb_overview']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_project_thumb_overview']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_project_thumb_overview']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_project_thumb_overview']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_project_thumb_overview']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_project_thumb_overview']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_project_thumb_overview']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_project_thumb_overview']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_project_thumb_overview']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_project_thumb_overview']['settings'] = array(
+    'image_style' => 'projekt-overview',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_project_thumb_overview']['field_api_classes'] = 0;
+  /* Sort criterion: Inhalt: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Filter criterion: Inhalt: Veröffentlicht */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Inhalt: Typ */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'projekt' => 'projekt',
+  );
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'projekte-bersicht';
+
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block_1');
+  $translatables['projekte_overview'] = array(
+    t('Master'),
+    t('Projekte Übersicht'),
+    t('Weiter'),
+    t('Anwenden'),
+    t('Zurücksetzen'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Page'),
+    t('Block'),
+  );
+  $export['projekte_overview'] = $view;
+
   return $export;
 }
