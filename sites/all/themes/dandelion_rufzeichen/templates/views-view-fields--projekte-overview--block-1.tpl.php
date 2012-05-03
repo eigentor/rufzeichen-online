@@ -22,8 +22,20 @@
  *
  * @ingroup views_templates
  */
+
+$options['bt_rufzeichen_projects_navigation'] = array(
+      'cssSelect' => '.beautytips',
+      'trigger' => array('mouseover', 'mouseout'),
+      'width' => 350,
+      'style' => 'hulu',
+      'shrinkToFit' => 'true',
+      'positions' => array('top', 'most'),
+	  'overlap' => '6',
+    );
+    beautytips_add_beautytips($options);    
  
-$beautytip_content = render($row->field_field_project_images); 
+$beautytip_content = render($row->field_field_project_images);
+$beautytip_content .= '<h3>' . $row->node_title . '</h3>'; 
  
 ?>
 
