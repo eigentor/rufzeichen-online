@@ -68,6 +68,9 @@
 .node-type-projekt .view-images-project .views-slideshow-controls-bottom {
   float: left;
 }
+.node-type-projekt .view-images-project .views_slideshow_cycle_main .colorbox img {
+  cursor: url(/sites/all/themes/dandelion_rufzeichen/images/new-adapted/zoomin.cur), url(../images/new-adapted/zoomin.cur), default;
+}
 .node-type-projekt .view-images-project .views-slideshow-controls-bottom {
   margin-left: 40px;
 }

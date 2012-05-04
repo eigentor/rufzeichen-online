@@ -264,6 +264,9 @@ ul.inline li.node-readmore a {
 .node-type-projekt .field-name-title {
   padding-left: 3px;	
 }
+.node-type-projekt .field-name-title {
+  clear: both;
+}
 
 .node-type-projekt .group-right {
   width: 34%;
