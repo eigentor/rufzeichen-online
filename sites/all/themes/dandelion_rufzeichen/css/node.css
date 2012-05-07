@@ -310,6 +310,13 @@ ul.inline li.node-readmore a {
   font-size: 0.93em;
   color: #333;
 }
+/*---------------------------------------------------------
+ **************  Projekte Übersicht  **********************
+ ----------------------------------------------------------*/
+.page-projekte .view-projekte-overview .views-row {
+    float: left;
+    margin: 0 20px 20px 0;
+}
 
 
 

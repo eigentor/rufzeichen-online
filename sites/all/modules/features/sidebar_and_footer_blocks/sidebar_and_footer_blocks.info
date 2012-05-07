@@ -1,0 +1,16 @@
+name = Sidebar and Footer blocks
+description = Einstellungen und Content für die Sidebar und den Footer
+core = 7.x
+package = Rufzeichen
+version = 7.x-1.0
+project = sidebar_and_footer_blocks
+dependencies[] = context
+dependencies[] = ctools
+dependencies[] = views
+features[context][] = footer_neu
+features[context][] = sidebar_new
+features[ctools][] = context:context:3
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:1
+features[views_view][] = Kommentare_News
+features[views_view][] = Newsblock_Startseite
