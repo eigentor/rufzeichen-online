@@ -55,3 +55,24 @@
 #footer-bottom-region ul li {
   display: inline;
 }
+/*-----------------------------------------------
+               News Block Sidebar
+-------------------------------------------------*/
+
+#sidebar-second .view-Newsblock-Startseite .views-row {
+  border-bottom: 1px solid #DADADA;
+  padding-bottom: 7px;
+  padding-top: 7px;
+}
+#sidebar-second .view-Newsblock-Startseite .views-row-last {
+  border: none;
+}
+#sidebar-second .view-Newsblock-Startseite .views-row a {
+  color: #848484;
+  display: block;
+
+  font-family: Georgia,"Times New Roman",Times,serif;
+}
+    
+    
+    

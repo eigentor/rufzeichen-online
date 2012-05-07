@@ -124,6 +124,7 @@ function sidebar_and_footer_blocks_views_default_views() {
   $handler->display->display_options['filters']['tid']['table'] = 'taxonomy_index';
   $handler->display->display_options['filters']['tid']['field'] = 'tid';
   $handler->display->display_options['filters']['tid']['group'] = '0';
+  $handler->display->display_options['filters']['tid']['reduce_duplicates'] = 0;
   $handler->display->display_options['filters']['tid']['type'] = 'select';
   $handler->display->display_options['filters']['tid']['vocabulary'] = 'vocabulary_3';
 
@@ -192,7 +193,7 @@ function sidebar_and_footer_blocks_views_default_views() {
     13 => '13',
   );
   $handler->display->display_options['filters']['tid']['group'] = '0';
-  $handler->display->display_options['filters']['tid']['reduce_duplicates'] = 0;
+  $handler->display->display_options['filters']['tid']['reduce_duplicates'] = 1;
   $handler->display->display_options['filters']['tid']['type'] = 'select';
   $handler->display->display_options['filters']['tid']['vocabulary'] = 'vocabulary_3';
   $translatables['Newsblock_Startseite'] = array(
