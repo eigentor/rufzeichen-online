@@ -29,8 +29,16 @@ $options['bt_rufzeichen_projects_page'] = array(
       'width' => 350,
       'style' => 'hulu',
       'shrinkToFit' => 'true',
-      'positions' => array('top', 'most'),
-	  'overlap' => '6',
+      'positions' => array('top', 'bottom'),
+	  'overlap' => '1',
+	  'spikeGirth' => '15',
+	  'spikeLength' => '10',
+	  'shadowBlur' => '5',
+	  'shadowColor' => '#666',
+	  'shadowOffsetX' => '1',   
+      'shadowOffsetY' => '1',
+      'strokeStyle' => '#888',
+      'noShadowOpts' => array('strokeStyle' => '#444'),
     );
     beautytips_add_beautytips($options);    
  

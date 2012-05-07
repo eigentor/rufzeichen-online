@@ -10,6 +10,7 @@ stylesheets[all][] = css/styles.css
 stylesheets[all][] = css/views.css
 stylesheets[all][] = css/block.css
 stylesheets[all][] = css/node.css
+stylesheets-conditional[lte IE 8][all][] = css/ie8-and-below.css
 
 regions[page_top] = Page top
 regions[main_menu] = Main Menu

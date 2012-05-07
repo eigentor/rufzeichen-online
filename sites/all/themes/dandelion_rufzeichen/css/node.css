@@ -258,7 +258,7 @@ ul.inline li.node-readmore a {
 
 .node-type-projekt .group-left {
   width: 61%;
-  margin-right: 4%;
+  margin-right: 3%;
 }
 .node-type-projekt .group-left,
 .node-type-projekt .field-name-title {
@@ -270,6 +270,7 @@ ul.inline li.node-readmore a {
 
 .node-type-projekt .group-right {
   width: 34%;
+  margin-right: 0.7%;
 }
 .node-type-projekt .group-right .group-properties-icons h3 {
   display: none;

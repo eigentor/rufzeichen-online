@@ -25,12 +25,20 @@
 
 $options['bt_rufzeichen_projects_navigation'] = array(
       'cssSelect' => '.beautytips',
-      'trigger' => array('mouseover', 'mouseout'),
+      'trigger' => array('mouseover', 'click'),
       'width' => 350,
       'style' => 'hulu',
       'shrinkToFit' => 'true',
       'positions' => array('top', 'most'),
-	  'overlap' => '6',
+	  'overlap' => '5',
+	  'spikeGirth' => '15',
+	  'spikeLength' => '15',
+	  'shadowBlur' => '7',
+	  'shadowColor' => '#888',
+	  'shadowOffsetX' => '1',   
+      'shadowOffsetY' => '1',
+      'strokeStyle' => '#888',
+      'noShadowOpts' => array('strokeStyle' => '#444'),
     );
     beautytips_add_beautytips($options);    
  

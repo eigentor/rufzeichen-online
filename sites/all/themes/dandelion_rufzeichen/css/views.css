@@ -39,10 +39,14 @@
 }
 
 /** Gallery View on Project Node **/
-.node-type-projekt #content-area .view-images-project img {
+.node-type-projekt #content-area .view-images-project .views_slideshow_cycle_main img {
   padding: 0;
   border: 1px solid #ccc;
   box-shadow: #e7e7e7 0px 2px 5px;
+}
+.node-type-projekt #content-area .view-images-project .views-slideshow-controls-bottom img {
+  padding: 0;
+  border: 1px solid #c9c9c9;
 }
 
 .node-type-projekt .view-images-project:after {
@@ -75,7 +79,7 @@
   margin-left: 40px;
 }
 .node-type-projekt .view-images-project .views-slideshow-controls-bottom .views-slideshow-pager-field-item {
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 /** Übersicht Projekte im Footer Projekt Full Node **/
 .node-type-projekt .view-projekte-overview .views-row {
@@ -84,4 +88,19 @@
 }
 .node-type-projekt .view-projekte-overview .views-row img {
   border: 1px solid #ddd;
+}
+/** Tooltips für Projektübersicht **/
+.bt-wrapper img {
+  display: block;
+  border: 1px solid #ddd;
+}
+.bt-wrapper h3 {
+  font-size: 16px;
+  margin-top: 7px;
+  margin-bottom: 2px;
+  color: #666;
+  padding-left: 3px;
+}
+#footer .bt-wrapper h3 {
+  font-style: normal;
 }
