@@ -56,3 +56,51 @@
 #footer-bottom-region ul li {
   display: inline;
 }
+/*-----------------------------------------------
+               Projekt Navigation Footer
+-------------------------------------------------*/
+.node-type-projekt #footer .footer-inner {
+  padding-bottom: 15px;
+  padding-top: 30px;
+}
+
+#footer .view-projekte-overview:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+/* IE6 */
+* html #footer .view-projekte-overview {
+  height: 1%;
+}
+/* IE7 */
+*:first-child + html #footer .view-projekte-overview {
+  min-height: 1%;
+}
+	
+}
+
+
+/*-----------------------------------------------
+               News Block Sidebar
+-------------------------------------------------*/
+
+#sidebar-second .view-Newsblock-Startseite .views-row {
+  border-bottom: 1px solid #DADADA;
+  padding-bottom: 7px;
+  padding-top: 7px;
+}
+#sidebar-second .view-Newsblock-Startseite .views-row-last {
+  border: none;
+}
+#sidebar-second .view-Newsblock-Startseite .views-row a {
+  color: #848484;
+  display: block;
+
+  font-family: Georgia,"Times New Roman",Times,serif;
+}
+    
+    
+    

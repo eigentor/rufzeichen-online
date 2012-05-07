@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Provides the Display suite views entity style plugin.
+ * Provides the Display Suite views entity style plugin.
  */
 
 /**
@@ -24,29 +24,73 @@ class views_plugin_ds_entity_view extends views_plugin_row {
   // the cleanest solution, it's the fastest though.
   function ds_views_3_support() {
     $base_table_fields = array(
-      'node' => 'nid',
-      'comment' => 'cid',
-      'users' => 'uid',
-      'apachesolr' => 'nid',
-      'taxonomy_term_data' => 'tid',
-      'file_managed' => 'fid',
-      'micro' => 'mid',
+      'node' => array('field' => 'nid', 'entity_type' => 'node'),
+      'comment' => array('field' => 'cid', 'entity_type' => 'comment'),
+      'users' => array('field' => 'uid', 'entity_type' => 'user'),
+      'apachesolr' => array('field' => 'nid', 'entity_type' => 'node'),
+      'taxonomy_term_data' => array('field' => 'tid', 'entity_type' => 'taxonomy_term'),
+      'file_managed' => array('field' => 'fid', 'entity_type' => 'file'),
+      'micro' => array('field' => 'mid', 'entity_type' => 'micro'),
     );
-    return isset($base_table_fields[$this->base_table]) ? $base_table_fields[$this->base_table] : 'nid';
+    $this->entity_type = isset($base_table_fields[$this->base_table]) ? $base_table_fields[$this->base_table]['entity_type'] : 'node';
+    return isset($base_table_fields[$this->base_table]) ? $base_table_fields[$this->base_table]['field'] : 'nid';
   }
 
   function option_definition() {
     $options = parent::option_definition();
     $options['view_mode'] = array('default' => 'teaser');
+    $options['load_comments'] = array('default' => FALSE);
     $options['alternating'] = array('default' => FALSE);
     $options['changing'] = array('default' => FALSE);
     $options['grouping'] = array('default' => FALSE);
     $options['advanced'] = array('default' => FALSE);
-    $options['grouping_fieldset'] = array('default' => FALSE);
-    $options['default_fieldset'] = array('default' => FALSE);
-    $options['alternating_fieldset'] = array('default' => FALSE);
-    $options['advanced_fieldset'] = array('default' => FALSE);
+    $options['delta_fieldset'] = array(
+      'contains' => array(
+        'delta_fields' => array('default' => FALSE),
+      ),
+    );
+    $options['grouping_fieldset'] = array(
+      'contains' => array(
+        'grouping' => array('default' => FALSE, 'bool' => TRUE),
+        'group_field' => array('default' => ''),
+        'group_field_function' => array('default' => ''),
+      ),
+    );
+    $options['default_fieldset'] = array(
+      'contains' => array(
+        'view_mode' => array('default' => ''),
+      ),
+    );
+    $options['alternating_fieldset'] = array(
+      'contains' => array(
+        'alternating' => array('default' => FALSE, 'bool' => TRUE),
+        'allpages' => array('default' => FALSE, 'bool' => TRUE),
+        'item' => array(
+          'default' => array(),
+          'export' => 'ds_item_export_option',
+        ),
+      ),
+    );
+    $options['advanced_fieldset'] = array(
+      'contains' => array(
+        'advanced' => array('default' => FALSE, 'bool' => TRUE),
+      ),
+    );
     return $options;
+  }
+
+  /**
+   * Custom export function for alternating_fieldset items.
+   */
+  function ds_item_export_option($indent, $prefix, $storage, $option, $definition, $parents) {
+    $output = '';
+    $definition = array('default' => 'teaser');
+    foreach ($storage as $key => $value) {
+      if (strstr($key, 'item_') !== FALSE) {
+        $output .= parent::export_option($indent, $prefix, $storage, $key, $definition, $parents);
+      }
+    }
+    return $output;
   }
 
   function options_form(&$form, &$form_state) {
@@ -81,6 +125,7 @@ class views_plugin_ds_entity_view extends views_plugin_row {
         '#type' => 'checkbox',
         '#description' => t('Load comments for every node to display.'),
         '#default_value' => isset($this->options['load_comments']) ? $this->options['load_comments'] : FALSE,
+        '#access' => module_exists('comment'),
       );
     }
 
@@ -169,6 +214,32 @@ class views_plugin_ds_entity_view extends views_plugin_row {
     }
 
     // Advanced function.
+    $delta_fields = array();
+    $field_api_fields = field_info_instances($this->entity_type);
+    foreach ($field_api_fields as $bundle => $fields) {
+      foreach ($fields as $field_name => $instance_info) {
+        $field_info = field_info_field($field_name);
+        if ($field_info['cardinality'] != 1) {
+          $delta_fields[$field_name] = $field_name;
+        }
+      }
+    }
+    $form['delta_fieldset'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Delta fields'),
+      '#collapsible' => TRUE,
+      '#collapsed' => empty($this->options['delta_fields']),
+    );
+    $form['delta_fieldset']['delta_fields'] = array(
+      '#type' => 'select',
+      '#title' => t('Select fields'),
+      '#description' => t('Select fields which "delta" value should be added to the result row. On the manage display of an entity you can decide to look for this delta value to only print that row.'),
+      '#options' => $delta_fields,
+      '#multiple' => TRUE,
+      '#default_value' => $this->options['delta_fields'],
+    );
+
+    // Advanced function.
     $form['advanced_fieldset'] = array(
       '#type' => 'fieldset',
       '#title' => t('Advanced view mode'),
@@ -201,6 +272,24 @@ class views_plugin_ds_entity_view extends views_plugin_row {
     $form_state['values']['row_options']['alternating'] = $form_state['values']['row_options']['alternating_fieldset']['alternating'];
     $form_state['values']['row_options']['grouping'] = $form_state['values']['row_options']['grouping_fieldset']['grouping'];
     $form_state['values']['row_options']['advanced'] = $form_state['values']['row_options']['advanced_fieldset']['advanced'];
+    $form_state['values']['row_options']['delta_fields'] = $form_state['values']['row_options']['delta_fieldset']['delta_fields'];
+  }
+
+  /**
+   * Query method.
+   */
+  function query() {
+    parent::query();
+    $this->delta_fields = array();
+    $delta_fields = $this->options['delta_fieldset']['delta_fields'];
+    if (!empty($delta_fields)) {
+      foreach ($delta_fields as $field) {
+        $field_name = 'field_data_' . $field;
+        $field_name_delta = $field_name . '_delta';
+        $this->view->query->add_field($field_name, 'delta');
+        $this->delta_fields[$field] = $field_name_delta;
+      }
+    }
   }
 
   /**
@@ -269,6 +358,13 @@ class views_plugin_ds_entity_view extends views_plugin_row {
       }
     }
 
+    // Give modules a chance to alter the $view_mode. Use $view_mode by ref.
+    $context = array(
+      'entity' => $this->entities[$row->{$this->field_alias}],
+      'view_name' => $this->view->name,
+      'display' => $this->view->current_display
+    );
+    drupal_alter('ds_views_view_mode', $view_mode, $context);
     // Call the row render function.
     $content = $this->ds_views_row_render_entity($view_mode, $row, $load_comments);
 
@@ -328,6 +424,16 @@ class views_plugin_ds_entity_view extends views_plugin_row {
    *   An entity view rendered as HTML
    */
   function ds_views_row_render_entity($view_mode, $row, $load_comments) {
+
+    // Add delta fields if necessary.
+    if (!empty($this->delta_fields)) {
+      $ds_delta = array();
+      foreach ($this->delta_fields as $field_name => $delta_field) {
+        $ds_delta[$field_name] = $row->{$delta_field};
+      }
+      $this->entities[$row->{$this->field_alias}]->ds_delta = $ds_delta;
+    }
+
     $row_function = 'ds_views_row_render_' . $this->base_table;
     $content = $row_function($this->entities[$row->{$this->field_alias}], $view_mode, $load_comments);
     return $content;
@@ -339,7 +445,7 @@ class views_plugin_ds_entity_view extends views_plugin_row {
  */
 function ds_views_row_render_node($entity, $view_mode, $load_comments) {
   $node_display = node_view($entity, $view_mode);
-  if ($load_comments) {
+  if ($load_comments && module_exists('comment')) {
     $node_display['comments'] = comment_node_page_additions($entity);
   }
   return drupal_render($node_display);
@@ -350,35 +456,39 @@ function ds_views_row_render_node($entity, $view_mode, $load_comments) {
  */
 function ds_views_row_render_comment($entity, $view_mode, $load_comments) {
   $node = node_load($entity->nid);
-  return drupal_render(comment_view($entity, $node, $view_mode));
+  $element = comment_view($entity, $node, $view_mode);
+  return drupal_render($element);
 }
 
 /**
  * Render the user through the entity plugin.
  */
 function ds_views_row_render_users($entity, $view_mode, $load_comments) {
-  return drupal_render(user_view($entity, $view_mode));
+  $element = user_view($entity, $view_mode);
+  return drupal_render($element);
 }
 
 /**
  * Render the taxonomy term through the entity plugin.
  */
 function ds_views_row_render_taxonomy_term_data($entity, $view_mode, $load_comments) {
-  $el = taxonomy_term_view($entity, $view_mode);
-  return drupal_render($el);
+  $element = taxonomy_term_view($entity, $view_mode);
+  return drupal_render($element);
 }
 
 /**
  * Render the file through the entity plugin.
  */
 function ds_views_row_render_file_managed($entity, $view_mode, $load_comments) {
-  return drupal_render(file_view($entity, $view_mode));
+  $element = file_view($entity, $view_mode);
+  return drupal_render($element);
 }
 
 /**
  * Render the micro through the entity plugin.
  */
 function ds_views_row_render_micro($entity, $view_mode, $load_comments) {
-  return drupal_render(micro_view($entity, $view_mode));
+  $element = micro_view($entity, $view_mode);
+  return drupal_render($element);
 }
 

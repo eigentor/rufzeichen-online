@@ -1434,6 +1434,9 @@ float: right;
 #content-inner {
   width: 630px;
 }
+.no-sidebars #content-inner {
+  width: 900px;
+}
 
 .node .content:after {
   content: ".";

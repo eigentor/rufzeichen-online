@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the rufzeichen_Projekte feature.
+ */
+
+include_once 'rufzeichen_projekte.features.inc';

@@ -10,6 +10,7 @@ stylesheets[all][] = css/styles.css
 stylesheets[all][] = css/views.css
 stylesheets[all][] = css/block.css
 stylesheets[all][] = css/node.css
+stylesheets-conditional[lte IE 8][all][] = css/ie8-and-below.css
 
 regions[page_top] = Page top
 regions[main_menu] = Main Menu
@@ -17,7 +18,6 @@ regions[header] = Header
 regions[highlighted] = Highlighted
 regions[help] = Help
 regions[content] = Content
-regions[sidebar_first] = First sidebar
 regions[sidebar_second] = Second sidebar
 regions[footer] = Footer
 regions[footer_bottom] = Footer bottom
