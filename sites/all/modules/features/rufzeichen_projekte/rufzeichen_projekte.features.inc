@@ -66,7 +66,7 @@ function rufzeichen_projekte_image_default_styles() {
         'name' => 'image_crop',
         'data' => array(
           'width' => '690',
-          'height' => '380',
+          'height' => '418',
           'anchor' => 'center-top',
         ),
         'weight' => '2',
@@ -86,7 +86,7 @@ function rufzeichen_projekte_image_default_styles() {
           'under' => 1,
           'exact' => array(
             'width' => '690',
-            'height' => '380',
+            'height' => '418',
             'xpos' => 'center',
             'ypos' => 'center',
           ),
@@ -128,20 +128,37 @@ function rufzeichen_projekte_image_default_styles() {
   $styles['project-thumb'] = array(
     'name' => 'project-thumb',
     'effects' => array(
-      20 => array(
-        'label' => 'Scale and crop',
-        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
+      23 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
         'module' => 'image',
-        'name' => 'image_scale_and_crop',
+        'name' => 'image_scale',
         'data' => array(
           'width' => '150',
-          'height' => '72',
+          'height' => '',
+          'upscale' => 0,
         ),
-        'weight' => '1',
+        'weight' => '-10',
+      ),
+      24 => array(
+        'label' => 'Crop',
+        'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
+        'effect callback' => 'image_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_crop_form',
+        'summary theme' => 'image_crop_summary',
+        'module' => 'image',
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => '150',
+          'height' => '87',
+          'anchor' => 'center-top',
+        ),
+        'weight' => '2',
       ),
     ),
   );

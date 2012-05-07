@@ -268,7 +268,7 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['fields']['field_project_images']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_project_images']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_project_images']['settings'] = array(
-    'image_style' => 'website-thumbnail',
+    'image_style' => 'project-tooltip',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_project_images']['group_rows'] = 1;
@@ -387,7 +387,7 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['fields']['field_project_images']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_project_images']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_project_images']['settings'] = array(
-    'image_style' => 'website-thumbnail',
+    'image_style' => 'project-tooltip',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_project_images']['group_rows'] = 1;
@@ -491,7 +491,7 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['fields']['field_project_images']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_project_images']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_project_images']['settings'] = array(
-    'image_style' => 'website-thumbnail',
+    'image_style' => 'project-tooltip',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_project_images']['group_rows'] = 1;
