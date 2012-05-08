@@ -510,7 +510,7 @@ function rufzeichen_projekte_field_default_fields() {
             'image_style' => '',
           ),
           'type' => 'image',
-          'weight' => 8,
+          'weight' => '8',
         ),
         'full' => array(
           'label' => 'above',

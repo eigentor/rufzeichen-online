@@ -13,6 +13,10 @@ function rufzeichen_projekte_ctools_plugin_api() {
     return array("version" => "3");
   }
   list($module, $api) = func_get_args();
+  if ($module == "ds" && $api == "ds") {
+    return array("version" => "1");
+  }
+  list($module, $api) = func_get_args();
   if ($module == "entity_path" && $api == "entity_path") {
     return array("version" => "1");
   }
@@ -160,6 +164,45 @@ function rufzeichen_projekte_image_default_styles() {
         'data' => array(
           'width' => '150',
           'height' => '87',
+          'anchor' => 'center-top',
+        ),
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported image style: project-tooltip
+  $styles['project-tooltip'] = array(
+    'name' => 'project-tooltip',
+    'effects' => array(
+      9 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => '220',
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => '1',
+      ),
+      23 => array(
+        'label' => 'Crop',
+        'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
+        'effect callback' => 'image_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_crop_form',
+        'summary theme' => 'image_crop_summary',
+        'module' => 'image',
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => '220',
+          'height' => '165',
           'anchor' => 'center-top',
         ),
         'weight' => '2',
