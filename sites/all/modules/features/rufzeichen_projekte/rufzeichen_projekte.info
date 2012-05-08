@@ -25,7 +25,6 @@ dependencies[] = views_slideshow
 features[context][] = projekte_footer
 features[ctools][] = context:context:3
 features[ctools][] = ds:ds:1
-features[ctools][] = entity_path:entity_path:1
 features[ctools][] = field_group:field_group:1
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
