@@ -547,6 +547,18 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['arguments']['tid']['require_value'] = 0;
   $handler->display->display_options['arguments']['tid']['reduce_duplicates'] = 0;
   $handler->display->display_options['arguments']['tid']['set_breadcrumb'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Inhalt: Typ */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'projekt' => 'projekt',
+  );
+  /* Filter criterion: Inhalt: Published or admin */
+  $handler->display->display_options['filters']['status_extra']['id'] = 'status_extra';
+  $handler->display->display_options['filters']['status_extra']['table'] = 'node';
+  $handler->display->display_options['filters']['status_extra']['field'] = 'status_extra';
   $handler->display->display_options['path'] = 'projekte/%';
   $translatables['projekte_overview'] = array(
     t('Master'),

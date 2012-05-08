@@ -16,7 +16,11 @@ function rufzeichen_projekte_ctools_plugin_api() {
   if ($module == "ds" && $api == "ds") {
     return array("version" => "1");
   }
- list($module, $api) = func_get_args();
+  list($module, $api) = func_get_args();
+  if ($module == "entity_path" && $api == "entity_path") {
+    return array("version" => "1");
+  }
+  list($module, $api) = func_get_args();
   if ($module == "field_group" && $api == "field_group") {
     return array("version" => "1");
   }

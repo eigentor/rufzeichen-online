@@ -110,5 +110,40 @@ function rufzeichen_projekte_strongarm() {
   $strongarm->value = 0;
   $export['node_submitted_projekt'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_1_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_1_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_2_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_2_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_aufgaben_rufzeichen_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_aufgaben_rufzeichen_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_branche_des_kunden_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_branche_des_kunden_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_technische_besonderheiten_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_technische_besonderheiten_pattern'] = $strongarm;
+
   return $export;
 }
