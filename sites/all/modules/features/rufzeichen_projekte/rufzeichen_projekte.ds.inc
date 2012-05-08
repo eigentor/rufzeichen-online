@@ -68,8 +68,8 @@ function rufzeichen_projekte_ds_layout_settings_info() {
         1 => 'body',
       ),
       'right' => array(
-        2 => 'field_project_url',
-        3 => 'group_properties_icons',
+        2 => 'group_properties_icons',
+        3 => 'field_project_url',
         4 => 'field_project_business_area',
         5 => 'field_project_text_secondary',
         6 => 'field_project_task',
@@ -79,8 +79,8 @@ function rufzeichen_projekte_ds_layout_settings_info() {
     'fields' => array(
       'title' => 'header',
       'body' => 'left',
-      'field_project_url' => 'right',
       'group_properties_icons' => 'right',
+      'field_project_url' => 'right',
       'field_project_business_area' => 'right',
       'field_project_text_secondary' => 'right',
       'field_project_task' => 'right',

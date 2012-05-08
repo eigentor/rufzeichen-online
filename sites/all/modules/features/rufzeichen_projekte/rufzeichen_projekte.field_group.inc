@@ -23,10 +23,10 @@ function rufzeichen_projekte_field_group_info() {
     'label' => 'Properties with Icons',
     'weight' => '4',
     'children' => array(
-      0 => 'field_project_url',
-      1 => 'field_project_business_area',
-      2 => 'field_project_task',
-      3 => 'field_project_technical_details',
+      0 => 'field_project_business_area',
+      1 => 'field_project_task',
+      2 => 'field_project_technical_details',
+      3 => 'field_project_url',
     ),
     'format_type' => 'div',
     'format_settings' => array(

@@ -175,7 +175,7 @@ function rufzeichen_projekte_image_default_styles() {
   $styles['project-tooltip'] = array(
     'name' => 'project-tooltip',
     'effects' => array(
-      9 => array(
+      16 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -191,7 +191,7 @@ function rufzeichen_projekte_image_default_styles() {
         ),
         'weight' => '1',
       ),
-      23 => array(
+      17 => array(
         'label' => 'Crop',
         'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
         'effect callback' => 'image_crop_effect',
@@ -202,7 +202,7 @@ function rufzeichen_projekte_image_default_styles() {
         'name' => 'image_crop',
         'data' => array(
           'width' => '220',
-          'height' => '165',
+          'height' => '155',
           'anchor' => 'center-top',
         ),
         'weight' => '2',
@@ -245,7 +245,7 @@ function rufzeichen_projekte_node_info() {
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => t('Titel'),
       'help' => '',
     ),
   );
