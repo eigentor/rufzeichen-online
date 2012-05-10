@@ -25,7 +25,7 @@
 
 $options['bt_rufzeichen_projects_navigation'] = array(
       'cssSelect' => '.beautytips',
-      'trigger' => array('mouseover', 'click'),
+      'trigger' => array('mouseover', 'mouseout'),
       'width' => 350,
       'style' => 'hulu',
       'shrinkToFit' => 'true',
