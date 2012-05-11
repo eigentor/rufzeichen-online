@@ -191,7 +191,7 @@ function rufzeichen_projekte_image_default_styles() {
         ),
         'weight' => '1',
       ),
-      17 => array(
+      22 => array(
         'label' => 'Crop',
         'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
         'effect callback' => 'image_crop_effect',

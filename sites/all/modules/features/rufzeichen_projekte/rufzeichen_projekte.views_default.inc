@@ -218,6 +218,16 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '20';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Nodequeue: Queue */
+  $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['nodequeue_rel']['field'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['label'] = 'Nodequeue Projekte';
+  $handler->display->display_options['relationships']['nodequeue_rel']['required'] = 1;
+  $handler->display->display_options['relationships']['nodequeue_rel']['limit'] = 1;
+  $handler->display->display_options['relationships']['nodequeue_rel']['names'] = array(
+    'projekte_queue' => 'projekte_queue',
+  );
   /* Feld: Inhalt: Titel */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -308,11 +318,11 @@ function rufzeichen_projekte_views_default_views() {
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_project_thumb_overview']['field_api_classes'] = 0;
-  /* Sort criterion: Inhalt: Post date */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'node';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Sort criterion: Nodequeue: Position */
+  $handler->display->display_options['sorts']['position']['id'] = 'position';
+  $handler->display->display_options['sorts']['position']['table'] = 'nodequeue_nodes';
+  $handler->display->display_options['sorts']['position']['field'] = 'position';
+  $handler->display->display_options['sorts']['position']['relationship'] = 'nodequeue_rel';
   /* Contextual filter: Inhalt: Has taxonomy term ID */
   $handler->display->display_options['arguments']['tid']['id'] = 'tid';
   $handler->display->display_options['arguments']['tid']['table'] = 'taxonomy_index';
@@ -569,6 +579,7 @@ function rufzeichen_projekte_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('Nodequeue Projekte'),
     t('<div class="overview-thumb-wrapper beautytips" title=\'[field_project_images]\'>
 [field_project_thumb_overview]
 </div>'),

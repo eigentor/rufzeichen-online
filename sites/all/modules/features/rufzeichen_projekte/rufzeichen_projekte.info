@@ -73,5 +73,7 @@ features[variable][] = pathauto_taxonomy_term_2_pattern
 features[variable][] = pathauto_taxonomy_term_aufgaben_rufzeichen_pattern
 features[variable][] = pathauto_taxonomy_term_branche_des_kunden_pattern
 features[variable][] = pathauto_taxonomy_term_technische_besonderheiten_pattern
+features[variable][] = nodequeue_use_tab
+features[variable][] = nodequeue_view_per_queue
 features[views_view][] = images_project
 features[views_view][] = projekte_overview
