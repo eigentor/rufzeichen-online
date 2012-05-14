@@ -143,10 +143,6 @@ function sidebar_and_footer_blocks_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '4';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['filter_groups']['groups'] = array(
-    1 => 'AND',
-    2 => 'AND',
-  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Inhalt: Veröffentlicht */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -187,7 +183,6 @@ function sidebar_and_footer_blocks_views_default_views() {
     5 => '5',
     6 => '6',
     27 => '27',
-    7 => '7',
     11 => '11',
     12 => '12',
     13 => '13',

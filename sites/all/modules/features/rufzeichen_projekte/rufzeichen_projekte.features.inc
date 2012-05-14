@@ -47,7 +47,7 @@ function rufzeichen_projekte_image_default_styles() {
   $styles['project-big'] = array(
     'name' => 'project-big',
     'effects' => array(
-      17 => array(
+      19 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -61,25 +61,9 @@ function rufzeichen_projekte_image_default_styles() {
           'height' => '',
           'upscale' => 0,
         ),
-        'weight' => '2',
+        'weight' => '-10',
       ),
-      18 => array(
-        'label' => 'Crop',
-        'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
-        'effect callback' => 'image_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_crop_form',
-        'summary theme' => 'image_crop_summary',
-        'module' => 'image',
-        'name' => 'image_crop',
-        'data' => array(
-          'width' => '690',
-          'height' => '418',
-          'anchor' => 'center-top',
-        ),
-        'weight' => '2',
-      ),
-      19 => array(
+      21 => array(
         'label' => 'Define canvas',
         'help' => 'Define the size of the working canvas and background color, this controls the dimensions of the output image.',
         'effect callback' => 'canvasactions_definecanvas_image',
@@ -96,7 +80,7 @@ function rufzeichen_projekte_image_default_styles() {
             'width' => '690',
             'height' => '418',
             'xpos' => 'center',
-            'ypos' => 'center',
+            'ypos' => 'top',
           ),
           'relative' => array(
             'leftdiff' => '',
@@ -105,7 +89,23 @@ function rufzeichen_projekte_image_default_styles() {
             'bottomdiff' => '',
           ),
         ),
-        'weight' => '3',
+        'weight' => '-9',
+      ),
+      20 => array(
+        'label' => 'Crop',
+        'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
+        'effect callback' => 'image_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_crop_form',
+        'summary theme' => 'image_crop_summary',
+        'module' => 'image',
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => '690',
+          'height' => '418',
+          'anchor' => 'center-top',
+        ),
+        'weight' => '-8',
       ),
     ),
   );
@@ -114,7 +114,7 @@ function rufzeichen_projekte_image_default_styles() {
   $styles['project-page'] = array(
     'name' => 'project-page',
     'effects' => array(
-      21 => array(
+      18 => array(
         'label' => 'Scale and crop',
         'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -124,8 +124,8 @@ function rufzeichen_projekte_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => '130',
-          'height' => '130',
+          'width' => '145',
+          'height' => '145',
         ),
         'weight' => '1',
       ),

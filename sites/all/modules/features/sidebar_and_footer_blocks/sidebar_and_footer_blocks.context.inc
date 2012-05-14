@@ -59,6 +59,8 @@ function sidebar_and_footer_blocks_context_default_contexts() {
       'values' => array(
         '~<front>' => '~<front>',
         '~projekt/*' => '~projekt/*',
+        '~projekte' => '~projekte',
+        '~projekte/*' => '~projekte/*',
       ),
     ),
   );

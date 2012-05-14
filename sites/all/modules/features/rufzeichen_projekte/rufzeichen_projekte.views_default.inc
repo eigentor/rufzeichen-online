@@ -218,6 +218,16 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '20';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Kopfbereich: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['empty'] = FALSE;
+  $handler->display->display_options['header']['area']['content'] = '<p>Wir haben Websites der verschiedensten Kategorien und Größenordnungen erfolgreich umgesetzt. Hier einige Beispiele, anhand derer Sie einen Eindruck gewinnen können.
+</p>
+';
+  $handler->display->display_options['header']['area']['format'] = '3';
+  $handler->display->display_options['header']['area']['tokenize'] = 0;
   /* Relationship: Nodequeue: Queue */
   $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
   $handler->display->display_options['relationships']['nodequeue_rel']['table'] = 'node';
@@ -343,6 +353,8 @@ function rufzeichen_projekte_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Beispiele unserer Arbeiten';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Feld: Inhalt: Titel */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -443,9 +455,12 @@ function rufzeichen_projekte_views_default_views() {
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block_1');
+  $handler->display->display_options['defaults']['header'] = FALSE;
 
   /* Display: Projekte nach Term */
   $handler = $view->new_display('page', 'Projekte nach Term', 'page_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Beispiele unserer Arbeiten';
   $handler->display->display_options['display_description'] = 'View mit Arguments';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Feld: Inhalt: Titel */
@@ -579,12 +594,16 @@ function rufzeichen_projekte_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('<p>Wir haben Websites der verschiedensten Kategorien und Größenordnungen erfolgreich umgesetzt. Hier einige Beispiele, anhand derer Sie einen Eindruck gewinnen können.
+</p>
+'),
     t('Nodequeue Projekte'),
     t('<div class="overview-thumb-wrapper beautytips" title=\'[field_project_images]\'>
 [field_project_thumb_overview]
 </div>'),
     t('Alle'),
     t('Page'),
+    t('Beispiele unserer Arbeiten'),
     t('Block'),
     t('Projekte nach Term'),
     t('View mit Arguments'),

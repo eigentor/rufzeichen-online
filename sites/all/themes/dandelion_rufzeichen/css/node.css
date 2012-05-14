@@ -234,14 +234,16 @@ ul.inline li.node-readmore a {
 }
 
 /** Node Type Projekt **/
-.node-type-projekt #header {
+.node-type-projekt #header,
+.page-projekte #header {
   height: 65px;
  /*  background: none;
  background: #EFEFEF; 
   border: 1px solid #ccc; */
   background: url("../images/new-adapted/header-cars-sw.jpg") no-repeat  0 -120px;
 }
-.node-type-projekt #header-top-line {
+.node-type-projekt #header-top-line,
+.page-projekte #header-top-line {
   display: none;
 }
 .node-type-projekt #content {
@@ -316,11 +318,15 @@ ul.inline li.node-readmore a {
  ----------------------------------------------------------*/
 .page-projekte .view-projekte-overview .views-row {
     float: left;
-    margin: 0 20px 20px 0;
+    margin: 0 25px 25px 0;
+}
+.page-projekte .view-projekte-overview .view-header {
+  width: 700px;
+  margin-bottom: 20px;
 }
 .page-projekte #content-inner {
-  width: 655px;
-  margin-right: 15px;
+  /* width: 655px;
+  margin-right: 15px; */
 }
 
 
