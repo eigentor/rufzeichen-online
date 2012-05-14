@@ -241,6 +241,8 @@ ul.inline li.node-readmore a {
  background: #EFEFEF; 
   border: 1px solid #ccc; */
   background: url("../images/new-adapted/header-cars-sw.jpg") no-repeat  0 -120px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
 .node-type-projekt #header-top-line,
 .page-projekte #header-top-line {

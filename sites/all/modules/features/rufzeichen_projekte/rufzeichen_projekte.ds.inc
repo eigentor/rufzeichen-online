@@ -18,7 +18,7 @@ function rufzeichen_projekte_ds_field_settings_info() {
   $ds_fieldsetting->view_mode = 'full';
   $ds_fieldsetting->settings = array(
     'title' => array(
-      'weight' => '2',
+      'weight' => '1',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -69,9 +69,9 @@ function rufzeichen_projekte_ds_layout_settings_info() {
       ),
       'right' => array(
         3 => 'group_properties_icons',
-        4 => 'field_project_url',
-        5 => 'field_project_business_area',
-        6 => 'field_project_text_secondary',
+        4 => 'field_project_text_secondary',
+        5 => 'field_project_url',
+        6 => 'field_project_business_area',
         7 => 'field_project_task',
         8 => 'field_project_technical_details',
       ),
@@ -81,9 +81,9 @@ function rufzeichen_projekte_ds_layout_settings_info() {
       'title' => 'header',
       'body' => 'left',
       'group_properties_icons' => 'right',
+      'field_project_text_secondary' => 'right',
       'field_project_url' => 'right',
       'field_project_business_area' => 'right',
-      'field_project_text_secondary' => 'right',
       'field_project_task' => 'right',
       'field_project_technical_details' => 'right',
     ),
