@@ -453,8 +453,8 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['menu']['name'] = 'primary-links';
   $handler->display->display_options['menu']['context'] = 0;
 
-  /* Display: Block */
-  $handler = $view->new_display('block', 'Block', 'block_1');
+  /* Display: Navigation Projekte unten */
+  $handler = $view->new_display('block', 'Navigation Projekte unten', 'block_1');
   $handler->display->display_options['defaults']['header'] = FALSE;
 
   /* Display: Projekte nach Term */
@@ -585,6 +585,87 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['filters']['status_extra']['table'] = 'node';
   $handler->display->display_options['filters']['status_extra']['field'] = 'status_extra';
   $handler->display->display_options['path'] = 'projekte/%';
+
+  /* Display: Slideshow Startseite */
+  $handler = $view->new_display('block', 'Slideshow Startseite', 'block_2');
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'slideshow';
+  $handler->display->display_options['style_options']['slideshow_type'] = 'views_slideshow_cycle';
+  $handler->display->display_options['style_options']['slideshow_skin'] = 'default';
+  $handler->display->display_options['style_options']['skin_info'] = array(
+    'class' => 'default',
+    'name' => 'Standard',
+    'module' => 'views_slideshow',
+    'path' => '',
+    'stylesheets' => array(),
+  );
+  $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_pager']['enable'] = 1;
+  $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_pager']['weight'] = '1';
+  $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_pager']['type'] = 'views_slideshow_pager_fields';
+  $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_pager']['views_slideshow_pager_fields_fields'] = array(
+    'field_project_images' => 0,
+  );
+  $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_controls']['enable'] = 1;
+  $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_controls']['weight'] = '1';
+  $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_controls']['type'] = 'views_slideshow_controls_text';
+  $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_slide_counter']['weight'] = '1';
+  $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_pager']['weight'] = '1';
+  $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_pager']['type'] = 'views_slideshow_pager_fields';
+  $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_pager']['views_slideshow_pager_fields_fields'] = array(
+    'field_project_images' => 0,
+  );
+  $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_controls']['weight'] = '1';
+  $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_controls']['type'] = 'views_slideshow_controls_text';
+  $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_slide_counter']['weight'] = '1';
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['effect'] = 'scrollHorz';
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['timeout'] = '5000';
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['speed'] = '700';
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['delay'] = '0';
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['start_paused'] = 0;
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['remember_slide_days'] = '1';
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['items_per_slide'] = '1';
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['wait_for_image_load_timeout'] = '3000';
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['cleartype'] = 0;
+  $handler->display->display_options['style_options']['views_slideshow_cycle']['cleartypenobg'] = 0;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Feld: Inhalt: Bilder */
+  $handler->display->display_options['fields']['field_project_images']['id'] = 'field_project_images';
+  $handler->display->display_options['fields']['field_project_images']['table'] = 'field_data_field_project_images';
+  $handler->display->display_options['fields']['field_project_images']['field'] = 'field_project_images';
+  $handler->display->display_options['fields']['field_project_images']['label'] = '';
+  $handler->display->display_options['fields']['field_project_images']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_project_images']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_project_images']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_project_images']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_project_images']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_project_images']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_project_images']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_project_images']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_project_images']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_project_images']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_project_images']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_project_images']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_project_images']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_project_images']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_project_images']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_project_images']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_project_images']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_project_images']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_project_images']['settings'] = array(
+    'image_style' => 'project-slideshow',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_project_images']['group_rows'] = 1;
+  $handler->display->display_options['fields']['field_project_images']['delta_limit'] = '1';
+  $handler->display->display_options['fields']['field_project_images']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_project_images']['delta_reversed'] = 0;
+  $handler->display->display_options['fields']['field_project_images']['delta_first_last'] = 0;
+  $handler->display->display_options['fields']['field_project_images']['field_api_classes'] = 0;
   $translatables['projekte_overview'] = array(
     t('Master'),
     t('Projekte Übersicht'),
@@ -604,9 +685,10 @@ function rufzeichen_projekte_views_default_views() {
     t('Alle'),
     t('Page'),
     t('Beispiele unserer Arbeiten'),
-    t('Block'),
+    t('Navigation Projekte unten'),
     t('Projekte nach Term'),
     t('View mit Arguments'),
+    t('Slideshow Startseite'),
   );
   $export['projekte_overview'] = $view;
 

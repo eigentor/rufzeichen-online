@@ -181,12 +181,13 @@ ul.inline li.node-readmore a {
 }
 .front .field-name-field-zweispaltig-links {
   float: left;
-  width: 540px;
+  width: 410px;
+  margin-right: 50px;
 }
 .front .field-name-field-zweispaltig-rechts {
-  float: right;
+  float: left;
   width: 340px;
-  padding-top: 5px;
+  padding-top: 13px;
 }
 .front .field-name-field-zweispaltig-rechts img {
   float: right;

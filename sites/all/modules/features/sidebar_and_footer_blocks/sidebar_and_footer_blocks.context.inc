@@ -32,9 +32,9 @@ function sidebar_and_footer_blocks_context_default_contexts() {
           'region' => 'footer',
           'weight' => '-10',
         ),
-        'views-Newsblock_Startseite-block_3' => array(
-          'module' => 'views',
-          'delta' => 'Newsblock_Startseite-block_3',
+        'boxes-footer_drupal_box' => array(
+          'module' => 'boxes',
+          'delta' => 'footer_drupal_box',
           'region' => 'footer',
           'weight' => '-9',
         ),

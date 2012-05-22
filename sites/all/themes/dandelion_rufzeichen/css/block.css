@@ -1,7 +1,7 @@
-/** Block Footer **/
+/** News Block Footer links **/
 
 #footer #block-views-Newsblock_Startseite-block_2 {
-  width: 50.5%;
+  width: 40%;
   float: left;
 }
 #footer #block-views-Newsblock_Startseite-block_2 .view-Newsblock-Startseite {
@@ -17,6 +17,23 @@
 	margin-top: 0px;
 	border-width:0px;
 }
+
+/** Drupal Box Footer **/
+#footer #block-boxes-footer_drupal_box {
+  float: left;
+  width: 59%;
+}
+#footer #block-boxes-footer_drupal_box .footer-drupal-box-left {
+  float: left;
+  width: 52%;
+  margin-right: 9%;
+}
+#footer #block-boxes-footer_drupal_box .footer-drupal-box-right {
+  float: left;
+  width: 37%;
+  margin-top: -2px;
+}
+
 
 /** News Block ohne Drupal Footer **/
 #footer #block-views-Newsblock_Startseite-block_3 {
