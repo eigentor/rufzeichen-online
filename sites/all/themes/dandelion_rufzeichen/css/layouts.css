@@ -82,7 +82,8 @@ body {
     
 }
 .front #header {
-   height: 330px;
+   height: 230px;
+   background-position: 0 0px;
 }
 #logo {
   float: left;
