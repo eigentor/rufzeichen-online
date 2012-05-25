@@ -132,6 +132,45 @@ function rufzeichen_projekte_image_default_styles() {
     ),
   );
 
+  // Exported image style: project-slideshow
+  $styles['project-slideshow'] = array(
+    'name' => 'project-slideshow',
+    'effects' => array(
+      22 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => '347',
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => '1',
+      ),
+      23 => array(
+        'label' => 'Crop',
+        'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
+        'effect callback' => 'image_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_crop_form',
+        'summary theme' => 'image_crop_summary',
+        'module' => 'image',
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => '347',
+          'height' => '236',
+          'anchor' => 'center-top',
+        ),
+        'weight' => '2',
+      ),
+    ),
+  );
+
   // Exported image style: project-thumb
   $styles['project-thumb'] = array(
     'name' => 'project-thumb',
