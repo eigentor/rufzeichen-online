@@ -73,7 +73,7 @@
 .node-type-projekt .view-images-project .views-slideshow-controls-bottom {
   float: left;
 }
-.node-type-projekt .view-images-project .views_slideshow_cycle_main .colorbox img {
+.colorbox img {
   cursor: url(/sites/all/themes/dandelion_rufzeichen/images/new-adapted/lupe.cur), url(../images/new-adapted/lupe.cur), pointer;
 }
 .node-type-projekt .view-images-project .views-slideshow-controls-bottom {
