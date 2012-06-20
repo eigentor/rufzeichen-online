@@ -108,6 +108,8 @@
 /** Projekt-Slider auf Hompage **/
 .front #content-area .view-projekte-overview img {
   padding: 0;
+  box-shadow: 2px 2px 6px #ccc ;
+  margin: 10px;
 }
 .front .view-projekte-overview {
   position: relative;
@@ -129,7 +131,7 @@
    display: block;
 }
 .front .view-projekte-overview #views_slideshow_cycle_main_projekte_overview-block_2 {
-  padding: 0 37px;
+  padding: 0 37px 0 27px;
 }
 .front .view-projekte-overview .views-slideshow-cycle-main-frame-row {
    overflow: hidden;

@@ -114,6 +114,54 @@
 
   font-family: Georgia,"Times New Roman",Times,serif;
 }
-    
+/*-----------------------------------------------
+               Front Header
+-------------------------------------------------*/
+.front #header-top-line {
+  display: none;
+}
+#boxes-box-header_front .boxes-box-content:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;	
+}
+/* IE6 */
+* html #boxes-box-header_front boxes-box-content {
+  height: 1%;
+}
+/* IE7 */
+*:first-child + html #boxes-box-header_front boxes-box-content {
+  min-height: 1%;
+}
+#boxes-box-header_front .boxes-box-content  {
+  border-top: 6px solid #ccc;
+  border-bottom: 6px solid #ccc;
+}
+#boxes-box-header_front {
+  background: #eee;
+}
+#boxes-box-header_front .front-block-left {
+  float: left;
+  width: 50%;
+}
+#boxes-box-header_front .front-block-left img {
+  margin-left: 100px;
+  margin-top: 10px;
+  margin-bottom: -30px;
+}
+#boxes-box-header_front .front-block-right {
+	float: left;
+	width: 45%;
+} 
+
+#footer .view-projekte-overview:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
     
     
