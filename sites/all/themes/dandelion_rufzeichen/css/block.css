@@ -140,7 +140,8 @@
   border-bottom: 6px solid #ccc;
 }
 #boxes-box-header_front {
-  background: #e4e4e4;
+  background: #e4e4e4; 
+  background: url(../images/new-adapted/gradient-front-header.jpg) repeat-x bottom;
 }
 #boxes-box-header_front .front-block-left {
   float: left;
@@ -149,12 +150,29 @@
 #boxes-box-header_front .front-block-left img {
   margin-left: 100px;
   margin-top: 10px;
-  margin-bottom: -30px;
+  margin-bottom: -45px;
 }
 #boxes-box-header_front .front-block-right {
 	float: left;
-	width: 45%;
+	width: 42%;
+	padding: 60px 0 0 19px;
+}
+#boxes-box-header_front .front-block-right h2 {
+  font-size: 2.7em;
+  color: #ED8137;
+  color: #EA5B0C;
+  color: #E87030;
+  margin-bottom: 0px;
+}
+#boxes-box-header_front .front-block-right p {
+  font-family: georgia,times,sans-serif;
+  font-size: 1.6em;	
+  color: #999;
+  line-height: 1.5;
+  width: 350px;
+  letter-spacing: -0.005em;
 } 
+	
 
 #footer .view-projekte-overview:after {
   content: ".";
