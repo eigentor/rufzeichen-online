@@ -115,6 +115,7 @@
   position: relative;
   width: 426px;
   overflow: hidden;
+  margin-top: 5px;
 }
 .front .view-projekte-overview .skin-default {
    width: 426px;
