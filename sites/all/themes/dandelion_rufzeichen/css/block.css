@@ -221,21 +221,21 @@
   margin-top: 4px;
 }
 .front-header-bottom .icon-wrapper-right {
-  margin-left: 25px;
+  margin-left: 28px;
 }
 .front-header-bottom .text-left {
   width: 335px;
   margin-left: 22px;
 }
 .front-header-bottom .icon-wrapper-left img {
-  height: 58px!important;
+  height: 62px!important;
   width: auto!important;
-  padding: 5px 0 0 10px;
+  padding: 5px 0 0 8px;
 }
 .front-header-bottom .icon-wrapper-right img {
-  height: 58px!important;
+  height: 64px!important;
   width: auto!important;
-  padding: 5px 0 0 5px;	
+  padding: 3px 0 0 3px;	
 }
 .front-header-bottom .text-right {
   width: 340px;

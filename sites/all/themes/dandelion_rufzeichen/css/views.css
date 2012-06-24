@@ -113,11 +113,11 @@
 }
 .front .view-projekte-overview {
   position: relative;
-  width: 432px;
+  width: 426px;
   overflow: hidden;
 }
 .front .view-projekte-overview .skin-default {
-   width: 432px;
+   width: 426px;
 }
 .front .view-projekte-overview:after {
   content: ".";
@@ -131,7 +131,7 @@
    display: block;
 }
 .front .view-projekte-overview #views_slideshow_cycle_main_projekte_overview-block_2 {
-  padding: 0 37px 0 27px;
+  padding: 0 33px 0 31px;
 }
 .front .view-projekte-overview .views-slideshow-cycle-main-frame-row {
    overflow: hidden;
