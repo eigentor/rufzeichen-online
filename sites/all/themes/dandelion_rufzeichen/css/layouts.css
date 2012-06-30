@@ -91,6 +91,9 @@ body {
   padding: 27px 0 0 45px;
   position: relative;
 }
+.front #logo {
+  padding-left: 48px;
+}
 #site-slogan {
   position: absolute;
   top: 60px;
@@ -99,6 +102,9 @@ body {
   font-style: italic;
   color: #aaa;
   font-size: 14px;
+}
+.front #site-slogan {
+  left: 80px;
 }
 
 /*---------------------------- LOGO ----------------------------*/
@@ -1305,6 +1311,9 @@ img.attachment-post_box_img {
 }
 #footer .footer-inner {
   padding: 20px 30px 17px 40px;
+}
+.front #footer .footer-inner {
+  padding: 20px 30px 17px 43px
 }
 
 #footer .columns-wrapper{

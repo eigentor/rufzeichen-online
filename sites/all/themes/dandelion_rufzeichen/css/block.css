@@ -1,11 +1,11 @@
 /** News Block Footer links **/
 
 #footer #block-views-Newsblock_Startseite-block_2 {
-  width: 40%;
+  width: 42%;
   float: left;
 }
 #footer #block-views-Newsblock_Startseite-block_2 .view-Newsblock-Startseite {
-  padding-right: 30px;
+  padding-right: 35px;
 }
 #footer h2.block-title {
 	color: #575757;
@@ -21,7 +21,7 @@
 /** Drupal Box Footer **/
 #footer #block-boxes-footer_drupal_box {
   float: left;
-  width: 59%;
+  width: 57%;
 }
 #footer #block-boxes-footer_drupal_box .footer-drupal-box-left {
   float: left;
@@ -30,7 +30,7 @@
 }
 #footer #block-boxes-footer_drupal_box .footer-drupal-box-right {
   float: left;
-  width: 37%;
+  width: 35%;
   margin-top: -2px;
 }
 
