@@ -109,13 +109,13 @@ ul.links li a {
  
 /** Taxonomy Menu auf News **/
 .sidebar #block-menu-menu-news-men- ul li a {
-	display: block;
-	color: #888;
-	text-decoration: none;
-	font-size: 11px;
-	padding: 3px 6px;
-	border-bottom: 1px solid #ebebeb;
-	width: 100%;
+  display: block;
+  color: #888;
+  text-decoration: none;
+  font-size: 11px;
+  padding: 3px 6px;
+  border-bottom: 1px solid #ebebeb;
+  width: 100%;
 }
 
 /** Jplayer **/
@@ -132,7 +132,7 @@ div.jp-type-playlist div.jp-playlist li {
 div.jp-audio {
   width: 100%;;
 }
-/** News in Übersichtsview **/
+/** News in Ãbersichtsview **/
 
 ul.inline, ul.links.inline {
   font-family: Georgia,"Times New Roman",Times,serif;
@@ -268,7 +268,7 @@ ul.inline li.node-readmore a {
 }
 .node-type-projekt .group-left,
 .node-type-projekt .field-name-title {
-  padding-left: 3px;	
+  padding-left: 3px;  
 }
 .node-type-projekt .field-name-title {
   clear: both;
@@ -291,8 +291,8 @@ ul.inline li.node-readmore a {
 .node-type-projekt .group-right .field-name-field-project-business-area,
 .node-type-projekt .group-right .field-name-field-project-task, 
 .node-type-projekt .group-right .field-name-field-project-technical-details {
-	margin-bottom: 10px;
-	padding: 3px 0 3px 35px;
+  margin-bottom: 10px;
+  padding: 3px 0 3px 35px;
 }
 .node-type-projekt .group-right .field-name-field-project-url {
   background: url(../images/icons/external-link-icon.png) no-repeat 2px center;
@@ -336,24 +336,98 @@ ul.inline li.node-readmore a {
     Leistungen Seite
  ----------------------------------------------------------*/
 .leistungen-left {
-  float: left;
+  margin-top: 20px;
 }
-.leistungen-left .image-container {
-  padding: 20px 20px 20px 60px;
+.leistungen .image-container {
+  clear: left;
+  float: left;
+  margin-right: 35px;
+  padding: 20px 20px 20px 40px;
   background: #ccc;  
   margin-left: -40px;
   width: 356px;
 }
-.leistungen-left .image-container.first {
-  margin-bottom: 80px;
+.leistungen-first-row {
+  margin-bottom: 40px;
+  margin-top: 30px;
 }
-.leistungen-left .image-container.second {
-  margin-bottom: 80px;
+.leistungen-second-row {
+  margin-bottom: 40px;
 }
-#content-area .leistungen-left .image-container img {
+.leistungen-third-row {
+  margin-bottom: 40px;
+}
+#content-area .image-container img {
   padding: 0;
   border: 1px solid #b7b7b7;
 }
+.leistungen h2 {
+  margin: 0 0 10px;
+  line-height: 1;
+  font-size: 2.3em;
+}
+.leistungen-text-container {
+  margin-bottom: 40px;
+  float: left;
+  width: 465px;  
+}
+.leistungen-text-container p {
+  margin-bottom: 20px;
+}
+.leistungen-text-container .leistung-item {
+  float: left;
+  line-height: 36px;
+  height: 36px;
+  text-align: left;
+  padding-left: 31px;
+  width: 190px;
+  margin-bottom: 15px;
+  color: white;
+  background: url(../images/new-adapted/checkmark-icon.png) no-repeat 7px 9px;
+}
+.leistungen-text-container.first .leistung-item {
+  background-color: #F79742;
+}
+.leistungen-text-container.second .leistung-item {
+  background-color: #249DD6;
+}
+.leistungen-text-container.third .leistung-item {
+  background-color: #888;
+}
+.leistungen-text-container .leistung-item-inner {
+  line-height: 26px;
+  display: block;
+  margin-top: 5px;
+  padding-left: 7px;
+  font-family: arial,helvetica,sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+}
+.leistungen-text-container.first .leistung-item-inner {
+  border-left: 1px solid #FFBD68;
+  text-shadow: #C68C5D 1px 1px 1px;
+}
+.leistungen-text-container.second .leistung-item-inner {
+  border-left: 1px solid #7CB8D3;
+}
+.leistungen-text-container.third .leistung-item-inner {
+  border-left: 1px solid #b2b2b2;
+}
+.leistungen-text-container .leistung-item.first,
+.leistungen-text-container .leistung-item.third {
+  margin-right: 20px;
+}
+.leistungen-text-container.first h2 {
+  color: #E87030; 
+}
+.leistungen-text-container.second h2 {
+  color: #0586C1; 
+}
+.leistungen-text-container.third h2 {
+  color: #444; 
+}
+
+
 
 
 
