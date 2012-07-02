@@ -343,7 +343,7 @@ ul.inline li.node-readmore a {
   float: left;
   margin-right: 35px;
   padding: 20px 20px 20px 40px;
-  background: #ccc;  
+  background: #c3c3c3;  
   margin-left: -40px;
   width: 356px;
 }
@@ -355,7 +355,7 @@ ul.inline li.node-readmore a {
   margin-bottom: 40px;
 }
 .leistungen-third-row {
-  margin-bottom: 40px;
+  margin-bottom: 0px;
 }
 #content-area .image-container img {
   padding: 0;
@@ -367,7 +367,6 @@ ul.inline li.node-readmore a {
   font-size: 2.3em;
 }
 .leistungen-text-container {
-  margin-bottom: 40px;
   float: left;
   width: 465px;  
 }
@@ -379,14 +378,14 @@ ul.inline li.node-readmore a {
   line-height: 36px;
   height: 36px;
   text-align: left;
-  padding-left: 31px;
+  padding-left: 32px;
   width: 190px;
   margin-bottom: 15px;
   color: white;
-  background: url(../images/new-adapted/checkmark-icon.png) no-repeat 7px 9px;
+  background: url(../images/new-adapted/checkmark-icon.png) no-repeat 8px 9px;
 }
 .leistungen-text-container.first .leistung-item {
-  background-color: #F79742;
+  background-color: #F48C42;
 }
 .leistungen-text-container.second .leistung-item {
   background-color: #249DD6;
@@ -405,7 +404,7 @@ ul.inline li.node-readmore a {
 }
 .leistungen-text-container.first .leistung-item-inner {
   border-left: 1px solid #FFBD68;
-  text-shadow: #C68C5D 1px 1px 1px;
+  text-shadow: 0 0 2px #9E6432;
 }
 .leistungen-text-container.second .leistung-item-inner {
   border-left: 1px solid #7CB8D3;
