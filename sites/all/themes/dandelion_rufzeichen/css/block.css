@@ -252,5 +252,52 @@
   clear: both;
   visibility: hidden;
 }
-    
+/* -----------------------------------------------------
+    Startseite Header Slideshow
+   ----------------------------------------------------- */
+.front .view-front-header-slider {
+  position: relative;
+}
+.front .view-front-header-slider .views-slideshow-cycle-main-frame-row {
+  width: 100%!important;
+}
+.front .view-front-header-slider .views-row {
+  width: 100%;
+}
+.front .view-front-header-slider .ds-2col {
+  width: 100%;
+  
+}
+.front .view-front-header-slider .ds-2col .group-left {
+  text-align: right;
+  height: 100%;
+  position: relative;
+}
+.front .view-front-header-slider .ds-2col .group-left a {
+  display: block;
+  height: 337px;
+}
+.front .view-front-header-slider .ds-2col .group-left img {
+  position: absolute;
+  bottom: 0;
+  right: 25px;
+}
+.front .view-front-header-slider .ds-2col .group-right {
+  margin-top: 30px;
+}
+
+/** Pager **/
+.front .view-front-header-slider .views-slideshow-controls-bottom {
+  position: absolute;
+  right: 25px;
+  bottom: 10px;
+  width: 25%;
+  z-index: 25;
+}
+.views-slideshow-controls-bottom .views-content-counter {
+  cursor: pointer;
+  cursor: hand;
+  float: left;
+  width: 2em;
+}
     

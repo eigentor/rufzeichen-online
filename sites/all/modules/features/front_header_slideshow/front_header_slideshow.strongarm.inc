@@ -167,6 +167,13 @@ function front_header_slideshow_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'nodequeue_links';
+  $strongarm->value = FALSE;
+  $export['nodequeue_links'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_options_slideshow_header_front';
   $strongarm->value = array(
     0 => 'status',
