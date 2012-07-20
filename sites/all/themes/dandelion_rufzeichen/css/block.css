@@ -292,7 +292,7 @@
 }
 .front .view-front-header-slider .ds-2col .group-left a {
   display: block;
-  height: 337px;
+  height: 317px;
 }
 .front .view-front-header-slider .ds-2col .group-left img {
   position: absolute;
@@ -300,15 +300,35 @@
   right: 25px;
 }
 .front .view-front-header-slider .ds-2col .group-right {
-  margin-top: 30px;
+  margin-top: 40px;
+}
+.front .view-front-header-slider .ds-2col .group-right .views-field-title a {
+  font-family: georgia,times,sans-serif;
+  font-size: 2.5em;
+  line-height: 1.7em;
+}
+.front .view-front-header-slider .ds-2col .group-right .views-field-body p {
+  width: 70%;
+  font-family: georgia,times,sans-serif;
+  font-size: 1.6em; 
+  color: #999;
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+}
+.front .view-front-header-slider .ds-2col .group-right .views-field-body a {
+  font-family: verdana,helvetica,sans-serif;
+  font-size: 12px;
+  padding-top: 4px;
+  line-height: 1;
+  display: block;
 }
 
 /** Pager **/
 .front .view-front-header-slider .views-slideshow-controls-bottom {
   position: absolute;
-  right: 25px;
-  bottom: 10px;
-  width: 25%;
+  right: 30px;
+  bottom: 30px;
+  width: 20%;
   z-index: 25;
 }
 .views-slideshow-controls-bottom .views-content-counter {
@@ -316,5 +336,19 @@
   cursor: hand;
   float: left;
   width: 2em;
+  background:url(../images/new-adapted/pager-bg.png) no-repeat;
+  text-align: center;
+  margin-right: 5px;
+  line-height: 24px;
+  width: 23px;
+  padding-bottom: 3px;
+  padding-right: 4px;
+  color: #777;
+  font-size: 0.93em;
+}
+.views-slideshow-controls-bottom .active .views-content-counter,
+.views-slideshow-controls-bottom .active .views-content-counter:hover {
+  color: #ED8137;
+  font-weight: bold;
 }
 
