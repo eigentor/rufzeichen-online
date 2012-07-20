@@ -1,0 +1,12 @@
+name = 'Internet Justice League'
+description = 'The <a href="http://internetdefenseleague.org/">Internet Justice League</a> module brings the league to your site.'
+package = 'Super Hero'
+core = 7.x
+configure = admin/config/services/internet_justice_league
+tags[] = superheros
+; Information added by drupal.org packaging script on 2012-07-19
+version = "7.x-1.0-rc1"
+core = "7.x"
+project = "internet_justice_league"
+datestamp = "1342730802"
+

@@ -17,6 +17,7 @@
 #footer #block-views-Newsblock_Startseite-block_3 .views-row a {
 	display: block;
 	color: #848484;
+  line-height: 1.4;
 }
 #footer #block-views-Newsblock_Startseite-block_2 .views-row a:hover,
 #footer #block-views-Newsblock_Startseite-block_3 .views-row a:hover {
