@@ -23,3 +23,5 @@ regions[footer] = Footer
 regions[footer_bottom] = Footer bottom
 regions[page_bottom] = Page bottom
 
+;scripts[] = js/ie-cleartype.js
+
