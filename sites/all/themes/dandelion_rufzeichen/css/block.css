@@ -349,6 +349,7 @@
 .views-slideshow-controls-bottom .active .views-content-counter,
 .views-slideshow-controls-bottom .active .views-content-counter:hover {
   color: #ED8137;
+  color: #222;
   font-weight: bold;
 }
 
