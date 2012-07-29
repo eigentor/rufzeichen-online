@@ -870,17 +870,15 @@ function ds_field_formatter_settings_form($field, $instance, $view_mode, $form, 
       '#size' => 10,
       '#default_value' => $settings['taxonomy_term_link'],
     );
-    $separators = array(
-      ' ' => t('space'),
-      ', ' => t('comma'),
-      ' - ' => t('dash'),
-      ' / ' => t('slash'),
-    );
-    drupal_alter('ds_taxonomy_term_separators', $separators);
     $element['taxonomy_term_separator'] = array(
       '#title' => t('Separator'),
       '#type' => 'select',
-      '#options' => $separators,
+      '#options' => array(
+        ' ' => t('space'),
+        ', ' => t('comma'),
+        ' - ' => t('dash'),
+        ' / ' => t('slash'),
+      ),
       '#default_value' => $settings['taxonomy_term_separator'],
       '#states' => array(
         'visible' => array(
@@ -914,7 +912,6 @@ function ds_field_formatter_settings_summary($field, $instance, $view_mode) {
       ' - ' => t('dash'),
       ' / ' => t('slash'),
     );
-    drupal_alter('ds_taxonomy_term_separators', $separators);
     $summary .= t('Separated by !sep', array('!sep' => $separators[$settings['taxonomy_term_separator']]));
     $summary .= $settings['taxonomy_term_link'] ? ', ' . t('linked') : ', ' . t('not linked');
   }
