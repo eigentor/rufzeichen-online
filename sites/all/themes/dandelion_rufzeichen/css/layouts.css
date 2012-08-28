@@ -23,7 +23,7 @@ body {
 	background: #aaa url(../images/patterns/pattern16-b.png);
 	/*background: #aaa url(../images/patterns/pattern20.png);*/
 	/*background: #aaa url(../images/patterns/pattern21.png);*/
-	padding: 23px 0;
+	padding: 26px 0 23px;
 }
 #page {
   width: 980px;
@@ -82,7 +82,7 @@ body {
     
 }
 .front #header {
-   height: 438px;
+   height: 400px;
    background: none;
 }
 #logo {
@@ -93,6 +93,7 @@ body {
 }
 .front #logo {
   padding-left: 48px;
+  padding-top: 17px;
 }
 #site-slogan {
   position: absolute;
@@ -105,6 +106,8 @@ body {
 }
 .front #site-slogan {
   left: 80px;
+  top: 49px;
+  color: #ccc;
 }
 
 /*---------------------------- LOGO ----------------------------*/
@@ -146,8 +149,8 @@ body {
 
 #navigation ul li a {
 	text-transform: uppercase;
-	padding-right: 9px;
-	margin-right: 4px;
+	padding-right: 11px;
+	margin-right: 2px;
 	padding-left: 7px;
 	font-size: 13px;
 	line-height: 0.2em;
@@ -155,7 +158,7 @@ body {
 	height: 10px;
 	font-style: normal;
 	letter-spacing: 1px;
-	background: url(../images/new-adapted/menu-background.jpg) no-repeat right 5px;
+	background: url(../images/new-adapted/menu-background.jpg) no-repeat right 6px;
 }
 
 #navigation ul li a:hover {
@@ -173,6 +176,17 @@ body {
 	position: relative;
 	top: -1px;
 	left: 2px;
+}
+/*-----------------------------------------------
+               Front Header Menu
+-------------------------------------------------*/
+
+.front #navigation ul li a {
+  color: #fff;
+  background-image: url(../images/new-adapted/menu-background-white.png);
+}
+.front #navigation {
+  margin-top: 30px;
 }
 
 /*---------- DROP DOWN ------------*/
