@@ -237,7 +237,8 @@ ul.inline li.node-readmore a {
 
 /** Node Type Projekt **/
 .node-type-projekt #header,
-.page-projekte #header {
+.page-projekte #header,
+.page-node-192 #header {
   height: 65px;
  /*  background: none;
  background: #EFEFEF; 
@@ -247,7 +248,8 @@ ul.inline li.node-readmore a {
   border-bottom: 1px solid #eee;
 }
 .node-type-projekt #header-top-line,
-.page-projekte #header-top-line {
+.page-projekte #header-top-line,
+.page-node-192 #header-top-line {
   display: none;
 }
 .node-type-projekt #content {
