@@ -163,7 +163,13 @@ body {
 
 #navigation ul li a:hover {
 	color: #111;
+	color: #ED8137;
+	background: url(../images/new-adapted/menu-background-orange.png) no-repeat right 6px;
 	text-decoration: none
+}
+#block-menu-primary-links a.active-trail {
+  color: #ED8137;
+  background: url(../images/new-adapted/menu-background-orange.png) no-repeat right 6px;
 }
 
 #navigation ul li.selected a {
