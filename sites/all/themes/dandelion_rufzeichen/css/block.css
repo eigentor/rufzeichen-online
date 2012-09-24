@@ -1,12 +1,41 @@
 /** News Block Footer links **/
 
 
+#footer .contact-footer {
+  float: left;
+  width: 25%;
+  padding-right: 2%;
+}
+#footer .contact-footer div,
+#footer .contact-footer a{
+  font-size: 15px;
+  font-style: normal;
+  color: #777;
+}
+#footer .contact-footer .telefon {
+  margin-top: 15px;
+  height: 30px;
+  line-height: 25px;
+  padding-left: 33px;
+  background: url(../images/new-adapted/telefon-klein.png) no-repeat 2px center;
+}
+#footer .contact-footer .email {
+  height: 40px;
+  line-height: 35px;
+  padding-left: 33px;
+  background: url(../images/new-adapted/email-icon.png) no-repeat -3px center;
+}
+#footer .contact-footer .email span.mailto {
+  display: none;
+}
+  
+
 #footer #block-views-Newsblock_Startseite-block_2 {
-  width: 32%;
+  width: 28%;
   float: left;
 }
 #footer #block-views-Newsblock_Startseite-block_2 .view-Newsblock-Startseite {
-  padding-right: 28px;
+  padding-right: 33px;
 }
 #footer h2.block-title {
 	color: #575757;
@@ -39,7 +68,7 @@
 /** Drupal Box Footer **/
 #footer #block-boxes-footer_drupal_box {
   float: left;
-  width: 45%;
+  width: 43%;
 }
 #footer #block-boxes-footer_drupal_box .footer-drupal-box-left {
   float: left;
