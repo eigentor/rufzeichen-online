@@ -72,13 +72,13 @@
 }
 #footer #block-boxes-footer_drupal_box .footer-drupal-box-left {
   float: left;
-  width: 54%;
-  margin-right: 7%;
+  width: 50%;
+  margin-right: 8%;
 }
 #footer #block-boxes-footer_drupal_box .footer-drupal-box-right {
   float: left;
   width: 35%;
-  margin-top: -2px;
+  margin-top: -5px;
 }
 
 
