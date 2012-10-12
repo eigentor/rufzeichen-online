@@ -43,7 +43,7 @@ function rufzeichen_projekte_views_api() {
 function rufzeichen_projekte_image_default_styles() {
   $styles = array();
 
-  // Exported image style: project-big
+  // Exported image style: project-big.
   $styles['project-big'] = array(
     'name' => 'project-big',
     'effects' => array(
@@ -110,7 +110,46 @@ function rufzeichen_projekte_image_default_styles() {
     ),
   );
 
-  // Exported image style: project-page
+  // Exported image style: project-overview-thumb.
+  $styles['project-overview-thumb'] = array(
+    'name' => 'project-overview-thumb',
+    'effects' => array(
+      14 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => '250',
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => '1',
+      ),
+      15 => array(
+        'label' => 'Crop',
+        'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
+        'effect callback' => 'image_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_crop_form',
+        'summary theme' => 'image_crop_summary',
+        'module' => 'image',
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => '250',
+          'height' => '162',
+          'anchor' => 'center-top',
+        ),
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported image style: project-page.
   $styles['project-page'] = array(
     'name' => 'project-page',
     'effects' => array(
@@ -132,7 +171,7 @@ function rufzeichen_projekte_image_default_styles() {
     ),
   );
 
-  // Exported image style: project-slideshow
+  // Exported image style: project-slideshow.
   $styles['project-slideshow'] = array(
     'name' => 'project-slideshow',
     'effects' => array(
@@ -171,7 +210,7 @@ function rufzeichen_projekte_image_default_styles() {
     ),
   );
 
-  // Exported image style: project-thumb
+  // Exported image style: project-thumb.
   $styles['project-thumb'] = array(
     'name' => 'project-thumb',
     'effects' => array(
@@ -210,7 +249,7 @@ function rufzeichen_projekte_image_default_styles() {
     ),
   );
 
-  // Exported image style: project-tooltip
+  // Exported image style: project-tooltip.
   $styles['project-tooltip'] = array(
     'name' => 'project-tooltip',
     'effects' => array(
@@ -249,7 +288,7 @@ function rufzeichen_projekte_image_default_styles() {
     ),
   );
 
-  // Exported image style: projekt-overview
+  // Exported image style: projekt-overview.
   $styles['projekt-overview'] = array(
     'name' => 'projekt-overview',
     'effects' => array(

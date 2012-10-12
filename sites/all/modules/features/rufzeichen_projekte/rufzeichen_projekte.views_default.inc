@@ -175,6 +175,16 @@ function rufzeichen_projekte_views_default_views() {
 
   /* Display: Entity content */
   $handler = $view->new_display('entity_view', 'Entity content', 'entity_view_1');
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Kopfbereich: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['label'] = 'Titel zur Anzeige über den Bildern';
+  $handler->display->display_options['header']['area']['empty'] = FALSE;
+  $handler->display->display_options['header']['area']['content'] = '<h2>Beispiele umgesetzter Projekte</h2>';
+  $handler->display->display_options['header']['area']['format'] = '3';
+  $handler->display->display_options['header']['area']['tokenize'] = 0;
   $handler->display->display_options['entity_type'] = 'node';
   $handler->display->display_options['bundles'] = array(
     0 => 'projekt',
@@ -183,7 +193,7 @@ function rufzeichen_projekte_views_default_views() {
     t('Master'),
     t('images_project'),
     t('Weiter'),
-    t('Anwenden'),
+    t('Apply'),
     t('Zurücksetzen'),
     t('Sort by'),
     t('Asc'),
@@ -191,6 +201,8 @@ function rufzeichen_projekte_views_default_views() {
     t('Alle'),
     t('Block'),
     t('Entity content'),
+    t('Titel zur Anzeige über den Bildern'),
+    t('<h2>Beispiele umgesetzter Projekte</h2>'),
   );
   $export['images_project'] = $view;
 
@@ -354,39 +366,13 @@ function rufzeichen_projekte_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Beispiele unserer Arbeiten';
+  $handler->display->display_options['title'] = 'Beispiele umgesetzter Projekte';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Feld: Inhalt: Titel */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['title']['element_type'] = 'h3';
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['title']['link_to_node'] = 0;
   /* Feld: Inhalt: Bilder */
   $handler->display->display_options['fields']['field_project_images']['id'] = 'field_project_images';
   $handler->display->display_options['fields']['field_project_images']['table'] = 'field_data_field_project_images';
   $handler->display->display_options['fields']['field_project_images']['field'] = 'field_project_images';
   $handler->display->display_options['fields']['field_project_images']['label'] = '';
-  $handler->display->display_options['fields']['field_project_images']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_project_images']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_project_images']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_project_images']['alter']['absolute'] = 0;
@@ -406,8 +392,8 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['fields']['field_project_images']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_project_images']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_project_images']['settings'] = array(
-    'image_style' => 'project-tooltip',
-    'image_link' => '',
+    'image_style' => 'project-overview-thumb',
+    'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_project_images']['group_rows'] = 1;
   $handler->display->display_options['fields']['field_project_images']['delta_limit'] = '1';
@@ -415,11 +401,36 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['fields']['field_project_images']['delta_reversed'] = 0;
   $handler->display->display_options['fields']['field_project_images']['delta_first_last'] = 0;
   $handler->display->display_options['fields']['field_project_images']['field_api_classes'] = 0;
+  /* Feld: Inhalt: Titel */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_type'] = 'h4';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
   /* Feld: Inhalt: Thumb für Übersicht */
   $handler->display->display_options['fields']['field_project_thumb_overview']['id'] = 'field_project_thumb_overview';
   $handler->display->display_options['fields']['field_project_thumb_overview']['table'] = 'field_data_field_project_thumb_overview';
   $handler->display->display_options['fields']['field_project_thumb_overview']['field'] = 'field_project_thumb_overview';
   $handler->display->display_options['fields']['field_project_thumb_overview']['label'] = '';
+  $handler->display->display_options['fields']['field_project_thumb_overview']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_project_thumb_overview']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_project_thumb_overview']['alter']['text'] = '<div class="overview-thumb-wrapper beautytips" title=\'[field_project_images]\'>
 [field_project_thumb_overview]
@@ -442,7 +453,7 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['fields']['field_project_thumb_overview']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_project_thumb_overview']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_project_thumb_overview']['settings'] = array(
-    'image_style' => 'project-page',
+    'image_style' => 'project-tooltip',
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_project_thumb_overview']['field_api_classes'] = 0;
@@ -463,37 +474,11 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['title'] = 'Beispiele unserer Arbeiten';
   $handler->display->display_options['display_description'] = 'View mit Arguments';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Feld: Inhalt: Titel */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['title']['element_type'] = 'h3';
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['title']['link_to_node'] = 0;
   /* Feld: Inhalt: Bilder */
   $handler->display->display_options['fields']['field_project_images']['id'] = 'field_project_images';
   $handler->display->display_options['fields']['field_project_images']['table'] = 'field_data_field_project_images';
   $handler->display->display_options['fields']['field_project_images']['field'] = 'field_project_images';
   $handler->display->display_options['fields']['field_project_images']['label'] = '';
-  $handler->display->display_options['fields']['field_project_images']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_project_images']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_project_images']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_project_images']['alter']['absolute'] = 0;
@@ -513,7 +498,7 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['fields']['field_project_images']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_project_images']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_project_images']['settings'] = array(
-    'image_style' => 'project-tooltip',
+    'image_style' => 'project-overview-thumb',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_project_images']['group_rows'] = 1;
@@ -522,11 +507,36 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['fields']['field_project_images']['delta_reversed'] = 0;
   $handler->display->display_options['fields']['field_project_images']['delta_first_last'] = 0;
   $handler->display->display_options['fields']['field_project_images']['field_api_classes'] = 0;
+  /* Feld: Inhalt: Titel */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_type'] = 'h4';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 0;
   /* Feld: Inhalt: Thumb für Übersicht */
   $handler->display->display_options['fields']['field_project_thumb_overview']['id'] = 'field_project_thumb_overview';
   $handler->display->display_options['fields']['field_project_thumb_overview']['table'] = 'field_data_field_project_thumb_overview';
   $handler->display->display_options['fields']['field_project_thumb_overview']['field'] = 'field_project_thumb_overview';
   $handler->display->display_options['fields']['field_project_thumb_overview']['label'] = '';
+  $handler->display->display_options['fields']['field_project_thumb_overview']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_project_thumb_overview']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_project_thumb_overview']['alter']['text'] = '<div class="overview-thumb-wrapper beautytips" title=\'[field_project_images]\'>
 [field_project_thumb_overview]
@@ -670,7 +680,7 @@ function rufzeichen_projekte_views_default_views() {
     t('Master'),
     t('Projekte Übersicht'),
     t('Weiter'),
-    t('Anwenden'),
+    t('Apply'),
     t('Zurücksetzen'),
     t('Sort by'),
     t('Asc'),
@@ -684,9 +694,10 @@ function rufzeichen_projekte_views_default_views() {
 </div>'),
     t('Alle'),
     t('Page'),
-    t('Beispiele unserer Arbeiten'),
+    t('Beispiele umgesetzter Projekte'),
     t('Navigation Projekte unten'),
     t('Projekte nach Term'),
+    t('Beispiele unserer Arbeiten'),
     t('View mit Arguments'),
     t('Slideshow Startseite'),
   );
