@@ -439,19 +439,21 @@ ul.inline li.node-readmore a {
   font-size: 1.2em;
 line-height: 2em;
 }
-.smaller-font {
+span.smaller-font {
   font-size: 0.83em;
   color: #aaa;
   line-height: 12px; 
   vertical-align: top;
+  letter-spacing: -0.02em;
 }
 .di-badge, .certified-block, da-badge {
   float: left;
 }
 .certified-block {
-  width: 250px;
+  width: 258px;
   padding: 0 20px 0 20px;
   line-height: 1.3;
+  padding: 0 13px 0 18px;
 }
 
 
