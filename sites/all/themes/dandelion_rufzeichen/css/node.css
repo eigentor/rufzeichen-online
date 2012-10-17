@@ -433,6 +433,26 @@ ul.inline li.node-readmore a {
   color: #444; 
 }
 
+/** Teamseite Badges und Certified to rock Block **/
+
+.bigger-font {
+  font-size: 1.2em;
+line-height: 2em;
+}
+.smaller-font {
+  font-size: 0.83em;
+  color: #aaa;
+  line-height: 12px; 
+  vertical-align: top;
+}
+.di-badge, .certified-block, da-badge {
+  float: left;
+}
+.certified-block {
+  width: 250px;
+  padding: 0 20px 0 20px;
+}
+
 
 
 
