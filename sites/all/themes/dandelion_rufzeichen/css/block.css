@@ -402,4 +402,30 @@
   color: #222;
   font-weight: bold;
 }
-
+/** Partners Block on About Us **/
+.block.partner-agenturen {
+  background: #ddd;
+  padding: 10px 40px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.block.partner-agenturen p {
+  margin: 0;
+}
+.block.partner-agenturen h2.partner-title,
+.block.partner-agenturen .partner-angermann-webdesign,
+.block.partner-agenturen .partner-undpaul {
+  float: left;
+}
+.block.partner-agenturen h2.partner-title {
+  font-size: 1.8em;
+}
+.block.partner-agenturen .partner-angermann-webdesign {
+  padding: 12px 10px 0 25px;
+}
+.block.partner-agenturen .partner-undpaul {
+  padding: 15px 10px 0 20px;
+}
+.page-node-190 #footer {
+  border-top: none;
+}

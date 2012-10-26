@@ -86,6 +86,16 @@
   </div> <!-- /main -->
 
   <!-- ______________________ FOOTER _______________________ -->
+   
+   <?php if ($page['footer_top']): ?>
+    <div id="footer-top" class="clearfix">
+     <div class="footer-top-inner clearfix">
+       <?php print render($page['footer_top']); ?>
+     </div>
+      
+    </div> <!-- /footer -->
+  <?php endif; ?>
+
    <?php if ($page['footer']): ?>
     <div id="footer" class="clearfix">
      <div class="footer-inner clearfix">
