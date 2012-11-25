@@ -46,6 +46,7 @@ features[field][] = node-projekt-field_project_thumb_overview
 features[field][] = node-projekt-field_project_url
 features[field_group][] = group_properties_icons|node|projekt|full
 features[image][] = project-big
+features[image][] = project-overview-thumb
 features[image][] = project-page
 features[image][] = project-slideshow
 features[image][] = project-thumb

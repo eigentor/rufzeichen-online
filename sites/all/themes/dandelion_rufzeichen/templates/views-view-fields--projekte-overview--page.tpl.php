@@ -65,7 +65,7 @@ dpm ($short_description);
 
   <?php print $field->wrapper_prefix; ?>
     <?php print $field->label_html; ?>
-    <div class="overview-thumb-wrapper beautytips" title='<?php print $beautytip_content ?>'>
+    <div>
     <?php print $field->content; ?>
     </div>
   <?php print $field->wrapper_suffix; ?>

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Front Header Slideshow feature.
+ */
+
+include_once 'front_header_slideshow.features.inc';

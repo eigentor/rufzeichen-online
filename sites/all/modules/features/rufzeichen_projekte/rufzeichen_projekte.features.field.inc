@@ -10,7 +10,7 @@
 function rufzeichen_projekte_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-projekt-body'
+  // Exported field: 'node-projekt-body'.
   $fields['node-projekt-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function rufzeichen_projekte_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -90,7 +91,7 @@ function rufzeichen_projekte_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-projekt-field_project_business_area'
+  // Exported field: 'node-projekt-field_project_business_area'.
   $fields['node-projekt-field_project_business_area'] = array(
     'field_config' => array(
       'active' => '1',
@@ -111,6 +112,7 @@ function rufzeichen_projekte_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -164,7 +166,7 @@ function rufzeichen_projekte_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-projekt-field_project_images'
+  // Exported field: 'node-projekt-field_project_images'.
   $fields['node-projekt-field_project_images'] = array(
     'field_config' => array(
       'active' => '1',
@@ -185,6 +187,7 @@ function rufzeichen_projekte_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -253,7 +256,7 @@ function rufzeichen_projekte_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-projekt-field_project_task'
+  // Exported field: 'node-projekt-field_project_task'.
   $fields['node-projekt-field_project_task'] = array(
     'field_config' => array(
       'active' => '1',
@@ -274,6 +277,7 @@ function rufzeichen_projekte_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -327,7 +331,7 @@ function rufzeichen_projekte_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-projekt-field_project_technical_details'
+  // Exported field: 'node-projekt-field_project_technical_details'.
   $fields['node-projekt-field_project_technical_details'] = array(
     'field_config' => array(
       'active' => '1',
@@ -348,6 +352,7 @@ function rufzeichen_projekte_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -401,7 +406,7 @@ function rufzeichen_projekte_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-projekt-field_project_text_secondary'
+  // Exported field: 'node-projekt-field_project_text_secondary'.
   $fields['node-projekt-field_project_text_secondary'] = array(
     'field_config' => array(
       'active' => '1',
@@ -422,6 +427,7 @@ function rufzeichen_projekte_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '0',
@@ -468,7 +474,7 @@ function rufzeichen_projekte_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-projekt-field_project_thumb_overview'
+  // Exported field: 'node-projekt-field_project_thumb_overview'.
   $fields['node-projekt-field_project_thumb_overview'] = array(
     'field_config' => array(
       'active' => '1',
@@ -489,6 +495,7 @@ function rufzeichen_projekte_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -557,7 +564,7 @@ function rufzeichen_projekte_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-projekt-field_project_url'
+  // Exported field: 'node-projekt-field_project_url'.
   $fields['node-projekt-field_project_url'] = array(
     'field_config' => array(
       'active' => '1',
@@ -567,6 +574,7 @@ function rufzeichen_projekte_field_default_fields() {
       'field_name' => 'field_project_url',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(

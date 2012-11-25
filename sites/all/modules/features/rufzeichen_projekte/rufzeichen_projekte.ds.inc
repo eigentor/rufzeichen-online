@@ -69,8 +69,8 @@ function rufzeichen_projekte_ds_layout_settings_info() {
       ),
       'right' => array(
         3 => 'group_properties_icons',
-        4 => 'field_project_text_secondary',
-        5 => 'field_project_url',
+        4 => 'field_project_url',
+        5 => 'field_project_text_secondary',
         6 => 'field_project_business_area',
         7 => 'field_project_task',
         8 => 'field_project_technical_details',
@@ -81,8 +81,8 @@ function rufzeichen_projekte_ds_layout_settings_info() {
       'title' => 'header',
       'body' => 'left',
       'group_properties_icons' => 'right',
-      'field_project_text_secondary' => 'right',
       'field_project_url' => 'right',
+      'field_project_text_secondary' => 'right',
       'field_project_business_area' => 'right',
       'field_project_task' => 'right',
       'field_project_technical_details' => 'right',
@@ -96,6 +96,7 @@ function rufzeichen_projekte_ds_layout_settings_info() {
     ),
     'layout_wrapper' => 'div',
     'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
     'hide_page_title' => '1',
     'page_option_title' => '',
   );
