@@ -1,0 +1,316 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"no",
+				"nowrap"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 311.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/tommi/Desktop/.gitignore",
+		"/D/wamp/www/rufzeichen/rufzeichen-online/.gitignore",
+		"/D/wamp/apps/drush/commands/pm/version_control/bzr.inc",
+		"/D/wamp/www/rufzeichen/rufzeichen-online/sites/all/themes/dandelion_rufzeichen/templates/page.tpl.php",
+		"/D/wamp/www/rufzeichen/rufzeichen-online/sites/all/themes/dandelion_rufzeichen/dandelion_rufzeichen.info",
+		"/D/wamp/www/rufzeichen/rufzeichen-online/sites/all/themes/dandelion_rufzeichen/css/block.css",
+		"/D/wamp/www/rufzeichen/rufzeichen-online/sites/all/themes/dandelion_rufzeichen/css/node.css",
+		"/D/wamp/www/rufzeichen/rufzeichen-online/sites/all/themes/dandelion_rufzeichen/templates/views-view-fields--projekte-overview--page-1.tpl.php",
+		"/D/wamp/www/rufzeichen/rufzeichen-online/sites/all/themes/dandelion_rufzeichen/templates/views-view-fields--projekte-overview--page.tpl.php",
+		"/D/wamp/www/rufzeichen/rufzeichen-online/sites/all/themes/dandelion_rufzeichen/templates/views-view-fields--projekte-overview--block-1.tpl.php",
+		"/F/Dropbox/rufzeichen/Community Projekte/Drupal.org-Project-Reviews/views-view-fields--project-reviews--block-2.tpl.php",
+		"/F/Dropbox/rufzeichen/Jobs/Potentielle Kunden/Heike Häberle/Kontaktdaten Heike Häberle.TXT",
+		"/F/Dropbox/rufzeichen/Community Projekte/Drupal.org-Project-Reviews/jo.tpl.php",
+		"/D/wamp/www/rufzeichen/rufzeichen-online/sites/all/themes/dandelion_rufzeichen/js/ie-cleartype.js",
+		"/D/wamp/www/rufzeichen/rufzeichen-online/sites/default/local.settings.php",
+		"/D/wamp/www/rufzeichen/rufzeichen-online/rufzeichen.sublime-workspace",
+		"/D/wamp/www/test/drupal-7-test/themes/bartik/template.php",
+		"/D/wamp/www/test/drupal-7-test/sites/all/themes/bartik_custom/template.php",
+		"/E/Backups/wamp for Festplattenwechsel/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/js/dropdown-menu.js",
+		"/D/wamp/www/test/drupal-7-test/sites/all/modules/test_custom/ajax_test_2/ajax_test_2.info",
+		"/D/wamp/www/test/drupal-7-test/sites/all/modules/test_custom/ajax_test_2/ajax_test_2.module",
+		"/D/wamp/www/test/drupal-7-test/sites/all/themes/bartik_custom/bartik_subtheme.info",
+		"/D/wamp/www/test/drupal-7-test/sites/all/themes/bartik_custom/js/bartik_custom.js",
+		"/E/Backups/wamp for Festplattenwechsel/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/dcmuc_splash.info",
+		"/D/wamp/www/test/drupal-7-test/sites/all/modules/multiform/multiform.info",
+		"/D/wamp/www/test/drupal-7-test/sites/all/modules/test_custom/ajax_test_1/ajax_test_1.info",
+		"/D/wamp/www/test/drupal-7-test/sites/all/modules/test_custom/ajax_test_1/ajax_test_1.module",
+		"/D/wamp/www/jobs/neuronetz/sites/all/themes/garland_neuronetz/garland_neuronetz.info",
+		"/D/wamp/www/test/drupal-7-test/sites/all/themes/bartik_subtheme/bartik_subtheme.info",
+		"/D/wamp/www/test/drupal-7-test/sites/all/modules/test_custom/ajax_test_1",
+		"/D/wamp/www/jobs/neuronetz/sites/all/themes/garland_neuronetz/minnelli_neuronetz/minnelli.css",
+		"/F/Dropbox/rufzeichen/Organisation/Passwörter/Offline-Software/Clarify/Thomas Lizenz Clarify.txt",
+		"/D/wamp/www/jobs-archiv/dglc/sites/all/modules/advanced_forum/styles/naked/advanced-forum.naked.topic-list-outer-view.tpl.php",
+		"/D/wamp/www/jobs-archiv/dglc/sites/all/modules/advanced_forum/styles/naked/advanced-forum.naked.topic-list-view.tpl.php",
+		"/D/wamp/www/jobs-archiv/dglc/sites/all/themes/antonelli/templates/advanced_forum-topic-list-outer-view.tpl.php",
+		"/D/wamp/www/jobs-archiv/dglc/sites/all/themes/antonelli/css/layout.css",
+		"/D/wamp/www/jobs-archiv/dglc/sites/all/themes/antonelli/template.php",
+		"/Z/Mail-Accounts/GMX-Zugangsdaten.TXT",
+		"/E/Jobs/Sonstiges 2/Marketing+Co/Website/Organisation/Zugangsdaten Marketing und Co.txt",
+		"/Z/Jobs/Inka Brunke/Zugangsdaten Marketing und Co.txt",
+		"/E/Backups/Marketing und Co/website Marketing und Co/index.php",
+		"/E/Backups/Marketing und Co/website Marketing und Co/ueber_uns.php",
+		"/D/wamp/www/jobs-archiv/dglc/sites/all/themes/antonelli/templates/views-view-field--header-slideshow--block-1--field-bild-header-slideshow.tpl.php",
+		"/F/Dropbox/rufzeichen/Backups/Coding/Views Slideshow als Hintergrundbild/css-fuer-slideshow.css",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/D/wamp/bin/apache/apache2.2.22/conf/extra/httpd-vhosts.conf",
+		"/D/wamp/www/jobs-archiv/dglc/sites/all/libraries/jquery.cycle/jquery.cycle.all.js",
+		"/D/wamp/www/rufzeichen/chrono-7/sites/all/themes/chrono_susy/sass/style.scss",
+		"/D/wamp/www/rufzeichen/chrono-7/sites/all/themes/chrono_susy/css/style.css",
+		"/D/wamp/www/rufzeichen/chrono-7/sites/default/settings.php",
+		"/E/Temp/ki575",
+		"/F/Dropbox/rufzeichen/Jobs/DGLC Robert Stemminger/Organisation/Mail Anforderungen 04.10.TXT",
+		"/E/Downloads/Startordner/media_gallery/media_gallery.pages.inc",
+		"/Z/Jobs/DGLC Robert Stemminger/Zugangsdaten DGLC.TXT",
+		"/D/wamp/www/jobs-archiv/dglc/sites/default/settings.local.php",
+		"/D/wamp/www/jobs-archiv/dglc/sites/default/settings.php",
+		"/D/wamp/www/rufzeichen/rufzeichen-online/sites/default/settings.php",
+		"/D/wamp/www/jobs-archiv/dglc/.git/config",
+		"/F/Dropbox/rufzeichen/Organisation/Passwörter/Internet-Provider/Sourcerepo/Sourcerepo Zugangsdaten.TXT",
+		"/F/Dropbox/rufzeichen/Backups/Hosts und http-vhosts Datei/httpd-vhosts.conf",
+		"/D/wamp/www/jobs/neuronetz/sites/all/themes/garland_neuronetz/minnelli_neuronetz/js/neuronetz_custom.js",
+		"/E/Temp/sfdgsg",
+		"/F/Dropbox/rufzeichen/Organisation/Passwörter/Online-Accounts/Hays Zeitarbeit/hays-login.TXT",
+		"/D/wamp/www/jobs/neuronetz/sites/default/settings.local.php",
+		"/D/wamp/apps/drush/drush.bat",
+		"/C/cygwin/home/tommi/.bashrc",
+		"/E/Backups/wamp temp/drush/drush.bat",
+		"/F/Große Downloads/Adobe CS 5.5/Adobe CS 5.5 Master Collection (Calvin and Hobbes)/!READ-ME.txt",
+		"/F/Dropbox/rufzeichen/Organisation/Passwörter/Internet-Provider/Easybell/Zugangsdaten Easybell.TXT",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/modules/drupalorg_drupalcon/drupalorg_drupalcon.module",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/modules/me/me.module",
+		"/E/Temp/asdfsdf",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/template.php",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/templates/page.tpl.php",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/modules/me/me.install",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/.htaccess",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/js/dropdown-menu.js",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/modules/dcmuc_features/dc_munich_schedule/dc_munich_schedule.views_default.inc",
+		"/F/Dropbox/rufzeichen/Community Projekte/Drupalcon München/Backup/Coding/Schedule Filter Funktion für kein Hintergrund letzte Session in Gruppe.js",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/css/views-media-queries.css",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/css/views.css",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/css/ie8-and-below.css",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/css/styles.css",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/css/styles-media-queries.css",
+		"/F/Dropbox/rufzeichen/Organisation/Passwörter/Internet-Provider/O2/Zugansdaten.TXT",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/templates/views-view-list--dc-munich-schedule--page.tpl.php",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/templates/views-view-list--my-schedule--page.tpl.php",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/modules/better_exposed_filters/better_exposed_filters.info",
+		"/C/Users/tommi/Desktop/better_exposed_filters/better_exposed_filters.info",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/css/blocks.css",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/css/blocks-media-queries.css",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/templates/views-exposed-form.tpl.php",
+		"/F/Dropbox/rufzeichen/Organisation/Passwörter/Online-Accounts/Post.de/Ablageauftrag/paket.de-ablageauftrag-zugangsdaten.TXT",
+		"/E/Temp/paket@dhl.de",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/default/settings.local.php",
+		"/F/Dropbox/rufzeichen/Organisation/Passwörter/Online-Accounts/Deutsche Post/Ablageauftrag/paket.de-ablageauftrag-zugangsdaten.TXT",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/templates/html.tpl.php",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/dcmuc_splash.info",
+		"/F/Dropbox/rufzeichen/Organisation/Passwörter/Online-Accounts/96-Ticketshop/96-Ticketshop-Zugangsdaten.TXT",
+		"/F/Dropbox/rufzeichen/Organisation/Passwörter/Offline-Software/Sublime Text/Sublime Text Password.TXT",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/themes/dcmuc_splash/templates/views-view-field--attendees--page--picture.tpl.php",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-live/sites/all/themes/dcmuc_splash/css/styles-media-queries.css",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-live/sites/all/themes/dcmuc_splash/css/blocks.css",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-live/sites/all/themes/dcmuc_splash/css/views-media-queries.css",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-live/sites/all/themes/dcmuc_splash/css/blocks-media-queries.css",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-live/sites/all/themes/dcmuc_splash/dcmuc_splash.info",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-live/.bzrignore",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/sites/all/modules/views_slideshow/views_slideshow.module",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-mobile/sites/all/themes/dcmuc_splash/dcmuc_splash.info",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-mobile/.bzrignore",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-develop/.bzrignore",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-mobile/.htaccess",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-mobile/sites/all/themes/dcmuc_splash/css/views-media-queries.css",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-mobile/sites/all/themes/dcmuc_splash/css/blocks-media-queries.css",
+		"/C/wamp/www/community-projekte/dc-munich-bazaar/dc-munich-mobile/sites/all/themes/dcmuc_splash/css/styles-media-queries.css",
+		"/C/wamp/www/test/susy-test/sites/all/themes/susy_test/config/config.rb",
+		"/C/wamp/www/test/drupal-7-test/sites/all/modules/edit/edit.info",
+		"/C/wamp/www/test/susy-test/themes/bartik/bartik.info",
+		"/C/wamp/www/test/susy-test/sites/all/themes/susy_test/susy_test.info",
+		"/C/wamp/www/test/susy-test/sites/all/themes/susy_test/sass/style.scss",
+		"/C/wamp/www/test/susy-test/sites/all/themes/susy_test/css/style.css",
+		"/C/wamp/www/rufzeichen/rufzeichen-online/sites/all/themes/dandelion_rufzeichen/css/node.css",
+		"/F/Dropbox/rufzeichen/rufzeichen online/Viertes Redesign/Backup/Coding/Html Leistungen Seite.html",
+		"/C/wamp/www/rufzeichen/rufzeichen-online/.gitignore",
+		"/C/Users/tommi/AppData/Roaming/Sublime Text 2/Packages/Color Scheme - Default/iPlastic.tmTheme.cache",
+		"/C/wamp/www/rufzeichen/rufzeichen-online/sites/all/themes/dandelion_rufzeichen/css/styles.css",
+		"/C/Users/tommi/AppData/Roaming/Sublime Text 2/Packages/Color Scheme - Default/Eiffel.tmTheme",
+		"/C/Users/tommi/AppData/Roaming/Sublime Text 2/Packages/Color Scheme - Default/iPlastic.tmTheme"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"C:\\wamp\\www\\jobs\\sitron\\sites\\all\\themes\\sitron"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"dynamic_regio",
+			"926",
+			"after",
+			"$classes",
+			"$classes_array",
+			".view-dc-munich-schedule ul li.views-row",
+			"h3",
+			"#top_menu",
+			"#top_mneuz",
+			"TREE",
+			"Artikelsuche",
+			"Suchbegriff eingeben",
+			"Sie befinden",
+			"italic",
+			"comment",
+			"italic",
+			"comment",
+			"F9B65E",
+			"bold",
+			"property",
+			"tag",
+			"333",
+			"class",
+			"tag",
+			"value",
+			"color",
+			"eeeeee",
+			"side",
+			"bar",
+			"sidebar"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"ajax_test_1"
+		],
+		"reverse": false,
+		"show_context": false,
+		"use_buffer2": false,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 106.0
+	},
+	"output.sftp":
+	{
+		"height": 0.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/D/wamp/www/jobs-archiv/dglc/dglc.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 377.0,
+	"status_bar_visible": true
+}

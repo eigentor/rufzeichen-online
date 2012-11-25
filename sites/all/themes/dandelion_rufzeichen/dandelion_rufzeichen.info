@@ -8,6 +8,7 @@ core = 7.x
 stylesheets[all][] = css/layouts.css
 stylesheets[all][] = css/styles.css
 stylesheets[all][] = css/views.css
+stylesheets[all][] = css/views-sass.css
 stylesheets[all][] = css/block.css
 stylesheets[all][] = css/node.css
 stylesheets-conditional[lte IE 8][all][] = css/ie8-and-below.css
@@ -19,6 +20,10 @@ regions[highlighted] = Highlighted
 regions[help] = Help
 regions[content] = Content
 regions[sidebar_second] = Second sidebar
+regions[footer_top] = Footer top
 regions[footer] = Footer
 regions[footer_bottom] = Footer bottom
 regions[page_bottom] = Page bottom
+
+;scripts[] = js/ie-cleartype.js
+

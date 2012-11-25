@@ -13,6 +13,7 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 	font-size: 12px;
 	vertical-align: baseline;
 	background: transparent;
+	letter-spacing: 0;
 }
 .cleardiv {
   clear: both;
@@ -152,6 +153,7 @@ h1,h2,h3,h4,h5,h6 {
 	margin-bottom: 10px;
 	font-weight: 100;
 	font-family: Georgia, "Times New Roman", Times, serif;
+	letter-spacing: 0.01em;
 }
 
 h1 a:link,h2 a:link,h3 a:link,h4 a:link,h5 a:link,h6 a:link,
@@ -225,7 +227,7 @@ ol {
 }
 
 ul{
-	margin-left:30px;	
+	margin-left:0px;	
 }
 
 strong {
