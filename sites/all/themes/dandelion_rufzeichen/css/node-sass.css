@@ -1,0 +1,6 @@
+/** Styling für Dateianhänge ** */
+/* line 11, ../sass/node-sass.sass */
+#content-area .file img {
+  border: none;
+  padding: 0;
+}
