@@ -376,7 +376,7 @@
 /** Pager **/
 .front .view-front-header-slider .views-slideshow-controls-bottom {
   position: absolute;
-  right: 30px;
+  right: 50px;
   bottom: 30px;
   width: 20%;
   z-index: 25;

@@ -1,6 +1,6 @@
 <div class="<?php print $classes . ' ' . $zebra; ?>">
 	<div class="comment-inner">
-	<div class="user-picture">
+	<div class="user-picture-wrapper">
      <?php print $picture ?>
      <div class="comment-author">
       <?php print $author; ?>
