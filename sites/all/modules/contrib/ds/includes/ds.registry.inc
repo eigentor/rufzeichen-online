@@ -122,7 +122,7 @@ function _ds_entity_type_update($entity_type, $info, $action) {
   }
 
   // Clear cache.
-  cache_clear_all('ds_fields', 'cache');
+  cache_clear_all('ds_fields:', 'cache', TRUE);
   cache_clear_all('ds_field_settings', 'cache');
   field_info_cache_clear();
 }
@@ -395,9 +395,9 @@ function _ds_ds_layout_info() {
     }
   }
 
-  // Get layouts defined in the default theme and base theme (if applicable).
-  $theme = variable_get('theme_default');
+  // Get layouts defined in the active theme and base theme (if applicable).
   $themes = list_themes();
+  $theme = variable_get('theme_default', 'bartik');
 
   $base_theme = array();
   $ancestor = $theme;

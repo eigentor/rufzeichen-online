@@ -24,6 +24,9 @@
   float: left;
   display: inline;
 }
+.user-picture-wrapper {
+  float: left;
+}
 .comment .comment-content {
   margin-left: 110px;
 }
