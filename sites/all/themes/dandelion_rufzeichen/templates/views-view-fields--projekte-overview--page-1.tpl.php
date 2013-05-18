@@ -55,7 +55,7 @@ $beautytip_content .= '<h3>' . $row->node_title . '</h3>';
 
   <?php print $field->wrapper_prefix; ?>
     <?php print $field->label_html; ?>
-    <div class="overview-thumb-wrapper beautytips" title='<?php print $beautytip_content ?>'>
+    <div>
     <?php print $field->content; ?>
     </div>
   <?php print $field->wrapper_suffix; ?>

@@ -24,8 +24,8 @@ function ds_field_ui_fields_layouts(&$form, &$form_state) {
   // Add layout fieldset.
   _ds_field_ui_table_layouts($entity_type, $bundle, $view_mode, $form, $form_state);
 
-  // Add the fields on the table.
-  if ($view_mode != 'form') {
+  // Add/alter fields on the table, but only if a layout is selected.
+  if ($view_mode != 'form' && !empty($form['#ds_layout'])) {
     _ds_field_ui_fields($entity_type, $bundle, $view_mode, $form, $form_state);
 
     // Also alter core fields
@@ -33,7 +33,7 @@ function ds_field_ui_fields_layouts(&$form, &$form_state) {
   }
 
   // Add buttons to add fields in overlay.
-  if (isset($form['#ds_layout']) && user_access('admin_fields') && $view_mode != 'form') {
+  if (isset($form['#ds_layout']) && user_access('admin_fields') && $view_mode != 'form' && module_exists('ds_ui')) {
     _ds_field_ui_custom_fields($entity_type, $bundle, $view_mode, $form, $form_state);
   }
 
@@ -92,7 +92,7 @@ function ds_field_ui_create_vertical_tabs(&$form) {
     $form['#attached']['js'][] = 'misc/collapse.js';
   }
 
-  $view_mode_admin_access = user_access('admin_view_modes');
+  $view_mode_admin_access = user_access('admin_view_modes') && module_exists('ds_ui');
   if (isset($form['modes'])) {
     if ($view_mode_admin_access) {
       $form['modes']['view_modes_custom']['#description'] = l(t('Manage view modes'), 'admin/structure/ds/view_modes');
@@ -149,7 +149,7 @@ function ds_revert_layout_field_settings_form_submit(&$form, &$form_state) {
     ->execute();
 
   // Clear the ds_fields cache.
-  cache_clear_all('ds_fields', 'cache');
+  cache_clear_all('ds_fields:', 'cache', TRUE);
   cache_clear_all('ds_field_settings', 'cache');
 
   // Clear entity info cache.
@@ -548,8 +548,10 @@ function ds_field_ui_layouts_save($form, &$form_state) {
   $record->layout = $layout;
   $record->settings = array();
 
+  $form_state['layout_saved'] = FALSE;
+
   // Remove old layout if necessary.
-  if (($new_layout && !empty($old_layout)) || $form['#panel']) {
+  if ($new_layout && !empty($old_layout)) {
     db_delete('ds_layout_settings')
       ->condition('entity_type', $entity_type)
       ->condition('bundle', $bundle)
@@ -557,7 +559,10 @@ function ds_field_ui_layouts_save($form, &$form_state) {
       ->execute();
   }
 
-  if (($new_layout && !empty($layout)) || ($form['#panel'] && !empty($layout))) {
+  if ($new_layout && !empty($layout)) {
+
+    $form_state['layout_saved'] = TRUE;
+
     // Save new layout.
     $record->settings = $record->settings;
 
@@ -575,6 +580,7 @@ function ds_field_ui_layouts_save($form, &$form_state) {
     $record->settings['wrappers'] = array();
     $record->settings['layout_wrapper'] = 'div';
     $record->settings['layout_attributes'] = '';
+    $record->settings['layout_attributes_merge'] = variable_get('ds_layout_attributes_merge', TRUE);
     $fields = _ds_sort_fields($form_state['values']['fields'], 'weight');
     foreach ($fields as $field_key => $field) {
 
@@ -601,6 +607,8 @@ function ds_field_ui_layouts_save($form, &$form_state) {
   }
   // Update existing layout.
   elseif (!empty($layout)) {
+
+    $form_state['layout_saved'] = TRUE;
 
     $fields = _ds_sort_fields($form_state['values']['fields'], 'weight');
 
@@ -633,6 +641,10 @@ function ds_field_ui_layouts_save($form, &$form_state) {
         continue;
       }
 
+      if (isset($form_state['values']['additional_settings']['layout_class'])) {
+        $record->settings['classes']['layout_class'] = $form_state['values']['additional_settings']['layout_class'];
+      }
+
       // Additional classes on regions.
       if (isset($form_state['values']['additional_settings'][$region])) {
         // Do not save empty string.
@@ -651,6 +663,7 @@ function ds_field_ui_layouts_save($form, &$form_state) {
     // Layout wrapper
     $record->settings['layout_wrapper'] = $form_state['values']['additional_settings']['region_wrapper']['layout_wrapper'];
     $record->settings['layout_attributes'] = filter_xss_admin($form_state['values']['additional_settings']['region_wrapper']['layout_attributes']);
+    $record->settings['layout_attributes_merge'] = $form_state['values']['additional_settings']['region_wrapper']['layout_attributes_merge'];
 
     $record->settings = $record->settings;
 
@@ -676,9 +689,10 @@ function ds_field_ui_layouts_save($form, &$form_state) {
 function ds_field_ui_fields_validate($form, &$form_state) {
   foreach (element_children($form['fields']) as $key) {
     if (isset($form_state['values']['fields'][$key]['settings_edit_form'])) {
-      $settings = $form_state['values']['fields'][$key]['settings_edit_form']['settings']['ft'];
+      $settings = isset($form_state['values']['fields'][$key]['settings_edit_form']['settings']['ft']) ? $form_state['values']['fields'][$key]['settings_edit_form']['settings']['ft'] : array();
       if (!empty($settings)) {
-        $form_state['formatter_settings'][$key]['ft'] = array_merge($form_state['formatter_settings'][$key]['ft'], $settings);
+        $merge = isset($form_state['formatter_settings'][$key]['ft']) ? $form_state['formatter_settings'][$key]['ft'] : array();
+        $form_state['formatter_settings'][$key]['ft'] = array_merge($merge, $settings);
       }
     }
   }
@@ -699,6 +713,10 @@ function ds_field_ui_fields_save($form, &$form_state) {
     ->condition('bundle', $bundle)
     ->condition('view_mode', $view_mode)
     ->execute();
+
+  if (empty($form_state['layout_saved'])) {
+    return;
+  }
 
   $field_settings = array();
 
@@ -743,7 +761,7 @@ function ds_field_ui_fields_save($form, &$form_state) {
   }
 
   // Clear the ds_fields cache.
-  cache_clear_all('ds_fields', 'cache');
+  cache_clear_all('ds_fields:', 'cache', TRUE);
   cache_clear_all('ds_field_settings', 'cache');
 }
 
@@ -821,8 +839,10 @@ function _ds_field_ui_clone_view_mode_settings($entity_type, $bundle, $view_mode
   foreach ($instances as $instance) {
     // If this field instance has display settings defined for this view mode,
     // respect those settings.
-    $instance['display'][$view_mode] = $instance['display'][$copy_view_mode];
-    field_update_instance($instance);
+    if (isset($instance['display'][$copy_view_mode])) {
+      $instance['display'][$view_mode] = $instance['display'][$copy_view_mode];
+      field_update_instance($instance);
+    }
   }
 
   // Update display settings for 'extra fields'.
@@ -861,22 +881,24 @@ function ds_field_formatter_settings_form($field, $instance, $view_mode, $form, 
   }
 
   // Taxonomy separated.
-  if ($display['type'] === 'ds_taxonomy_separator') {
+  if ($display['type'] === 'ds_taxonomy_separator' || $display['type'] == 'ds_taxonomy_separator_localized') {
     $element['taxonomy_term_link'] = array(
       '#title' => t('Link to term'),
       '#type' => 'checkbox',
       '#size' => 10,
       '#default_value' => $settings['taxonomy_term_link'],
     );
+    $separators = array(
+      ' ' => t('space'),
+      ', ' => t('comma'),
+      ' - ' => t('dash'),
+      ' / ' => t('slash'),
+    );
+    drupal_alter('ds_taxonomy_term_separators', $separators);
     $element['taxonomy_term_separator'] = array(
       '#title' => t('Separator'),
       '#type' => 'select',
-      '#options' => array(
-        ' ' => t('space'),
-        ', ' => t('comma'),
-        ' - ' => t('dash'),
-        ' / ' => t('slash'),
-      ),
+      '#options' => $separators,
       '#default_value' => $settings['taxonomy_term_separator'],
       '#states' => array(
         'visible' => array(
@@ -903,13 +925,14 @@ function ds_field_formatter_settings_summary($field, $instance, $view_mode) {
     $summary = t('View mode: %mode', array('%mode' => $mode));
   }
 
-  if ($display['type'] === 'ds_taxonomy_separator') {
+  if ($display['type'] === 'ds_taxonomy_separator' || $display['type'] == 'ds_taxonomy_separator_localized') {
     $separators = array(
       ' ' => t('space'),
       ', ' => t('comma'),
       ' - ' => t('dash'),
       ' / ' => t('slash'),
     );
+    drupal_alter('ds_taxonomy_term_separators', $separators);
     $summary .= t('Separated by !sep', array('!sep' => $separators[$settings['taxonomy_term_separator']]));
     $summary .= $settings['taxonomy_term_link'] ? ', ' . t('linked') : ', ' . t('not linked');
   }
@@ -926,25 +949,54 @@ function ds_field_formatter_settings_summary($field, $instance, $view_mode) {
  * @return $summary
  *   An markup array.
  */
-function ds_field_settings_summary($field, $form_state) {
+function ds_field_settings_summary($field, $form_state, $form, $view_mode) {
 
   $summary = '';
 
   // Not all fields have settings.
   if (isset($field['properties']['settings'])) {
-    $summary = module_invoke($field['module'], 'ds_field_format_summary', $field) . '<br />';
+    $summary = module_invoke($field['module'], 'ds_field_format_summary', $field);
   }
 
   if (module_exists('ds_extras') && variable_get('ds_extras_field_template', FALSE)) {
     module_load_include('inc', 'ds_extras', 'includes/ds_extras.admin');
 
     // Field template summary
-    $functions = module_invoke_all('ds_field_theme_functions_info');
-    $default_field_function = variable_get('ft-default', 'theme_field');
-    $field_function = isset($form_state['formatter_settings'][$field['name']]['ft']['func']) ? $form_state['formatter_settings'][$field['name']]['ft']['func'] : $default_field_function;
+    if (!in_array($field['field_type'], array(DS_FIELD_TYPE_IGNORE, DS_FIELD_TYPE_PREPROCESS))) {
+      $functions = module_invoke_all('ds_field_theme_functions_info');
+      $default_field_function = variable_get('ft-default', 'theme_field');
+      $field_function = isset($form_state['formatter_settings'][$field['name']]['ft']['func']) ? $form_state['formatter_settings'][$field['name']]['ft']['func'] : $default_field_function;
 
-    $summary .= ' Field template: ' . check_plain($functions[$field_function]) . '<br />';
+      $summary .= 'Field template: ' . check_plain($functions[$field_function]) . '<br />';
+    }
   }
+
+  if (!empty($form_state['complete form'])) {
+    $formatter_name = $form_state['complete form']['fields'][$field['name']]['format']['type']['#value'];
+  }
+  else {
+    $formatter_name = $form['fields'][$field['name']]['format']['type']['#default_value'];
+  }
+
+  // Allow other modules to alter the formatter summary.
+  $context = array(
+    'formatter' => $formatter_name,
+    'field' => $field,
+    'instance' => array(
+      'display' => array(
+        $view_mode => array(
+          'label' => '',
+          'type' => '',
+          'weight' => '',
+          'settings' => array(),
+          'module' => '',
+        )
+      )
+    ),
+    'view_mode' => $view_mode,
+    'ds' => TRUE,
+  );
+  drupal_alter('field_formatter_settings_summary', $summary, $context);
 
   if (empty($summary)) {
     return NULL; // no summary return nothing
@@ -965,7 +1017,7 @@ function ds_field_settings_summary($field, $form_state) {
  * @return $form
  *   A form definition.
  */
-function ds_field_settings_form($field, &$form_state) {
+function ds_field_settings_form($field, &$form_state, $entity_form, $view_mode) {
   $form = module_invoke($field['module'], 'ds_field_settings_form', $field);
 
   // Add field template settings to every field if enabled.
@@ -981,8 +1033,38 @@ function ds_field_settings_form($field, &$form_state) {
 
     // Load the formatter settings form
     module_load_include('inc', 'ds_extras', 'includes/ds_extras.admin');
-    ds_extras_field_template_settings_form($form, $form_state, $context);
+    // Protect against empty $form.
+    if (!is_array($form)) $form = array();
+    if (!in_array($field['field_type'], array(DS_FIELD_TYPE_IGNORE, DS_FIELD_TYPE_PREPROCESS))) {
+      ds_extras_field_template_settings_form($form, $form_state, $context);
+    }
+    else {
+      $form['#markup'] = t('This field does not support Field templates.');
+    }
   }
+
+  $formatter_name = $form_state['complete form']['fields'][$field['name']]['format']['type']['#value'];
+
+  // Allow other modules to alter the formatter settings form.
+  $context = array(
+    'ds' => TRUE,
+    'formatter' => $formatter_name,
+    'field' => $field,
+    'instance' => array(
+      'label' => $field['title'],
+      'bundle' => $field['bundle'],
+      'entity_type' => $field['entity_type'],
+      'display' => array(
+        'default' => array(
+          'settings' => array()
+        ),
+      ),
+    ),
+    'view_mode' => $view_mode,
+    'form' => $entity_form,
+    'form_state' => $form_state,
+  );
+  drupal_alter('field_formatter_settings_form', $form, $context);
 
   return $form;
 }
@@ -995,11 +1077,17 @@ function ds_ds_field_format_summary($field) {
   $settings = isset($field['formatter_settings']) ? $field['formatter_settings'] : $field['properties']['default'];
   $functions = module_invoke_all('ds_field_theme_functions_info');
   foreach ($settings as $key => $value) {
+
+    // Ignore Field Formatter conditions.
+    if ($key == 'conditions') {
+      continue;
+    }
+
     if ($key == 'ctools') {
       $conf = unserialize($value);
       $summary .= t('Type: !type', array('!type' => check_plain(drupal_ucfirst(str_replace('_', ' ', $conf['subtype'])))));
     }
-    elseif ($key == 'ft') {
+    elseif ($key == 'ft' || is_array($value)) {
       // Do nothing
     }
     elseif (!empty($value)) {
@@ -1007,6 +1095,11 @@ function ds_ds_field_format_summary($field) {
       $summary .= ' ' . str_replace('_', ' ', drupal_ucfirst(check_plain($key))) . ': ' . check_plain($value) . '<br />';
     }
   }
+
+  if (empty($summary) && ($field['field_type'] == DS_FIELD_TYPE_CTOOLS)) {
+    $summary .= t('Not configured yet.');
+  }
+
   return $summary;
 }
 
@@ -1016,7 +1109,11 @@ function ds_ds_field_format_summary($field) {
 function ds_ds_field_settings_form($field) {
   $form = array();
 
-  $settings = isset($field['formatter_settings']) ? $field['formatter_settings'] : $field['properties']['default'];
+  $settings = !empty($field['formatter_settings']) ? $field['formatter_settings'] : (!empty($field['properties']['default']) ? $field['properties']['default'] : array());
+
+  if (empty($field['properties']['settings'])) {
+    return $form;
+  }
 
   foreach ($field['properties']['settings'] as $key => $value) {
 
@@ -1303,85 +1400,6 @@ function ds_ctools_get_category($content_type) {
 }
 
 /**
- * Handles ctools modal Add field
- *
- * @param $js
- *  Whether js is used or not.
- * @param $field_type
- *   The name of the field type.
- */
-function ds_ajax_add_field($js, $field_type) {
-
-  if (!$js) {
-    // We don't support degrading this from js because we're not
-    // using the server to remember the state of the table.
-    drupal_goto("admin/structure/ds/fields/" . $field_type);
-    return;
-  }
-
-  ctools_include('ajax');
-  ctools_include('modal');
-
-  switch ($field_type) {
-
-    case "manage_ctools":
-      $title = t('Add a dynamic field');
-      $form_name = "ds_edit_ctools_field_form";
-      break;
-
-    case "manage_preprocess":
-      $title = t('Add a preprocess field');
-      $form_name = "ds_edit_preprocess_field_form";
-      break;
-
-    case "manage_block":
-      $title = t('Add a block field');
-      $form_name = "ds_edit_block_field_form";
-      break;
-
-    default:
-      $title = t('Add a code field');
-      $form_name = "ds_edit_custom_field_form";
-      $field_type = 'manage_custom';
-      break;
-  }
-
-  $form_state = array();
-  $form_state['build_info']['args'] = array();
-  $form_state += array(
-    'title' => $title,
-    'ajax' => TRUE,
-    're_render' => FALSE,
-  );
-
-  $output = NULL;
-  form_load_include($form_state, 'inc', 'ds', 'includes/ds.fields');
-
-  $output = ctools_modal_form_wrapper($form_name, $form_state);
-
-  // Field is saved.
-  if ($form_state['executed']) {
-
-    $output = array();
-
-    // Do not print messages on screen.
-    if ($messages = theme('status_messages')) {
-      $output[] = ajax_command_append('#console', $messages);
-    }
-
-    // Close the modal.
-    $output[] = ctools_modal_command_dismiss();
-
-    // Call our own javascript function which will trigger a refresh of the table.
-    $output[] = ajax_command_invoke('#field-display-overview', 'dsRefreshDisplayTable');
-  }
-
-  drupal_add_http_header('Content-Type', 'application/json');
-  print ajax_render($output);
-  exit;
-}
-
-/**
  * Add fake field group value in.
  */
 function _ds_field_group_field_ui_fix_notices($form, &$form_state) {
@@ -1412,7 +1430,7 @@ function _ds_field_ui_table_layouts($entity_type, $bundle, $view_mode, &$form, $
   foreach ($ds_layouts as $key => $layout) {
     $optgroup = 'Display Suite';
 
-    // Panels can not be used on Views fields.
+    // Panels can not be used on Views fields and forms.
     if (!empty($layout['module']) && $layout['module'] == 'panels' && isset($form_state['no_panels'])) {
       continue;
     }
@@ -1449,15 +1467,8 @@ function _ds_field_ui_table_layouts($entity_type, $bundle, $view_mode, &$form, $
   ctools_include('export');
   $layout = new stdClass();
   $ds_layout_settings = ctools_export_crud_load_all('ds_layout_settings');
-  $form['#panel'] = FALSE;
   if (isset($ds_layout_settings[$form['#export_id']])) {
     $layout = $ds_layout_settings[$form['#export_id']];
-    // Make sure this does not break in case there was
-    // a layout created with Panel view modes.
-    if (isset($layout->settings['ds_panels'])) {
-      $layout = new stdClass();
-      $form['#panel'] = TRUE;
-    }
   }
 
   if (!empty($layout) && isset($layout->layout) && isset($ds_layouts[$layout->layout])) {
@@ -1516,6 +1527,13 @@ function _ds_field_ui_table_layouts($entity_type, $bundle, $view_mode, &$form, $
       '#default_value' => isset($layout->settings['layout_attributes']) ? $layout->settings['layout_attributes'] : '',
       '#weight' => 11,
     );
+    $form['additional_settings']['region_wrapper']['layout_attributes_merge'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Merge other layout attributes'),
+      '#description' => 'Certain modules might provide additional attributes for the template wrapper, e.g. RDFa. Disable this option if you prefer to specify these attributes above.',
+      '#default_value' => isset($layout->settings['layout_attributes_merge']) ? $layout->settings['layout_attributes_merge'] : variable_get('ds_layout_attributes_merge', TRUE),
+      '#weight' => 12,
+    );
 
     // Add extra classes for the regions to have more control while theming.
     $form['additional_settings']['ds_classes'] = array(
@@ -1527,21 +1545,38 @@ function _ds_field_ui_table_layouts($entity_type, $bundle, $view_mode, &$form, $
       '#access' => empty($chosen_layout['flexible']),
     );
 
+    $classes_access = (user_access('admin_classes') && module_exists('ds_ui'));
     $classes = _ds_classes();
     if (!empty($classes)) {
+
+      $form['additional_settings']['ds_classes']['layout_class'] = array(
+        '#type' => 'select',
+        '#multiple' => TRUE,
+        '#options' => $classes,
+        '#title' => t('Class for layout'),
+        '#default_value' => isset($layout->settings['classes']['layout_class']) ? $layout->settings['classes']['layout_class'] : '',
+      );
+
       foreach (array_keys($layout->regions) as $region) {
         $form['additional_settings']['ds_classes'][$region] = array(
           '#type' => 'select',
           '#multiple' => TRUE,
           '#options' => $classes,
           '#title' => t('Class for @region', array('@region' => $region)),
-          '#default_value' => isset($layout->settings['classes'], $layout->settings['classes'][$region]) ? $layout->settings['classes'][$region] : '',
+          '#default_value' => isset($layout->settings['classes'][$region]) ? $layout->settings['classes'][$region] : '',
         );
       }
-      $form['additional_settings']['ds_classes']['info'] = array('#markup' => l(t('Manage region  and field CSS classes'), 'admin/structure/ds/classes', array('query' => drupal_get_destination())));
+      if ($classes_access) {
+        $form['additional_settings']['ds_classes']['info'] = array('#markup' => l(t('Manage region  and field CSS classes'), 'admin/structure/ds/classes', array('query' => drupal_get_destination())));
+      }
     }
     else {
-      $form['additional_settings']['ds_classes']['info'] = array('#markup' => '<p>' . t('You have not defined any CSS classes which can be used on regions.') . '</p><p>' . l(t('Manage region and field CSS classes'), 'admin/structure/ds/classes', array('query' => drupal_get_destination())) . '</p>');
+      if ($classes_access) {
+        $form['additional_settings']['ds_classes']['info'] = array('#markup' => '<p>' . t('You have not defined any CSS classes which can be used on regions.') . '</p><p>' . l(t('Manage region and field CSS classes'), 'admin/structure/ds/classes', array('query' => drupal_get_destination())) . '</p>');
+      }
+      else {
+        $form['additional_settings']['ds_classes']['#access'] = FALSE;
+      }
     }
   }
   else {
@@ -1555,8 +1590,8 @@ function _ds_field_ui_table_layouts($entity_type, $bundle, $view_mode, &$form, $
         if ($row->view_mode == 'form') {
           continue;
         }
-        if ($row->entity_type == $entity_type && $row->bundle == $bundle && !isset($row->settings['ds_panels'])) {
-          $options[$row->id] = drupal_ucfirst($row->entity_type) . ' > ' . drupal_ucfirst($row->bundle) . ' > ' . drupal_ucfirst($row->view_mode);
+        if ($row->entity_type == $entity_type && $row->bundle == $bundle) {
+          $options[$row->id] = drupal_ucfirst(str_replace('_', ' ', $row->entity_type)) . ' > ' . drupal_ucfirst(str_replace('_', ' ', $row->bundle)) . ' > ' . drupal_ucfirst(str_replace('_', ' ', $row->view_mode));
         }
       }
 
@@ -1655,18 +1690,20 @@ function _ds_field_ui_table_layouts_preview(&$form, &$form_state, $ds_layouts, $
 
     if (empty($chosen_layout['flexible'])) {
 
-      if (isset($chosen_layout['module']) && $chosen_layout['module'] == 'panels') {
-        $layout_string = $chosen_layout['panels']['theme'];
-      }
-
       $selected = '<strong>' . $chosen_layout['label'] . '</strong>';
       $selected .= '<br/>' . t('The default template can be found in %path', array('%path' => $chosen_layout['path']));
       $suggestions = t('Template suggestions') . ':<ul>';
-      $suggestions .= '<li>' . $layout_string . '--' . $entity_type . '.tpl.php</li>';
-      $suggestions .= '<li>' . $layout_string . '--' . $entity_type . '-' . $bundle . '.tpl.php</li>';
-      if (!isset($form_state['no_view_mode_suggestions'])) {
-        $suggestions .= '<li>' . $layout_string . '--' . $entity_type . '-' . $bundle . '-' . $view_mode . '.tpl.php</li></ul>';
+      $suggestions_array = array();
+
+      $suggestions_array[0] = $layout_string . '--' . $entity_type;
+      $suggestions_array[2] = $layout_string . '--' . $entity_type . '-' . $bundle;
+      if (!isset($form_state['no_view_mode_suggestions']) && $view_mode != 'default') {
+        $suggestions_array[1] = $layout_string . '--' . $entity_type . '-' . $view_mode;
+        $suggestions_array[3] = $layout_string . '--' . $entity_type . '-' . $bundle . '-' . $view_mode;
       }
+
+      ksort($suggestions_array);
+      $suggestions = '<ul><li>' . implode('.tpl.php</li><li>', $suggestions_array) . '.tpl.php</li></ul>';
     }
     else {
       $suggestions = '';
@@ -1804,7 +1841,8 @@ function _ds_field_ui_fields($entity_type, $bundle, $view_mode, &$form, &$form_s
   );
   drupal_alter('ds_label_options', $field_label_options);
 
-  // Regions for fields
+  // Regions for fields.
+  $field_regions = array();
   if (isset($form['#ds_layout']->settings['fields'])) {
     $field_regions = $form['#ds_layout']->settings['fields'];
   }
@@ -1894,8 +1932,8 @@ function _ds_field_ui_fields($entity_type, $bundle, $view_mode, &$form, &$form_s
       'settings_edit' => array(),
     );
 
-    // Don't show summary in hidden region.
-    if (!isset($field_regions[$key]) || $field_regions[$key] == 'hidden') {
+    // Don't show summary or cogwheel in hidden region.
+    if (_ds_field_ui_check_hidden_region($key, $form_state, $field_regions)) {
       continue;
     }
 
@@ -1906,13 +1944,13 @@ function _ds_field_ui_fields($entity_type, $bundle, $view_mode, &$form, &$form_s
 
     if ($form_state['formatter_settings_edit'] == $key) {
       $table[$key]['settings_summary']['#attributes']['colspan'] = 2;
-      $settings_form = ds_field_settings_form($field, $form_state);
+      $settings_form = ds_field_settings_form($field, $form_state, $form, $view_mode);
       ds_field_row_form_format_construct($table, $key, $settings_form);
     }
     else {
       // After saving, the settings are updated here as well. First we create
       // the element for the table cell.
-      $summary = ds_field_settings_summary($field, $form_state);
+      $summary = ds_field_settings_summary($field, $form_state, $form, $view_mode);
 
       if (isset($summary)) {
         $table[$key]['settings_summary'] = $summary;
@@ -1953,12 +1991,21 @@ function _ds_field_ui_core_fields($entity_type, $bundle, $view_mode, &$form, &$f
   $table = &$form['fields'];
 
   // Regions for fields.
+  $field_regions = array();
   if (isset($form['#ds_layout']->settings['fields'])) {
     $field_regions = $form['#ds_layout']->settings['fields'];
   }
 
   // Field rows.
   foreach ($instances as $key => $instance) {
+
+    // Don't show summary or cogwheel in hidden region.
+    if (_ds_field_ui_check_hidden_region($key, $form_state, $field_regions)) {
+      $table[$key]['settings_summary']['#markup'] = '';
+      $table[$key]['settings_edit'] = array();
+      continue;
+    }
+
     $field = field_info_field($instance['field_name']);
     $display = $instance['display'][$view_mode];
 
@@ -1978,10 +2025,14 @@ function _ds_field_ui_core_fields($entity_type, $bundle, $view_mode, &$form, &$f
     $settings += field_info_formatter_settings($formatter_type);
 
     // Import field settings and merge with Field API settings.
-    if (!isset($form_state['formatter_settings'][$key]) && isset($form['#field_settings'][$key])) {
+    if (!isset($form_state['formatter_settings'][$key]) && !empty($form['#field_settings'][$key]['formatter_settings']['ft'])) {
       $form_state['formatter_settings'][$key] = $settings;
-      $form_state['formatter_settings'][$key] += $form['#field_settings'][$key];
+      $form_state['formatter_settings'][$key]['ft'] = $form['#field_settings'][$key]['formatter_settings']['ft'];
     }
+
+    // Change default value or Field API format, so we can change the right
+    // settings form when clicking on the cogwheel.
+    $form['fields'][$key]['format']['type']['#default_value'] = $formatter_type;
 
     $instance['display'][$view_mode]['type'] = $formatter_type;
     $formatter = field_info_formatter_types($formatter_type);
@@ -2001,15 +2052,15 @@ function _ds_field_ui_core_fields($entity_type, $bundle, $view_mode, &$form, &$f
       '#field_name' => $key,
     );
 
-    // Don't show summary when we are in the hidden region
-    if (!isset($field_regions[$key]) || $field_regions[$key] == 'hidden') {
-      continue;
-    }
-
     if ($form_state['formatter_settings_edit'] == $key) {
+      $formatter_type = $form_state['complete form']['fields'][$key]['format']['type']['#default_value'];
+      $formatter = field_info_formatter_types($formatter_type);
+      $instance['display'][$view_mode]['type'] = $formatter_type;
+      $instance['display'][$view_mode]['module'] = $formatter['module'];
+      $instance['display'][$view_mode]['settings'] = $settings + field_info_formatter_settings($formatter_type);
       $function = $formatter['module'] . '_field_formatter_settings_form';
 
-      // Add the default formatter settings if any
+      // Add the default formatter settings if any.
       $settings_form = array();
       if (function_exists($function)) {
         $settings_form = $function($field, $instance, $view_mode, $form, $form_state);
@@ -2026,6 +2077,18 @@ function _ds_field_ui_core_fields($entity_type, $bundle, $view_mode, &$form, &$f
         module_load_include('inc', 'ds_extras', 'includes/ds_extras.admin');
         ds_extras_field_template_settings_form($settings_form, $form_state, $context);
       }
+
+      // Allow other modules to alter the formatter settings form.
+      $context = array(
+        'module' => $formatter['module'],
+        'formatter' => $formatter,
+        'field' => $field,
+        'instance' => $instance,
+        'view_mode' => $view_mode,
+        'form' => $form,
+        'form_state' => $form_state,
+      );
+      drupal_alter('field_formatter_settings_form', $settings_form, $context);
 
       if ($settings_form) {
         $table[$key]['format']['#cell_attributes'] = array('colspan' => 3);
@@ -2063,6 +2126,16 @@ function _ds_field_ui_core_fields($entity_type, $bundle, $view_mode, &$form, &$f
     else {
       $summary = module_invoke($formatter['module'], 'field_formatter_settings_summary', $field, $instance, $view_mode);
 
+      // Allow other modules to alter the formatter summary.
+      $context = array(
+        'module' => $formatter['module'],
+        'formatter' => $formatter,
+        'field' => $field,
+        'instance' => $instance,
+        'view_mode' => $view_mode,
+      );
+      drupal_alter('field_formatter_settings_summary', $summary, $context);
+
       if (module_exists('ds_extras') && variable_get('ds_extras_field_template', FALSE)) {
         module_load_include('inc', 'ds_extras', 'includes/ds_extras.admin');
 
@@ -2071,7 +2144,10 @@ function _ds_field_ui_core_fields($entity_type, $bundle, $view_mode, &$form, &$f
         $default_field_function = variable_get('ft-default', 'theme_field');
         $field_function = isset($form_state['formatter_settings'][$key]['ft']['func']) ? $form_state['formatter_settings'][$key]['ft']['func'] : $default_field_function;
 
-        $summary .= '<br /> Field template: ' . check_plain($functions[$field_function]) . '<br />';
+        if (!empty($summary)) {
+          $summary .= '<br />';
+        }
+        $summary .= 'Field template: ' . check_plain($functions[$field_function]) . '<br />';
       }
 
       if (!empty($summary)) {
@@ -2087,6 +2163,23 @@ function _ds_field_ui_core_fields($entity_type, $bundle, $view_mode, &$form, &$f
       }
     }
   }
+}
+
+/**
+ * Helper function to check if we are in a hidden region or not.
+ */
+function _ds_field_ui_check_hidden_region($key, $form_state, $field_regions) {
+  $continue = FALSE;
+  if (isset($form_state['input']['fields'][$key]['region'])) {
+    if ($form_state['input']['fields'][$key]['region'] == 'hidden') {
+      $continue = TRUE;
+    }
+  }
+  elseif (!isset($field_regions[$key]) || $field_regions[$key] == 'hidden') {
+    $continue = TRUE;
+  }
+
+  return $continue;
 }
 
 /**

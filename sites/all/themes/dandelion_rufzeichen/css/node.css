@@ -24,6 +24,9 @@
   float: left;
   display: inline;
 }
+.user-picture-wrapper {
+  float: left;
+}
 .comment .comment-content {
   margin-left: 110px;
 }
@@ -184,11 +187,12 @@ ul.inline li.node-readmore a {
   width: 420px;
   margin-right: 40px;
   margin-left: 3px;
+  margin-top: 3px;
 }
 .front .field-name-field-zweispaltig-rechts {
   float: left;
   width: 340px;
-  padding-top: 3px;
+  margin-top: -3px;
 }
 .front .field-name-field-zweispaltig-rechts img {
   float: right;

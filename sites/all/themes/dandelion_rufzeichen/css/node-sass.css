@@ -1,0 +1,42 @@
+@charset "UTF-8";
+/** Styling für Dateianhänge ** */
+/* line 6, ../sass/node-sass.sass */
+#content-area .file img {
+  border: none;
+  padding: 0;
+}
+
+/* line 10, ../sass/node-sass.sass */
+#views_slideshow_cycle_div_front_header_slider-block_2_0 img {
+  position: absolute;
+  bottom: 0;
+  right: -25px;
+}
+/* line 14, ../sass/node-sass.sass */
+#views_slideshow_cycle_div_front_header_slider-block_2_0 .group-right {
+  margin-top: 60px;
+  width: 42%;
+  margin-left: 3%;
+}
+/* line 18, ../sass/node-sass.sass */
+#views_slideshow_cycle_div_front_header_slider-block_2_0 .group-right p {
+  width: 80%;
+}
+
+/* line 21, ../sass/node-sass.sass */
+#views_slideshow_cycle_div_front_header_slider-block_2_1 img {
+  position: absolute;
+  bottom: -36px;
+  right: 60px;
+}
+
+/* line 26, ../sass/node-sass.sass */
+#views_slideshow_cycle_div_front_header_slider-block_2_3 .group-right {
+  margin-top: 50px;
+  width: 42%;
+  margin-left: 2%;
+}
+/* line 30, ../sass/node-sass.sass */
+#views_slideshow_cycle_div_front_header_slider-block_2_3 .group-right p {
+  width: 80%;
+}

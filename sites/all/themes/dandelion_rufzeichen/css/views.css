@@ -104,6 +104,22 @@
 .node-type-projekt .view-projekte-overview .views-row img {
   border: 1px solid #ddd;
 }
+<<<<<<< HEAD
+/** Tooltips für Projektübersicht **/
+.bt-wrapper img {
+  display: block;
+  border: 1px solid #ddd;
+}
+.bt-wrapper h3 {
+  font-size: 16px;
+  margin-top: 7px;
+  margin-bottom: 2px;
+  color: #666;
+  padding-left: 3px;
+}
+#footer .bt-wrapper h3 {
+  font-style: normal;
+=======
 /** Projekt-Slider auf Hompage **/
 .front #content-area .view-projekte-overview img {
   padding: 0;
@@ -138,35 +154,7 @@
 }
 .front .view-projekte-overview .views-slideshow-cycle-main-frame-row .views-row {
   padding-right: 10px;	
+>>>>>>> 03861196776a5bf592fbe9341c97c25e7c9a2419
 }
 
- 
-.front .view-projekte-overview .views-slideshow-controls-text-previous {
-  position: absolute;
-  top: 95px;
-  z-index: 20;
-}
-.front .view-projekte-overview .views-slideshow-controls-text-previous a {
-  text-indent: -9999px;
-  display: inline-block;
-  width: 30px;
-  height: 45px;
-  background: url(../images/new-adapted/slideshow-arrow-left.png) no-repeat;	
-}
-.front .view-projekte-overview .views-slideshow-controls-text-pause {
-  display: none;
-}
-.front .view-projekte-overview .views-slideshow-controls-text-next {
-  position: absolute;
-  right: 0;
-  z-index: 20;
-  top: 95px;
-}
-.front .view-projekte-overview .views-slideshow-controls-text-next a {
-  text-indent: -9999px;
-  display: inline-block;
-  background: url(../images/new-adapted/slideshow-arrow-right.png) no-repeat;
-  width: 30px;
-  height: 45px;
-}
 
