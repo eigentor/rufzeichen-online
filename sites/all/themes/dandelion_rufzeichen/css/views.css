@@ -104,6 +104,7 @@
 .node-type-projekt .view-projekte-overview .views-row img {
   border: 1px solid #ddd;
 }
+<<<<<<< HEAD
 /** Tooltips für Projektübersicht **/
 .bt-wrapper img {
   display: block;
@@ -118,6 +119,42 @@
 }
 #footer .bt-wrapper h3 {
   font-style: normal;
+=======
+/** Projekt-Slider auf Hompage **/
+.front #content-area .view-projekte-overview img {
+  padding: 0;
+  box-shadow: 2px 2px 6px #ccc ;
+  margin: 10px;
+}
+.front .view-projekte-overview {
+  position: relative;
+  width: 426px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+.front .view-projekte-overview .skin-default {
+   width: 426px;
+}
+.front .view-projekte-overview:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.front .view-projekte-overview #views_slideshow_cycle_teaser_section_projekte_overview-block_2,
+.front .view-projekte-overview .views-slideshow-controls-top {
+   display: block;
+}
+.front .view-projekte-overview #views_slideshow_cycle_main_projekte_overview-block_2 {
+  padding: 0 33px 0 31px;
+}
+.front .view-projekte-overview .views-slideshow-cycle-main-frame-row {
+   overflow: hidden;
+}
+.front .view-projekte-overview .views-slideshow-cycle-main-frame-row .views-row {
+  padding-right: 10px;	
+>>>>>>> 03861196776a5bf592fbe9341c97c25e7c9a2419
 }
 
 

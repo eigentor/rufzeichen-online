@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*Projekt-Slider auf Hompage */
 /* line 6, ../sass/views-sass.sass */
 .front #content-area .view-projekte-overview {
@@ -88,4 +89,32 @@
   line-height: 1.4;
   color: #999999;
   width: 86%;
+=======
+/*Tooltips für Projektübersicht */
+/* line 9, ../sass/views-sass.sass */
+.bt-wrapper img {
+  display: block;
+  border: 1px solid #dddddd;
+}
+/* line 15, ../sass/views-sass.sass */
+.bt-wrapper h3 {
+  font-size: 16px;
+  margin-top: 7px;
+  margin-bottom: 2px;
+  color: #666666;
+  padding-left: 3px;
+}
+
+/* line 33, ../sass/views-sass.sass */
+#footer .bt-wrapper h3 {
+  font-style: normal;
+}
+
+/* line 43, ../sass/views-sass.sass */
+.page-projekte .bt-wrapper h3, .page-projekte .bt-wrapper h3 a {
+  padding: 0;
+  margin: 3px 0;
+  font-size: 1.6em;
+  color: #ed8137;
+>>>>>>> 03861196776a5bf592fbe9341c97c25e7c9a2419
 }
