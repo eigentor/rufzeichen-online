@@ -57,7 +57,7 @@ function rufzeichen_projekte_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '2',
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -71,7 +71,7 @@ function rufzeichen_projekte_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'body',
-      'label' => 'Projektbeschreibung Hauptteil',
+      'label' => 'Lösung',
       'required' => 0,
       'settings' => array(
         'display_summary' => 1,
@@ -86,7 +86,7 @@ function rufzeichen_projekte_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '5',
+        'weight' => '3',
       ),
     ),
   );
@@ -134,7 +134,7 @@ function rufzeichen_projekte_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '14',
         ),
       ),
       'entity_type' => 'node',
@@ -152,7 +152,7 @@ function rufzeichen_projekte_field_default_fields() {
           'rows' => '3',
         ),
         'type' => 'text_textarea',
-        'weight' => '4',
+        'weight' => '1',
       ),
     ),
   );
@@ -227,7 +227,7 @@ function rufzeichen_projekte_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '8',
+        'weight' => '6',
       ),
     ),
   );
@@ -281,7 +281,7 @@ function rufzeichen_projekte_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '14',
+          'weight' => '16',
         ),
       ),
       'entity_type' => 'node',
@@ -317,7 +317,7 @@ function rufzeichen_projekte_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '6',
+        'weight' => '4',
       ),
     ),
   );
@@ -392,7 +392,7 @@ function rufzeichen_projekte_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '9',
+        'weight' => '7',
       ),
     ),
   );
@@ -467,7 +467,7 @@ function rufzeichen_projekte_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '10',
+        'weight' => '8',
       ),
     ),
   );
@@ -517,12 +517,12 @@ function rufzeichen_projekte_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '4',
+          'weight' => '2',
         ),
       ),
       'entity_type' => 'node',
       'field_name' => 'field_project_text_secondary',
-      'label' => 'Zusatztext',
+      'label' => 'Aufgabe',
       'required' => 0,
       'settings' => array(
         'text_processing' => '1',
@@ -535,7 +535,7 @@ function rufzeichen_projekte_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '11',
+        'weight' => '2',
       ),
     ),
   );
@@ -589,7 +589,7 @@ function rufzeichen_projekte_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '13',
+          'weight' => '15',
         ),
       ),
       'entity_type' => 'node',
@@ -625,7 +625,7 @@ function rufzeichen_projekte_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '12',
+        'weight' => '9',
       ),
     ),
   );
@@ -709,23 +709,23 @@ function rufzeichen_projekte_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '7',
+        'weight' => '5',
       ),
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Aufgabe');
   t('Aufgaben Rufzeichen');
   t('Bilder');
   t('Branche des Kunden');
   t('Dieser Thumb wird in Übersichtsviews angezeigt');
   t('Kurzbeschreibung');
-  t('Projektbeschreibung Hauptteil');
+  t('Lösung');
   t('Technische Besonderheiten');
   t('Thumb für Übersicht');
   t('URL der Seite');
-  t('Zusatztext');
 
   return $fields;
 }

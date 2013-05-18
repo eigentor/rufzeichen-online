@@ -40,3 +40,9 @@
 #views_slideshow_cycle_div_front_header_slider-block_2_3 .group-right p {
   width: 80%;
 }
+
+/*Detailansicht Projekt */
+/* line 41, ../sass/node-sass.sass */
+.node-type-projekt .field-name-field-project-text-secondary h3 {
+  margin-top: 0;
+}
