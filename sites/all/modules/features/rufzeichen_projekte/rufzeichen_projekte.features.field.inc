@@ -13,9 +13,9 @@ function rufzeichen_projekte_field_default_fields() {
   // Exported field: 'node-projekt-body'.
   $fields['node-projekt-body'] = array(
     'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
+      'active' => 1,
+      'cardinality' => 1,
+      'deleted' => 0,
       'entity_types' => array(
         0 => 'node',
       ),
@@ -33,16 +33,16 @@ function rufzeichen_projekte_field_default_fields() {
           0 => 'format',
         ),
       ),
-      'locked' => '0',
+      'locked' => 0,
       'module' => 'text',
       'settings' => array(),
-      'translatable' => '1',
+      'translatable' => 1,
       'type' => 'text_with_summary',
     ),
     'field_instance' => array(
       'bundle' => 'projekt',
       'default_value' => NULL,
-      'deleted' => '0',
+      'deleted' => 0,
       'description' => '',
       'display' => array(
         'default' => array(
@@ -50,14 +50,14 @@ function rufzeichen_projekte_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '0',
+          'weight' => 0,
         ),
         'full' => array(
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '3',
+          'weight' => 3,
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -75,18 +75,18 @@ function rufzeichen_projekte_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'display_summary' => 1,
-        'text_processing' => '1',
+        'text_processing' => 1,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'rows' => '20',
+          'rows' => 20,
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '3',
+        'weight' => 3,
       ),
     ),
   );
@@ -94,9 +94,9 @@ function rufzeichen_projekte_field_default_fields() {
   // Exported field: 'node-projekt-field_pr_short_description'.
   $fields['node-projekt-field_pr_short_description'] = array(
     'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
+      'active' => 1,
+      'cardinality' => 1,
+      'deleted' => 0,
       'entity_types' => array(),
       'field_name' => 'field_pr_short_description',
       'foreign keys' => array(
@@ -112,29 +112,29 @@ function rufzeichen_projekte_field_default_fields() {
           0 => 'format',
         ),
       ),
-      'locked' => '0',
+      'locked' => 0,
       'module' => 'text',
       'settings' => array(),
-      'translatable' => '0',
+      'translatable' => 0,
       'type' => 'text_long',
     ),
     'field_instance' => array(
       'bundle' => 'projekt',
       'default_value' => NULL,
-      'deleted' => '0',
+      'deleted' => 0,
       'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '9',
+          'weight' => 9,
         ),
         'full' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '14',
+          'weight' => 14,
         ),
       ),
       'entity_type' => 'node',
@@ -142,17 +142,17 @@ function rufzeichen_projekte_field_default_fields() {
       'label' => 'Kurzbeschreibung',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
+        'text_processing' => 0,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'rows' => '3',
+          'rows' => 3,
         ),
         'type' => 'text_textarea',
-        'weight' => '1',
+        'weight' => 1,
       ),
     ),
   );
@@ -160,9 +160,9 @@ function rufzeichen_projekte_field_default_fields() {
   // Exported field: 'node-projekt-field_project_business_area'.
   $fields['node-projekt-field_project_business_area'] = array(
     'field_config' => array(
-      'active' => '1',
-      'cardinality' => '2',
-      'deleted' => '0',
+      'active' => 1,
+      'cardinality' => 2,
+      'deleted' => 0,
       'entity_types' => array(),
       'field_name' => 'field_project_business_area',
       'foreign keys' => array(
@@ -178,23 +178,23 @@ function rufzeichen_projekte_field_default_fields() {
           0 => 'tid',
         ),
       ),
-      'locked' => '0',
+      'locked' => 0,
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
           0 => array(
             'vocabulary' => 'branche_des_kunden',
-            'parent' => '0',
+            'parent' => 0,
           ),
         ),
       ),
-      'translatable' => '0',
+      'translatable' => 0,
       'type' => 'taxonomy_term_reference',
     ),
     'field_instance' => array(
       'bundle' => 'projekt',
       'default_value' => NULL,
-      'deleted' => '0',
+      'deleted' => 0,
       'description' => '',
       'display' => array(
         'default' => array(
@@ -202,14 +202,14 @@ function rufzeichen_projekte_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '3',
+          'weight' => 3,
         ),
         'full' => array(
           'label' => 'hidden',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '5',
+          'weight' => 5,
         ),
       ),
       'entity_type' => 'node',
@@ -227,7 +227,7 @@ function rufzeichen_projekte_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '6',
+        'weight' => 6,
       ),
     ),
   );
@@ -235,9 +235,9 @@ function rufzeichen_projekte_field_default_fields() {
   // Exported field: 'node-projekt-field_project_images'.
   $fields['node-projekt-field_project_images'] = array(
     'field_config' => array(
-      'active' => '1',
-      'cardinality' => '5',
-      'deleted' => '0',
+      'active' => 1,
+      'cardinality' => 5,
+      'deleted' => 0,
       'entity_types' => array(),
       'field_name' => 'field_project_images',
       'foreign keys' => array(
@@ -253,18 +253,18 @@ function rufzeichen_projekte_field_default_fields() {
           0 => 'fid',
         ),
       ),
-      'locked' => '0',
+      'locked' => 0,
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
         'uri_scheme' => 'public',
       ),
-      'translatable' => '0',
+      'translatable' => 0,
       'type' => 'image',
     ),
     'field_instance' => array(
       'bundle' => 'projekt',
-      'deleted' => '0',
+      'deleted' => 0,
       'description' => '',
       'display' => array(
         'default' => array(
@@ -275,13 +275,13 @@ function rufzeichen_projekte_field_default_fields() {
             'image_style' => '',
           ),
           'type' => 'image',
-          'weight' => '1',
+          'weight' => 1,
         ),
         'full' => array(
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '16',
+          'weight' => 16,
         ),
       ),
       'entity_type' => 'node',
@@ -317,7 +317,7 @@ function rufzeichen_projekte_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '4',
+        'weight' => 4,
       ),
     ),
   );
@@ -325,9 +325,9 @@ function rufzeichen_projekte_field_default_fields() {
   // Exported field: 'node-projekt-field_project_task'.
   $fields['node-projekt-field_project_task'] = array(
     'field_config' => array(
-      'active' => '1',
-      'cardinality' => '3',
-      'deleted' => '0',
+      'active' => 1,
+      'cardinality' => 3,
+      'deleted' => 0,
       'entity_types' => array(),
       'field_name' => 'field_project_task',
       'foreign keys' => array(
@@ -343,23 +343,23 @@ function rufzeichen_projekte_field_default_fields() {
           0 => 'tid',
         ),
       ),
-      'locked' => '0',
+      'locked' => 0,
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
           0 => array(
             'vocabulary' => 'aufgaben_rufzeichen',
-            'parent' => '0',
+            'parent' => 0,
           ),
         ),
       ),
-      'translatable' => '0',
+      'translatable' => 0,
       'type' => 'taxonomy_term_reference',
     ),
     'field_instance' => array(
       'bundle' => 'projekt',
       'default_value' => NULL,
-      'deleted' => '0',
+      'deleted' => 0,
       'description' => '',
       'display' => array(
         'default' => array(
@@ -367,14 +367,14 @@ function rufzeichen_projekte_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '4',
+          'weight' => 4,
         ),
         'full' => array(
           'label' => 'hidden',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '6',
+          'weight' => 6,
         ),
       ),
       'entity_type' => 'node',
@@ -392,7 +392,7 @@ function rufzeichen_projekte_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '7',
+        'weight' => 7,
       ),
     ),
   );
@@ -400,9 +400,9 @@ function rufzeichen_projekte_field_default_fields() {
   // Exported field: 'node-projekt-field_project_technical_details'.
   $fields['node-projekt-field_project_technical_details'] = array(
     'field_config' => array(
-      'active' => '1',
-      'cardinality' => '3',
-      'deleted' => '0',
+      'active' => 1,
+      'cardinality' => 3,
+      'deleted' => 0,
       'entity_types' => array(),
       'field_name' => 'field_project_technical_details',
       'foreign keys' => array(
@@ -418,23 +418,23 @@ function rufzeichen_projekte_field_default_fields() {
           0 => 'tid',
         ),
       ),
-      'locked' => '0',
+      'locked' => 0,
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
           0 => array(
             'vocabulary' => 'technische_besonderheiten',
-            'parent' => '0',
+            'parent' => 0,
           ),
         ),
       ),
-      'translatable' => '0',
+      'translatable' => 0,
       'type' => 'taxonomy_term_reference',
     ),
     'field_instance' => array(
       'bundle' => 'projekt',
       'default_value' => NULL,
-      'deleted' => '0',
+      'deleted' => 0,
       'description' => '',
       'display' => array(
         'default' => array(
@@ -442,14 +442,14 @@ function rufzeichen_projekte_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '5',
+          'weight' => 5,
         ),
         'full' => array(
           'label' => 'hidden',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '7',
+          'weight' => 7,
         ),
       ),
       'entity_type' => 'node',
@@ -467,7 +467,7 @@ function rufzeichen_projekte_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '8',
+        'weight' => 8,
       ),
     ),
   );
@@ -475,9 +475,9 @@ function rufzeichen_projekte_field_default_fields() {
   // Exported field: 'node-projekt-field_project_text_secondary'.
   $fields['node-projekt-field_project_text_secondary'] = array(
     'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
+      'active' => 1,
+      'cardinality' => 1,
+      'deleted' => 0,
       'entity_types' => array(),
       'field_name' => 'field_project_text_secondary',
       'foreign keys' => array(
@@ -493,16 +493,16 @@ function rufzeichen_projekte_field_default_fields() {
           0 => 'format',
         ),
       ),
-      'locked' => '0',
+      'locked' => 0,
       'module' => 'text',
       'settings' => array(),
-      'translatable' => '0',
+      'translatable' => 0,
       'type' => 'text_long',
     ),
     'field_instance' => array(
       'bundle' => 'projekt',
       'default_value' => NULL,
-      'deleted' => '0',
+      'deleted' => 0,
       'description' => '',
       'display' => array(
         'default' => array(
@@ -510,14 +510,14 @@ function rufzeichen_projekte_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '6',
+          'weight' => 6,
         ),
         'full' => array(
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '2',
+          'weight' => 2,
         ),
       ),
       'entity_type' => 'node',
@@ -525,17 +525,17 @@ function rufzeichen_projekte_field_default_fields() {
       'label' => 'Aufgabe',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '1',
+        'text_processing' => 1,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'rows' => '5',
+          'rows' => 5,
         ),
         'type' => 'text_textarea',
-        'weight' => '2',
+        'weight' => 2,
       ),
     ),
   );
@@ -543,9 +543,9 @@ function rufzeichen_projekte_field_default_fields() {
   // Exported field: 'node-projekt-field_project_thumb_overview'.
   $fields['node-projekt-field_project_thumb_overview'] = array(
     'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
+      'active' => 1,
+      'cardinality' => 1,
+      'deleted' => 0,
       'entity_types' => array(),
       'field_name' => 'field_project_thumb_overview',
       'foreign keys' => array(
@@ -561,18 +561,18 @@ function rufzeichen_projekte_field_default_fields() {
           0 => 'fid',
         ),
       ),
-      'locked' => '0',
+      'locked' => 0,
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
         'uri_scheme' => 'public',
       ),
-      'translatable' => '0',
+      'translatable' => 0,
       'type' => 'image',
     ),
     'field_instance' => array(
       'bundle' => 'projekt',
-      'deleted' => '0',
+      'deleted' => 0,
       'description' => 'Dieser Thumb wird in Übersichtsviews angezeigt',
       'display' => array(
         'default' => array(
@@ -583,13 +583,13 @@ function rufzeichen_projekte_field_default_fields() {
             'image_style' => '',
           ),
           'type' => 'image',
-          'weight' => '7',
+          'weight' => 7,
         ),
         'full' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '15',
+          'weight' => 15,
         ),
       ),
       'entity_type' => 'node',
@@ -625,7 +625,7 @@ function rufzeichen_projekte_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'media_generic',
-        'weight' => '9',
+        'weight' => 9,
       ),
     ),
   );
@@ -633,14 +633,14 @@ function rufzeichen_projekte_field_default_fields() {
   // Exported field: 'node-projekt-field_project_url'.
   $fields['node-projekt-field_project_url'] = array(
     'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
+      'active' => 1,
+      'cardinality' => 1,
+      'deleted' => 0,
       'entity_types' => array(),
       'field_name' => 'field_project_url',
       'foreign keys' => array(),
       'indexes' => array(),
-      'locked' => '0',
+      'locked' => 0,
       'module' => 'link',
       'settings' => array(
         'attributes' => array(
@@ -657,13 +657,13 @@ function rufzeichen_projekte_field_default_fields() {
         'title_value' => '',
         'url' => 0,
       ),
-      'translatable' => '0',
+      'translatable' => 0,
       'type' => 'link_field',
     ),
     'field_instance' => array(
       'bundle' => 'projekt',
       'default_value' => NULL,
-      'deleted' => '0',
+      'deleted' => 0,
       'description' => '',
       'display' => array(
         'default' => array(
@@ -671,14 +671,14 @@ function rufzeichen_projekte_field_default_fields() {
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => '2',
+          'weight' => 2,
         ),
         'full' => array(
           'label' => 'hidden',
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => '4',
+          'weight' => 4,
         ),
       ),
       'entity_type' => 'node',
@@ -694,11 +694,11 @@ function rufzeichen_projekte_field_default_fields() {
           'title' => '',
         ),
         'display' => array(
-          'url_cutoff' => '80',
+          'url_cutoff' => 80,
         ),
         'enable_tokens' => 1,
         'title' => 'optional',
-        'title_maxlength' => '128',
+        'title_maxlength' => 128,
         'title_value' => '',
         'url' => 0,
         'user_register_form' => FALSE,
@@ -709,7 +709,7 @@ function rufzeichen_projekte_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '5',
+        'weight' => 5,
       ),
     ),
   );
