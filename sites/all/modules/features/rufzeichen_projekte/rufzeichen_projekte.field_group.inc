@@ -21,7 +21,7 @@ function rufzeichen_projekte_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Properties with Icons',
-    'weight' => '3',
+    'weight' => '4',
     'children' => array(
       0 => 'field_project_business_area',
       1 => 'field_project_task',

@@ -54,9 +54,6 @@ $beautytip_content = render($row->field_field_project_images_1);
 $beautytip_content .= '<h3>' . $row->node_title . '</h3>';
 $beautytip_content .= $short_description; 
 
-dpm ($short_description);
-?>
-
 <?php foreach ($fields as $id => $field): ?>
   <?php if (!empty($field->separator)): ?>
     <?php print $field->separator; ?>

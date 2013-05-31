@@ -13,9 +13,9 @@ function rufzeichen_projekte_taxonomy_default_vocabularies() {
       'name' => 'Aufgaben Rufzeichen',
       'machine_name' => 'aufgaben_rufzeichen',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -36,9 +36,9 @@ function rufzeichen_projekte_taxonomy_default_vocabularies() {
       'name' => 'Branche des Kunden',
       'machine_name' => 'branche_des_kunden',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -59,9 +59,9 @@ function rufzeichen_projekte_taxonomy_default_vocabularies() {
       'name' => 'Technische Besonderheiten',
       'machine_name' => 'technische_besonderheiten',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',

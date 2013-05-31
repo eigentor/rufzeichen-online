@@ -4,8 +4,10 @@ sites/*/local.settings.php
 # Ignore paths that contain user-generated content.
 sites/*/files
 sites/*/private
-*.sublime-project
-*.sublime-workspace
 
 *.sassc
 *.scssc
+
+*.sublime-project
+*.sublime-workspace
+
