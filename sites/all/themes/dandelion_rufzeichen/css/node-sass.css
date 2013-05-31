@@ -44,31 +44,34 @@
 /*Detailansicht Projekt */
 /* line 36, ../sass/node-sass.sass */
 .node-type-projekt .field-name-field-project-text-secondary {
-  color: #919191;
-  background: url(../images/icons/quote-left.png) no-repeat 2px 37px;
+  margin: 0 0 0 -10px;
+  padding: 0 0 0 20px;
+  color: #999999;
+  background: url(../images/icons/quote-left.png) no-repeat 0 38px;
+  font-family: georgia, times, serif;
 }
-/* line 44, ../sass/node-sass.sass */
+/* line 42, ../sass/node-sass.sass */
 .node-type-projekt .field-name-field-project-text-secondary .field-items {
   background: url(../images/icons/quote-right.png) no-repeat right bottom;
-  margin-right: 30px;
+  padding: 0 15px 0 0;
 }
-/* line 47, ../sass/node-sass.sass */
+/* line 46, ../sass/node-sass.sass */
 .node-type-projekt .field-name-field-project-text-secondary p {
-  font-size: 1.2em;
+  font-size: 1.29em;
   line-height: 1.4em;
-  padding: 0 20px 0 30px;
 }
-/* line 53, ../sass/node-sass.sass */
+/* line 51, ../sass/node-sass.sass */
 .node-type-projekt .field-name-field-project-text-secondary h3 {
   color: #4981d1;
   margin-top: 0;
   margin-bottom: 5px;
 }
-/* line 60, ../sass/node-sass.sass */
+/* line 58, ../sass/node-sass.sass */
 .node-type-projekt .field-name-body {
+  padding: 0 0 0 10px;
   color: #555555;
 }
-/* line 62, ../sass/node-sass.sass */
+/* line 61, ../sass/node-sass.sass */
 .node-type-projekt .field-name-body h3 {
   color: #ea5b0c;
   margin-bottom: 5px;
