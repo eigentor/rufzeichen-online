@@ -55,3 +55,14 @@
   background: none;
   border: none;
 }
+
+/*General Micro-Elements */
+/* Code-Blocks */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\0000352}}
+p code {
+  background-color: #f7fafd;
+  border: 1px solid #d5d5d5;
+  padding: 7px 15px;
+  display: block;
+  margin: 12px 0;
+}
