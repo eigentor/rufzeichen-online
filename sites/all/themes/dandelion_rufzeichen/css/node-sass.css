@@ -88,3 +88,32 @@
   font-size: 1.48em;
   color: #777777;
 }
+
+/*---------------------------------------------------------
+ **************  Projekte Übersicht  **********************
+ * ---------------------------------------------------------- */
+/* line 71, ../sass/node-sass.sass */
+.page-projekte #content-inner {
+  width: 940px;
+  margin-right: 0;
+}
+/* line 75, ../sass/node-sass.sass */
+.page-projekte .view-projekte-overview .views-row {
+  float: left;
+  margin: 0 20px 25px 0;
+}
+/* line 78, ../sass/node-sass.sass */
+.page-projekte .view-projekte-overview .views-row .views-field-field-project-images {
+  margin-right: 30px;
+}
+/* line 80, ../sass/node-sass.sass */
+.page-projekte .view-projekte-overview .view-header {
+  width: 700px;
+  margin-bottom: 22px;
+}
+/* line 83, ../sass/node-sass.sass */
+.page-projekte .view-projekte-overview h4 {
+  font-size: 1.3em;
+  margin-top: 3px;
+  padding-left: 2px;
+}

@@ -1,0 +1,155 @@
+/* line 1, ../sass/layouts-sass.sass */
+#admin-menu ul li {
+  font-size: 11px;
+}
+
+/*End Admin Menu */
+/* line 7, ../sass/layouts-sass.sass */
+body, html {
+  height: 100%;
+  width: 100%;
+}
+
+/* line 11, ../sass/layouts-sass.sass */
+body {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 12px;
+  color: #6a6a6a;
+  line-height: 1.6em;
+  background-color: #aaa9a9;
+}
+
+/* line 18, ../sass/layouts-sass.sass */
+#page-wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  width: 100%;
+  background: #aaaaaa url(../images/patterns/pattern16-b.png);
+  /*background: #aaa url(../images/patterns/pattern20.png) */
+  /*background: #aaa url(../images/patterns/pattern21.png) */
+  padding: 26px 0 23px;
+}
+
+/* line 28, ../sass/layouts-sass.sass */
+#page {
+  width: 980px;
+  margin: auto;
+  background: white;
+  min-height: 750px;
+  height: auto !important;
+  height: 750px;
+  /*border: 1px dashed #555 */
+  box-shadow: 0px 0px 10px #888888;
+}
+
+/* line 39, ../sass/layouts-sass.sass */
+#site {
+  height: auto;
+  width: 980px;
+  text-align: left;
+  padding: 0px;
+  background-color: white;
+  float: left;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* line 50, ../sass/layouts-sass.sass */
+#line-top {
+  background-color: #535353;
+  border-bottom: 1px solid #272727;
+  height: 5px;
+}
+
+/* line 56, ../sass/layouts-sass.sass */
+.center {
+  height: auto;
+  margin: auto;
+  text-align: left;
+  padding: 0px;
+}
+
+/* line 62, ../sass/layouts-sass.sass */
+#content {
+  padding-top: 30px;
+}
+
+/* line 66, ../sass/layouts-sass.sass */
+#header-top {
+  width: 100%;
+  display: block;
+  height: 100px;
+}
+
+/* line 71, ../sass/layouts-sass.sass */
+#header {
+  height: 140px;
+  background: url(../images/new-adapted/header-schreibmaschine.jpg) no-repeat;
+  background: url(../images/new-adapted/header-asian-cars.jpg) no-repeat;
+  position: relative;
+}
+
+/* line 77, ../sass/layouts-sass.sass */
+#header-top-line {
+  position: absolute;
+  height: 6px;
+  width: 100%;
+  background: rgba(50, 50, 50, 0.4);
+}
+
+/* line 84, ../sass/layouts-sass.sass */
+.front #header {
+  height: 400px;
+  background: none;
+}
+
+/* line 88, ../sass/layouts-sass.sass */
+#logo {
+  float: left;
+  width: 280px;
+  padding: 27px 0 0 45px;
+  position: relative;
+}
+
+/* line 94, ../sass/layouts-sass.sass */
+.front #logo {
+  padding-left: 48px;
+  padding-top: 17px;
+}
+
+/* line 98, ../sass/layouts-sass.sass */
+#site-slogan {
+  position: absolute;
+  top: 60px;
+  left: 77px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-style: italic;
+  color: #aaaaaa;
+  font-size: 14px;
+}
+
+/* line 107, ../sass/layouts-sass.sass */
+.front #site-slogan {
+  left: 80px;
+  top: 49px;
+  color: #cccccc;
+}
+
+/*---------------------------- LOGO ---------------------------- */
+/* line 114, ../sass/layouts-sass.sass */
+#logo-container {
+  width: 160px;
+  float: left;
+  margin-top: 15px;
+  margin-left: 40px;
+}
+
+/* line 121, ../sass/layouts-sass.sass */
+#logo-container a {
+  width: 160px;
+  height: 71px;
+  display: block;
+  background-image: url(images/logo.png);
+  background-repeat: no-repeat;
+}
