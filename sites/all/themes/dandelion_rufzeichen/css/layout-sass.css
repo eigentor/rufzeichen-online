@@ -219,3 +219,25 @@ body {
   color: #ed8137;
   background: url(../images/new-adapted/menu-background-orange.png) no-repeat right 6px;
 }
+
+/*-------------------------CONTENT---------------------------- */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/layout-sass\.sass}line{font-family:\00003179}}
+.content-gradient {
+  background-image: url(../images/content_bg.png);
+  background-repeat: repeat-x;
+  background-position: top;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/layout-sass\.sass}line{font-family:\00003184}}
+#content-inner {
+  height: auto;
+  min-height: 200px;
+  width: 580px;
+  margin: 40px;
+  margin-top: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/layout-sass\.sass}line{font-family:\00003192}}
+.node-type-news #content-inner {
+  width: 640px;
+}

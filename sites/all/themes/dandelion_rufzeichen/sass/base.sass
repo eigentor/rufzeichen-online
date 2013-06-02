@@ -1,5 +1,47 @@
 @import "variables-mixins.sass"
 
+/* Magnifying glass for Colorbox hover mouse arrow */
 .colorbox 
   img 
     cursor: url(/sites/all/themes/dandelion_rufzeichen/images/new-adapted/lupe.cur), url(../images/new-adapted/lupe.cur), pointer
+
+/*----- Drupal-specific Micro-Elements -----*/
+
+/* Submitted Information */
+.submitted 
+  color: #6a6a6a
+  float: left
+  font-size: 11px
+  margin-bottom: 15px
+  width: 100%
+  position: relative
+  border-bottom: 1px solid #ebebeb
+  border-top: 1px solid #ebebeb
+  padding-bottom: 7px
+  padding-top: 7px
+  font-family: Georgia,"Times New Roman",Times,serif
+  font-style: italic
+  ul
+    margin-left: 0px
+    li
+      display: inline
+      float: left
+      padding-right: 15px
+  a
+    font-style: normal
+    color: #ed8137
+    text-transform: uppercase
+  div
+    display: inline
+
+/* Borders and no borders around images */
+#content-area, #sidebar-second 
+  img 
+    padding: 4px
+    background-color: #fefefe
+    border: 1px solid #d9d9d9
+  img.no-frame, &.image-border-none
+    padding: 0
+    background: none
+    border: none
+  
