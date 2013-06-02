@@ -5,7 +5,11 @@ http_path = "/"
 css_dir = "css"
 sass_dir = "sass"
 images_dir = "images"
-javascripts_dir = "js"
+javascripts_dir = "javascripts"
+
+sass_options = {:debug_info => true}
+
+require "susy"
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed

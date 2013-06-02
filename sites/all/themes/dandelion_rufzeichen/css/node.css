@@ -323,26 +323,7 @@ ul.inline li.node-readmore a {
   font-size: 0.93em;
   color: #333;
 }
-/*---------------------------------------------------------
- **************  Projekte Übersicht  **********************
- ----------------------------------------------------------*/
-.page-projekte .view-projekte-overview .views-row {
-    float: left;
-    margin: 0 50px 25px 0;
-}
-.page-projekte .view-projekte-overview .view-header {
-  width: 700px;
-  margin-bottom: 22px;
-}
-.page-projekte #content-inner {
-  width: 940px; 
-  margin-right: 0; 
-}
-.page-projekte .view-projekte-overview h4 {
-  font-size: 1.3em;
-  margin-top: 3px;
-  padding-left: 2px;
-}
+
 /*---------------------------------------------------------
     Leistungen Seite
  ----------------------------------------------------------*/

@@ -4,6 +4,7 @@
 .front
   #content-area
     .view-projekte-overview
+      +legacy-pie-clearfix
       position: relative
       width: 426px
       overflow: hidden
@@ -14,18 +15,13 @@
         +box-shadow(2px 2px 6px #ccc)      
       .skin-default
         width: 426px
-      &:after
-        content: "."
-        display: block
-        height: 0
-        clear: both
-        visibility: hidden
       #views_slideshow_cycle_teaser_section_projekte_overview-block_2,
       .view-projekte-overview .views-slideshow-controls-top
         display: block
       #views_slideshow_cycle_main_projekte_overview-block_2
         padding: 0 33px 0 31px
       .views-slideshow-cycle-main-frame-row
+        overflow: hidden
         .views-row
           padding-right: 10px
       .views-slideshow-controls-text-previous
@@ -74,7 +70,7 @@
     margin-top: 7px
     margin-bottom: 2px
     color: #666
-    padding-left: 3px
+    padding-left: 3px  
 
 #footer 
   .bt-wrapper 
@@ -88,4 +84,111 @@
       margin: 3px 0
       font-size: 1.6em
       color: $primary-orange-text
+
+/* Gallery in Sidebar second */
+#sidebar-second .view-gallery-list img,
+#footer .view-gallery-list img 
+  margin: 0 12px 12px 0
+
+
+/** Footer News Block 1 **/
+#footer
+  #block-views-Newsblock_Startseite-block_2, #block-views-Newsblock_Startseite-block_3 
+    .views-row 
+      border-bottom: 1px solid #dadada
+      padding-top: 7px
+      padding-bottom: 7px
+      a
+        display: block
+        color: #848484
+        line-height: 1.4
+        &:hover
+          text-decoration: none
+          color: #999
+    .views-row-last
+      border-bottom: none 
+
+/** Gallery View Page **/
+.page-galerien
+  .view-gallery-list
+    .views-row 
+      float: left
+      margin: 0 30px 30px 0   
+
+/** News-Übersicht **/
+.view-News-Hauptseite, .page-taxonomy-term .view-taxonomy-term 
+  .views-row 
+    padding-bottom: 20px
+
+
+/** Gallery View on Project Node **/
+.node-type-projekt
+  .view-header  
+    margin-top: -20px
+    h2
+      color: #ED8137
+      color: #777
+      margin-top: 0
+      font-size: 23px
+      margin-bottom: 15px
+  #content-area
+    .view-images-project
+      +legacy-pie-clearfix
+      .views_slideshow_cycle_main
+        float: left
+        img
+          padding: 0
+          border: 1px solid #ccc
+          box-shadow: #e7e7e7 0px 2px 5px
+      .views-slideshow-controls-bottom
+        float: left
+        margin-left: 40px
+        img
+          padding: 0
+          border: 1px solid #c9c9c9
+          &:hover
+            cursor: pointer
+            cursor: hand
+        .views-slideshow-pager-field-item
+          margin-bottom: 16px
+    #widget_pager_bottom_images_project-entity_view_1
+      margin-bottom: -20px
+  /** Übersicht Projekte im Footer Projekt Full Node **/
+  .view-projekte-overview 
+    .views-row 
+      float: left
+      margin: 0 25px 20px 0
+      img
+        border: 1px solid #ddd
+
+/** Projekt-Slider auf Hompage **/
+.front 
+  #content-area 
+    .view-projekte-overview
+      +legacy-pie-clearfix
+      position: relative
+      width: 426px
+      overflow: hidden
+      margin-top: 5px 
+      img 
+        padding: 0
+        box-shadow: 2px 2px 6px #ccc 
+        margin: 10px
+      .skin-default
+        width: 426px
+    #views_slideshow_cycle_teaser_section_projekte_overview-block_2, .views-slideshow-controls-top
+      display: block
+    #views_slideshow_cycle_main_projekte_overview-block_2
+      padding: 0 33px 0 31px
+    .views-slideshow-cycle-main-frame-row
+      overflow: hidden
+      .views-row
+        padding-right: 10px
+
+
+
+
+
+
+
 
