@@ -56,13 +56,68 @@
   border: none;
 }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\0000348}}
+ul.tabs.primary {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\0000353}}
+ul.tabs.primary li a {
+  font-family: georgia, times, serif;
+  float: left;
+  line-height: 1.7em;
+  text-transform: uppercase;
+  border: 1px solid #bbbbbb;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\0000363}}
+ul.tabs.primary li a:active {
+  outline: none;
+}
+
 /*General Micro-Elements */
 /* Code-Blocks */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\0000352}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\0000371}}
 p code {
   background-color: #f7fafd;
   border: 1px solid #d5d5d5;
   padding: 7px 15px;
   display: block;
   margin: 12px 0;
+}
+
+/**-------- Forms ---------** */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\0000380}}
+input {
+  height: 24px;
+  border: 1px solid #cccccc;
+  background-color: white;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\0000390}}
+textarea {
+  padding: 7px;
+  border: 1px solid #cccccc;
+  padding-left: 5px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
 }

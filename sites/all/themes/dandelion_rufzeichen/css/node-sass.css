@@ -117,3 +117,9 @@
   margin-top: 3px;
   padding-left: 2px;
 }
+
+/** Contact Form ** */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/node-sass\.sass}line{font-family:\0000392}}
+form#webform-client-form-22 textarea {
+  height: 200px;
+}
