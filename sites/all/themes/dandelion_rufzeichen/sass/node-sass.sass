@@ -101,10 +101,60 @@ form#webform-client-form-22
     float: right
     margin: 5px 0 5px 15px
 
+/** Taxonomy Menu auf News **/
+.sidebar #block-menu-menu-news-men- ul li a 
+  display: block
+  color: #888
+  text-decoration: none
+  font-size: 11px
+  padding: 3px 6px
+  border-bottom: 1px solid #ebebeb
+  width: 100%
+
+/** Bild Borders **/
 .image-border-none #content-area .node-news .field-name-field-hauptbild img,
 #content-area .image-border-none .field-name-field-hauptbild img 
   border: none
 
+/** Jplayer **/
+div.jp-interface 
+  border: 1px solid #ccc
+
+div.jp-playlist 
+  background: #fafafa
+  border: 1px solid #ddd
+  div.jp-playlist 
+    li
+      border-bottom: 1px solid #e7e7e7
+
+div.jp-audio 
+  width: 100%
+
+/** News in Übersichtsview **/
+
+ul.inline, ul.links.inline 
+  font-family: Georgia,"Times New Roman",Times,serif
+  font-size: 1em
+  font-style: italic
+  margin-left: 0
+
+ul.inline 
+  li 
+    padding: 0px 10px 0px 0
+    a
+      padding: 2px 0
+    &.comment-add 
+      a
+        background: url("../images/reply.png") no-repeat scroll 0 2px transparent
+        padding-left: 23px
+    &.comment-comments 
+      a
+        background: url("../images/comment-icon.png") no-repeat scroll 0 2px transparent
+        padding-left: 23px
+    &.node-readmore 
+      a
+        background: url("../images/read-more-icon.png") no-repeat scroll 2px 2px transparent
+        padding-left: 24px
 
 /** Gallery **/
 .node-image-gallery 
@@ -117,95 +167,72 @@ form#webform-client-form-22
     display: block
 
 /** Comments **/
-.comment .user-picture 
-  float: left
-  display: inline
-
-.user-picture-wrapper 
-  float: left
-
-.comment .comment-content 
-  margin-left: 110px
-
-h2.comment-form,
-form#comment-form 
+h2.comment-form
+  margin-left: 5px
+  margin-top: 30px
+form#comment-form
   margin-left: 5px
 
-h2.comment-form 
-  margin-top: 30px
-
-.comment .submitted 
-  float: none
-
-#comments .comment 
+.comment
   background-color: #FAFAFA
   border: 1px solid #e5e5e5
   border-radius: 2px 2px 2px 2px
   font-size: 12px
   margin-top: 20px
-  padding: 20px 25px 20px 20px
-
-.comment h3 
-  margin-top: 0
-  margin-bottom: 2px
-  font-size: 1.6em
-
-.comment .comment-author 
-  width: 90px
-
-.comment p 
-  margin-top: 0
-  margin-bottom: 10px
-
-.comment .comment-author span,
-.comment .comment-author a 
-  font-size: 0.93em
-  line-height: 1
-  font-family: Georgia,"Times New Roman",Times,serif
-  font-style: italic
-
-.comment .links 
-  font-family: Georgia,"Times New Roman",Times,serif
-  font-size: 1em
-  font-style: italic
-  color: #999
-
-.comment ul.links,
-.comment .comment-date 
-  float: right
-  padding-right: 15px
-
-.comment ul.links 
-  margin-left: 15px
-
-.comment ul.links li,
-.comment ul.links li a 
-  font-size: 11px 
-
-.comment ul.links li  
-  padding: 3px 0
-
-.comment ul.links li a 
-  padding-top: 2px
-  padding-bottom: 2px
-
-.comment ul.links li.comment-delete a 
-  padding-left: 21px
-  padding-right: 10px
-  background: url(../images/delete-icon.png) no-repeat 0 center
-
-.comment ul.links li.comment-edit a 
-  padding-left: 21px
-  padding-right: 10px
-  background: url(../images/edit-icon.png) no-repeat 0 center
-
-.comment ul.links li.comment-reply a 
-  padding-left: 23px
-  background: url(../images/reply.png) no-repeat 0 2px
-
-
-  
-
-
-  
-
+  padding: 20px 25px 20px 20px 
+  .user-picture 
+    float: left
+    display: inline
+  .user-picture-wrapper
+    float: left
+  .comment-content
+    margin-left: 110px
+  .submitted
+    float: none
+  h3
+    margin-top: 0
+    margin-bottom: 2px
+    font-size: 1.6em
+  .comment-author
+    width: 90px
+    span, a
+      font-size: 0.93em
+      line-height: 1
+      font-family: Georgia,"Times New Roman",Times,serif
+      font-style: italic
+  p
+    margin-top: 0
+    margin-bottom: 10px
+  .links
+    color: #999
+    font-family: Georgia,"Times New Roman",Times,serif
+    font-size: 1em
+    font-style: italic
+  .comment-date
+    float: right
+    padding-right: 15px
+  ul.links
+    float: right
+    padding-right: 15px
+    margin-left: 15px
+    li
+      padding: 3px 0
+      font-size: 11px 
+      a
+        font-size: 11px 
+        padding-top: 2px
+        padding-bottom: 2px
+      &.comment-delete
+        a
+          padding-left: 21px
+          padding-right: 10px
+          background: url(../images/delete-icon.png) no-repeat 0 center
+      &.comment-edit
+        a
+          padding-left: 21px
+          padding-right: 10px
+          background: url(../images/edit-icon.png) no-repeat 0 center
+      &.comment-reply
+        a
+          padding-left: 23px
+          background: url(../images/reply.png) no-repeat 0 2px
