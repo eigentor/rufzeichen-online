@@ -10,7 +10,6 @@ stylesheets[all][] = css/layout-sass.css
 stylesheets[all][] = css/styles.css
 stylesheets[all][] = css/styles-sass.css
 stylesheets[all][] = css/views-sass.css
-stylesheets[all][] = css/block.css
 stylesheets[all][] = css/block-sass.css
 stylesheets[all][] = css/node.css
 stylesheets[all][] = css/node-sass.css
