@@ -51,7 +51,7 @@
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\0000340}}
 .submitted .taxonomy .field-item {
-  margin-right: 0.9em;
+  margin: 0 0.45em;
 }
 
 /* Borders and no borders around images */
