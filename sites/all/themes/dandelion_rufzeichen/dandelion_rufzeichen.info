@@ -7,7 +7,6 @@ core = 7.x
 
 stylesheets[all][] = css/base.css
 stylesheets[all][] = css/layout-sass.css
-stylesheets[all][] = css/styles.css
 stylesheets[all][] = css/styles-sass.css
 stylesheets[all][] = css/views-sass.css
 stylesheets[all][] = css/block-sass.css
