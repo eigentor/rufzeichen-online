@@ -33,6 +33,17 @@
 /** Detailansicht Projekt **/
 
 .node-type-projekt
+  #header, .page-projekte #header, .page-node-192 #header
+    height: 65px
+    background: url("../images/new-adapted/header-cars-sw.jpg") no-repeat  0 -120px
+    border-top: 1px solid #eee
+    border-bottom: 1px solid #eee
+  #header-top-line, .page-projekte #header-top-line, .page-node-192 #header-top-line
+    display: none
+  #content
+    margin-top: 20px
+  .view-images-project
+    margin-bottom: 25px
   .field-name-field-project-text-secondary
     margin: 0 0 0 -10px
     padding: 0 0 0 20px
@@ -63,6 +74,47 @@
     h3 
       font-size: 1.48em
       color: #777
+
+  /** Layout unterer Teil Projekte Detailseite **/
+  .field-name-title 
+    h2 
+      font-size: 32px
+      margin-bottom: 9px
+  .group-left
+    width: 61%
+    margin-right: 3%
+  .group-left, .field-name-title
+    padding-left: 3px  
+  .field-name-title
+  .group-right
+    width: 34%
+    margin-right: 0.7%
+    .group-properties-icons
+      border: 1px solid #e5e5e5
+      padding: 10px 15px 5px
+      margin-bottom: 30px 
+      h3
+        display: none 
+    .field-name-field-project-url, .field-name-field-project-business-area, .field-name-field-project-task, .field-name-field-project-technical-details
+      margin-bottom: 10px
+      padding: 3px 0 3px 35px
+    .field-name-field-project-url
+      background: url(../images/icons/external-link-icon.png) no-repeat 2px center
+      a
+        font-size: 0.93em
+    .field-name-field-project-business-area
+      background: url(../images/icons/business-field-icon.png) no-repeat 2px center
+    .field-name-field-project-task
+      background: url(../images/icons/tasks-icon.png) no-repeat 0 center
+    .field-name-field-project-technical-details
+      background: url(../images/icons/technical-details-icon.png) no-repeat 2px center
+    .field-type-taxonomy-term-reference 
+      .field-item 
+        display: inline
+        margin-right: 10px
+      a
+        font-size: 0.93em
+        color: #333
 
 /*--------------------------------*/
 /* ---    Projekte Übersicht  --- */
