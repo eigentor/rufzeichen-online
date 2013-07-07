@@ -322,7 +322,8 @@ ul.tabs.primary li a:active {
 /*Form Elements */
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\00003235}}
 input#edit-preview,
-input#edit-submit {
+input#edit-submit,
+input.form-submit {
   background: #444444;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -342,16 +343,17 @@ input#edit-submit {
   margin: 0 5px 0 0;
   text-decoration: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\00003251}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\00003252}}
 input#edit-preview:hover,
-input#edit-submit:hover {
+input#edit-submit:hover,
+input.form-submit:hover {
   background: #595959;
   cursor: hand;
   cursor: pointer;
 }
 
 /* Formatting tips */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\00003257}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\00003258}}
 fieldset.filter-wrapper,
 div.filter-wrapper {
   padding: 0.7em 0 1em;
@@ -365,7 +367,7 @@ div.filter-wrapper {
   -o-border-radius: 0 0 3px 3px;
   border-radius: 0 0 3px 3px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\00003265}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\00003266}}
 fieldset.filter-wrapper p, fieldset.filter-wrapper li,
 div.filter-wrapper p,
 div.filter-wrapper li {
@@ -374,7 +376,7 @@ div.filter-wrapper li {
 }
 
 /*Videos */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\00003270}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\00003271}}
 .media-vimeo-outer-wrapper,
 .media-youtube-outer-wrapper {
   border: 1px solid #cccccc;

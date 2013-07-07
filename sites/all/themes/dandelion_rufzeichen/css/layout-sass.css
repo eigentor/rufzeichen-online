@@ -94,24 +94,24 @@ body {
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/layout-sass\.sass}line{font-family:\0000384}}
-#header {
+#header, .page-search #header {
   height: 140px;
   background: url(../images/new-adapted/header-schreibmaschine.jpg) no-repeat;
   background: url(../images/new-adapted/header-asian-cars.jpg) no-repeat;
   position: relative;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/layout-sass\.sass}line{font-family:\0000389}}
-#header #block-search-form {
+#header #block-search-form, .page-search #header #block-search-form {
   z-index: 22;
   float: right;
   margin: 55px 30px 0 0;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/layout-sass\.sass}line{font-family:\0000393}}
-#header #block-search-form input#edit-submit {
+#header #block-search-form input#edit-submit, #header #block-search-form input.form-submit, .page-search #header #block-search-form input#edit-submit, .page-search #header #block-search-form input.form-submit {
   background: #ed8137;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/layout-sass\.sass}line{font-family:\0000395}}
-#header #block-search-form input.form-text {
+#header #block-search-form input.form-text, .page-search #header #block-search-form input.form-text {
   border: 1px solid #999999;
   width: 150px;
 }
