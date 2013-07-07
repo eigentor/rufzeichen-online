@@ -207,11 +207,11 @@
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block-sass\.sass}line{font-family:\00003143}}
 .front-header-bottom .icon-wrapper-right {
-  margin-left: 25px;
+  margin-left: 15px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block-sass\.sass}line{font-family:\00003145}}
 .front-header-bottom .text-left {
-  width: 315px;
+  width: 255px;
   margin-left: 20px;
   font-size: 0.93em;
   line-height: 1.4;
@@ -219,7 +219,7 @@
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block-sass\.sass}line{font-family:\00003151}}
 .front-header-bottom .text-right {
-  width: 335px;
+  width: 255px;
   margin-left: 20px;
   margin-right: 8px;
   font-size: 0.93em;

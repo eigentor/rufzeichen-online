@@ -339,3 +339,47 @@ form#comment-form {
   padding-left: 23px;
   background: url(../images/reply.png) no-repeat 0 2px;
 }
+
+/* Front Page */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/node-sass\.sass}line{font-family:\00003255}}
+.front #content-inner {
+  width: 900px;
+  padding-top: 10px;
+  margin-bottom: 40px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/node-sass\.sass}line{font-family:\00003260}}
+.front #content-header h1 {
+  display: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/node-sass\.sass}line{font-family:\00003262}}
+.front .links {
+  display: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/node-sass\.sass}line{font-family:\00003264}}
+.front h2 {
+  font-size: 2.2em;
+  margin-bottom: 7px;
+  margin-top: 5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/node-sass\.sass}line{font-family:\00003268}}
+.front p {
+  margin-bottom: 7px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/node-sass\.sass}line{font-family:\00003270}}
+.front .field-name-field-zweispaltig-links {
+  float: left;
+  width: 420px;
+  margin-right: 40px;
+  margin-left: 3px;
+  margin-top: 3px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/node-sass\.sass}line{font-family:\00003276}}
+.front .field-name-field-zweispaltig-rechts {
+  float: left;
+  width: 340px;
+  margin-top: -3px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/node-sass\.sass}line{font-family:\00003280}}
+.front .field-name-field-zweispaltig-rechts img {
+  float: right;
+}

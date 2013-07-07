@@ -66,6 +66,7 @@ body
 
 #content 
   padding-top: 30px
+  clear: left
 
 
 #header-top 
@@ -85,6 +86,41 @@ body
   background: url(../images/new-adapted/header-schreibmaschine.jpg) no-repeat
   background: url(../images/new-adapted/header-asian-cars.jpg) no-repeat
   position: relative
+  #block-search-form
+    z-index: 22
+    float: right
+    margin: 55px 30px 0 0      
+    input#edit-submit
+      background: $primary-orange-text
+    input.form-text
+      border: 1px solid #999
+      width: 150px
+
+/** Suchbox Position auf Projektseiten */
+.node-type-projekt, .page-projekte, .page-node-192
+  #header 
+    #block-search-form
+      margin: 20px 30px 0 0
+      
+/** Suchbox Position auf Startseite */
+.front
+  #header 
+    #block-search-form
+      margin: 27px 30px 0 0
+      input#edit-submit
+        background: #ddd
+        padding: 0px 5px
+        line-height: 1
+        height: 24px
+        color: #333
+      input.form-text
+        border: 1px solid #666
+        width: 110px
+        background: #eee
+        padding: 0 5px
+        margin-right: 1px
+        
+
 
 #header-top-line 
   position: absolute

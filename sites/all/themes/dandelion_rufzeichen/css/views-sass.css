@@ -303,3 +303,53 @@
 .front #content-area .views-slideshow-cycle-main-frame-row .views-row {
   padding-right: 10px;
 }
+
+/*Zitat der Woche View */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/views-sass\.sass}line{font-family:\00003200}}
+.view-zitat-der-woche .views-row .field-name-body {
+  padding-left: 30px;
+  padding-top: 10px;
+  padding-right: 8px;
+  padding-bottom: 5px;
+  background: #f8f8f8 url(../images/quote-top.png) no-repeat 8px 8px;
+  border: 1px solid #ebebeb;
+  margin-bottom: 8px;
+  margin-top: 15px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/views-sass\.sass}line{font-family:\00003209}}
+.view-zitat-der-woche .views-row .field-name-body p {
+  font-family: georgia, times, serif;
+  font-size: 1.6em;
+  font-style: italic;
+  color: #a1a1a1;
+  line-height: 1.35;
+  background: url(../images/quote-bottom.png) no-repeat bottom right;
+  padding-right: 30px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/views-sass\.sass}line{font-family:\00003217}}
+.view-zitat-der-woche .views-row .field-name-body .field-name-zitat-description {
+  float: left;
+  display: inline;
+  padding-left: 28px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/views-sass\.sass}line{font-family:\00003221}}
+.view-zitat-der-woche .views-row .field-name-body .field-name-zitat-description p {
+  font-size: 0.83em;
+  line-height: 1.35;
+  color: #999999;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/views-sass\.sass}line{font-family:\00003225}}
+.view-zitat-der-woche .views-row .field-name-body .field-name-field-zitat-author {
+  display: inline;
+  float: right;
+  line-height: 10px;
+  padding-right: 30px;
+  text-align: right;
+  width: 280px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/views-sass\.sass}line{font-family:\00003232}}
+.view-zitat-der-woche .views-row .field-name-body .field-name-field-zitat-author .field-item {
+  font-size: 0.83em;
+  line-height: 1.35;
+  color: #999999;
+}
