@@ -1,6 +1,15 @@
 @import "compass/css3"
+@import "susy"
 
 $legacy-support-for-ie: true
+
+$desktop-grid-padding: 25px
+$smartphone-grid-padding: 20px
+
+$total-columns  : 12
+$column-width   : 71px
+$gutter-width   : 10px
+$grid-padding   : $desktop-grid-padding
 
 @mixin image-no-border 
   border: none
@@ -19,4 +28,9 @@ $font-size-minus-two: 0.83em
 // Font Families
 $font-family-main: verdana,arial,helvetica,sans-serif
 $font-family-headlines: georgia,times,serif
+
+// Breakpoints
+$breakpoint-desktop-with-ie-fallback: 750px 12 lt-ie9
+$breakpoint-desktop-without-ie-fallback: 750px 12
+$breakpoint-tablet: 480px 12
 

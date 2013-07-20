@@ -1,0 +1,274 @@
+@import "variables-mixins.sass"
+
+
+#footer 
+  .contact-footer 
+    float: left
+    width: 25%
+    padding-right: 2%
+    div, a
+      font-size: 15px
+      font-style: normal
+      color: #777
+    .telefon
+      margin-top: 15px
+      height: 30px
+      line-height: 25px
+      padding-left: 33px
+      background: url(../images/new-adapted/telefon-klein.png) no-repeat 2px center
+    .email
+      height: 40px
+      line-height: 35px
+      padding-left: 33px
+      background: url(../images/new-adapted/email-icon.png) no-repeat -3px center
+      span.mailto 
+        display: none
+  #block-views-Newsblock_Startseite-block_2
+    width: 28%
+    float: left
+    .view-Newsblock-Startseite
+      padding-right: 33px
+  h2.block-title
+    color: #575757
+    font-family: Verdana, Geneva, sans-serif
+    font-weight: bold
+    font-size: 12px
+    font-style: normal
+    text-transform: uppercase
+    margin-top: 0px
+    border-width: 0px
+  
+  /* Drupal Box */
+  #block-boxes-footer_drupal_box
+    float: left
+    width: 43%
+    padding-left: 5px
+    .footer-drupal-box-left
+      float: left
+      width: 50%
+      margin-right: 7%
+    .footer-drupal-box-right
+      float: left
+      width: 35%
+      margin-top: -5px
+
+/*------------------------------------------------*/
+               News Block Sidebar
+/*------------------------------------------------*/
+
+#sidebar-second 
+  .view-Newsblock-Startseite 
+    .views-row 
+      border-bottom: 1px solid #DADADA
+      padding-bottom: 7px
+      padding-top: 7px
+      a
+        color: #848484
+        display: block
+        font-family: Georgia,"Times New Roman",Times,serif
+    .views-row-last
+      border: none
+
+
+/*------------------------------------------------*/
+               Front Header
+/*------------------------------------------------*/
+.front 
+  #header-top-line 
+    display: none
+  .front-header
+    .content 
+      +legacy-pie-clearfix
+      border-top: 1px solid #444!important
+      border-bottom: 1px solid #818181!important
+
+    /* The slideshow in the header */
+    .views-slideshow-cycle-main-frame-row
+      background: url(../images/new-adapted/gradient-front-header.jpg) repeat-x bottom
+
+    .front-block-left
+      float: left
+      width: 50%
+      img
+        margin-left: 100px
+        margin-top: 10px
+        margin-bottom: -45px
+
+    .front-block-right
+      float: left
+      width: 42%
+      padding: 60px 0 0 19px
+      h2
+        font-size: 2.7em
+        color: #ED8137
+        color: #EA5B0C
+        color: #E87030
+        margin-bottom: 0px
+      p
+        font-family: georgia,times,sans-serif
+        font-size: 1.6em 
+        color: #999
+        line-height: 1.5
+        width: 350px
+        letter-spacing: -0.005em
+
+
+/*-----------------------------------------------*/
+               Front Header unten
+/*-------------------------------------------------*/
+.front-header-bottom
+  border-bottom: 1px solid #ccc 
+  padding: 10px 0 15px 45px
+  background: #888
+  .content 
+    +legacy-pie-clearfix 
+  div
+    color: #919191
+    line-height: 1.5
+    font-size: 12px
+  h3
+    margin-top: 1px
+    margin-bottom: 1px
+    line-height: 1.3
+    font-size: 1.5em
+    color: #fff
+  .icon-wrapper-left, .text-left, .icon-wrapper-right, .text-right
+    float: left
+  .icon-wrapper-left, .icon-wrapper-right
+    border: 1px solid #bbb
+    background: #7a7a7a
+    width: 50px
+    height: 50px
+    margin-top: 4px
+  .icon-wrapper-right
+    margin-left: 15px
+  .text-left
+    width: 255px
+    margin-left: 20px
+    font-size: 0.93em
+    line-height: 1.4
+    color: #eee
+  .text-right
+    width: 255px
+    margin-left: 20px
+    margin-right: 8px
+    font-size: 0.93em
+    line-height: 1.4
+    color: #eee
+  .icon-wrapper-left
+    img
+      height: 40px!important
+      width: auto!important
+      padding: 5px 0 0 8px
+  .icon-wrapper-right
+    img
+      height: 38px!important
+      width: auto!important
+      padding: 3px 0 0 3px 
+
+
+/* ----------------------------------------------------- */
+    Startseite Header Slideshow
+/*  ----------------------------------------------------- */
+.front 
+  .view-front-header-slider 
+    position: relative
+    .views-slideshow-cycle-main-frame-row
+      width: 100%!important
+    .views-row
+      width: 100%
+    .ds-2col
+      width: 100%
+      .group-left
+        text-align: right
+        height: 100%
+        position: relative
+        a
+          display: block
+          height: 317px
+        img
+          position: absolute
+          bottom: 0
+          right: 25px
+      .group-right
+        margin-top: 40px
+        .views-field-title
+          a
+            font-family: georgia,times,sans-serif
+            font-size: 2.5em
+            line-height: 1.7em
+            background-color: transparent
+        .views-field-body
+          p
+            width: 70%
+            font-family: georgia,times,sans-serif
+            font-size: 1.6em 
+            color: #999
+            line-height: 1.4
+            letter-spacing: -0.005em
+          a
+            font-family: verdana,helvetica,sans-serif
+            font-size: 12px
+            padding-top: 4px
+            line-height: 1
+            display: block
+
+
+
+/** Controls Slider front page **/
+.front 
+  .view-front-header-slider 
+    .views-slideshow-controls-bottom 
+      position: absolute
+      right: 50px
+      bottom: 30px
+      width: 20%
+      z-index: 25
+      .views-content-counter
+        cursor: pointer
+        cursor: hand
+        float: left
+        width: 2em
+        background: url(../images/new-adapted/pager-bg.png) no-repeat
+        text-align: center
+        margin-right: 5px
+        line-height: 24px
+        width: 23px
+        padding-bottom: 3px
+        padding-right: 4px
+        color: #777
+        font-size: 0.93em
+      .active 
+        .views-content-counter, .views-content-counter:hover 
+          color: #ED8137
+          color: #222
+          font-weight: bold
+
+/** Partners Block on About Us **/
+.block.partner-agenturen
+  +legacy-pie-clearfix
+  background: #ddd
+  padding: 10px 40px
+  border-top: 1px solid #ccc
+  border-bottom: 1px solid #ccc 
+  p
+    margin: 0
+  h2.partner-title
+    float: left
+      font-size: 1.8em
+  .partner-angermann-webdesign
+    float: left
+    padding: 12px 10px 0 25px
+  .partner-undpaul
+    float: left
+    padding: 15px 10px 0 20px
+
+.page-node-190 #footer 
+  border-top: none
+  
+
+
+
+
+  
+

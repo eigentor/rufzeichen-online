@@ -1,0 +1,353 @@
+@import "variables-mixins.sass"
+
+/*--------------------------------*/
+/*--------------------------------*/
+/*------ Layout all Devices ------*/
+/*--------------------------------*/
+/*--------------------------------*/
+
+#admin-menu ul li 
+  font-size: 11px
+
+
+/** End Admin Menu **/
+
+body, html   
+  height: 100%
+  width: 100%
+
+body 
+  font-family: Verdana, Geneva, sans-serif
+  font-size: 12px
+  color: #6a6a6a
+  line-height: 1.6em
+  background-color: #aaa9a9
+  letter-spacing: 0
+  outline: 0
+  font-size: 12px
+  vertical-align: baseline
+  letter-spacing: 0
+ 
+#page-wrapper 
+  min-height: 100%
+  height: auto!important
+  height: 100%
+  width: 100%
+  background: #aaa url(../images/patterns/pattern16-b.png)
+  padding: 26px 0 23px
+
+#page 
+  +container
+  margin: auto
+  background: white
+  min-height: 750px
+  height: auto!important
+  height: 750px
+  /*border: 1px dashed #555*/
+  box-shadow: 0px 0px 10px #888
+
+
+#site 
+  height: auto
+  width: 980px
+  text-align: left
+  padding: 0px
+  background-color: #FFF
+  float: left
+  margin-top: 15px
+  margin-bottom: 15px
+
+
+#line-top 
+  background-color: #535353
+  border-bottom: 1px solid #272727
+  height: 5px
+
+
+.center 
+  height: auto
+  margin: auto
+  text-align: left
+  padding: 0px
+
+#content 
+  padding-top: 30px
+  clear: left
+  float: left
+
+
+#header-top 
+  width: 100%
+  display: block
+  height: 100px
+
+.front 
+  #header-top 
+    background: #5a5a5a
+    height: 80px
+    padding-top: 2px
+
+
+#header, .page-search #header 
+  height: 140px
+  background: url(../images/new-adapted/header-schreibmaschine.jpg) no-repeat
+  background: url(../images/new-adapted/header-asian-cars.jpg) no-repeat
+  position: relative
+  #block-search-form
+    z-index: 22
+    float: right
+    margin: 55px 45px 0 0      
+    input#edit-submit, input.form-submit
+      background: $primary-orange-text
+      float: left
+    input.form-text
+      border: 1px solid #999
+      width: 200px
+
+/** Suchbox Position auf Projektseiten */
+.node-type-projekt, .page-projekte, .page-node-192
+  #header 
+    #block-search-form
+      margin: 19px 53px 0 0
+      input#edit-submit
+        float: right
+      input.form-text
+        margin-right: 4px
+      
+/** Suchbox Position auf Startseite */
+.front
+  #header 
+    #block-search-form
+      margin: 27px 30px 0 0
+      input#edit-submit
+        background: #ddd
+        padding: 0px 5px
+        line-height: 1
+        height: 24px
+        color: #333
+        float: right
+      input.form-text
+        border: 1px solid #666
+        width: 95px
+        background: #eee
+        padding: 0 5px
+        margin-right: 3px
+        
+
+
+#header-top-line 
+  position: absolute
+  height: 6px
+  width: 100%
+  background: rgba(50, 50, 50, 0.4)
+    
+
+.front #header 
+  height: 400px
+  background: none
+
+#logo 
+  float: left
+  width: 280px
+  padding: 27px 0 0 45px
+  position: relative
+
+.front #logo 
+  padding-left: 48px
+  padding-top: 17px
+
+#site-slogan 
+  position: absolute
+  top: 60px
+  left: 77px
+  font-family: Georgia, "Times New Roman", Times, serif
+  font-style: italic
+  color: #aaa
+  font-size: 14px
+
+.front #site-slogan 
+  left: 80px
+  top: 49px
+  color: #ccc
+
+
+/*---------------------------- LOGO ----------------------------*/
+#logo-container 
+  width: 160px
+  float: left
+  margin-top: 15px
+  margin-left: 40px
+  a
+    width: 160px
+    height: 71px
+    display: block
+    background-image: url(images/logo.png)
+    background-repeat: no-repeat  
+
+/*------------------------- Main Menu ---------------------------------*/
+#navigation 
+  float: right
+  margin-top: 45px
+  margin-right: 30px
+  max-width: 620px
+  width: auto!important
+  width: 620px
+  background: none
+  ul
+    text-align: right 
+    li 
+      display: inline
+      a
+        text-transform: uppercase
+        padding-right: 11px
+        margin-right: 2px
+        padding-left: 7px
+        font-size: 13px
+        line-height: 0.2em
+        color: #535353
+        height: 10px
+        font-style: normal
+        letter-spacing: 1px
+        background: url(../images/new-adapted/menu-background.jpg) no-repeat right 6px 
+        &:hover 
+          color: $primary-orange-text
+          background: url(../images/new-adapted/menu-background-orange.png) no-repeat right 6px
+          text-decoration: none
+        &.active-trail
+          color: $primary-orange-text
+          background: url(../images/new-adapted/menu-background-orange.png) no-repeat right 6px
+      &.selected
+        a
+          color: #535353
+    ul 
+      display: none
+
+/*--- Front Header Menu ---*/
+.front 
+  #navigation
+    margin-top: 30px 
+    ul 
+      li 
+        a 
+          color: #fff
+          background-image: url(../images/new-adapted/menu-background-white.png)
+          &:hover 
+            color: $primary-orange-text
+            background: url(../images/new-adapted/menu-background-orange.png) no-repeat right 6px
+
+/*-------------------------CONTENT----------------------------*/
+
+.content-gradient 
+  background-image: url(../images/content_bg.png)
+  background-repeat: repeat-x
+  background-position: top
+
+#content-inner 
+  height: auto
+  min-height: 200px
+  width: 630px
+  margin: 40px
+  margin-top: 0
+
+.no-sidebars
+  #content-inner
+    width: 900px
+
+.node-type-news 
+  #content-inner 
+    width: 640px
+
+#sidebar-second 
+  width: 210px
+  float: right
+  height: auto
+  margin-bottom: 30px
+  margin-right: 40px
+  margin-top: 36px
+  min-height: 200px
+  background: none
+  h2
+    &.block-title
+      font-family: $font-family-headlines
+      font-size: 16px
+      font-style: normal
+      color: #484848
+      border-bottom: 1px solid #ebebeb
+      margin-bottom: 0
+      padding-bottom: 0
+      text-transform: uppercase
+
+
+/*--- Footer ---*/
+
+#footer 
+  color: #9e9e9d
+  font-size: 12px
+  height: auto
+  font-family: Georgia, "Times New Roman", Times, serif
+  font-style: italic
+  line-height: 1.5em
+  border-top: 1px solid #E6E6E6
+  width: 100%
+  margin: 0
+  background: #efefef
+  .footer-inner 
+    padding: 20px 30px 17px 40px
+  p 
+    margin-top: 10px
+
+/* Footer on front page */
+.front
+  #footer 
+    .footer-inner
+      padding: 20px 30px 17px 43px
+
+#footer-bottom 
+  width: 100%
+  height: 62px
+  background-color: #363636
+  display: block
+
+
+/* Footer bottom */
+#footer-bottom 
+  .footer-bottom-inner 
+    font-size: 12px
+    font-family: Georgia, "Times New Roman", Times, serif
+    font-style: italic
+    padding-top: 21px
+    color: #a3a3a3
+    padding-left: 38px
+  a
+    color: #e0e0e0
+  #footer-left 
+    float: left
+    width: 420px
+  #footer-bottom-region 
+    float: right
+    width: 400px
+    ul
+      text-align: right
+      padding-right: 35px
+      li
+        display: inline
+
+/*--------------------------------*/
+/*--------------------------------*/
+/*-------- Layout Desktop --------*/
+/*--------------------------------*/
+/*--------------------------------*/
+
+body
+  +at-breakpoint($breakpoint-desktop-with-ie-fallback)
+  
+    #page 
+      $container-style: static
+      +container
+
+
+
+  
+
+  
+
