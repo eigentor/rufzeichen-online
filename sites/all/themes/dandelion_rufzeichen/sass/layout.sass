@@ -119,24 +119,10 @@ body
       input.form-text
         margin-right: 4px
       
-/** Suchbox Position auf Startseite */
 .front
   #header 
-    #block-search-form
-      margin: 27px 30px 0 0
-      input#edit-submit
-        background: #ddd
-        padding: 0px 5px
-        line-height: 1
-        height: 24px
-        color: #333
-        float: right
-      input.form-text
-        border: 1px solid #666
-        width: 95px
-        background: #eee
-        padding: 0 5px
-        margin-right: 3px
+    display: none
+    
         
 
 
@@ -154,24 +140,24 @@ body
 #logo 
   float: left
   width: 280px
-  padding: 27px 0 0 45px
+  padding: 27px 0 0 0px
   position: relative
 
 .front #logo 
-  padding-left: 48px
+  padding-left: 0px
   padding-top: 17px
 
 #site-slogan 
   position: absolute
   top: 60px
-  left: 77px
+  left: 33px
   font-family: Georgia, "Times New Roman", Times, serif
   font-style: italic
   color: #aaa
   font-size: 14px
 
 .front #site-slogan 
-  left: 80px
+  left: 35px
   top: 49px
   color: #ccc
 
@@ -193,7 +179,6 @@ body
 #navigation 
   float: right
   margin-top: 45px
-  margin-right: 30px
   max-width: 620px
   width: auto!important
   width: 620px
@@ -255,9 +240,6 @@ body
   min-height: 200px
   margin-top: 0
 
-.node-type-news 
-  #content-inner 
-    
 
 #sidebar-second 
   height: auto
@@ -300,7 +282,7 @@ body
 .front
   #footer 
     .footer-inner
-      padding: 20px 30px 17px 43px
+      padding: 20px 0 17px
 
 #footer-bottom 
   padding: 0 $smartphone-grid-padding
@@ -344,7 +326,7 @@ body
   
     #header-top, #header, #main, #footer, #footer-bottom 
       padding: 0 $desktop-grid-padding
-      margin: 0 -($desktop-grid-padding)
+      margin: 0 (-$desktop-grid-padding)
 
     #page 
       $container-style: static
@@ -361,7 +343,29 @@ body
       margin-right: 40px
     #sidebar-second 
       +span-columns(3 omega, 12)
-    #sidebar-second-inner 
+    
+
+    /* Startseite */
+    &.front
+      #header 
+        display: block
+        padding: 0        
+        /** Suchbox Position auf Startseite */
+        #block-search-form
+          margin: 27px 30px 0 0
+          input#edit-submit
+            background: #ddd
+            padding: 0px 5px
+            line-height: 1
+            height: 24px
+            color: #333
+            float: right
+          input.form-text
+            border: 1px solid #666
+            width: 95px
+            background: #eee
+            padding: 0 5px
+            margin-right: 3px
 
 
   
