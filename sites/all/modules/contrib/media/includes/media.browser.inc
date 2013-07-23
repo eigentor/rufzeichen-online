@@ -2,15 +2,17 @@
 
 /**
  * @file
- * Media Browser page callback
+ * Summon plugins and render the media browser.
+ */
+
+/**
+ * Media browser page callback.
  */
 function media_browser($selected = NULL) {
   $output = array();
   $output['#attached']['library'][] = array('media', 'media_browser_page');
 
-  $params = drupal_get_query_parameters();
-  array_walk_recursive($params, '_media_recursive_check_plain');
-  $params = media_set_browser_params($params);
+  $params = media_set_browser_params();
 
   // If one or more files have been selected, the browser interaction is now
   // complete. Return empty page content to the dialog which now needs to close,
@@ -29,18 +31,10 @@ function media_browser($selected = NULL) {
     return $output;
   }
 
-  // Normal browser operation.
-  foreach (module_implements('media_browser_plugin_info') as $module) {
-    foreach (module_invoke($module, 'media_browser_plugin_info') as $key => $plugin_data) {
-      $plugins[$key] = $plugin_data + array(
-        '#module' => $module,
-        '#weight' => 0,
-      );
-      $plugins[$key]['#weight'] += count($plugins)/1000;
-    }
-  }
+  $plugins = media_get_browser_plugin_info();
 
-  // Only the plugins in this array are loaded.
+  // Allow parameters to provide a list of enabled or disabled media browser
+  // plugins.
   if (!empty($params['enabledPlugins'])) {
     $plugins = array_intersect_key($plugins, array_fill_keys($params['enabledPlugins'], 1));
   }
@@ -48,52 +42,138 @@ function media_browser($selected = NULL) {
     $plugins = array_diff_key($plugins, array_fill_keys($params['disabledPlugins'], 1));
   }
 
-  foreach ($plugins as $key => &$plugin) {
-    $plugin += module_invoke($plugin['#module'], 'media_browser_plugin_view', $key, $params);
+  // Render plugins.
+  $plugin_output = array();
+  foreach ($plugins as $key => $plugin_info) {
+    // Support the old CTools style handler definition.
+    if (!isset($plugin_info['class']) && !empty($plugin_info['handler'])) {
+      if (is_string($plugin_info['handler'])) {
+        $plugin_info['class'] = $plugin_info['handler'];
+      }
+      elseif (isset($plugin_info['handler']['class'])) {
+        $plugin_info['class'] = $plugin_info['handler']['class'];
+      }
+    }
+
+    if (empty($plugin_info['class']) || !class_exists($plugin_info['class'])) {
+      continue;
+    }
+
+    $plugin = new $plugin_info['class']($plugin_info, $params);
+    if ($plugin->access()) {
+      $plugin_output[$key] = $plugin->view();
+      if (!empty($plugin_output[$key]) && is_array($plugin_output[$key])) {
+        $plugin_output[$key] += array(
+          '#title' => $plugin_info['title'],
+          '#weight' => isset($plugin_info['weight']) ? $plugin_info['weight'] : 0,
+        );
+      }
+      else {
+        unset($plugin_output[$key]);
+        continue;
+      }
+    }
+    else {
+      continue;
+    }
+
+    // We need to get a submit and cancel button on each tab. If the plugin
+    // is not returning a form element we need to add a submit button.
+    // This is a fairly broad assumption.
+    if (empty($plugin_output[$key]['#form']) && !empty($plugin_output[$key]['#markup'])) {
+      $fake_buttons = '<div class="form-actions form-wrapper">';
+      $fake_buttons .= l(t('Submit'), '', array(
+        'attributes' => array(
+          'class' => array('button', 'button-yes', 'fake-submit', $key),
+        ),
+      ));
+      $fake_buttons .= l(t('Cancel'), '', array(
+        'attributes' => array(
+          'class' => array('button', 'button-no', 'fake-cancel', $key),
+        ),
+      ));
+      $fake_buttons .= '</div>';
+      $plugin_output[$key]['#markup'] .= $fake_buttons;
+    }
+
+    // I'm not sure if it is ever the case that a plugin form will ever have
+    // the correct cancel button so we add it here. Put it inline with the
+    // current submit button. This is a fairly broad assumption.
+    if (!empty($plugin_output[$key]['form']['actions']) && !isset($plugin_output[$key]['form']['actions']['cancel'])) {
+      $plugin_output[$key]['form']['actions']['cancel'] = array(
+        '#type' => 'link',
+        '#title' => t('Cancel'),
+        '#href' => '',
+        '#attributes' => array(
+          'class' => array(
+            'button',
+            'button-no',
+            'fake-cancel',
+            $key,
+          ),
+        ),
+        '#weight' => 100,
+      );
+    }
   }
 
   // Allow modules to change the tab names or whatever else they want to change
   // before we render.  Perhaps this should be an alter on the theming function
   // that we should write to be making the tabs.
-  drupal_alter('media_browser_plugins', $plugins);
+  drupal_alter('media_browser_plugins', $plugin_output);
 
-  $tabs = array(); // List of tabs to render.
-
+  $tabs = array();
   $settings = array('media' => array('browser' => array()));
-  $browser_settings =& $settings['media']['browser'];
 
-  //@todo: replace with Tabs module if it gets upgraded.
-  foreach (element_children($plugins, TRUE) as $key) {
-    $plugin =& $plugins[$key];
+  foreach (element_children($plugin_output, TRUE) as $key) {
+    // Add any JavaScript settings from the browser tab.
+    if (!empty($plugin_output[$key]['#settings'])) {
+      $settings['media']['browser'][$key] = $plugin_output[$key]['#settings'];
+    }
 
-    //Add any JS settings
-    $browser_settings[$key] = isset($plugin['#settings']) ? $plugin['#settings'] : array();
+    // If this is a "ajax" style tab, add the href, otherwise an id. jQuery UI
+    // will use an href value to load content from that url
+    $tabid = 'media-tab-' . check_plain($key);
+    if (!empty($plugin_output[$key]['#callback'])) {
+      $href = $plugin_output[$key]['#callback'];
+    }
+    else {
+      $attributes = array(
+        'class' => array('media-browser-tab'),
+        'id' => $tabid,
+        'data-tabid' => $key,
+      );
+      // Create a div for each tab's content.
+      $plugin_output[$key] += array(
+        '#prefix' => '<div '. drupal_attributes($attributes) . ">\n",
+        '#suffix' => "</div>\n",
+      );
+    }
 
-    // If this is a "ajax" style tab, add the href, otherwise an id.
-    $href = isset($plugin['#callback']) ? $plugin['#callback'] : "#media-tab-$key";
-    $tabs[] = "<a href='$href'><span>{$plugin['#title']}</span></a>";
-
-    // Create a div for each tab's content.
-    $plugin['#prefix'] = <<<EOS
-    <div class="media-browser-tab" id="media-tab-$key">
-EOS;
-    $plugin['#suffix'] = <<<EOS
-    </div>
-    <!-- End #media-tab-$key -->
-EOS;
+    $attributes = array(
+      'href' => '#' . $tabid,
+      'data-tabid' => $key,
+      'title' => $plugin_output[$key]['#title'],
+    );
+    $tabs[]['element'] = array(
+      '#markup' => '<li><a' . drupal_attributes($attributes) . '>' . check_plain($plugin_output[$key]['#title']) . "</a></li>\n",
+    );
   }
 
   drupal_add_js($settings, 'setting');
 
-  $output['tabset'] = array(
-    '#prefix' => '<div id="media-browser-tabset">',
-    '#suffix' => '</div>',
-  );
-  $output['tabset']['list'] = array(
-    '#markup' => '<ul><li>' . implode('</li><li>', $tabs) . '</li></ul>'
+  $output['title'] = array(
+    '#markup' => t('Select a file')
   );
 
-  $output['tabset']['plugins'] = $plugins;
+  $output['tabset']['tabs'] = array(
+    '#theme' => 'menu_local_tasks',
+    '#attributes' => array('class' => array('tabs', 'primary')),
+    '#primary' => $tabs,
+  );
+
+  $output['tabset']['panes'] = $plugin_output;
+
   return $output;
 }
 
@@ -107,22 +187,39 @@ EOS;
  *
  * It also offers a chance for some meddler to meddle with them.
  *
- * @param array $params
- *   An array of parameters provided when a media_browser is launched.
- *
  * @see media_browser()
  */
-function media_set_browser_params(array $params = NULL) {
-  $stored_params = &drupal_static(__FUNCTION__, array());
+function media_set_browser_params() {
+  $params = &drupal_static(__FUNCTION__, array());
 
-  if (isset($params)) {
-    $stored_params = $params;
+  if (empty($params)) {
+    // Build out browser settings. Permissions- and security-related behaviors
+    // should not rely on these parameters, since they come from the HTTP query.
+    // @TODO make sure we treat parameters as user input.
+    $params = drupal_get_query_parameters() + array(
+      'types' => array(),
+      'multiselect' => FALSE,
+    );
+
+    // Transform text 'true' and 'false' to actual booleans.
+    foreach ($params as $k => $v) {
+      if ($v === 'true') {
+        $params[$k] = TRUE;
+      }
+      elseif ($v === 'false') {
+        $params[$k] = FALSE;
+      }
+    }
+
+    array_walk_recursive($params, 'media_recursive_check_plain');
+
     // Allow modules to alter the parameters.
-    drupal_alter('media_browser_params', $stored_params);
+    drupal_alter('media_browser_params', $params);
   }
 
-  return $stored_params;
+  return $params;
 }
+
 
 /**
  * For sanity in grammar.
@@ -134,176 +231,10 @@ function media_get_browser_params() {
 }
 
 /**
- * AJAX Callback function to return a list of media files
- */
-function media_browser_list() {
-  $params = drupal_get_query_parameters();
-  // How do we validate these?  I don't know.
-  // I think PDO should protect them, but I'm not 100% certain.
-  array_walk_recursive($params, '_media_recursive_check_plain');
-
-  $types = isset($params['types']) ? $params['types'] : NULL;
-  $url_include_patterns = isset($params['url_include_patterns']) ? $params['url_include_patterns'] : NULL;
-  $url_exclude_patterns = isset($params['url_exclude_patterns']) ? $params['url_exclude_patterns'] : NULL;
-
-  $start = isset($params['start']) ? $params['start'] : 0;
-  $limit = isset($params['limit']) ? $params['limit'] : media_variable_get('browser_pager_limit');
-
-  $query = db_select('file_managed', 'f');
-  $query->fields('f', array('fid'));
-  $query->range($start, $limit);
-  $query->orderBy('f.timestamp', 'DESC');
-
-  // Add conditions based on file type *or* allowed extensions.
-  $condition = $query;
-  if (!empty($types) && !empty($params['file_extensions'])) {
-    $condition = db_or();
-  }
-  if (!empty($types)) {
-    $condition->condition('f.type', $types, 'IN');
-  }
-  if (!empty($params['file_extensions'])) {
-    $extensions = array_filter(explode(' ', $params['file_extensions']));
-    foreach ($extensions as $extension) {
-      $condition->condition('f.uri', '%' . db_like('.' . $extension), 'LIKE');
-    }
-  }
-  if ($condition instanceof DatabaseCondition) {
-    $query->condition($condition);
-  }
-
-  if ($url_include_patterns) {
-    $query->condition('f.uri', '%' . db_like($url_include_patterns) . '%', 'LIKE');
-    // Insert stream related restrictions here.
-  }
-  if ($url_exclude_patterns) {
-    $query->condition('f.uri', '%' . db_like($url_exclude_patterns) . '%', 'NOT LIKE');
-  }
-
-  // @todo Implement granular editorial access: http://drupal.org/node/696970.
-  //   In the meantime, protect information about private files from being
-  //   discovered by unprivileged users. See also media_view_page().
-  if (!user_access('administer media')) {
-    $query->condition('f.uri', db_like('private://') . '%', 'NOT LIKE');
-  }
-
-  $query->condition('f.status', FILE_STATUS_PERMANENT);
-
-  foreach (array_keys(media_get_hidden_stream_wrappers()) as $name) {
-    $query->condition('f.uri', db_like($name . '://') . '%', 'NOT LIKE');
-  }
-
-  $fids = $query->execute()->fetchCol();
-  $files = file_load_multiple($fids);
-  foreach ($files as $file) {
-    media_browser_build_media_item($file);
-  }
-
-  drupal_json_output(array('media' => array_values($files)));
-  exit();
-}
-
-/**
- * Implements hook_media_browser_plugin_info().
- */
-function media_media_browser_plugin_info() {
-  $plugins = array();
-
-  // @TODO: Should we add a permission around this?
-  $plugins['library'] = array(
-    '#weight' => 10,
-  );
-
-  if (user_access('administer media') || user_access('edit media')) {
-    $plugins['upload'] = array(
-      '#weight' => -10,
-    );
-  }
-  return $plugins;
-}
-
-/**
- * Implementaion of hook_media_browser_plugin_view().
- */
-function media_media_browser_plugin_view($plugin_name, $params) {
-  $path = drupal_get_path('module', 'media');
-
-  module_load_include('inc', 'media', 'includes/media.admin');
-  module_load_include('inc', 'media', 'includes/media.pages');
-
-  $params += array(
-    'types' => array(),
-    'multiselect' => FALSE,
-  );
-
-  // The multiselect parameter is a string.  So we check to see if it is set and
-  // adjust the local variable accordingly.
-  if ($params['multiselect'] != 'false' && $params['multiselect'] !== FALSE) {
-    $params['multiselect'] = TRUE;
-  }
-
-  $redirect = array('media/browser', array('query' => array('render' => 'media-popup')));
-  switch ($plugin_name) {
-    case 'upload':
-      $attached = array();
-      if ($params['multiselect'] && module_exists('plupload')) {
-        $upload_form_id = 'media_add_upload_multiple';
-        $attached['js'] = array($path . '/js/plugins/media.upload_multiple.js');
-      }
-      else {
-        $upload_form_id = 'media_add_upload';
-      }
-
-      $upload_form = drupal_get_form($upload_form_id, $params);
-      return array(
-        '#title' => t('Upload'),
-        'form' => array($upload_form),
-        '#attached' => $attached,
-      );
-      break;
-    case 'library':
-      return array(
-        '#title' => t('Library'),
-        '#attached' => array(
-          'js' => array(
-            $path . '/js/plugins/media.library.js',
-          ),
-          'css' => array(
-            //@todo: should move this.
-            $path . '/js/plugins/media.library.css',
-          ),
-        ),
-        '#settings' => array(
-          'viewMode' => 'thumbnails',
-          'getMediaUrl' => url('media/browser/list'),
-        // We should probably change this to load dynamically when requested
-        // via the JS file.
-        ) + $params,
-        '#markup' => '<div id="container"><div id="scrollbox"><ul id="media-browser-library-list" class="media-list-thumbnails"></ul><div id="status"></div></div></div>',
-      );
-    break;
-  }
-
-  return array();
-}
-
-/**
- * Silly function to recursively run check_plain on an array.
- *
- * There is probably something in core I am not aware of that does this.
- *
- * @param $value
- * @param $key
- */
-function _media_recursive_check_plain(&$value, $key) {
-  $value = check_plain($value);
-}
-
-/**
  * Attaches media browser javascript to an element.
  *
- * @param $element
- *  The element array to attach to.
+ * @param array $element
+ *   The element array to attach to.
  */
 function media_attach_browser_js(&$element) {
   $javascript = media_browser_js();
@@ -319,10 +250,14 @@ function media_attach_browser_js(&$element) {
  */
 function media_browser_js() {
   $settings = array(
-    'browserUrl' => url('media/browser',
-      array('query' => array('render' => 'media-popup'))),
-    'styleSelectorUrl' => url('media/-media_id-/format-form',
-      array('query' => array('render' => 'media-popup'))),
+    'browserUrl' => url('media/browser', array(
+        'query' => array('render' => 'media-popup'),
+      )
+    ),
+    'styleSelectorUrl' => url('media/-media_id-/format-form', array(
+        'query' => array('render' => 'media-popup'),
+      )
+    ),
   );
 
   $js = array(
@@ -331,8 +266,8 @@ function media_browser_js() {
     ),
     'js' => array(
       array(
-       'data' => array('media' => $settings),
-       'type' => 'setting',
+        'data' => array('media' => $settings),
+        'type' => 'setting',
       ),
     ),
   );
@@ -340,7 +275,7 @@ function media_browser_js() {
 }
 
 /**
- * Menu callback for testing the media browser
+ * Menu callback for testing the media browser.
  */
 function media_browser_testbed($form) {
   media_attach_browser_js($form);
@@ -351,7 +286,7 @@ function media_browser_testbed($form) {
       'global' => array(
         'types' => array('video', 'audio'),
       ),
-    )
+    ),
   );
 
   $launcher = '<a href="#" id="launcher"> Launch Media Browser</a>';
@@ -370,7 +305,6 @@ function media_browser_testbed($form) {
     '#type' => 'textarea',
     '#title' => 'Result',
   );
-
 
   $js = <<<EOF
     Drupal.behaviors.mediaTest = {
@@ -422,7 +356,9 @@ EOF;
 }
 
 /**
- * Adds properties to the passed in file that are needed by the media browser JS code.
+ * Adds properties to the file.
+ *
+ * Additional properties on this file are needed by the media browser JS code.
  */
 function media_browser_build_media_item($file) {
   $preview = media_get_thumbnail_preview($file);
