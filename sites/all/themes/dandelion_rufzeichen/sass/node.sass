@@ -87,15 +87,14 @@
     h2 
       font-size: 32px
       margin-bottom: 9px
-  .group-left
-    width: 61%
-    margin-right: 3%
-  .group-left, .field-name-title
-    padding-left: 3px  
-  
+  .ds-2col-stacked 
+    .group-right, 
+    .group-left
+      float: none  
+      width: auto
+      img 
+        max-width: 100%
   .group-right
-    width: 34%
-    margin-right: 0.7%
     .group-properties-icons
       border: 1px solid #e5e5e5
       padding: 10px 15px 5px
@@ -467,6 +466,20 @@ body
         margin-top: -3px
         img
           float: right
+    
+    /* Project full node Desktop */
+    &.node-type-projekt
+      .ds-2col-stacked 
+        .group-left
+          float: left
+          width: 61%
+          margin-right: 3%
+        .group-left, .field-name-title
+          padding-left: 3px  
+        .group-right
+          float: left
+          width: 34%
+          margin-right: 0.7%
 
 
 

@@ -1,5 +1,12 @@
 @import "variables-mixins.sass"
 
+
+/*--------------------------------*/
+/*--------------------------------*/
+/*------ Layout all Devices ------*/
+/*--------------------------------*/
+/*--------------------------------*/
+
 /** Projekt-Slider auf Hompage **/
 .front
   #content-area
@@ -131,18 +138,19 @@
       margin-top: 0
       font-size: 23px
       margin-bottom: 15px
+      clear: left
   #content-area
     .view-images-project
       +legacy-pie-clearfix
       .views_slideshow_cycle_main
-        float: left
+        margin-bottom: 20px
         img
           padding: 0
           border: 1px solid #ccc
           box-shadow: #e7e7e7 0px 2px 5px
+          height: auto 
+          width: 300px
       .views-slideshow-controls-bottom
-        float: left
-        margin-left: 40px
         img
           padding: 0
           border: 1px solid #c9c9c9
@@ -151,8 +159,12 @@
             cursor: hand
         .views-slideshow-pager-field-item
           margin-bottom: 16px
-    #widget_pager_bottom_images_project-entity_view_1
-      margin-bottom: -20px
+          float: left
+          margin-right: 20px
+          img 
+            height: auto
+            width: 130px
+    
   /** Übersicht Projekte im Footer Projekt Full Node **/
   #footer 
     .footer-inner 
@@ -233,6 +245,36 @@
           font-size: 0.83em
           line-height: 1.35
           color: #999
+
+/*--------------------------------*/
+/*--------------------------------*/
+/*-------- Layout Desktop --------*/
+/*--------------------------------*/
+/*--------------------------------*/
+
+body
+  +at-breakpoint($breakpoint-desktop-with-ie-fallback)
+
+    &.node-type-projekt
+      #content-area
+        .view-images-project
+          .views_slideshow_cycle_main
+            float: left
+            img 
+              height: auto
+              width: auto
+          .views-slideshow-controls-bottom
+            float: left
+            margin-left: 40px
+            .views-slideshow-pager-field-item
+              margin-bottom: 16px
+              float: none
+              margin-right: 0
+              img 
+                height: auto
+                width: auto
+          #widget_pager_bottom_images_project-entity_view_1
+            margin-bottom: -20px
      
 
 
