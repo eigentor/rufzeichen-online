@@ -36,30 +36,24 @@
     p 
       width: 80%
 
-/** Detailansicht Projekt **/
+/** Detailansicht Projekt all Devices **/
 
-.node-type-projekt #header, .page-projekte #header, .page-node-192 #header
-  height: 65px
-  background: url("../images/new-adapted/header-cars-sw.jpg") no-repeat  0 -120px
-  border-top: 1px solid #eee
-  border-bottom: 1px solid #eee
+
 .node-type-projekt #header-top-line, .page-projekte #header-top-line, .page-node-192 #header-top-line
   display: none
 
-.node-type-projekt 
+.node-type-projekt
+  #views_slideshow_cycle_main_images_project-entity_view_1
+    margin: 0 -5px
+  #views_slideshow_cycle_teaser_section_images_project-entity_view_1
+    width: auto!important 
   #content
     margin-top: 20px
   .view-images-project
     margin-bottom: 25px
   .field-name-field-project-text-secondary
-    margin: 0 0 0 -10px
-    padding: 0 0 0 20px
     color: #999
-    background: url(../images/icons/quote-left.png) no-repeat 0 38px
     font-family: $font-family-headlines
-    .field-items
-      background: url(../images/icons/quote-right.png) no-repeat right bottom
-      padding: 0 15px 0 0 
     p
       font-size: 1.3em
       line-height: 1.5em   
@@ -72,7 +66,7 @@
       font-size: 1.4em
       color: #777
   .field-name-body
-    padding: 0 0 0 10px
+    padding: 0
     color: #555
     h2
       color: #ea5b0c
@@ -469,17 +463,37 @@ body
     
     /* Project full node Desktop */
     &.node-type-projekt
+      #views_slideshow_cycle_main_images_project-entity_view_1
+        margin: 0
+      #views_slideshow_cycle_teaser_section_images_project-entity_view_1
+        width: 692px!important
       .ds-2col-stacked 
         .group-left
           float: left
           width: 61%
           margin-right: 3%
+          .field-name-body
+            padding: 0 0 0 10px
+          .field-name-field-project-text-secondary
+            margin: 0 0 0 -10px
+            padding: 0 0 0 20px
+            color: #999
+            background: url(../images/icons/quote-left.png) no-repeat 0 38px
+            .field-items
+              background: url(../images/icons/quote-right.png) no-repeat right bottom
+              padding: 0 15px 0 0
         .group-left, .field-name-title
           padding-left: 3px  
         .group-right
           float: left
           width: 34%
           margin-right: 0.7%
+
+  &.node-type-projekt #header, &.page-projekte #header, &.page-node-192 #header
+    height: 65px
+    background: url("../images/new-adapted/header-cars-sw.jpg") no-repeat  0 -120px
+    border-top: 1px solid #eee
+    border-bottom: 1px solid #eee
 
 
 

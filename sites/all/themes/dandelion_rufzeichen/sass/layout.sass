@@ -89,6 +89,7 @@ body
     padding-top: 2px
 
 #header 
+  display: none
   padding: 0 $smartphone-grid-padding
   
 
@@ -321,6 +322,9 @@ body
 
 body
   +at-breakpoint($breakpoint-desktop-with-ie-fallback)
+
+    #header
+      display: block
   
     #header-top, #header, #main, #footer, #footer-bottom 
       padding: 0 $desktop-grid-padding

@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * Implements hook_preprocess_page
+ */
+function rufzeichen_custom_preprocess_page(&$variables) {
+  // define base path for our module
+  $base = drupal_get_path('module', 'rufzeichen_custom');
+  // add multi-purpose Javascript
+  drupal_add_js($base . '/js/multipurpose.js'); 
+}

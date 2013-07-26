@@ -1,0 +1,4 @@
+name = Rufzeichen Custom
+description = Different kinds of small functions for rufzeichen Website
+package = rufzeichen
+core = 7.x
