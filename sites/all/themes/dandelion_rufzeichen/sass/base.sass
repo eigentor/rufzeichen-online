@@ -1,13 +1,22 @@
 @import "variables-mixins.sass"
 
+/*--------------------------------*/
+/*--------------------------------*/
+/*------ Layout all Devices ------*/
+/*--------------------------------*/
+/*--------------------------------*/
+
 a:link,
 a:visited 
   text-decoration: none
   color: #ed8137
 
-
 a:hover 
   text-decoration: underline
+
+/* Don't show colorbox links as links on mobile */
+a.colorbox 
+  cursor: default
 
 
 h1,h2,h3,h4,h5,h6 
@@ -90,10 +99,7 @@ ul
   background: #FFF4F4
 
 
-/* Magnifying glass for Colorbox hover mouse arrow */
-.colorbox 
-  img 
-    cursor: url(/sites/all/themes/dandelion_rufzeichen/images/new-adapted/lupe.cur), url(../images/new-adapted/lupe.cur), pointer
+
 
 /** General Micro-Elements **/
 /* Code-Blocks */
@@ -271,6 +277,20 @@ div.filter-wrapper
 .media-vimeo-outer-wrapper,
 .media-youtube-outer-wrapper 
   border: 1px solid #ccc
+
+/*--------------------------------*/
+/*--------------------------------*/
+/*-------- Layout Desktop --------*/
+/*--------------------------------*/
+/*--------------------------------*/
+
+body
+  +at-breakpoint($breakpoint-desktop-with-ie-fallback)
+
+    /* Magnifying glass for Colorbox hover mouse arrow */
+    .colorbox 
+      img 
+        cursor: url(/sites/all/themes/dandelion_rufzeichen/images/new-adapted/lupe.cur), url(../images/new-adapted/lupe.cur), pointer
 
 
 
