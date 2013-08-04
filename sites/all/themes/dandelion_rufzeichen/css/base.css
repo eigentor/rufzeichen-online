@@ -389,15 +389,20 @@ div.filter-wrapper li {
 
 /*-------------------------------- */
 /*-------------------------------- */
+/*-------- Layout Tablet --------- */
+/*-------------------------------- */
+/*-------------------------------- */
+/*-------------------------------- */
+/*-------------------------------- */
 /*-------- Layout Desktop -------- */
 /*-------------------------------- */
 /*-------------------------------- */
 @media (min-width: 750px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\00003287}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\00003299}}
   body {
     /* Magnifying glass for Colorbox hover mouse arrow */
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\00003292}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\00003304}}
   body .colorbox img {
     cursor: url(/sites/all/themes/dandelion_rufzeichen/images/new-adapted/lupe.cur), url(../images/new-adapted/lupe.cur), pointer;
   }
@@ -406,7 +411,7 @@ div.filter-wrapper li {
 .lt-ie9 body {
   /* Magnifying glass for Colorbox hover mouse arrow */
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\00003292}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen-online\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\00003304}}
 .lt-ie9 body .colorbox img {
   cursor: url(/sites/all/themes/dandelion_rufzeichen/images/new-adapted/lupe.cur), url(../images/new-adapted/lupe.cur), pointer;
 }

@@ -43,9 +43,13 @@ $options['bt_rufzeichen_projects_navigation'] = array(
     beautytips_add_beautytips($options);    
  
 $beautytip_content = render($row->field_field_project_images);
-$beautytip_content .= '<h3>' . $row->node_title . '</h3>'; 
+$beautytip_content .= '<h3>' . $row->node_title . '</h3>';
+
+
  
 ?>
+
+
 
 <?php foreach ($fields as $id => $field): ?>
   <?php if (!empty($field->separator)): ?>
