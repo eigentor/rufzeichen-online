@@ -11,11 +11,9 @@
         $(".colorbox").click(function(e){
           e.preventDefault();
         });
-        $(".overview-thumb-wrapper").removeAttr("bt-xtitle");
-        
+        $(".overview-thumb-wrapper").removeAttr("bt-xtitle");        
       }
     }
-
   }); //document.ready
 
 })(jQuery); 
