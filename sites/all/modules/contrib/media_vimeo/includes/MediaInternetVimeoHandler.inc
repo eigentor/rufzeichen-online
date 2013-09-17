@@ -32,8 +32,16 @@ class MediaInternetVimeoHandler extends MediaInternetBaseHandler {
     }
   }
 
+  public function save() {
+    $file = $this->getFileObject();
+    file_save($file);
+    return $file;
+  }
+
   public function getFileObject() {
     $uri = $this->parse($this->embedCode);
+    //@todo: this is terribly broken in some ways because the function is really
+    // made for local files which are 'real'
     $file = file_uri_to_object($uri, TRUE);
 
     // Try to default the file name to the video's title.

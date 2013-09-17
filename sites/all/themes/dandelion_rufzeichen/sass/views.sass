@@ -136,7 +136,7 @@
       color: $primary-orange-text
       color: #777
       margin-top: 0
-      font-size: 23px
+      font-size: 20px
       margin-bottom: 15px
       clear: left
   #content-area
@@ -157,13 +157,13 @@
           &:hover
             cursor: pointer
             cursor: hand
-        .views-slideshow-pager-field-item
-          margin-bottom: 16px
-          float: left
-          margin-right: 20px
-          img 
-            height: auto
-            width: 110px
+  .views-slideshow-pager-field-item
+    margin-bottom: 16px
+    float: left
+    margin-right: 20px
+    img 
+      height: auto
+      width: 110px
     
   /** Übersicht Projekte im Footer Projekt Full Node **/
   #footer 
@@ -175,11 +175,9 @@
       +legacy-pie-clearfix
       .views-row 
         float: left
-        margin: 0 25px 20px 0
+        margin: 0 15px 15px 0
         img
           border: 1px solid #ddd
-
- 
 
 
 /** Projekt-Slider auf Hompage **/
@@ -254,15 +252,20 @@
 
 body
   +at-breakpoint($breakpoint-tablet)
-  
-
-  /** Detailansicht Projekte **/
-  &.node-type-projekt
-    #content-area
-      .view-images-project
-        .views_slideshow_cycle_main
-          img
-            width: 430px
+ 
+    /** Detailansicht Projekte **/
+    &.node-type-projekt
+      #content-area
+        .view-images-project
+          .views_slideshow_cycle_main
+            img
+              width: 430px
+        .view-header  
+          h2
+            font-size: 23px
+    .view-projekte-overview 
+      .views-row 
+        margin: 0 25px 20px 0
 
 
 
@@ -295,6 +298,9 @@ body
                 width: auto
           #widget_pager_bottom_images_project-entity_view_1
             margin-bottom: -20px
+    .view-projekte-overview 
+      .views-row 
+        margin: 0 25px 20px 0
      
 
 
