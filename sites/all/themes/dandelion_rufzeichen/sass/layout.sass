@@ -33,8 +33,6 @@ body
   height: auto!important
   height: 100%
   width: 100%
-  background: #aaa url(../images/patterns/pattern16-b.png)
-  padding: 26px 0 23px
 
 #page 
   +container
@@ -77,16 +75,13 @@ body
   float: left
 
 
-#header-top 
-  padding: 0 $smartphone-grid-padding
-  display: block
-  height: 100px
-
-.front 
-  #header-top 
-    background: #5a5a5a
-    height: 80px
-    padding-top: 2px
+#header-top
+  +legacy-pie-clearfix 
+  background: #5a5a5a
+  padding: 10px $smartphone-grid-padding
+#navigation
+  display: none
+  text-transform: uppercase
 
 #header 
   display: none
@@ -140,27 +135,14 @@ body
 
 #logo 
   float: left
-  width: 280px
-  padding: 27px 0 0 0px
   position: relative
-
-.front #logo 
-  padding-left: 0px
-  padding-top: 17px
+  max-width: 50%
+  img 
+    max-width: 100%
 
 #site-slogan 
-  position: absolute
-  top: 60px
-  left: 33px
-  font-family: Georgia, "Times New Roman", Times, serif
-  font-style: italic
-  color: #aaa
-  font-size: 14px
-
-.front #site-slogan 
-  left: 35px
-  top: 49px
-  color: #ccc
+  display: none
+  
 
 
 /*---------------------------- LOGO ----------------------------*/
@@ -174,44 +156,10 @@ body
     height: 71px
     display: block
     background-image: url(images/logo.png)
-    background-repeat: no-repeat  
+    background-repeat: no-repeat 
 
-/*------------------------- Main Menu ---------------------------------*/
-#navigation 
-  float: right
-  margin-top: 45px
-  max-width: 620px
-  width: auto!important
-  width: 620px
-  background: none
-  ul
-    text-align: right 
-    li 
-      display: inline
-      a
-        text-transform: uppercase
-        padding-right: 11px
-        margin-right: 2px
-        padding-left: 7px
-        font-size: 13px
-        line-height: 0.2em
-        color: #535353
-        height: 10px
-        font-style: normal
-        letter-spacing: 1px
-        background: url(../images/new-adapted/menu-background.jpg) no-repeat right 6px 
-        &:hover 
-          color: $primary-orange-text
-          background: url(../images/new-adapted/menu-background-orange.png) no-repeat right 6px
-          text-decoration: none
-        &.active-trail
-          color: $primary-orange-text
-          background: url(../images/new-adapted/menu-background-orange.png) no-repeat right 6px
-      &.selected
-        a
-          color: #535353
-    ul 
-      display: none
+/*----------------------- Main Menu -----------------------------*/ 
+
 
 /*--- Front Header Menu ---*/
 .front 
@@ -333,20 +281,96 @@ body
 
 body
   +at-breakpoint($breakpoint-desktop-with-ie-fallback)
+    #page-wrapper 
+      background: #aaa url(../images/patterns/pattern16-b.png)
+      padding: 26px 0 23px
 
     #header
       display: block
+
+    #header-top 
+      background: transparent
+      padding: 0 $smartphone-grid-padding
+      display: block
+      height: 100px
+
+    &.front 
+      #header-top 
+        background: #5a5a5a
+        height: 80px
+        padding-top: 2px
   
     #header-top, #header, #main, #footer, #footer-bottom 
       padding: 0 $desktop-grid-padding
       margin: 0 (-$desktop-grid-padding)
+
     #main 
       padding-bottom: 30px
 
     #page 
       $container-style: static
       +container
-      margin: auto 
+      margin: auto
+
+    #logo
+      width: 280px
+      padding: 27px 0 0 0px 
+
+    &.front #logo 
+      padding-left: 0px
+      padding-top: 17px
+
+    #site-slogan 
+      display: block
+      position: absolute
+      top: 60px
+      left: 33px
+      font-size: 14px
+      font-family: Georgia, "Times New Roman", Times, serif
+      font-style: italic
+      color: #aaa
+      font-size: 1em
+
+    &.front #site-slogan 
+      left: 35px
+      top: 49px
+      color: #ccc
+    /*------------------------- Main Menu ---------------------------------*/
+    #navigation 
+      display: block
+      float: right
+      margin-top: 45px
+      max-width: 620px
+      width: auto!important
+      width: 620px
+      background: none
+      ul
+        text-align: right 
+        li 
+          display: inline
+          a
+            padding-right: 11px
+            margin-right: 2px
+            padding-left: 7px
+            font-size: 13px
+            line-height: 0.2em
+            color: #535353
+            height: 10px
+            font-style: normal
+            letter-spacing: 1px
+            background: url(../images/new-adapted/menu-background.jpg) no-repeat right 6px 
+            &:hover 
+              color: $primary-orange-text
+              background: url(../images/new-adapted/menu-background-orange.png) no-repeat right 6px
+              text-decoration: none
+            &.active-trail
+              color: $primary-orange-text
+              background: url(../images/new-adapted/menu-background-orange.png) no-repeat right 6px
+          &.selected
+            a
+              color: #535353
+        ul 
+          display: none
 
     #content
       +span-columns(9, 12)
