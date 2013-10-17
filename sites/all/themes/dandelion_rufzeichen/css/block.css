@@ -299,7 +299,7 @@
 .front .view-front-header-slider .views-field-field_front_image_header_slider span.node-227 img {
   position: absolute;
   bottom: 0;
-  right: -22px;
+  right: -30px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003219}}
 .front .view-front-header-slider .views-field-body p {
@@ -341,7 +341,7 @@
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003246}}
 .front .view-front-header-slider .views-field-body span.node-227 {
   display: block;
-  margin-left: 45px;
+  margin-left: 50px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003251}}
 .front .view-front-header-slider .views-field-title a {
@@ -372,8 +372,8 @@
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003274}}
 .front .view-front-header-slider .views-field-title span.node-227 a {
   display: block;
-  margin-top: 27px;
-  margin-left: 45px;
+  margin-top: 20px;
+  margin-left: 50px;
 }
 
 /*Controls Slider front page */
