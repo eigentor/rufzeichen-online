@@ -12,6 +12,12 @@
           <div id="site-slogan"><?php print $site_slogan; ?></div>
         <?php endif; ?>
       </div>
+      <?php if ($page['mobile_menu']): ?>
+        <div id="mobile-menu-region">
+          <?php print render($page['mobile_menu']); ?>
+        </div>
+      <?php endif; ?>
+
        <div id="navigation" class="menu">
        <?php print render($page['main_menu']); ?>
       </div>

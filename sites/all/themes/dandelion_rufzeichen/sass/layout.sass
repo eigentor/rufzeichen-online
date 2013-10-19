@@ -78,7 +78,6 @@ body
 #header-top
   +legacy-pie-clearfix 
   background: #5a5a5a
-  padding: 10px $smartphone-grid-padding
 #navigation
   display: none
   text-transform: uppercase
@@ -104,6 +103,12 @@ body
     input.form-text
       border: 1px solid #999
       width: 200px
+
+#mobile-menu-region
+  .mobile-menu-button
+    float: right
+    width: 16%
+    height: 100%
 
 /** Suchbox Position auf Projektseiten */
 .node-type-projekt, .page-projekte, .page-node-192
@@ -134,6 +139,7 @@ body
   background: none
 
 #logo 
+  padding: 10px $smartphone-grid-padding
   float: left
   position: relative
   max-width: 50%
@@ -335,6 +341,11 @@ body
       left: 35px
       top: 49px
       color: #ccc
+
+    // Hide region for mobile menu
+    #mobile-menu-region
+      display: none
+
     /*------------------------- Main Menu ---------------------------------*/
     #navigation 
       display: block
