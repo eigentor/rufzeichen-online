@@ -269,7 +269,13 @@
   bottom: 0;
   right: -30px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003202}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003201}}
+.front .view-front-header-slider .views-field-field_front_image_header_slider span.node-228 img {
+  position: absolute;
+  bottom: 0;
+  right: -30px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003207}}
 .front .view-front-header-slider .views-field-body p {
   width: 70%;
   font-family: georgia, times, sans-serif;
@@ -278,7 +284,7 @@
   line-height: 1.4;
   letter-spacing: -0.005em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003209}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003214}}
 .front .view-front-header-slider .views-field-body a {
   font-family: verdana, helvetica, sans-serif;
   font-size: 12px;
@@ -286,58 +292,58 @@
   line-height: 1;
   display: block;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003216}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003221}}
 .front .view-front-header-slider .views-field-body span.node-194 {
   display: block;
   margin-left: 30px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003220}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003225}}
 .front .view-front-header-slider .views-field-body span.node-196 {
   display: block;
   margin-left: 20px;
   width: 411px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003224}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003229}}
 .front .view-front-header-slider .views-field-body span.node-196 p {
   width: 80%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003226}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003231}}
 .front .view-front-header-slider .views-field-body span.node-197 {
   display: block;
   margin-left: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003229}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003234}}
 .front .view-front-header-slider .views-field-body span.node-227 {
   display: block;
   margin-left: 50px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003234}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003239}}
 .front .view-front-header-slider .views-field-title a {
   font-family: georgia, times, sans-serif;
   font-size: 2.5em;
   line-height: 1.7em;
   background-color: transparent;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003241}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003246}}
 .front .view-front-header-slider .views-field-title span.node-194 a {
   display: block;
   margin-top: 20px;
   width: 411px;
   margin-left: 30px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003247}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003252}}
 .front .view-front-header-slider .views-field-title span.node-196 a {
   display: block;
   margin-left: 18px;
   margin-top: 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003252}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003257}}
 .front .view-front-header-slider .views-field-title span.node-197 a {
   display: block;
   margin-top: 20px;
   margin-left: 20px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003257}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003262}}
 .front .view-front-header-slider .views-field-title span.node-227 a {
   display: block;
   margin-top: 20px;
@@ -345,7 +351,7 @@
 }
 
 /*Controls Slider front page */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003266}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003271}}
 .front .view-front-header-slider .views-slideshow-controls-bottom {
   position: absolute;
   right: 50px;
@@ -353,7 +359,7 @@
   width: 20%;
   z-index: 25;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003272}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003277}}
 .front .view-front-header-slider .views-slideshow-controls-bottom .views-content-counter {
   cursor: pointer;
   cursor: hand;
@@ -369,7 +375,7 @@
   color: #777777;
   font-size: 0.93em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003287}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003292}}
 .front .view-front-header-slider .views-slideshow-controls-bottom .active .views-content-counter, .front .view-front-header-slider .views-slideshow-controls-bottom .active .views-content-counter:hover {
   color: #ed8137;
   color: #222222;
@@ -377,7 +383,7 @@
 }
 
 /*Partners Block on About Us */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003293}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003298}}
 .block.partner-agenturen {
   *zoom: 1;
   background: #dddddd;
@@ -394,27 +400,27 @@
   overflow: hidden;
   visibility: hidden;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003299}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003304}}
 .block.partner-agenturen p {
   margin: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003301}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003306}}
 .block.partner-agenturen h2.partner-title {
   float: left;
   float-font-size: 1.8em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003304}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003309}}
 .block.partner-agenturen .partner-angermann-webdesign {
   float: left;
   padding: 12px 10px 0 25px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003307}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003312}}
 .block.partner-agenturen .partner-undpaul {
   float: left;
   padding: 15px 10px 0 20px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003311}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003316}}
 .page-node-190 #footer {
   border-top: none;
 }
@@ -430,23 +436,23 @@
 /*-------------------------------- */
 /*-------------------------------- */
 @media (min-width: 750px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003333}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003338}}
   body #footer {
     /* Drupal Box */
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003334}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003339}}
   body #footer .contact-footer {
     float: left;
     width: 25%;
     padding-right: 2%;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003338}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003343}}
   body #footer .contact-footer div, body #footer .contact-footer a {
     font-size: 15px;
     font-style: normal;
     color: #777777;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003342}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003347}}
   body #footer .contact-footer .telefon {
     margin-top: 15px;
     height: 30px;
@@ -454,62 +460,62 @@
     padding-left: 33px;
     background: url(../images/new-adapted/telefon-klein.png) no-repeat 2px center;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003348}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003353}}
   body #footer .contact-footer .email {
     height: 40px;
     line-height: 35px;
     padding-left: 33px;
     background: url(../images/new-adapted/email-icon.png) no-repeat -3px center;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003353}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003358}}
   body #footer .contact-footer .email span.mailto {
     display: none;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003355}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003360}}
   body #footer #block-views-Newsblock_Startseite-block_2 {
     width: 28%;
     float: left;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003358}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003363}}
   body #footer #block-views-Newsblock_Startseite-block_2 .view-Newsblock-Startseite {
     padding-right: 33px;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003362}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003367}}
   body #footer #block-boxes-footer_drupal_box {
     float: left;
     width: 43%;
     padding-left: 5px;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003366}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003371}}
   body #footer #block-boxes-footer_drupal_box .footer-drupal-box-left {
     float: left;
     width: 50%;
     margin-right: 7%;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003370}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003375}}
   body #footer #block-boxes-footer_drupal_box .footer-drupal-box-right {
     float: left;
     width: 35%;
     margin-top: -5px;
   }
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003333}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003338}}
 .lt-ie9 body #footer {
   /* Drupal Box */
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003334}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003339}}
 .lt-ie9 body #footer .contact-footer {
   float: left;
   width: 25%;
   padding-right: 2%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003338}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003343}}
 .lt-ie9 body #footer .contact-footer div, .lt-ie9 body #footer .contact-footer a {
   font-size: 15px;
   font-style: normal;
   color: #777777;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003342}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003347}}
 .lt-ie9 body #footer .contact-footer .telefon {
   margin-top: 15px;
   height: 30px;
@@ -517,39 +523,39 @@
   padding-left: 33px;
   background: url(../images/new-adapted/telefon-klein.png) no-repeat 2px center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003348}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003353}}
 .lt-ie9 body #footer .contact-footer .email {
   height: 40px;
   line-height: 35px;
   padding-left: 33px;
   background: url(../images/new-adapted/email-icon.png) no-repeat -3px center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003353}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003358}}
 .lt-ie9 body #footer .contact-footer .email span.mailto {
   display: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003355}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003360}}
 .lt-ie9 body #footer #block-views-Newsblock_Startseite-block_2 {
   width: 28%;
   float: left;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003358}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003363}}
 .lt-ie9 body #footer #block-views-Newsblock_Startseite-block_2 .view-Newsblock-Startseite {
   padding-right: 33px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003362}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003367}}
 .lt-ie9 body #footer #block-boxes-footer_drupal_box {
   float: left;
   width: 43%;
   padding-left: 5px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003366}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003371}}
 .lt-ie9 body #footer #block-boxes-footer_drupal_box .footer-drupal-box-left {
   float: left;
   width: 50%;
   margin-right: 7%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003370}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/block\.sass}line{font-family:\00003375}}
 .lt-ie9 body #footer #block-boxes-footer_drupal_box .footer-drupal-box-right {
   float: left;
   width: 35%;
