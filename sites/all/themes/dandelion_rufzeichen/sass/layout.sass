@@ -78,8 +78,11 @@ body
 #header-top
   +legacy-pie-clearfix 
   background: #5a5a5a url(../images/mobile-menu-background.png) 100% repeat-y
-  max-height: 50px
-#navigation
+#main-menu-mobile 
+  display: none
+  text-transform: uppercase
+
+#navigation 
   display: none
   text-transform: uppercase
 
@@ -106,6 +109,7 @@ body
       width: 200px
 
 #mobile-menu-region
+  height: 50px
   .mobile-menu-button
     float: right
     width: 53px
@@ -173,20 +177,7 @@ body
     background-repeat: no-repeat 
 
 /*----------------------- Main Menu -----------------------------*/ 
-
-
-/*--- Front Header Menu ---*/
-.front 
-  #navigation
-    margin-top: 30px 
-    ul 
-      li 
-        a 
-          color: #fff
-          background-image: url(../images/new-adapted/menu-background-white.png)
-          &:hover 
-            color: $primary-orange-text
-            background: url(../images/new-adapted/menu-background-orange.png) no-repeat right 6px
+#nav
 
 /*-------------------------CONTENT----------------------------*/
 #main 
@@ -301,6 +292,8 @@ body
 
     #header
       display: block
+      #block-menu-primary-links 
+        display: none
 
     #header-top 
       background: transparent
@@ -427,6 +420,18 @@ body
             background: #eee
             padding: 0 5px
             margin-right: 3px
+
+            /*--- Front Navigation ---*/
+      #navigation
+        margin-top: 30px 
+        ul 
+          li 
+            a 
+              color: #fff
+              background-image: url(../images/new-adapted/menu-background-white.png)
+              &:hover 
+                color: $primary-orange-text
+                background: url(../images/new-adapted/menu-background-orange.png) no-repeat right 6px
 
 
   

@@ -12,9 +12,9 @@
           <div id="site-slogan"><?php print $site_slogan; ?></div>
         <?php endif; ?>
       </div>
-      <?php if ($page['mobile_menu']): ?>
+      <?php if ($page['mobile_menu_controls']): ?>
         <div id="mobile-menu-region">
-          <?php print render($page['mobile_menu']); ?>
+          <?php print render($page['mobile_menu_controls']); ?>
         </div>
       <?php endif; ?>
 
@@ -23,6 +23,12 @@
       </div>
      </div>
 
+  <!-- special region for the main menu in mobile view -->
+  <?php if ($page['main_menu_mobile']): ?>
+      <div id="main-menu-mobile">
+        <?php print render($page['main_menu_mobile']); ?>
+      </div>
+  <?php endif; ?>
   
   <div id="header">
   <div id="header-top-line">

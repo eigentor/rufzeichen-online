@@ -4,10 +4,10 @@
 
 	// Toggle the mobile menu
     $('.mobile-menu-button a').toggle(function(){
-      $('#navigation').slideDown('slow');
+      $('#main-menu-mobile').slideDown('slow');
     },
     function(){
-      $('#navigation').slideUp('slow');
+      $('#main-menu-mobile').slideUp('slow');
     });
 
 
