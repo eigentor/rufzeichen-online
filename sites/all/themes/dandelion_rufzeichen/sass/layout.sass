@@ -77,7 +77,8 @@ body
 
 #header-top
   +legacy-pie-clearfix 
-  background: #5a5a5a
+  background: #5a5a5a url(../images/mobile-menu-background.png) 100% repeat-y
+  max-height: 50px
 #navigation
   display: none
   text-transform: uppercase
@@ -107,8 +108,15 @@ body
 #mobile-menu-region
   .mobile-menu-button
     float: right
-    width: 16%
+    width: 53px
     height: 100%
+    a 
+      background: url(../images/mobile-menu.png) no-repeat 5px center
+      display: block
+      height: 40px
+      width: 40px
+      margin-top: 5px
+      text-decoration: none
 
 /** Suchbox Position auf Projektseiten */
 .node-type-projekt, .page-projekte, .page-node-192
@@ -144,7 +152,7 @@ body
   position: relative
   max-width: 50%
   img 
-    max-width: 100%
+    max-width: 120px
 
 #site-slogan 
   display: none
@@ -298,6 +306,7 @@ body
       background: transparent
       padding: 0 $smartphone-grid-padding
       display: block
+      max-height: none
       height: 100px
 
     &.front 
@@ -321,6 +330,8 @@ body
     #logo
       width: 280px
       padding: 27px 0 0 0px 
+      img
+        max-width: none
 
     &.front #logo 
       padding-left: 0px
