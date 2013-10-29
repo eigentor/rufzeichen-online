@@ -74,6 +74,10 @@ body
   clear: left
   float: left
 
+#sidebar-second 
+  clear: left
+  float: none
+
 
 #header-top
   +legacy-pie-clearfix 
@@ -81,6 +85,26 @@ body
 #main-menu-mobile 
   display: none
   text-transform: uppercase
+  #block-menu-primary-links
+    ul
+      margin-right: -3px
+      margin-left: -1px 
+      li
+        display: inline
+        float: left 
+        width: 49.5%
+        margin: 0 
+        padding: 0
+        text-align: center
+        border: 1px solid #888
+        border-right: 0
+        margin-top: -1px
+        margin-top: -1px
+        a 
+          display: block
+          font-size: 1.3em
+          line-height: 3.5
+         
 
 #navigation 
   display: none
@@ -151,7 +175,7 @@ body
   background: none
 
 #logo 
-  padding: 10px $smartphone-grid-padding
+  padding: 12px $smartphone-grid-padding 5px
   float: left
   position: relative
   max-width: 50%
@@ -201,6 +225,8 @@ body
   margin-top: 36px
   min-height: 200px
   background: none
+  clear: none
+  float: left
   h2
     &.block-title
       font-family: $font-family-headlines
@@ -266,6 +292,25 @@ body
       text-align: right
       li
         display: inline
+
+/*--------------------------------*/
+/*--------------------------------*/
+/*- Layout Smartphone max 280px --*/
+/*--------------------------------*/
+/*--------------------------------*/
+
+body
+  +at-breakpoint($breakpoint-tiny-smartphone)
+    #main-menu-mobile 
+      #block-menu-primary-links
+        ul
+          li
+            float: none
+            display: block
+            width: 99.5%
+    #logo 
+      img 
+        max-width: 100%
 
 /*--------------------------------*/
 /*--------------------------------*/
