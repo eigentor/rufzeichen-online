@@ -214,10 +214,7 @@ ul.inline
 
 /** Comments **/
 h2.comment-form
-  margin-left: 5px
   margin-top: 30px
-form#comment-form
-  margin-left: 5px
 
 .comment
   background-color: #FAFAFA
@@ -226,24 +223,20 @@ form#comment-form
   font-size: 12px
   margin-top: 20px
   padding: 20px 25px 20px 20px 
-  .user-picture 
-    float: left
-    display: inline
   .user-picture-wrapper
-    float: left
-  .comment-content
-    margin-left: 110px
-  .submitted
-    float: none
+    img 
+      width: 50px 
+      height: auto
+      display: none
   h3
     margin-top: 0
     margin-bottom: 2px
     font-size: 1.6em
   .comment-author
-    width: 90px
     span, a
-      font-size: 0.93em
-      line-height: 1
+      font-size: 1.05em
+      color: #aaa
+      line-height: 1.2
       font-family: Georgia,"Times New Roman",Times,serif
       font-style: italic
   p
@@ -254,11 +247,7 @@ form#comment-form
     font-family: Georgia,"Times New Roman",Times,serif
     font-size: 1em
     font-style: italic
-  .comment-date
-    float: right
-    padding-right: 15px
   ul.links
-    float: right
     padding-right: 15px
     margin-left: 15px
     li
@@ -502,11 +491,54 @@ body
           font-size: 32px
           margin-bottom: 9px
 
-  &.node-type-projekt #header, &.page-projekte #header, &.page-node-192 #header
-    height: 65px
-    background: url("../images/new-adapted/header-cars-sw.jpg") no-repeat  0 -120px
-    border-top: 1px solid #eee
-    border-bottom: 1px solid #eee
+    &.node-type-projekt #header, &.page-projekte #header, &.page-node-192 #header
+      height: 65px
+      background: url("../images/new-adapted/header-cars-sw.jpg") no-repeat  0 -120px
+      border-top: 1px solid #eee
+      border-bottom: 1px solid #eee
+
+    /*--------------- Comments ---------------*/
+    .comment
+      background-color: #FAFAFA
+      border: 1px solid #e5e5e5
+      border-radius: 2px 2px 2px 2px
+      font-size: 12px
+      margin-top: 20px
+      padding: 20px 25px 20px 20px 
+      .user-picture 
+        float: left
+        display: inline
+      .user-picture-wrapper
+        float: left
+        text-align: left 
+        img 
+          width: auto
+          display: block
+      .comment-content
+        margin-left: 110px
+      .submitted
+        float: none
+      h3
+        margin-top: 0
+        margin-bottom: 2px
+        font-size: 1.6em
+      .comment-author
+        width: 90px
+        span 
+          font-size: 0.93em
+          color: $base-font-color
+      .comment-date
+        float: right
+        padding-right: 15px
+      ul.links
+        float: right
+        padding-right: 15px
+        margin-left: 15px
+      /** Comments **/
+      h2.comment-form
+        margin-left: 5px
+      form#comment-form
+        margin-left: 5px
 
 
 

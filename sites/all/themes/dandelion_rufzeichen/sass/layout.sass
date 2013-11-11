@@ -267,15 +267,18 @@ body
     .footer-inner
       padding: 20px 0 17px
 
+/* Footer bottom */
 #footer-bottom 
   padding: 0 $smartphone-grid-padding
   background-color: #363636
   display: block
-
-
-/* Footer bottom */
-#footer-bottom 
   text-align: center
+  span.rufzeichen-copyright 
+    display: block
+    margin-bottom: 1px
+  span.thanks-theme 
+    display: block
+    margin-bottom: 8px
   .footer-bottom-inner 
     font-size: 12px
     font-family: Georgia, "Times New Roman", Times, serif
@@ -475,19 +478,26 @@ body
                 color: $primary-orange-text
                 background: url(../images/new-adapted/menu-background-orange.png) no-repeat right 6px
 
-      /* Footer bottom */
-      #footer-bottom 
-        text-align: left
-        height: 62px
-        padding-bottom: 0
-        #footer-left 
-          float: left
-          width: 420px
-        #footer-bottom-region 
-          float: right
-          width: 400px
-          ul
-            text-align: right
+    /* Footer bottom */
+    #footer-bottom 
+      text-align: left
+      height: 62px
+      padding-bottom: 0
+      span.rufzeichen-copyright 
+        display: inline 
+        margin: 0
+        padding-right: 15px
+      span.thanks-theme 
+        display: inline
+        margin: 0
+      #footer-left 
+        float: left
+        width: 420px
+      #footer-bottom-region 
+        float: right
+        width: 400px
+        ul
+          text-align: right
 
 
   

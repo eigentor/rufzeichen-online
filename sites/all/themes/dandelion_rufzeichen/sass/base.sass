@@ -31,7 +31,7 @@ h1,h2,h3,h4,h5,h6
 
 h1 a:link,h2 a:link,h3 a:link,h4 a:link,h5 a:link,h6 a:link,
 h1 a:visited,h2 a:visited,h3 a:visited,h4 a:visited,h5 a:visited,h6 a:visited 
-  color: #6a6a6a
+  color: $base-font-color
   text-decoration: none
 
 h1 a:hover 
@@ -39,10 +39,10 @@ h1 a:hover
   text-decoration: none
 
 h1 
-  font-size: 28px
+  font-size: 24px
 
 h2 
-  font-size: 25px
+  font-size: 20px
   margin-bottom: 13px
 
 #footer h2 
@@ -51,7 +51,7 @@ h2
   line-height: 1
 
 h3 
-  font-size: 20px
+  font-size: 17px
 
 h4 
   font-size: 17px
@@ -98,7 +98,13 @@ ul
 .node-unpublished 
   background: #FFF4F4
 
-
+/** Do not keep preformatted text */
+pre 
+  white-space: normal
+  background: #E6EFF2
+  border: 1px solid #d5d5d5 
+  padding: 10px
+  line-height: 2
 
 
 /** General Micro-Elements **/
@@ -134,7 +140,7 @@ textarea
 
 /* Submitted Information */
 .submitted 
-  color: #6a6a6a
+  color: $base-font-color
   float: left
   font-size: 11px
   margin-bottom: 15px
@@ -260,6 +266,10 @@ input.form-submit
     cursor: hand
     cursor: pointer
 
+// make all text inputs span the full width
+input.form-text, textarea
+  width: 97.5%
+
 /* Formatting tips */
 fieldset.filter-wrapper,
 div.filter-wrapper   
@@ -299,10 +309,30 @@ body
 body
   +at-breakpoint($breakpoint-desktop-with-ie-fallback)
 
+    /* Headings sizes */
+    h1 
+      font-size: 28px
+
+    h2 
+      font-size: 25px
+      margin-bottom: 13px
+
+    h3 
+      font-size: 20
+
+    /* Keep preformatted text */
+    pre 
+      white-space: pre
+      line-height: 1.7
+
     /* Magnifying glass for Colorbox hover mouse arrow */
     .colorbox 
       img 
         cursor: url(/sites/all/themes/dandelion_rufzeichen/images/new-adapted/lupe.cur), url(../images/new-adapted/lupe.cur), pointer
+
+    /* Reset all text input widths */
+    input.form-text, textarea
+      width: auto
 
 
 
