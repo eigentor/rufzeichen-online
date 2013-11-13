@@ -18,7 +18,6 @@ a:hover
 a.colorbox 
   cursor: default
 
-
 h1,h2,h3,h4,h5,h6 
   color: #454545
   line-height: 1.3em
@@ -84,14 +83,6 @@ table
 ul 
   padding: 0
 
-.imagefloatleft 
-  float: left
-  margin: 5px 15px 5px 0
-
-.imagefloatright 
-  float: right
-  margin: 0 5px 5px 15px
-
 .cleardiv 
   clear: both
 
@@ -141,7 +132,6 @@ textarea
 /* Submitted Information */
 .submitted 
   color: $base-font-color
-  float: left
   font-size: 11px
   margin-bottom: 15px
   width: 100%
@@ -324,6 +314,18 @@ body
     pre 
       white-space: pre
       line-height: 1.7
+
+    .imagefloatleft 
+      float: left
+      margin: 5px 15px 5px 0
+
+    .imagefloatright 
+      float: right
+      margin: 0 5px 5px 15px
+
+    /* Drupal-specific Micro Styles */
+    .submitted
+      float: left
 
     /* Magnifying glass for Colorbox hover mouse arrow */
     .colorbox 

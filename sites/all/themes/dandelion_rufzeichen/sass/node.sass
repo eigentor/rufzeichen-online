@@ -125,14 +125,21 @@ form#webform-client-form-22
 /* ---         News           --- */
 /* -------------------------------*/
 
-.page-news
+.page-news, .page-taxonomy-term, .node-type-news
   ul.tabs 
     font-size: $font-size-plus-one
   #content
-    img 
+    img
       max-width: 100%!important
-      width: auto!important
-      height: auto!important 
+      height: auto !important
+      display: block
+      margin: 20px 0 10px
+    .media-youtube-outer-wrapper, object, embed
+      max-width: 100%!important
+
+
+
+
 
 .view-id-News_Hauptseite, .view-taxonomy-term
   h2 
@@ -496,6 +503,19 @@ body
       background: url("../images/new-adapted/header-cars-sw.jpg") no-repeat  0 -120px
       border-top: 1px solid #eee
       border-bottom: 1px solid #eee
+
+    /*--------------------------------*/
+    /* ---         News           --- */
+    /* -------------------------------*/
+    &.page-news, &.page-taxonomy-term, &.node-type-news
+      #content
+        img.imagefloatleft 
+          float: left
+          margin: 5px 15px 5px 0
+        img.imagefloatright 
+          float: right
+          margin: 0 5px 5px 15px
+    
 
     /*--------------- Comments ---------------*/
     .comment

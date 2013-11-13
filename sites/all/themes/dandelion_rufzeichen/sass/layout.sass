@@ -71,13 +71,6 @@ body
 
 #content 
   padding-top: 30px
-  clear: left
-  float: left
-
-#sidebar-second 
-  clear: left
-  float: none
-
 
 #header-top
   +legacy-pie-clearfix 
@@ -108,6 +101,9 @@ body
             background: #eee
             text-decoration: none
             color: $link-active-color
+        // Hide second level of menu
+        ul 
+          display: none
          
 
 #navigation 
@@ -229,8 +225,6 @@ body
   margin-top: 36px
   min-height: 200px
   background: none
-  clear: none
-  float: left
   h2
     &.block-title
       font-family: $font-family-headlines
@@ -434,6 +428,8 @@ body
           display: none
 
     #content
+      clear: left
+      float: left
       +span-columns(9, 12)
       +legacy-pie-clearfix
     &.no-sidebars 
@@ -441,7 +437,9 @@ body
         +span-columns(12, 12)
     #content-inner 
       margin-right: 40px
-    #sidebar-second 
+    #sidebar-second
+      clear: left
+      float: left 
       +span-columns(3 omega, 12)
 
     /* Startseite */
