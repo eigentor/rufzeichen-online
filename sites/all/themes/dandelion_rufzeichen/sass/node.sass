@@ -26,6 +26,9 @@
     margin-left: 15px
   #views_slideshow_cycle_teaser_section_images_project-entity_view_1
     width: auto!important 
+    text-align: center
+    .views-slideshow-cycle-main-frame-row
+      position: relative!important
   #content
     margin-top: 20px
   .field-name-field-project-text-secondary
@@ -65,6 +68,7 @@
       width: auto
       img 
         max-width: 100%
+        height: auto
   .group-right
     .group-properties-icons
       border: 1px solid #e5e5e5
@@ -99,13 +103,15 @@
 .page-projekte
   #content-inner
     margin-right: 0
+    text-align: center
   .view-projekte-overview
     +legacy-pie-clearfix
     .views-row   
-      float: left
-      margin: 0 20px 25px 0
-      .views-field-field-project-images
-        margin-right: 30px
+      text-align: center
+      margin-bottom: 35px
+      img 
+        max-width: 100%
+        height: auto!important
     .view-header
       margin-bottom: 22px
     h4
@@ -461,6 +467,20 @@ body
         margin-top: -3px
         img
           float: right
+
+    /*--------------------------------*/
+    /* ---    Projekte Übersicht  --- */
+    /* -------------------------------*/
+    &.page-projekte
+      #content-inner
+        text-align: left
+      .view-projekte-overview
+        .views-row 
+          text-align: left  
+          float: left
+          margin: 0 20px 25px 0
+          .views-field-field-project-images
+            margin-right: 30px
     
     /* Project full node Desktop */
     &.node-type-projekt
