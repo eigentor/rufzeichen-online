@@ -131,10 +131,12 @@ textarea
 
 /* Submitted Information */
 .submitted 
+  //text-align: center
   color: $base-font-color
   font-size: 11px
   margin-bottom: 15px
   width: 100%
+  display: block
   position: relative
   border-bottom: 1px solid #ebebeb
   border-top: 1px solid #ebebeb
@@ -142,6 +144,7 @@ textarea
   padding-top: 7px
   font-family: Georgia,"Times New Roman",Times,serif
   font-style: italic
+  +legacy-pie-clearfix
   ul
     margin-left: 0px
     li
@@ -155,7 +158,7 @@ textarea
   div
     display: inline
   .taxonomy
-    margin-left: 0.5em
+    display: block
     .field-type-taxonomy-term-reference
       margin-left: 0.3em
     .field-item
@@ -229,7 +232,8 @@ ul.tabs.primary
 
 /*** Comment Counter ***/
 .comment-count 
-  float: right
+  height: 25px
+  display: inline-block
   background: url(../images/comm.png) no-repeat
   padding-left: 28px
   padding-right: 2px
@@ -327,7 +331,14 @@ body
 
     /* Drupal-specific Micro Styles */
     .submitted
+      text-align: left
       float: left
+      .taxonomy
+        display: inline
+        margin-left: 0.5em
+    /*** Comment Counter ***/
+    .comment-count 
+      float: right
 
     /* Magnifying glass for Colorbox hover mouse arrow */
     .colorbox 

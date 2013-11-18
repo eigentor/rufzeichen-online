@@ -172,12 +172,16 @@
       padding-top: 30px
       
     .view-projekte-overview 
+      margin-right: -23px
       +legacy-pie-clearfix
       .views-row 
+        width: 26%
         float: left
         margin: 0 15px 15px 0
         img
           border: 1px solid #ddd
+          max-width: 100%
+          height: auto
 
 
 /** Projekt-Slider auf Hompage **/
@@ -266,9 +270,11 @@ body
         .view-header  
           h2
             font-size: 23px
-    .view-projekte-overview 
-      .views-row 
-        margin: 0 25px 20px 0
+      #footer
+        .view-projekte-overview 
+          .views-row 
+            width: auto
+            margin: 0 25px 20px 0
 
 
 
@@ -301,7 +307,8 @@ body
                 width: auto
           #widget_pager_bottom_images_project-entity_view_1
             margin-bottom: -20px
-    .view-projekte-overview 
+    .view-projekte-overview
+      margin-right: 0 
       .views-row 
         margin: 0 25px 20px 0
 

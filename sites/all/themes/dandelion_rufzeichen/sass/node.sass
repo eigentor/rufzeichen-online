@@ -29,8 +29,6 @@
     text-align: center
     .views-slideshow-cycle-main-frame-row
       position: relative!important
-  #content
-    margin-top: 20px
   .field-name-field-project-text-secondary
     color: #999
     font-family: $font-family-headlines
@@ -158,6 +156,10 @@ form#webform-client-form-22
   .field-name-field-hauptbild 
     float: right
     margin: 5px 0 5px 15px
+
+// .page-news, .node-type-news, .node-news
+//   h1,h2,h3, h4 
+//     text-align: center
 
 /** Taxonomy Menu auf News **/
 .sidebar #block-menu-menu-news-men- ul li a 
@@ -483,6 +485,8 @@ body
     
     /* Project full node Desktop */
     &.node-type-projekt
+      #content
+        margin-top: 20px
       #views_slideshow_cycle_main_images_project-entity_view_1
         margin: 0
       #views_slideshow_cycle_teaser_section_images_project-entity_view_1
@@ -534,6 +538,8 @@ body
         img.imagefloatright 
           float: right
           margin: 0 5px 5px 15px
+      h1, h2, h3, h4 
+        text-align: left
     
 
     /*--------------- Comments ---------------*/
