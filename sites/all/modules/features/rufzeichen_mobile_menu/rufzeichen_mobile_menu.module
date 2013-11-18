@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Rufzeichen Mobile Menu feature.
+ */
+
+include_once 'rufzeichen_mobile_menu.features.inc';
