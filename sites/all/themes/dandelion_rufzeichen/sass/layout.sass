@@ -120,8 +120,7 @@ body
 
 #header, .page-search #header 
   height: 140px
-  background: url(../images/new-adapted/header-schreibmaschine.jpg) no-repeat
-  background: url(../images/new-adapted/header-asian-cars.jpg) no-repeat
+  background: url(../images/new-adapted/header-static-color.jpg) no-repeat right 0
   position: relative
   #block-search-form
     z-index: 22
@@ -167,6 +166,8 @@ body
 
 #header-top-line 
   position: absolute
+  top: 0
+  left: 0
   height: 6px
   width: 100%
   background: rgba(50, 50, 50, 0.4)
@@ -334,6 +335,7 @@ body
 
     #header
       display: block
+      position: relative
       #block-menu-primary-links 
         display: none
 
@@ -440,7 +442,6 @@ body
     #content-inner 
       margin-right: 40px
     #sidebar-second
-      clear: left
       float: left 
       +span-columns(3 omega, 12)
 
