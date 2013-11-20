@@ -203,7 +203,7 @@ form#webform-client-form-22 textarea {
 .page-news #content img, .page-taxonomy-term #content img, .node-type-news #content img {
   max-width: 100% !important;
   height: auto !important;
-  margin: 20px 0 10px;
+  margin: 5px 0 10px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/e\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/node\.sass}line{font-family:\00003142}}
 .page-news #content .media-youtube-outer-wrapper, .page-news #content object, .page-news #content embed, .page-taxonomy-term #content .media-youtube-outer-wrapper, .page-taxonomy-term #content object, .page-taxonomy-term #content embed, .node-type-news #content .media-youtube-outer-wrapper, .node-type-news #content object, .node-type-news #content embed {
