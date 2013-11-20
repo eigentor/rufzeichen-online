@@ -70,11 +70,12 @@ body
   padding: 0px
 
 #content 
-  padding-top: 30px
+  padding-top: 15px
 
 #header-top
   +legacy-pie-clearfix 
   background: #5a5a5a url(../images/mobile-menu-background.png) 100% repeat-y
+  padding-top: 5px
 #main-menu-mobile 
   display: none
   text-transform: uppercase
@@ -95,7 +96,7 @@ body
         margin-top: -1px
         a 
           display: block
-          font-size: 1.3em
+          font-size: 1.1em
           line-height: 3.5
           &:hover, &.active 
             background: #eee
@@ -128,13 +129,14 @@ body
     margin: 55px 45px 0 0      
     input#edit-submit, input.form-submit
       background: $primary-orange-text
-      float: left
     input.form-text
       border: 1px solid #999
       width: 200px
 
 #mobile-menu-region
   height: 50px
+  p 
+    margin-bottom: 0
   .mobile-menu-button
     float: right
     width: 53px
@@ -144,7 +146,7 @@ body
       display: block
       height: 40px
       width: 40px
-      margin-top: 5px
+      margin-top: 6px
       text-decoration: none
 
 /** Suchbox Position auf Projektseiten */
@@ -178,7 +180,7 @@ body
   background: none
 
 #logo 
-  padding: 12px $smartphone-grid-padding 5px
+  padding: 12px $smartphone-grid-padding 8px
   float: left
   position: relative
   max-width: 50%
@@ -223,6 +225,7 @@ body
 
 
 #sidebar-second 
+  text-align: center
   height: auto
   margin-bottom: 30px
   margin-top: 36px
@@ -238,6 +241,8 @@ body
       margin-bottom: 0
       padding-bottom: 0
       text-transform: uppercase
+  ul.menu 
+    text-align: center
 
 
 /*--- Footer ---*/
@@ -245,7 +250,7 @@ body
 #footer 
   padding: 0 $smartphone-grid-padding
   color: #9e9e9d
-  font-size: 12px
+  font-size: 1em
   height: auto
   font-family: Georgia, "Times New Roman", Times, serif
   font-style: italic
@@ -345,6 +350,7 @@ body
       display: block
       max-height: none
       height: 100px
+      margin-top: 0
 
     &.front 
       #header-top 
@@ -432,6 +438,7 @@ body
           display: none
 
     #content
+      padding-top: 30px
       clear: left
       float: left
       +span-columns(9, 12)
@@ -442,8 +449,11 @@ body
     #content-inner 
       margin-right: 40px
     #sidebar-second
+      text-align: left
       float: left 
       +span-columns(3 omega, 12)
+      ul.menu 
+        text-align: left
 
     /* Startseite */
     &.front

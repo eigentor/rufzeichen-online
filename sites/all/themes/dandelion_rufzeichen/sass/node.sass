@@ -130,6 +130,8 @@ form#webform-client-form-22
 /* -------------------------------*/
 
 .page-news, .page-taxonomy-term, .node-type-news
+  h1.title 
+    font-size: 22px
   ul.tabs 
     font-size: $font-size-plus-one
   #content
@@ -139,6 +141,10 @@ form#webform-client-form-22
       margin: 20px 0 10px
     .media-youtube-outer-wrapper, object, embed
       max-width: 100%!important
+
+.page-news
+  h1.title 
+    font-size: 28px
 
 
 
@@ -166,7 +172,7 @@ form#webform-client-form-22
   display: block
   color: #888
   text-decoration: none
-  font-size: 11px
+  font-size: 1em
   padding: 3px 6px 3px 0
   border-bottom: 1px solid #ebebeb
   width: 100%
@@ -234,7 +240,7 @@ h2.comment-form
   background-color: #FAFAFA
   border: 1px solid #e5e5e5
   border-radius: 2px 2px 2px 2px
-  font-size: 12px
+  font-size: 1em
   margin-top: 20px
   padding: 20px 25px 20px 20px 
   .user-picture-wrapper
@@ -244,8 +250,8 @@ h2.comment-form
       display: none
   h3
     margin-top: 0
-    margin-bottom: 2px
-    font-size: 1.6em
+    margin-bottom: 7px
+    font-size: 1.3em
   .comment-author
     span, a
       font-size: 1.05em
@@ -263,12 +269,10 @@ h2.comment-form
     font-style: italic
   ul.links
     padding-right: 15px
-    margin-left: 15px
     li
       padding: 3px 0
-      font-size: 11px 
+      font-size: 0.93em 
       a
-        font-size: 11px 
         padding-top: 2px
         padding-bottom: 2px
       &.comment-delete
@@ -284,7 +288,7 @@ h2.comment-form
       &.comment-reply
         a
           padding-left: 23px
-          background: url(../images/reply.png) no-repeat 0 2px
+          background: url(../images/reply.png) no-repeat 0 5px
 
 /* Front Page */
 
@@ -540,6 +544,10 @@ body
           margin: 0 5px 5px 15px
       h1, h2, h3, h4 
         text-align: left
+
+      /** Taxonomy Menu auf News **/
+      .sidebar #block-menu-menu-news-men- ul li a 
+        font-size: 0.93em
     
 
     /*--------------- Comments ---------------*/
@@ -547,7 +555,6 @@ body
       background-color: #FAFAFA
       border: 1px solid #e5e5e5
       border-radius: 2px 2px 2px 2px
-      font-size: 12px
       margin-top: 20px
       padding: 20px 25px 20px 20px 
       .user-picture 
@@ -579,6 +586,10 @@ body
         float: right
         padding-right: 15px
         margin-left: 15px
+        li 
+          &.comment-reply
+            a
+              background: url(../images/reply.png) no-repeat 0 2px
       /** Comments **/
       h2.comment-form
         margin-left: 5px
