@@ -397,9 +397,15 @@ h2.comment-form
 /** Teamseite **/
 .teambild
   text-align: center
+  margin-bottom: 20px
   img 
     height: 145px
     width: 105px
+
+.team-details 
+  h3, h4 
+    font-size: 1.4em
+    text-align: center
 
 /** Teamseite Badges und Certified to rock Block **/
 .badges-block 
@@ -416,24 +422,23 @@ span.smaller-font
   vertical-align: top
   letter-spacing: -0.02em
 
-.di-badge, .certified-block, da-badge 
-  float: left
-
 .di-badge 
+  text-align: center
   img
     height: 82px
     width: 78px
 
-.da-badge 
+.da-badge
+  text-align: center 
   img
     height: auto
     width: 86px
 
 .certified-block 
+  text-align: center
   width: 265px
-  padding: 3px 20px 0 20px
   line-height: 1.3
-  padding: 0 13px 0 18px
+  margin: auto
 
 /*--------------------------------*/
 /*--------------------------------*/
@@ -621,5 +626,15 @@ body
     .team-details
       float: left
       width: 472px
+      h3, h4 
+        text-align: left
+
+    .di-badge, .certified-block, da-badge 
+      float: left
+      text-align: left
+
+    .certified-block
+      padding: 0 13px 0 18px
+      margin: 0
 
 
