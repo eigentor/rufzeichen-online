@@ -299,7 +299,7 @@ h2.comment-form
   .links
     display: none 
   h2
-    font-size: 2.2em
+    font-size: 1.8em
     margin-bottom: 7px
     margin-top: 5px
   p
@@ -482,21 +482,23 @@ body
           .view-content
             margin-right: -($desktop-grid-padding)
 
-    &.front 
+    &.front
+      h2
+        font-size: 2.2em 
       #content-inner 
         width: 900px
         padding-top: 10px
-        margin-bottom: 40px
-      .field-name-field-zweispaltig-links
+        margin-bottom: 20px
+      #front-main-text //.field-name-field-zweispaltig-links
         float: left
-        width: 420px
-        margin-right: 40px
+        width: 450px
         margin-left: 3px
-        margin-top: 3px
-      .field-name-field-zweispaltig-rechts
-        float: left
-        width: 340px
+        margin-top: 13px
+      #slideshow-projects-front //.field-name-field-zweispaltig-rechts
+        float: right
+        width: 420px
         margin-top: -3px
+        margin-right: 10px
         img
           float: right
 

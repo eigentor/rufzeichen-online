@@ -13,24 +13,23 @@
     .view-projekte-overview
       +legacy-pie-clearfix
       position: relative
-      width: 426px
       overflow: hidden
       margin-top: 5px
-      img
+      img 
+        max-width: 100%
         padding: 0
         margin: 10px
         +box-shadow(2px 2px 6px #ccc)      
-      .skin-default
-        width: 426px
       #views_slideshow_cycle_teaser_section_projekte_overview-block_2,
       .view-projekte-overview .views-slideshow-controls-top
         display: block
-      #views_slideshow_cycle_main_projekte_overview-block_2
-        padding: 0 33px 0 31px
       .views-slideshow-cycle-main-frame-row
+        position: relative!important
         overflow: hidden
         .views-row
           padding-right: 10px
+      #views_slideshow_controls_text_projekte_overview-block_2
+        display: none
       .views-slideshow-controls-text-previous
         position: absolute
         top: 95px
@@ -183,31 +182,6 @@
           max-width: 100%
           height: auto
 
-
-/** Projekt-Slider auf Hompage **/
-.front 
-  #content-area 
-    .view-projekte-overview
-      +legacy-pie-clearfix
-      position: relative
-      width: 426px
-      overflow: hidden
-      margin-top: 5px 
-      img 
-        padding: 0
-        box-shadow: 2px 2px 6px #ccc 
-        margin: 10px
-      .skin-default
-        width: 426px
-    #views_slideshow_cycle_teaser_section_projekte_overview-block_2, .views-slideshow-controls-top
-      display: block
-    #views_slideshow_cycle_main_projekte_overview-block_2
-      padding: 0 33px 0 31px
-    .views-slideshow-cycle-main-frame-row
-      overflow: hidden
-      .views-row
-        padding-right: 10px
-
 /** Zitat der Woche View **/
 .view-zitat-der-woche 
   .views-row 
@@ -320,6 +294,28 @@ body
           padding-bottom: 7px
           &.views-row-last 
             border-bottom: 0
+    /** Projekt-Slider auf Hompage **/
+    &.front
+      #content-area
+        .view-projekte-overview
+          width: 426px
+          overflow: hidden
+          margin-top: 5px
+          img 
+            padding: 0
+            margin: 10px
+            +box-shadow(2px 2px 6px #ccc)      
+          .skin-default
+            width: 426px
+          #views_slideshow_cycle_main_projekte_overview-block_2
+            padding: 0 33px 0 31px
+          #views_slideshow_cycle_teaser_section_projekte_overview-block_2
+            width: 360px!important
+          #views_slideshow_controls_text_projekte_overview-block_2
+            display: block
+          .views-slideshow-cycle-main-frame-row
+            position: absolute!important
+            overflow: hidden
      
 
 
