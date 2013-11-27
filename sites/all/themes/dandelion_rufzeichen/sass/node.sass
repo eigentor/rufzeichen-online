@@ -311,12 +311,14 @@ h2.comment-form
 .leistungen 
   .image-container 
     clear: left
-    float: left
-    margin-right: 35px
-    padding: 20px 20px 20px 40px
-    background: #c3c3c3  
-    margin-left: -40px
-    width: 356px
+    margin-left: -($smartphone-grid-padding)
+    margin-right: -($smartphone-grid-padding)    
+    padding: 20px 20px 20px 20px
+    background: #c3c3c3
+    text-align: center 
+    img 
+      max-width: 100%
+      height: auto!important  
 
 .leistungen-left 
   margin-top: 20px
@@ -336,35 +338,33 @@ h2.comment-form
   border: 1px solid #b7b7b7
 
 .leistungen h2 
-  margin: 0 0 10px
-  line-height: 1
-  font-size: 2.3em
+  margin: 15px 0 5px
+  line-height: 1.5
+  font-size: 1.9em
 
 .leistungen-text-container 
-  float: left
-  width: 465px  
   p
     margin-bottom: 20px
   .leistung-item
-    float: left
+    display: block
     line-height: 36px
-    height: 36px
+    min-height: 26px
     text-align: left
-    padding-left: 32px
-    width: 190px
+    padding: 5px 0 5px 32px   
     margin-bottom: 15px
     color: white
-    background: url(../images/new-adapted/checkmark-icon.png) no-repeat 8px 9px
-    &.first, &.third 
-      margin-right: 20px
-  .leistung-item-inner 
-    line-height: 26px
-    display: block
-    margin-top: 5px
+    background: url(../images/new-adapted/checkmark-icon.png) no-repeat 8px center
+  .leistung-item-inner
+    display: block 
+    //margin-top: 5px
     padding-left: 7px
     font-family: arial,helvetica,sans-serif
     font-weight: bold
     letter-spacing: 0.03em
+    line-height: 1.3em
+    min-height: 23px
+    padding-top: 3px
+    padding-right: 5px
   &.first
     .leistung-item-inner 
       border-left: 1px solid #FFBD68
@@ -636,5 +636,36 @@ body
     .certified-block
       padding: 0 13px 0 18px
       margin: 0
+
+    /*--------------------------------------------------------- */
+        Leistungen Seite
+    /* ----------------------------------------------------------*/
+
+    .leistungen 
+      .image-container
+        float: left
+        margin-right: 35px
+        margin-left: -40px
+        padding-left: 40px
+        width: 356px
+
+      .leistungen-text-container 
+        float: left
+        width: 465px 
+        .leistung-item
+          float: left 
+          width: 190px
+          &.first, &.third 
+            margin-right: 20px
+        .leistung-item-inner 
+          line-height: 26px
+          display: block
+          padding-top: 0
+
+      .leistungen h2 
+        margin: 0 0 10px
+        line-height: 1
+        font-size: 2.3em
+          
 
 
