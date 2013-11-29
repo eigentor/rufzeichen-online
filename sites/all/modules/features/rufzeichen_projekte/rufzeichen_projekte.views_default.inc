@@ -262,10 +262,11 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'projekt' => 'projekt',
   );
-  /* Filter criterion: Inhalt: Published or admin */
-  $handler->display->display_options['filters']['status_extra']['id'] = 'status_extra';
-  $handler->display->display_options['filters']['status_extra']['table'] = 'node';
-  $handler->display->display_options['filters']['status_extra']['field'] = 'status_extra';
+  /* Filter criterion: Inhalt: Veröffentlicht */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -480,6 +481,64 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['filters']['promote']['table'] = 'node';
   $handler->display->display_options['filters']['promote']['field'] = 'promote';
   $handler->display->display_options['filters']['promote']['value'] = '1';
+
+  /* Display: Slideshow Startseite Flexslider */
+  $handler = $view->new_display('block', 'Slideshow Startseite Flexslider', 'block_3');
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'flexslider';
+  $handler->display->display_options['style_options']['optionset'] = 'projects_front';
+  $handler->display->display_options['style_options']['captionfield'] = 'field_pr_short_description';
+  $handler->display->display_options['style_options']['id'] = 'front_flex_slideshow';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Feld: Inhalt: Bilder */
+  $handler->display->display_options['fields']['field_project_images']['id'] = 'field_project_images';
+  $handler->display->display_options['fields']['field_project_images']['table'] = 'field_data_field_project_images';
+  $handler->display->display_options['fields']['field_project_images']['field'] = 'field_project_images';
+  $handler->display->display_options['fields']['field_project_images']['label'] = '';
+  $handler->display->display_options['fields']['field_project_images']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_project_images']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_project_images']['settings'] = array(
+    'image_style' => 'project-slideshow',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_project_images']['delta_limit'] = '1';
+  $handler->display->display_options['fields']['field_project_images']['delta_offset'] = '0';
+  /* Feld: Inhalt: Titel */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['element_type'] = 'h3';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Feld: Inhalt: Kurzbeschreibung */
+  $handler->display->display_options['fields']['field_pr_short_description']['id'] = 'field_pr_short_description';
+  $handler->display->display_options['fields']['field_pr_short_description']['table'] = 'field_data_field_pr_short_description';
+  $handler->display->display_options['fields']['field_pr_short_description']['field'] = 'field_pr_short_description';
+  $handler->display->display_options['fields']['field_pr_short_description']['label'] = '';
+  $handler->display->display_options['fields']['field_pr_short_description']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Inhalt: Typ */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'projekt' => 'projekt',
+  );
+  /* Filter criterion: Inhalt: Published or admin */
+  $handler->display->display_options['filters']['status_extra']['id'] = 'status_extra';
+  $handler->display->display_options['filters']['status_extra']['table'] = 'node';
+  $handler->display->display_options['filters']['status_extra']['field'] = 'status_extra';
+  /* Filter criterion: Inhalt: Auf der Startseite */
+  $handler->display->display_options['filters']['promote']['id'] = 'promote';
+  $handler->display->display_options['filters']['promote']['table'] = 'node';
+  $handler->display->display_options['filters']['promote']['field'] = 'promote';
+  $handler->display->display_options['filters']['promote']['value'] = '1';
   $translatables['projekte_overview'] = array(
     t('Master'),
     t('Projekte Übersicht'),
@@ -505,6 +564,7 @@ function rufzeichen_projekte_views_default_views() {
     t('View mit Arguments'),
     t('[field_project_images-title]'),
     t('Slideshow Startseite'),
+    t('Slideshow Startseite Flexslider'),
   );
   $export['projekte_overview'] = $view;
 
