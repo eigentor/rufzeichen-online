@@ -77,16 +77,22 @@
       background: none
       border: 0 
       +box-shadow(0)
+      .flex-viewport 
+        max-width: 350px
+        margin: auto
       img 
         width: auto
-        max-width: 100%
+        max-width: 98%
         height: auto
         margin: auto
+      .views-field-field-project-images 
+        margin-bottom: 10px
+        +legacy-pie-clearfix
       .views-field-title 
         text-align: center
         clear: both
       li 
-        //margin: 0 10px
+        // margin: 0 5px
       /* Navigation arrows */
       .flex-direction-nav a
         display: block
@@ -94,9 +100,10 @@
         text-indent: -9999px
         content: normal 
         font-family: none
-        opacity: 1
+        opacity: 0.7
         width: 28px
         height: 28px
+        margin-top: -45px
         &:before 
           font-family: none
         &.flex-prev 
@@ -105,6 +112,7 @@
         &.flex-next 
           background: url(../images/bg_direction_nav.png) -28px 0
           right: 0
+          text-indent: 9999px
 
 /** Tooltips für Projektübersicht **/
 .bt-wrapper
@@ -356,6 +364,9 @@ body
         //   .views-slideshow-cycle-main-frame-row
         //     position: absolute!important
         //     overflow: hidden
+        #front_flex_slideshow
+          .flex-direction-nav a
+            margin-top: -35px
      
 
 
