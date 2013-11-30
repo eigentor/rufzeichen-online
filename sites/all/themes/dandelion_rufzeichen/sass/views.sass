@@ -10,62 +10,6 @@
 /** Projekt-Slider auf Hompage **/
 .front
   #content-area
-    // .view-projekte-overview
-    //   +legacy-pie-clearfix
-    //   position: relative
-    //   overflow: hidden
-    //   margin-top: 5px
-    //   img 
-    //     max-width: 100%
-    //     padding: 0
-    //     //margin: 10px
-    //     +box-shadow(2px 2px 6px #ccc)      
-    //   #views_slideshow_cycle_teaser_section_projekte_overview-block_2,
-    //   .view-projekte-overview .views-slideshow-controls-top
-    //     display: block
-    //   .views-slideshow-cycle-main-frame-row
-    //     position: relative!important
-    //     overflow: hidden
-    //     .views-row
-    //       padding-right: 10px
-    //   #views_slideshow_controls_text_projekte_overview-block_2
-    //     display: none
-    //   .views-slideshow-controls-text-previous
-    //     position: absolute
-    //     top: 95px
-    //     z-index: 20
-    //     a
-    //       text-indent: -9999px
-    //       display: inline-block
-    //       width: 30px
-    //       height: 45px
-    //       background: url(../images/new-adapted/slideshow-arrow-left.png) no-repeat
-    //   .views-slideshow-controls-text-pause
-    //     display: none
-    //   .views-slideshow-controls-text-next
-    //     position: absolute
-    //     right: 0
-    //     z-index: 20
-    //     top: 95px
-    //     a 
-    //       text-indent: -9999px
-    //       display: inline-block
-    //       background: url(../images/new-adapted/slideshow-arrow-right.png) no-repeat
-    //       width: 30px
-    //       height: 45px
-    //   .views-field-title
-    //     margin-left: 13px
-    //     h3 
-    //       font-size: 1.4em
-    //       margin: 4px 0 0px
-    //   .views-field-field-pr-short-description
-    //     .field-content
-    //       margin-left: 13px
-    //       font-size: 11px
-    //       line-height: 1.4
-    //       color: #999
-    //       width: 86%
-
     /* Flexslider Slideshow Frontpage */
     .flexslider 
       +border-radius(0)
@@ -73,46 +17,59 @@
     .flex-control-paging li a
       +box-shadow(0)
     #front_flex_slideshow
-      margin-bottom: 0
+      margin-bottom: 30px
+      margin-left: -20px //-($smartphone-grid-padding -5px)
+      margin-right: -20px //-($smartphone-grid-padding -5px)
       background: none
       border: 0 
       +box-shadow(0)
       .flex-viewport 
-        max-width: 350px
+        max-width: 390px
         margin: auto
       img 
         width: auto
-        max-width: 98%
+        max-width: 100%
         height: auto
         margin: auto
-      .views-field-field-project-images 
+        .views-field-field-project-images 
         margin-bottom: 10px
         +legacy-pie-clearfix
+        border: 1px solid #bbb
+        border-top: none
+        padding: 0
       .views-field-title 
         text-align: center
         clear: both
+        background: #5A5A5A
+        h3 
+          margin: 0
+          padding: 0
+        a
+          color: #ccc
       li 
         // margin: 0 5px
       /* Navigation arrows */
-      .flex-direction-nav a
-        display: block
-        transition: none
-        text-indent: -9999px
-        content: normal 
-        font-family: none
-        opacity: 0.7
-        width: 28px
-        height: 28px
-        margin-top: -45px
-        &:before 
+      .flex-direction-nav 
+        display: none
+        a
+          display: block
+          transition: none
+          text-indent: -9999px
+          content: normal 
           font-family: none
-        &.flex-prev 
-          background: url(../images/bg_direction_nav.png)
-          left: 0
-        &.flex-next 
-          background: url(../images/bg_direction_nav.png) -28px 0
-          right: 0
-          text-indent: 9999px
+          opacity: 0.7
+          width: 28px
+          height: 28px
+          margin-top: -45px
+          &:before 
+            font-family: none
+          &.flex-prev 
+            background: url(../images/bg_direction_nav.png)
+            left: 0
+          &.flex-next 
+            background: url(../images/bg_direction_nav.png) -28px 0
+            right: 0
+            text-indent: 9999px
 
 /** Tooltips für Projektübersicht **/
 .bt-wrapper
@@ -298,6 +255,29 @@ body
             width: auto
             margin: 0 25px 20px 0
 
+    /* Project Slider frontpage */
+    &.front
+      #content-area
+        .view-projekte-overview
+          margin: auto
+          max-width: 450px
+        #front_flex_slideshow            
+          margin: 0 -10px           
+          img 
+            padding: 4px
+            border: 1px solid #ccc
+            max-width: 380px
+            background: white
+          .flex-direction-nav
+            display: block
+          .views-field-title
+            background: transparent 
+            a 
+              color: $base-font-color
+              
+          
+             
+
 
 
 /*--------------------------------*/
@@ -345,28 +325,11 @@ body
     /** Projekt-Slider auf Hompage **/
     &.front
       #content-area
-        // .view-projekte-overview
-        //   width: 426px
-        //   overflow: hidden
-        //   margin-top: 5px
-        //   img 
-        //     padding: 0
-        //     margin: 10px
-        //     +box-shadow(2px 2px 6px #ccc)      
-        //   .skin-default
-        //     width: 426px
-        //   #views_slideshow_cycle_main_projekte_overview-block_2
-        //     padding: 0 33px 0 31px
-        //   #views_slideshow_cycle_teaser_section_projekte_overview-block_2
-        //     width: 360px!important
-        //   #views_slideshow_controls_text_projekte_overview-block_2
-        //     display: block
-        //   .views-slideshow-cycle-main-frame-row
-        //     position: absolute!important
-        //     overflow: hidden
         #front_flex_slideshow
-          .flex-direction-nav a
-            margin-top: -35px
+          .flex-direction-nav
+            display: block
+            a
+              margin-top: -35px
      
 
 
