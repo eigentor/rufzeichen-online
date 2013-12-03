@@ -17,12 +17,16 @@
     .flex-control-paging li a
       +box-shadow(0)
     #front_flex_slideshow
-      margin-bottom: 30px
+      margin-bottom: 17px
       margin-left: -20px //-($smartphone-grid-padding -5px)
       margin-right: -20px //-($smartphone-grid-padding -5px)
       background: none
       border: 0 
       +box-shadow(0)
+      ul 
+        li 
+          +legacy-pie-clearfix
+          position: relative 
       .flex-viewport 
         max-width: 390px
         margin: auto
@@ -31,21 +35,28 @@
         max-width: 100%
         height: auto
         margin: auto
-        .views-field-field-project-images 
-        margin-bottom: 10px
-        +legacy-pie-clearfix
-        border: 1px solid #bbb
-        border-top: none
         padding: 0
-      .views-field-title 
+        border: none
+      .views-field-field-project-images 
+        +legacy-pie-clearfix
+        border-top: none
+        padding: 0          
+      .views-field-title
+        // position: absolute
+        // bottom: 0
+        // width: 100% 
         text-align: center
         clear: both
-        background: #5A5A5A
+        //background: rgba(#5A5A5A, 0.7)
+        background: lighten(#5A5A5A, 20%)
         h3 
           margin: 0
-          padding: 0
+          font-size: 1em
+          font-family: $font-family-main
         a
-          color: #ccc
+          color: #ddd
+          display: block
+          padding: 12px 0 12px
       li 
         // margin: 0 5px
       /* Navigation arrows */
@@ -134,7 +145,6 @@
 /** Gallery View on Project Node **/
 .node-type-projekt
   .view-header  
-    margin-top: -20px
     h2
       color: $primary-orange-text
       color: #777
@@ -238,6 +248,8 @@ body
  
     /** Detailansicht Projekte **/
     &.node-type-projekt
+      .view-header
+        margin-top: -20px
       #content-area
         .view-images-project
           .views_slideshow_cycle_main
@@ -268,12 +280,17 @@ body
             border: 1px solid #ccc
             max-width: 380px
             background: white
+            margin-bottom: 10px
           .flex-direction-nav
             display: block
           .views-field-title
+            position: relative
             background: transparent 
-            a 
-              color: $base-font-color
+            h3
+              font-family: $font-family-headlines
+              font-size: 1.3em
+              a 
+                color: $base-font-color
               
           
              
@@ -328,8 +345,16 @@ body
         #front_flex_slideshow
           .flex-direction-nav
             display: block
-            a
-              margin-top: -35px
+          img 
+            margin-bottom: 15px
+          .views-field-title
+            position: relative
+            h3
+              font-family: $font-family-headlines
+              font-size: 1.4em
+              a
+                margin-top: -35px
+                color: $base-font-color
      
 
 
