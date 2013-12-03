@@ -56,7 +56,7 @@
         a
           color: #ddd
           display: block
-          padding: 12px 0 12px
+          padding: 8px 0 8px
       li 
         // margin: 0 5px
       /* Navigation arrows */
@@ -240,6 +240,21 @@
 
 /*--------------------------------*/
 /*--------------------------------*/
+/*---- Layout Medium Smartphone---*/
+/*-------- from 360px width ------*/
+/*--------------------------------*/
+
+body
+  +at-breakpoint($breakpoint-medium-smartphone)
+    &.node-type-projekt  
+      #content-area
+        .view-images-project
+          .views_slideshow_cycle_main
+            img
+              width: 325px
+
+/*--------------------------------*/
+/*--------------------------------*/
 /*-------- Layout Tablet ---------*/
 /*--------------------------------*/
 /*--------------------------------*/
@@ -249,13 +264,11 @@ body
  
     /** Detailansicht Projekte **/
     &.node-type-projekt
-      .view-header
-        margin-top: -20px
       #content-area
         .view-images-project
           .views_slideshow_cycle_main
             img
-              //width: 430px
+              width: 430px
           .views-slideshow-pager-field-item
             img
               width: 123px
@@ -309,6 +322,8 @@ body
 
     &.node-type-projekt
       #content-area
+        .view-header
+          margin-top: -20px
         .view-images-project
           .views_slideshow_cycle_main
             float: left
