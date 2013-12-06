@@ -288,7 +288,12 @@ body
           margin: auto
           max-width: 450px
         #front_flex_slideshow            
-          margin: 0 -10px           
+          margin: 0 -10px 
+          ul
+            li 
+              position: static
+              .field-content
+                text-align: center          
           img 
             padding: 4px
             border: 1px solid #ccc
@@ -361,16 +366,27 @@ body
         #front_flex_slideshow
           .flex-direction-nav
             display: block
+            a 
+              margin-top: -38px
           img 
             margin-bottom: 15px
+            margin-left: auto 
+            margin-right: auto
+          ul 
+            li
+              .field-content 
+                display: block
+                a 
+                  display: block
           .views-field-title
             position: relative
             h3
               font-family: $font-family-headlines
               font-size: 1.4em
               a
-                margin-top: -35px
                 color: $base-font-color
+                padding-top: 0
+                margin-top: -2px
      
 
 
