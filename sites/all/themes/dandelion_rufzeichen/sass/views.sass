@@ -40,7 +40,7 @@
       .views-field-field-project-images 
         +legacy-pie-clearfix
         border-top: none
-        padding: 0          
+        padding: 0        
       .views-field-title
         // position: absolute
         // bottom: 0
@@ -48,8 +48,10 @@
         text-align: center
         clear: both
         //background: rgba(#5A5A5A, 0.7)
-        background: lighten(#5A5A5A, 5%)
+        //background: lighten(#5A5A5A, 5%)
+        border-bottom: 1px solid #999
         h3 
+          display: none
           margin: 0
           font-size: 1.05em
           //font-family: $font-family-main
@@ -372,6 +374,8 @@ body
     &.front
       #content-area
         #front_flex_slideshow
+          .flex-viewport 
+            width: 350px
           .flex-direction-nav
             display: block
             a 
@@ -380,6 +384,7 @@ body
             margin-bottom: 15px
             margin-left: auto 
             margin-right: auto
+            width: 340px
           ul 
             li
               .field-content 
@@ -388,6 +393,7 @@ body
                   display: block
           .views-field-title
             position: relative
+            border: 0
             h3
               font-family: $font-family-headlines
               font-size: 1.4em

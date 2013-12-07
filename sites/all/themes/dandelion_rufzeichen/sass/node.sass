@@ -305,6 +305,20 @@ h2.comment-form
     margin-bottom: 15px
     margin-top: 17px
     text-align: center
+    margin-left: -($smartphone-grid-padding)
+    margin-right: -($smartphone-grid-padding)
+    margin-bottom: 10px
+  #front-main-text 
+    h2 
+      background: #e5e5e5
+      margin-top: -20px
+      margin-bottom: 20px
+      font-size: 1.6em
+      padding: 12px 30px 10px
+      border-bottom: 1px solid #ccc
+      line-height: 1.5
+      span 
+        display: block
   p
     margin-bottom: 7px
 
@@ -486,9 +500,16 @@ body
             margin-right: -($desktop-grid-padding)
 
     &.front
-      h2
-        font-size: 2.2em 
-        text-align: left
+      #front-main-text 
+        h2
+          font-size: 2.2em 
+          text-align: left
+          background: none
+          border: none
+          padding: 0 
+          margin: 0 0 10px
+          span 
+            display: inline
       #content-inner 
         width: 900px
         padding-top: 10px
