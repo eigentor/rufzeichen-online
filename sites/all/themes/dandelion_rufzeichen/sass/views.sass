@@ -1,64 +1,88 @@
 @import "variables-mixins.sass"
 
+
+/*--------------------------------*/
+/*--------------------------------*/
+/*------ Layout all Devices ------*/
+/*--------------------------------*/
+/*--------------------------------*/
+
 /** Projekt-Slider auf Hompage **/
 .front
   #content-area
-    .view-projekte-overview
-      +legacy-pie-clearfix
-      position: relative
-      width: 426px
-      overflow: hidden
-      margin-top: 5px
-      img
+    /* Flexslider Slideshow Frontpage */
+    .flexslider 
+      +border-radius(0)
+      +box-shadow(none)
+    .flex-control-paging li a
+      +box-shadow(0)
+    #front_flex_slideshow
+      margin-bottom: 17px
+      margin-left: -20px //-($smartphone-grid-padding -5px)
+      margin-right: -20px //-($smartphone-grid-padding -5px)
+      background: none
+      border: 0 
+      +box-shadow(0)
+      ul 
+        li 
+          +legacy-pie-clearfix
+          position: relative 
+      .flex-viewport 
+        max-width: 390px
+        margin: auto
+      img 
+        width: auto
+        max-width: 100%
+        height: auto
+        margin: auto
         padding: 0
-        margin: 10px
-        +box-shadow(2px 2px 6px #ccc)      
-      .skin-default
-        width: 426px
-      #views_slideshow_cycle_teaser_section_projekte_overview-block_2,
-      .view-projekte-overview .views-slideshow-controls-top
-        display: block
-      #views_slideshow_cycle_main_projekte_overview-block_2
-        padding: 0 33px 0 31px
-      .views-slideshow-cycle-main-frame-row
-        overflow: hidden
-        .views-row
-          padding-right: 10px
-      .views-slideshow-controls-text-previous
-        position: absolute
-        top: 95px
-        z-index: 20
-        a
-          text-indent: -9999px
-          display: inline-block
-          width: 30px
-          height: 45px
-          background: url(../images/new-adapted/slideshow-arrow-left.png) no-repeat
-      .views-slideshow-controls-text-pause
-        display: none
-      .views-slideshow-controls-text-next
-        position: absolute
-        right: 0
-        z-index: 20
-        top: 95px
-        a 
-          text-indent: -9999px
-          display: inline-block
-          background: url(../images/new-adapted/slideshow-arrow-right.png) no-repeat
-          width: 30px
-          height: 45px
+        border: none
+      .views-field-field-project-images 
+        +legacy-pie-clearfix
+        border-top: none
+        padding: 0        
       .views-field-title
-        margin-left: 13px
+        // position: absolute
+        // bottom: 0
+        // width: 100% 
+        text-align: center
+        clear: both
+        //background: rgba(#5A5A5A, 0.7)
+        //background: lighten(#5A5A5A, 5%)
+        border-bottom: 1px solid #999
         h3 
-          font-size: 1.4em
-          margin: 4px 0 0px
-      .views-field-field-pr-short-description
-        .field-content
-          margin-left: 13px
-          font-size: 11px
-          line-height: 1.4
-          color: #999
-          width: 86%
+          display: none
+          margin: 0
+          font-size: 1.05em
+          //font-family: $font-family-main
+        a
+          color: #c6c6c6
+          display: block
+          padding: 8px 0 8px
+      li 
+        // margin: 0 5px
+      /* Navigation arrows */
+      .flex-direction-nav 
+        display: none
+        a
+          display: block
+          transition: none
+          text-indent: -9999px
+          content: normal 
+          font-family: none
+          opacity: 0.7
+          width: 28px
+          height: 28px
+          margin-top: -45px
+          &:before 
+            font-family: none
+          &.flex-prev 
+            background: url(../images/bg_direction_nav.png)
+            left: 0
+          &.flex-next 
+            background: url(../images/bg_direction_nav.png) -28px 0
+            right: 0
+            text-indent: 9999px
 
 /** Tooltips für Projektübersicht **/
 .bt-wrapper
@@ -95,9 +119,8 @@
 #footer
   #block-views-Newsblock_Startseite-block_2, #block-views-Newsblock_Startseite-block_3 
     .views-row 
-      border-bottom: 1px solid #dadada
       padding-top: 7px
-      padding-bottom: 7px
+      padding-bottom: 3px
       a
         display: block
         color: #848484
@@ -107,6 +130,14 @@
           color: #999
     .views-row-last
       border-bottom: none 
+
+.front
+  #footer
+    color: #666
+    #block-views-Newsblock_Startseite-block_2, #block-views-Newsblock_Startseite-block_3 
+      .views-row 
+        a
+          color: #666
 
 /** Gallery View Page **/
 .page-galerien
@@ -124,35 +155,41 @@
 /** Gallery View on Project Node **/
 .node-type-projekt
   .view-header  
-    margin-top: -20px
     h2
       color: $primary-orange-text
       color: #777
       margin-top: 0
-      font-size: 23px
+      font-size: 20px
       margin-bottom: 15px
+      clear: left
   #content-area
     .view-images-project
       +legacy-pie-clearfix
       .views_slideshow_cycle_main
-        float: left
+        margin-bottom: 20px
         img
           padding: 0
           border: 1px solid #ccc
           box-shadow: #e7e7e7 0px 2px 5px
+          height: auto 
+          width: 300px
+          //max-width: 100%
+          margin: auto
       .views-slideshow-controls-bottom
-        float: left
-        margin-left: 40px
         img
           padding: 0
           border: 1px solid #c9c9c9
           &:hover
             cursor: pointer
             cursor: hand
-        .views-slideshow-pager-field-item
-          margin-bottom: 16px
-    #widget_pager_bottom_images_project-entity_view_1
-      margin-bottom: -20px
+  .views-slideshow-pager-field-item
+    margin-bottom: 16px
+    float: left
+    margin-right: 20px
+    img 
+      height: auto
+      width: 110px
+    
   /** Übersicht Projekte im Footer Projekt Full Node **/
   #footer 
     .footer-inner 
@@ -160,39 +197,16 @@
       padding-top: 30px
       
     .view-projekte-overview 
+      margin-right: -23px
       +legacy-pie-clearfix
       .views-row 
+        width: 26%
         float: left
-        margin: 0 25px 20px 0
+        margin: 0 15px 15px 0
         img
           border: 1px solid #ddd
-
- 
-
-
-/** Projekt-Slider auf Hompage **/
-.front 
-  #content-area 
-    .view-projekte-overview
-      +legacy-pie-clearfix
-      position: relative
-      width: 426px
-      overflow: hidden
-      margin-top: 5px 
-      img 
-        padding: 0
-        box-shadow: 2px 2px 6px #ccc 
-        margin: 10px
-      .skin-default
-        width: 426px
-    #views_slideshow_cycle_teaser_section_projekte_overview-block_2, .views-slideshow-controls-top
-      display: block
-    #views_slideshow_cycle_main_projekte_overview-block_2
-      padding: 0 33px 0 31px
-    .views-slideshow-cycle-main-frame-row
-      overflow: hidden
-      .views-row
-        padding-right: 10px
+          max-width: 100%
+          height: auto
 
 /** Zitat der Woche View **/
 .view-zitat-der-woche 
@@ -233,6 +247,166 @@
           font-size: 0.83em
           line-height: 1.35
           color: #999
+
+/*--------------------------------*/
+/*--------------------------------*/
+/*---- Layout Medium Smartphone---*/
+/*-------- from 360px width ------*/
+/*--------------------------------*/
+
+body
+  +at-breakpoint($breakpoint-medium-smartphone)
+    &.node-type-projekt  
+      #content-area
+        .view-images-project
+          .views_slideshow_cycle_main
+            img
+              width: 325px
+
+/*--------------------------------*/
+/*--------------------------------*/
+/*-------- Layout Tablet ---------*/
+/*--------------------------------*/
+/*--------------------------------*/
+
+body
+  +at-breakpoint($breakpoint-tablet)
+ 
+    /** Detailansicht Projekte **/
+    &.node-type-projekt
+      #content-area
+        .view-images-project
+          .views_slideshow_cycle_main
+            img
+              width: 430px
+          .views-slideshow-pager-field-item
+            img
+              width: 123px
+        .view-header  
+          h2
+            font-size: 23px
+      #footer
+        .view-projekte-overview 
+          .views-row 
+            width: auto
+            margin: 0 25px 20px 0
+
+    /* Project Slider frontpage */
+    &.front
+      #content-area
+        .view-projekte-overview
+          margin: auto
+          max-width: 450px
+        #front_flex_slideshow            
+          margin: 0 -10px 
+          ul
+            li 
+              position: static
+              .field-content
+                text-align: center          
+          img 
+            padding: 4px
+            border: 1px solid #ccc
+            max-width: 380px
+            background: white
+            margin-bottom: 10px
+          .flex-direction-nav
+            display: block
+          .views-field-title
+            position: relative
+            background: transparent 
+            h3
+              font-family: $font-family-headlines
+              font-size: 1.3em
+              a 
+                color: $base-font-color
+              
+          
+             
+
+
+
+/*--------------------------------*/
+/*--------------------------------*/
+/*-------- Layout Desktop --------*/
+/*--------------------------------*/
+/*--------------------------------*/
+
+body
+  +at-breakpoint($breakpoint-desktop-with-ie-fallback)
+
+    &.node-type-projekt
+      #content-area
+        .view-header
+          margin-top: -20px
+        .view-images-project
+          .views_slideshow_cycle_main
+            float: left
+            img 
+              height: auto
+              width: auto
+          .views-slideshow-controls-bottom
+            float: left
+            margin-left: 40px
+            .views-slideshow-pager-field-item
+              margin-bottom: 16px
+              float: none
+              margin-right: 0
+              img 
+                height: auto
+                width: auto
+          #widget_pager_bottom_images_project-entity_view_1
+            margin-bottom: -20px
+    .view-projekte-overview
+      margin-right: 0 
+      .views-row 
+        margin: 0 25px 20px 0
+
+    #footer 
+      #block-views-Newsblock_Startseite-block_2, #block-views-Newsblock_Startseite-block_3 
+        .views-row 
+          border-bottom: 1px solid #dadada
+          padding-top: 7px
+          padding-bottom: 7px
+          &.views-row-last 
+            border-bottom: 0
+    /** Projekt-Slider auf Hompage **/
+    &.front
+      #content-area
+        #front_flex_slideshow
+          .flex-viewport 
+            width: 350px
+          .flex-direction-nav
+            display: block
+            a 
+              margin-top: -38px
+          img 
+            margin-bottom: 15px
+            margin-left: auto 
+            margin-right: auto
+            width: 340px
+          ul 
+            li
+              .field-content 
+                display: block
+                a 
+                  display: block
+          .views-field-title
+            position: relative
+            border: 0
+            h3
+              font-family: $font-family-headlines
+              font-size: 1.4em
+              a
+                color: $base-font-color
+                padding-top: 0
+                margin-top: -2px
+      #footer
+        color: #848484
+        #block-views-Newsblock_Startseite-block_2, #block-views-Newsblock_Startseite-block_3 
+          .views-row 
+            a 
+              color: #848484
      
 
 

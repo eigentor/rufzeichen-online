@@ -1,0 +1,13 @@
+name = Rufzeichen Mobile Menu
+description = Das mobile Menü: Button und Menü
+core = 7.x
+package = rufzeichen
+dependencies[] = context
+dependencies[] = ctools
+dependencies[] = fe_block
+dependencies[] = menu
+features[context][] = main_menu_mobile
+features[ctools][] = context:context:3
+features[fe_block_boxes][] = mobile_menu_button
+features[fe_block_settings][] = block-mobile_menu_button
+features[features_api][] = api:2

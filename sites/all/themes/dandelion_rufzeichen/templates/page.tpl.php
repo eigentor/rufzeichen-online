@@ -12,11 +12,23 @@
           <div id="site-slogan"><?php print $site_slogan; ?></div>
         <?php endif; ?>
       </div>
+      <?php if ($page['mobile_menu_controls']): ?>
+        <div id="mobile-menu-region">
+          <?php print render($page['mobile_menu_controls']); ?>
+        </div>
+      <?php endif; ?>
+
        <div id="navigation" class="menu">
        <?php print render($page['main_menu']); ?>
       </div>
      </div>
 
+  <!-- special region for the main menu in mobile view -->
+  <?php if ($page['main_menu_mobile']): ?>
+      <div id="main-menu-mobile">
+        <?php print render($page['main_menu_mobile']); ?>
+      </div>
+  <?php endif; ?>
   
   <div id="header">
   <div id="header-top-line">
@@ -108,7 +120,7 @@
   <div id="footer-bottom" class="clearfix">
   <div class="footer-bottom-inner" class="clearfix">
     <div id="footer-left">
-    	&copy; rufzeichen <?php print date("Y");?>&nbsp;&nbsp;&nbsp;&nbsp; Danke für das Dandelion Theme an <a href="http://themeforest.net/user/pexeto" target="_blank">Pexeto</a>
+    	<span class="rufzeichen-copyright">&copy; rufzeichen <?php print date("Y");?></span><span class="thanks-theme"> Danke für das Dandelion Theme an <a href="http://themeforest.net/user/pexeto" target="_blank">Pexeto</a></span>
     </div>
    <div id="footer-bottom-region">
    	  <?php print render($page['footer_bottom']); ?>

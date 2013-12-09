@@ -5,14 +5,16 @@ version = VERSION
 base theme = basic
 core = 7.x
 
+stylesheets[all][] = css/style.css
 stylesheets[all][] = css/base.css
 stylesheets[all][] = css/layout.css
-stylesheets[all][] = css/style.css
 stylesheets[all][] = css/views.css
 stylesheets[all][] = css/block.css
 stylesheets[all][] = css/node.css
 
 regions[page_top] = Page top
+regions[mobile_menu_controls] = Mobile Menu Controls
+regions[main_menu_mobile] = Main Menu Mobile
 regions[main_menu] = Main Menu
 regions[header] = Header
 regions[highlighted] = Highlighted
@@ -25,4 +27,5 @@ regions[footer_bottom] = Footer bottom
 regions[page_bottom] = Page bottom
 
 ;scripts[] = js/ie-cleartype.js
+scripts[] = js/rufzeichen-custom.js
 

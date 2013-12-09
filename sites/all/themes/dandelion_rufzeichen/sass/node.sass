@@ -1,36 +1,39 @@
 @import variables-mixins.sass
 
+/*--------------------------------*/
+/*--------------------------------*/
+/*------ Layout all Devices ------*/
+/*--------------------------------*/
+/*--------------------------------*/
+
 /*** Styling für Dateianhänge ***/
 #content-area
   .file
     img
       +image-no-border 
 
+/** Detailansicht Projekt all Devices **/
 
-/** Detailansicht Projekt **/
 
-.node-type-projekt #header, .page-projekte #header, .page-node-192 #header
-  height: 65px
-  background: url("../images/new-adapted/header-cars-sw.jpg") no-repeat  0 -120px
-  border-top: 1px solid #eee
-  border-bottom: 1px solid #eee
 .node-type-projekt #header-top-line, .page-projekte #header-top-line, .page-node-192 #header-top-line
   display: none
 
-.node-type-projekt 
-  #content
-    margin-top: 20px
-  .view-images-project
-    margin-bottom: 25px
+.node-type-projekt
+  #views_slideshow_cycle_main_images_project-entity_view_1, .views-slideshow-controls-bottom
+    margin: 0 -5px
+  .views-slideshow-controls-bottom
+    margin-right: -40px
+    margin-left: 10%
+    //margin-top: 200px
+  #views_slideshow_cycle_teaser_section_images_project-entity_view_1
+    width: auto!important 
+    text-align: center
+    .views-slideshow-cycle-main-frame-row
+      //position: relative!important
+      //top: 0
   .field-name-field-project-text-secondary
-    margin: 0 0 0 -10px
-    padding: 0 0 0 20px
     color: #999
-    background: url(../images/icons/quote-left.png) no-repeat 0 38px
     font-family: $font-family-headlines
-    .field-items
-      background: url(../images/icons/quote-right.png) no-repeat right bottom
-      padding: 0 15px 0 0 
     p
       font-size: 1.3em
       line-height: 1.5em   
@@ -43,7 +46,7 @@
       font-size: 1.4em
       color: #777
   .field-name-body
-    padding: 0 0 0 10px
+    padding: 0
     color: #555
     h2
       color: #ea5b0c
@@ -56,17 +59,17 @@
   /** Layout unterer Teil Projekte Detailseite **/
   .field-name-title 
     h2 
-      font-size: 32px
+      font-size: 26px
       margin-bottom: 9px
-  .group-left
-    width: 61%
-    margin-right: 3%
-  .group-left, .field-name-title
-    padding-left: 3px  
-  
+  .ds-2col-stacked 
+    .group-right, 
+    .group-left
+      float: none  
+      width: auto
+      img 
+        max-width: 100%
+        height: auto
   .group-right
-    width: 34%
-    margin-right: 0.7%
     .group-properties-icons
       border: 1px solid #e5e5e5
       padding: 10px 15px 5px
@@ -99,21 +102,23 @@
 /* -------------------------------*/
 .page-projekte
   #content-inner
-    width: 940px 
     margin-right: 0
+    text-align: center
   .view-projekte-overview
+    +legacy-pie-clearfix
     .views-row   
-      float: left
-      margin: 0 20px 25px 0
-      .views-field-field-project-images
-        margin-right: 30px
+      text-align: center
+      margin-bottom: 35px
+      img 
+        max-width: 100%
+        height: auto!important
     .view-header
-      width: 700px
       margin-bottom: 22px
     h4
       font-size: 1.3em
       margin-top: 3px
       padding-left: 2px 
+
 
 
 /*** Contact Form ***/
@@ -126,9 +131,26 @@ form#webform-client-form-22
 /* ---         News           --- */
 /* -------------------------------*/
 
-.page-news
+.page-news, .page-taxonomy-term, .node-type-news
+  h1.title 
+    font-size: 22px
   ul.tabs 
     font-size: $font-size-plus-one
+  #content
+    img
+      max-width: 100%!important
+      height: auto !important
+      margin: 5px 0 10px
+    .media-youtube-outer-wrapper, object, embed
+      max-width: 100%!important
+
+.page-news
+  h1.title 
+    font-size: 28px
+
+
+
+
 
 .view-id-News_Hauptseite, .view-taxonomy-term
   h2 
@@ -143,12 +165,16 @@ form#webform-client-form-22
     float: right
     margin: 5px 0 5px 15px
 
+// .page-news, .node-type-news, .node-news
+//   h1,h2,h3, h4 
+//     text-align: center
+
 /** Taxonomy Menu auf News **/
 .sidebar #block-menu-menu-news-men- ul li a 
   display: block
   color: #888
   text-decoration: none
-  font-size: 11px
+  font-size: 1em
   padding: 3px 6px 3px 0
   border-bottom: 1px solid #ebebeb
   width: 100%
@@ -210,36 +236,29 @@ ul.inline
 
 /** Comments **/
 h2.comment-form
-  margin-left: 5px
   margin-top: 30px
-form#comment-form
-  margin-left: 5px
 
 .comment
   background-color: #FAFAFA
   border: 1px solid #e5e5e5
   border-radius: 2px 2px 2px 2px
-  font-size: 12px
+  font-size: 1em
   margin-top: 20px
   padding: 20px 25px 20px 20px 
-  .user-picture 
-    float: left
-    display: inline
   .user-picture-wrapper
-    float: left
-  .comment-content
-    margin-left: 110px
-  .submitted
-    float: none
+    img 
+      width: 50px 
+      height: auto
+      display: none
   h3
     margin-top: 0
-    margin-bottom: 2px
-    font-size: 1.6em
+    margin-bottom: 7px
+    font-size: 1.3em
   .comment-author
-    width: 90px
     span, a
-      font-size: 0.93em
-      line-height: 1
+      font-size: 1.05em
+      color: #aaa
+      line-height: 1.2
       font-family: Georgia,"Times New Roman",Times,serif
       font-style: italic
   p
@@ -250,18 +269,12 @@ form#comment-form
     font-family: Georgia,"Times New Roman",Times,serif
     font-size: 1em
     font-style: italic
-  .comment-date
-    float: right
-    padding-right: 15px
   ul.links
-    float: right
     padding-right: 15px
-    margin-left: 15px
     li
       padding: 3px 0
-      font-size: 11px 
+      font-size: 0.93em 
       a
-        font-size: 11px 
         padding-top: 2px
         padding-bottom: 2px
       &.comment-delete
@@ -277,38 +290,37 @@ form#comment-form
       &.comment-reply
         a
           padding-left: 23px
-          background: url(../images/reply.png) no-repeat 0 2px
+          background: url(../images/reply.png) no-repeat 0 5px
 
 /* Front Page */
 
 .front 
-  #content-inner 
-    width: 900px
-    padding-top: 10px
-    margin-bottom: 40px
   #content-header
     h1
       display: none
   .links
     display: none 
   h2
-    font-size: 2.2em
-    margin-bottom: 7px
-    margin-top: 5px
+    font-size: 1.9em
+    margin-bottom: 15px
+    margin-top: 17px
+    text-align: center
+    margin-left: -($smartphone-grid-padding)
+    margin-right: -($smartphone-grid-padding)
+    margin-bottom: 10px
+  #front-main-text 
+    h2 
+      background: #e5e5e5
+      margin-top: -20px
+      margin-bottom: 20px
+      font-size: 1.6em
+      padding: 12px 30px 10px
+      border-bottom: 1px solid #ccc
+      line-height: 1.5
+      span 
+        display: block
   p
     margin-bottom: 7px
-  .field-name-field-zweispaltig-links
-    float: left
-    width: 420px
-    margin-right: 40px
-    margin-left: 3px
-    margin-top: 3px
-  .field-name-field-zweispaltig-rechts
-    float: left
-    width: 340px
-    margin-top: -3px
-    img
-      float: right
 
 /*--------------------------------------------------------- */
     Leistungen Seite
@@ -316,12 +328,14 @@ form#comment-form
 .leistungen 
   .image-container 
     clear: left
-    float: left
-    margin-right: 35px
-    padding: 20px 20px 20px 40px
-    background: #c3c3c3  
-    margin-left: -40px
-    width: 356px
+    margin-left: -($smartphone-grid-padding)
+    margin-right: -($smartphone-grid-padding)    
+    padding: 20px 20px 20px 20px
+    background: #c3c3c3
+    text-align: center 
+    img 
+      max-width: 100%
+      height: auto!important  
 
 .leistungen-left 
   margin-top: 20px
@@ -341,35 +355,33 @@ form#comment-form
   border: 1px solid #b7b7b7
 
 .leistungen h2 
-  margin: 0 0 10px
-  line-height: 1
-  font-size: 2.3em
+  margin: 15px 0 5px
+  line-height: 1.5
+  font-size: 1.6em
 
 .leistungen-text-container 
-  float: left
-  width: 465px  
   p
     margin-bottom: 20px
   .leistung-item
-    float: left
+    display: block
     line-height: 36px
-    height: 36px
+    min-height: 26px
     text-align: left
-    padding-left: 32px
-    width: 190px
+    padding: 5px 0 5px 32px   
     margin-bottom: 15px
     color: white
-    background: url(../images/new-adapted/checkmark-icon.png) no-repeat 8px 9px
-    &.first, &.third 
-      margin-right: 20px
-  .leistung-item-inner 
-    line-height: 26px
-    display: block
-    margin-top: 5px
+    background: url(../images/new-adapted/checkmark-icon.png) no-repeat 8px center
+  .leistung-item-inner
+    display: block 
+    //margin-top: 5px
     padding-left: 7px
     font-family: arial,helvetica,sans-serif
     font-weight: bold
     letter-spacing: 0.03em
+    line-height: 1.3em
+    min-height: 23px
+    padding-top: 3px
+    padding-right: 5px
   &.first
     .leistung-item-inner 
       border-left: 1px solid #FFBD68
@@ -400,17 +412,22 @@ form#comment-form
     background-color: #888
 
 /** Teamseite **/
+.page-node-190
+  h1 
+    text-align: center
+  #sidebar-second
+    display: none
 .teambild
-  float: left
-  height: 172px
-  width: 152px
+  text-align: center
+  margin-bottom: 20px
   img 
     height: 145px
     width: 105px
 
-.team-details
-  float: left
-  width: 472px
+.team-details 
+  h3, h4 
+    font-size: 1.4em
+    text-align: center
 
 /** Teamseite Badges und Certified to rock Block **/
 .badges-block 
@@ -427,22 +444,262 @@ span.smaller-font
   vertical-align: top
   letter-spacing: -0.02em
 
-.di-badge, .certified-block, da-badge 
-  float: left
 .di-badge 
+  text-align: center
   img
     height: 82px
     width: 78px
-.da-badge 
+
+.da-badge
+  text-align: center 
   img
     height: auto
     width: 86px
 
 .certified-block 
+  text-align: center
   width: 265px
-  padding: 3px 20px 0 20px
   line-height: 1.3
-  padding: 0 13px 0 18px
+  margin: auto
 
+/*--------------------------------*/
+/*--------------------------------*/
+/*-------- Layout Tablet ---------*/
+/*--------------------------------*/
+/*--------------------------------*/
+
+body
+  +at-breakpoint($breakpoint-tablet)
+    &.node-type-projekt
+      .views-slideshow-controls-bottom
+        margin-left: -5px
+        img 
+          width: 128px
+          height: auto
+      .field-name-title 
+        h2 
+          font-size: 29px
+          margin-bottom: 9px
+
+
+
+
+/*--------------------------------*/
+/*--------------------------------*/
+/*-------- Layout Desktop --------*/
+/*--------------------------------*/
+/*--------------------------------*/
+
+body
+  +at-breakpoint($breakpoint-desktop-with-ie-fallback)
+
+    &.page-projekte
+      #content-inner
+        .view-projekte-overview
+          .view-content
+            margin-right: -($desktop-grid-padding)
+
+    &.front
+      #front-main-text 
+        h2
+          font-size: 2.2em 
+          text-align: left
+          background: none
+          border: none
+          padding: 0 
+          margin: 0 0 10px
+          span 
+            display: inline
+      #content-inner 
+        width: 900px
+        padding-top: 10px
+        margin-bottom: 5px
+      #front-main-text //.field-name-field-zweispaltig-links
+        float: left
+        width: 450px
+        margin-left: 3px
+      #slideshow-projects-front //.field-name-field-zweispaltig-rechts
+        float: right
+        width: 405px
+        margin-top: 20px
+        margin-right: 10px
+
+    /*--------------------------------*/
+    /* ---    Projekte Übersicht  --- */
+    /* -------------------------------*/
+    &.page-projekte
+      #content-inner
+        text-align: left
+      .view-projekte-overview
+        .views-row 
+          text-align: left  
+          float: left
+          margin: 0 20px 25px 0
+          .views-field-field-project-images
+            margin-right: 30px
+    
+    /* Project full node Desktop */
+    &.node-type-projekt
+      #content
+        margin-top: 20px
+      #views_slideshow_cycle_main_images_project-entity_view_1
+        margin: 0
+      #views_slideshow_cycle_teaser_section_images_project-entity_view_1
+        width: 692px!important
+      .ds-2col-stacked 
+        .group-left
+          float: left
+          width: 61%
+          margin-right: 3%
+          .field-name-body
+            padding: 0 0 0 10px
+          .field-name-field-project-text-secondary
+            margin: 0 0 0 -10px
+            padding: 0 0 0 20px
+            color: #999
+            background: url(../images/icons/quote-left.png) no-repeat 0 38px
+            .field-items
+              background: url(../images/icons/quote-right.png) no-repeat right bottom
+              padding: 0 15px 0 0
+        .group-left, .field-name-title
+          padding-left: 3px  
+        .group-right
+          float: left
+          width: 34%
+          margin-right: 0.7%
+      .view-images-project
+        margin-bottom: 25px
+      .views-slideshow-controls-bottom
+        margin-left: 0
+      .field-name-title 
+        h2 
+          font-size: 32px
+          margin-bottom: 9px
+
+    &.node-type-projekt #header, &.page-projekte #header, &.page-node-192 #header
+      height: 65px
+      background: url("../images/new-adapted/header-static-bw.jpg") no-repeat  0 0
+      border-top: 1px solid #eee
+      border-bottom: 1px solid #eee
+
+    /*--------------------------------*/
+    /* ---         News           --- */
+    /* -------------------------------*/
+    &.page-news, &.page-taxonomy-term, &.node-type-news
+      #content
+        img.imagefloatleft 
+          float: left
+          margin: 5px 15px 5px 0
+        img.imagefloatright 
+          float: right
+          margin: 0 5px 5px 15px
+      h1, h2, h3, h4 
+        text-align: left
+
+      /** Taxonomy Menu auf News **/
+      .sidebar #block-menu-menu-news-men- ul li a 
+        font-size: 0.93em
+    
+
+    /*--------------- Comments ---------------*/
+    .comment
+      background-color: #FAFAFA
+      border: 1px solid #e5e5e5
+      border-radius: 2px 2px 2px 2px
+      margin-top: 20px
+      padding: 20px 25px 20px 20px 
+      .user-picture 
+        float: left
+        display: inline
+      .user-picture-wrapper
+        float: left
+        text-align: left 
+        img 
+          width: auto
+          display: block
+      .comment-content
+        margin-left: 110px
+      .submitted
+        float: none
+      h3
+        margin-top: 0
+        margin-bottom: 2px
+        font-size: 1.6em
+      .comment-author
+        width: 90px
+        span 
+          font-size: 0.93em
+          color: $base-font-color
+      .comment-date
+        float: right
+        padding-right: 15px
+      ul.links
+        float: right
+        padding-right: 15px
+        margin-left: 15px
+        li 
+          &.comment-reply
+            a
+              background: url(../images/reply.png) no-repeat 0 2px
+      /** Comments **/
+      h2.comment-form
+        margin-left: 5px
+      form#comment-form
+        margin-left: 5px
+
+    /** Teamseite **/
+    &.page-node-190
+      h1 
+        text-align: left
+      #sidebar-second 
+        display: block
+    .teambild
+      float: left
+      height: 172px
+      width: 152px
+    .team-details
+      float: left
+      width: 472px
+      h3, h4 
+        text-align: left
+
+    .di-badge, .certified-block, da-badge 
+      float: left
+      text-align: left
+
+    .certified-block
+      padding: 0 13px 0 18px
+      margin: 0
+
+    /*--------------------------------------------------------- */
+        Leistungen Seite
+    /* ----------------------------------------------------------*/
+
+    .leistungen 
+      .image-container
+        float: left
+        margin-right: 35px
+        margin-left: -40px
+        padding-left: 40px
+        width: 356px
+
+      .leistungen-text-container 
+        float: left
+        width: 465px 
+        .leistung-item
+          float: left 
+          width: 190px
+          &.first, &.third 
+            margin-right: 20px
+        .leistung-item-inner 
+          line-height: 26px
+          display: block
+          padding-top: 0
+
+      .leistungen h2 
+        margin: 0 0 10px
+        line-height: 1
+        font-size: 2.3em
+          
 
 

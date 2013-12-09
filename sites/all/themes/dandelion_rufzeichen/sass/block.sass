@@ -1,33 +1,45 @@
 @import "variables-mixins.sass"
 
+/*--------------------------------*/
+/*--------------------------------*/
+/*------ Layout all Devices ------*/
+/*--------------------------------*/
+/*--------------------------------*/
 
 #footer 
+  text-align: center
+  .block 
+    padding-bottom: 15px
+    margin-bottom: 15px
+    border-bottom: 1px solid #d7d7d7
+    &.contact-footer 
+      padding-bottom: 0
+  #block-boxes-footer_drupal_box 
+    border-bottom: 0
+    padding-bottom: 0
+    margin-bottom: 0
   .contact-footer 
-    float: left
-    width: 25%
-    padding-right: 2%
     div, a
       font-size: 15px
       font-style: normal
-      color: #777
     .telefon
       margin-top: 15px
       height: 30px
       line-height: 25px
       padding-left: 33px
       background: url(../images/new-adapted/telefon-klein.png) no-repeat 2px center
+      display: inline-block
+      line-height: 30px
     .email
       height: 40px
-      line-height: 35px
-      padding-left: 33px
-      background: url(../images/new-adapted/email-icon.png) no-repeat -3px center
+      line-height: 35px      
       span.mailto 
         display: none
-  #block-views-Newsblock_Startseite-block_2
-    width: 28%
-    float: left
-    .view-Newsblock-Startseite
-      padding-right: 33px
+      a 
+        padding-left: 33px
+        background: url(../images/new-adapted/email-icon.png) no-repeat -3px center
+        line-height: 35px
+        display: inline-block
   h2.block-title
     color: #575757
     font-family: Verdana, Geneva, sans-serif
@@ -38,20 +50,7 @@
     margin-top: 0px
     border-width: 0px
   
-  /* Drupal Box */
-  #block-boxes-footer_drupal_box
-    float: left
-    width: 43%
-    padding-left: 5px
-    .footer-drupal-box-left
-      float: left
-      width: 50%
-      margin-right: 7%
-    .footer-drupal-box-right
-      float: left
-      width: 35%
-      margin-top: -5px
-
+  
 /*------------------------------------------------*/
                News Block Sidebar
 /*------------------------------------------------*/
@@ -166,7 +165,6 @@
       width: auto!important
       padding: 3px 0 0 3px 
 
-
 /* ----------------------------------------------------- */
     Startseite Header Slideshow
 /*  ----------------------------------------------------- */
@@ -255,7 +253,6 @@
         display: block
         margin-left: 50px
 
-
     .views-field-title
       a
         font-family: georgia,times,sans-serif
@@ -291,7 +288,6 @@
           margin-left: 50px
 
 
-
 /** Controls Slider front page **/
 .front 
   .view-front-header-slider 
@@ -325,29 +321,108 @@
 .block.partner-agenturen
   +legacy-pie-clearfix
   background: #ddd
-  padding: 10px 40px
   border-top: 1px solid #ccc
   border-bottom: 1px solid #ccc 
   p
     margin: 0
   h2.partner-title
-    float: left
-      font-size: 1.8em
-  .partner-angermann-webdesign
-    float: left
-    padding: 12px 10px 0 25px
-  .partner-undpaul
-    float: left
-    padding: 15px 10px 0 20px
-  .partner-particle-in-a-box
-    float: left
-    padding: 12px 15px 0 20px
-  .partner-wizardmedien
-    float: left
-    padding: 7px 15px 0 20px
-
+    font-size: 1.8em
+    text-align: center
+    margin-bottom: 15px
+  .partner-angermann-webdesign, .partner-undpaul, .partner-particle-in-a-box, .partner-particle-in-a-box, .partner-wizardmedien
+    text-align: center
+    margin-bottom: 15px
+  
 .page-node-190 #footer 
   border-top: none
+
+/*--------------------------------*/
+/*--------------------------------*/
+/*-------- Layout Tablet ---------*/
+/*--------------------------------*/
+/*--------------------------------*/
+
+body
+  +at-breakpoint($breakpoint-tablet)
+
+  
+
+/*--------------------------------*/
+/*--------------------------------*/
+/*-------- Layout Desktop --------*/
+/*--------------------------------*/
+/*--------------------------------*/
+
+body
+  +at-breakpoint($breakpoint-desktop-with-ie-fallback)
+    #footer 
+      text-align: left
+      .block 
+        padding: 0
+        margin: 0
+        border: 0
+      .contact-footer 
+        float: left
+        width: 25%
+        padding-right: 2%
+        div, a
+          font-size: 15px
+          font-style: normal
+          color: #777
+        .telefon
+          // margin-top: 15px
+          // height: 30px
+          // line-height: 25px
+          // padding-left: 33px
+          // background: url(../images/new-adapted/telefon-klein.png) no-repeat 2px center
+        .email
+          // height: 40px
+          // line-height: 35px
+          // padding-left: 33px
+          // //background: url(../images/new-adapted/email-icon.png) no-repeat -3px center
+          // span.mailto 
+          //   display: none
+      #block-views-Newsblock_Startseite-block_2
+        width: 28%
+        float: left
+        .view-Newsblock-Startseite
+          padding-right: 33px
+
+      /* Drupal Box */
+      #block-boxes-footer_drupal_box
+        float: left
+        width: 43%
+        padding-left: 5px
+        .footer-drupal-box-left
+          float: left
+          width: 50%
+          margin-right: 7%
+        .footer-drupal-box-right
+          float: left
+          width: 35%
+          margin-top: -5px
+
+    /** Partners Block on About Us **/
+    .block.partner-agenturen      
+      padding: 10px 40px
+      h2.partner-title
+        margin-bottom: 0
+        float: left
+      .partner-angermann-webdesign, .partner-undpaul, .partner-particle-in-a-box, .partner-particle-in-a-box, .partner-wizardmedien
+        margin-bottom: 0
+      .partner-angermann-webdesign
+        float: left
+        padding: 12px 10px 0 25px
+      .partner-undpaul
+        float: left
+        padding: 15px 10px 0 20px
+      .partner-particle-in-a-box
+        float: left
+        padding: 12px 15px 0 20px
+      .partner-wizardmedien
+        float: left
+        padding: 7px 15px 0 20px
+
   
 
 

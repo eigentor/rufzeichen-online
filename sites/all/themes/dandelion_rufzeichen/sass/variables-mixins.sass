@@ -3,12 +3,26 @@
 
 $legacy-support-for-ie: true
 
+$desktop-grid-padding: 40px
+$smartphone-grid-padding: 20px
+
+$total-columns  : 12
+$column-width   : 68px
+$gutter-width   : 10px
+$grid-padding   : $desktop-grid-padding
+
 @mixin image-no-border 
   border: none
   padding: 0
 
 // Colors
+$base-font-color: #6a6a6a
 $primary-orange-text: #ED8137
+$link-color: #ED8137
+$link-active-color: #000
+$headline-color: #454545
+
+$image-border-color: #D9D9D9
 
 // Font Sizes
 $font-size-base: 12px
@@ -20,4 +34,11 @@ $font-size-minus-two: 0.83em
 // Font Families
 $font-family-main: verdana,arial,helvetica,sans-serif
 $font-family-headlines: georgia,times,serif
+
+// Breakpoints
+$breakpoint-desktop-with-ie-fallback: 750px 12 lt-ie9
+$breakpoint-desktop-without-ie-fallback: 750px 12
+$breakpoint-tablet: 480px 12
+$breakpoint-tiny-smartphone: 0px 280px 12
+$breakpoint-medium-smartphone: 360px 12
 
