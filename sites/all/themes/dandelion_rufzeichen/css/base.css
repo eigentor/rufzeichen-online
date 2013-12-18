@@ -137,7 +137,7 @@ ul {
 
 /*Do not keep preformatted text */
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\0000395}}
-pre {
+pre, code {
   white-space: normal;
   background: #e6eff2;
   border: 1px solid #d5d5d5;
@@ -464,7 +464,7 @@ div.filter-wrapper li {
     font-size: 20;
   }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\00003330}}
-  body pre {
+  body pre, body code {
     white-space: pre;
     line-height: 1.7;
   }
@@ -527,7 +527,7 @@ div.filter-wrapper li {
   font-size: 20;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/base\.sass}line{font-family:\00003330}}
-.lt-ie9 body pre {
+.lt-ie9 body pre, .lt-ie9 body code {
   white-space: pre;
   line-height: 1.7;
 }
