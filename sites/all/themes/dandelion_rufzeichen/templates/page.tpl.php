@@ -8,6 +8,9 @@
        <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="logo">
         <img src="<?php print url($directory) ?>/images/new-adapted/rufzeichen-logo.png" alt="<?php print t('Home'); ?>"/>
       </a>
+      <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="logo-mobile">
+        <img src="<?php print url($directory) ?>/images/new-adapted/rufzeichen-logo-subline.png" alt="<?php print t('Home'); ?>"/>
+      </a>
        <?php if ($site_slogan): ?>
           <div id="site-slogan"><?php print $site_slogan; ?></div>
         <?php endif; ?>
