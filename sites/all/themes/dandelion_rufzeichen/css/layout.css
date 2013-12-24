@@ -86,7 +86,7 @@ body {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/layout\.sass}line{font-family:\0000378}}
 #header-top {
   *zoom: 1;
-  background: #5a5a5a url(../images/mobile-menu-background.png) 100% repeat-y;
+  background: #525252 url(../images/mobile-menu-background.png) 100% repeat-y;
   padding-top: 5px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/usr\/lib\/ruby\/gems\/1\.9\.1\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/utilities\/general\/_clearfix\.scss}line{font-family:\0000322}}
@@ -241,7 +241,7 @@ body {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/cygdrive\/f\/wamp\/www\/rufzeichen\/rufzeichen\/sites\/all\/themes\/dandelion_rufzeichen\/sass\/layout\.sass}line{font-family:\00003188}}
 #logo {
-  padding: 12px 20px 8px;
+  padding: 8px 20px 5px;
   float: left;
   position: relative;
   max-width: 50%;
