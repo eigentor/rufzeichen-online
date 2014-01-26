@@ -472,6 +472,11 @@ span.smaller-font
 
 /** Page "Mobile Websites" **/
 
+.page-node-230
+  img 
+    max-width: 100%
+    height: auto!important
+
 .mobile-devices-drawings  
   text-align: center
   margin-top: 25px
@@ -482,6 +487,11 @@ span.smaller-font
   height: auto!important
   margin: auto
   margin-bottom: 20px
+
+img.lykia-detail-mobile,
+img.lykia-detail-desktop
+  display: block
+  margin: auto
 
 
 /*--------------------------------*/
@@ -759,6 +769,19 @@ body
     .mobile-websites-body 
       +span-columns(9, 12)
       +legacy-pie-clearfix
+
+    img.lykia-detail-mobile 
+      display: inline
+      clear: left
+      float: left 
+      margin: 0
+      margin-right: 50px
+
+    img.lykia-detail-desktop
+      display: inline  
+      float: left
+      margin: 0
+
           
 
 
