@@ -4,6 +4,13 @@
  * Code to process field data migration, moved into a separate file for efficiency.
  */
 
+// Load the include files for each supported module. It is safe to do this here
+// as this file is loaded for all actual processing.
+include_once(dirname(__FILE__) . '/../modules/content_migrate.file.inc');
+include_once(dirname(__FILE__) . '/../modules/content_migrate.number.inc');
+include_once(dirname(__FILE__) . '/../modules/content_migrate.options.inc');
+include_once(dirname(__FILE__) . '/../modules/content_migrate.text.inc');
+
 /**
  * Determine which fields can be migrated, have already been migrated, and are
  * unable to be migrated due to missing modules.
@@ -338,18 +345,10 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
     $context['sandbox']['types'] = $types;
     $context['sandbox']['field'] = $field;
     $context['sandbox']['add_delta'] = $add_delta;
-   
   }
 
-  // Process one node in each batch.
-
-  $node = array_shift($context['sandbox']['nodes']);
-  if (!$node) {
-    return;
-  }
-
+  // Process 100 nodes in each batch.
   $field = field_info_field($field_name);
-  $instance = field_info_instance('node', $field_name, $node['type']);
 
   // Construct an record to insert into the new field table
   // from the data in the old table.
@@ -363,7 +362,6 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
   if ($field['translatable']) {
     //$language = $node['language'];
   }
-  $query->addExpression("'". $node['type'] ."'", 'bundle');
   $query->addExpression("'node'", 'entity_type');
   $query->addExpression("'". $language ."'", 'language');
     
@@ -385,43 +383,72 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
   else {
     $query->addExpression(0, 'delta');
   }
-  $query->condition('nid', $node['nid']);
-  $result = $query->execute();
 
-  foreach ($result as $record) {
-  
-    // Let modules alter this before the insert.
-    drupal_alter('content_migrate_data_record', $record, $field, $instance);
+  $base_query = $query;
+  for ($i = 0; $i <=100; $i++) {
+    $query = clone($base_query);
 
-    // Don't save empty values.
-    if (!empty($record)) {
-      $function = $field['module'] . '_field_is_empty';
-      if (function_exists($function)) {
-        // The $record array has the database columns as keys, which drupal_write_record() will need,
-        // but the _field_is_empty() function will be looking for the short, normalized column name.
-        $item = array();
-        foreach ($context['sandbox']['new_cols'] as $column_name => $db_column_name) {
-          if (array_key_exists($db_column_name, $record)) {
-            $item[$column_name] = $record[$db_column_name];
+    $node = array_shift($context['sandbox']['nodes']);
+    if (!$node) {
+      // Rollback the field if there was a data migration error.
+      if ($context['sandbox']['rollback'] == TRUE) {
+        content_migrate_rollback(array($field_name));
+      }
+      return;
+    }
+    $instance = field_info_instance('node', $field_name, $node['type']);
+    $query->addExpression("'". $node['type'] ."'", 'bundle');
+    $query->condition('nid', $node['nid']);
+    $result = $query->execute();
+
+    foreach ($result as $record) {
+      module_load_include('inc', 'content_migrate', 'modules/content_migrate.' . $field['module']);
+
+      try {
+
+        // Let modules alter this before the insert.
+        drupal_alter('content_migrate_data_record', $record, $field, $instance);
+
+        // Don't save empty values.
+        if (!empty($record)) {
+          $function = $field['module'] . '_field_is_empty';
+          if (function_exists($function)) {
+            // The $record array has the database columns as keys, which drupal_write_record() will need,
+            // but the _field_is_empty() function will be looking for the short, normalized column name.
+            $item = array();
+            foreach ($context['sandbox']['new_cols'] as $column_name => $db_column_name) {
+              if (array_key_exists($db_column_name, $record)) {
+                $item[$column_name] = $record[$db_column_name];
+              }
+            }
+            if ($function($item, $field)) {
+              $record = NULL;
+            }
           }
         }
-        if ($function($item, $field)) {
-          $record = NULL;
+
+        if (!empty($record)) {
+          if ($record['revision_id'] == $node['vid']) {
+            drupal_write_record($context['sandbox']['new_table'], $record);
+          }
+          drupal_write_record($context['sandbox']['new_revision_table'], $record);
         }
       }
-    }
-
-    if (!empty($record)) {
-      if ($record['revision_id'] == $node['vid']) {
-        drupal_write_record($context['sandbox']['new_table'], $record);
+      catch (Exception $e) {
+        // An error has occurred trying to migrate a record of this field.
+        // Set this field to be rolledback and display a detailed error message.
+        $context['sandbox']['rollback'] = TRUE;
+        $exception = t('<p>Requesting rollback of field "@field" due to failure to convert record:</p>' .
+            '<p>@record</p>  <p>Cause:</p> <p>@cause</p>',
+            array('@field' => $field_name, '@record' => var_export($record, TRUE), '@cause' => $e));
+        drupal_set_message($exception, 'error');
       }
-      drupal_write_record($context['sandbox']['new_revision_table'], $record);
     }
-  }
 
-  // Update our progress information.
-  $context['sandbox']['progress']++;
-  $context['message'] = t('Processing %nid : %title', array('%title' => $node['title'], '%nid' => $node['nid']));
+    // Update our progress information.
+    $context['sandbox']['progress']++;
+  }
+  $context['message'] = t('Processing through nid %nid', array('%nid' => $node['nid']));
 
   // Inform the batch engine that we are not finished,
   // and provide an estimation of the completion level we reached.
@@ -430,5 +457,3 @@ function _content_migrate_batch_process_migrate_data($field_name, &$context) {
   }
 
 }
-
-

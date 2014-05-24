@@ -1,19 +1,18 @@
 <?php
 /**
- * @file content_migrate.filefield.inc
- * Code to implement hook_content_migrate_field_alter, content_migrate_instance_alter() and content_migrate_data_record_alter()
- * on behalf of the former filefield and imagefield modules, moved into a separate file for efficiency.
+ * @file content_migrate.file.inc
+ * Code to implement Content Migrate hooks on behalf of the File module.
  */
 
 /**
  * Implements hook_content_migrate_field_alter().
- * 
+ *
  * Use this to tweak the conversion of field settings
  * from the D6 style to the D7 style for specific
  * situations not handled by basic conversion,
  * as when field types or settings are changed.
  */
-function content_migrate_filefield_field_alter(&$field_value, $instance_value) {
+function file_content_migrate_field_alter(&$field_value, $instance_value) {
 
   // There are a bunch of custom imagefield widgets. If they at least start the widget name with 'imagefield' this will work.
   if (substr($instance_value['widget']['type'], 0, 10) == 'imagefield') {
@@ -22,7 +21,9 @@ function content_migrate_filefield_field_alter(&$field_value, $instance_value) {
     $field_value['module'] = 'image';
     $field_value['type'] = 'image';
     // default_image is now a field setting.
-    $field_value['settings']['default_image'] = $instance_value['widget']['settings']['default_image'];
+    if (array_key_exists('default_image', $instance_value['widget']['settings'])) {
+      $field_value['settings']['default_image'] = $instance_value['widget']['settings']['default_image'];
+    }
   }
   // There are a bunch of custom filefield widgets. If they at least start the widget name with 'filefield' this will work.
   if (substr($instance_value['widget']['type'], 0, 9) == 'filefield') {
@@ -31,8 +32,10 @@ function content_migrate_filefield_field_alter(&$field_value, $instance_value) {
     $field_value['module'] = 'file';
     $field_value['type'] = 'file';
     // Some settings have changed names.
-    $field_value['settings']['display_field'] = $field_value['settings']['list_field'];
-    unset($field_value['settings']['list_field']);
+    if (array_key_exists('list_field', $field_value['settings'])) {
+      $field_value['settings']['display_field'] = $field_value['settings']['list_field'];
+      unset($field_value['settings']['list_field']);
+    }
     $field_value['settings']['display_default'] = $field_value['settings']['list_default'];
     unset($field_value['settings']['list_default']);
   }
@@ -40,13 +43,13 @@ function content_migrate_filefield_field_alter(&$field_value, $instance_value) {
 
 /**
  * Implements hook_content_migrate_instance_alter().
- * 
+ *
  * Use this to tweak the conversion of instance or widget settings
  * from the D6 style to the D7 style for specific
  * situations not handled by basic conversion, as when
  * formatter or widget names or settings are changed.
  */
-function content_migrate_filefield_instance_alter(&$instance_value, $field_value) {
+function file_content_migrate_instance_alter(&$instance_value, $field_value) {
   // Translate formatters.
   // There are a bunch of custom imagefield / filefield widgets. If they at
   // least start the widget name with 'imagefield' / 'filefield', we can detect
@@ -80,6 +83,48 @@ function content_migrate_filefield_instance_alter(&$instance_value, $field_value
             'image_link' => 'file',
           );
           break;
+
+        default:
+          // Handle formatters using imagecache. D7 does not store them in the same way.
+          if (function_exists('image_styles')) {
+            foreach (image_styles() as $style_name => $style) {
+              if (substr($settings['type'], 0, strlen($style_name)) == $style_name) {
+                switch (substr($settings['type'], strlen($style_name))) {
+                  case '_default':
+                    $instance_value['display'][$context]['type'] = 'image';
+                    $instance_value['display'][$context]['module'] = 'image';
+                    $instance_value['display'][$context]['settings'] = array(
+                      'image_style' => $style_name,
+                      'image_link' => '',
+                    );
+                    break;
+
+                  case '_linked':
+                    $instance_value['display'][$context]['type'] = 'image';
+                    $instance_value['display'][$context]['module'] = 'image';
+                    $instance_value['display'][$context]['settings'] = array(
+                      'image_style' => $style_name,
+                      'image_link' => 'content',
+                    );
+                    break;
+
+                  case '_imagelink':
+                    $instance_value['display'][$context]['type'] = 'image';
+                    $instance_value['display'][$context]['module'] = 'image';
+                    $instance_value['display'][$context]['settings'] = array(
+                      'image_style' => $style_name,
+                      'image_link' => 'file',
+                    );
+                    break;
+
+                  case '_path':
+                  case '_uri':
+                    // Not supported in core D7.
+                    break;
+                }
+              }
+            }
+          }
       }
     }
   }
@@ -88,14 +133,14 @@ function content_migrate_filefield_instance_alter(&$instance_value, $field_value
       // Note; the 'path_plain' D6 formatter has disappeared.
       if (in_array($settings['type'], array('default', 'url_plain'))) {
         $instance_value['display'][$context]['type'] = 'file_'. $settings['type'];
-        $instance_value['display'][$context]['moduke'] = 'file';
+        $instance_value['display'][$context]['module'] = 'file';
       }
     }
   }
 
   // Translate the original imagefield and fielfield widgets.
   switch ($instance_value['widget']['module']) {
-  
+
     case 'imagefield':
       // Module names and types changed.
       $instance_value['widget']['module'] = 'image';
@@ -128,7 +173,7 @@ function content_migrate_filefield_instance_alter(&$instance_value, $field_value
       unset($instance_value['widget']['settings']['alt']);
       unset($instance_value['widget']['settings']['max_filesize_per_node']);
       unset($instance_value['widget']['settings']['title_type']);
-               
+
       // default_image is now a field setting.
       unset($instance_value['widget']['settings']['default_image']);
       break;
@@ -144,8 +189,10 @@ function content_migrate_filefield_instance_alter(&$instance_value, $field_value
       unset($instance_value['widget']['settings']['file_path']);
       $instance_value['settings']['file_extensions'] = $instance_value['widget']['settings']['file_extensions'];
       unset($instance_value['widget']['settings']['file_extensions']);
-      $instance_value['settings']['max_filesize'] = $instance_value['widget']['settings']['max_filesize_per_file'];
-      unset($instance_value['widget']['settings']['max_filesize_per_file']);
+      if (array_key_exists('max_filesize_per_file', $instance_value['widget']['settings'])) {
+        $instance_value['settings']['max_filesize'] = $instance_value['widget']['settings']['max_filesize_per_file'];
+        unset($instance_value['widget']['settings']['max_filesize_per_file']);
+      }
 
       // This setting is gone.
       unset($instance_value['widget']['settings']['max_filesize_per_node']);
@@ -160,7 +207,7 @@ function content_migrate_filefield_instance_alter(&$instance_value, $field_value
  *
  * Tweaks individual records in a field.
  */
-function content_migrate_filefield_data_record_alter(&$record, $field, $instance) {
+function file_content_migrate_data_record_alter(&$record, $field, $instance) {
 
   switch($field['type']) {
     case 'image':
@@ -200,7 +247,16 @@ function content_migrate_filefield_data_record_alter(&$record, $field, $instance
         return;
       };
 
-      $file = db_select('files', 'f')->fields('f', array('fid', 'uid', 'filename', 'filepath', 'filemime', 'filesize', 'timestamp', 'status'))->condition('fid', $fid)->execute()->fetchObject();
+      $file = db_select('files', 'f')
+        ->fields('f', array('fid', 'uid', 'filename', 'filepath', 'filemime', 'filesize', 'timestamp', 'status'))
+        ->condition('fid', $fid)
+        ->execute()
+        ->fetchObject();
+
+      // In case of unknown file, just abort.
+      if ((!is_object($file)) || is_null($file->fid)) {
+        break;
+      }
 
       $basename = variable_get('file_directory_path', conf_path() . '/files');
       $scheme = file_default_scheme() . '://';
