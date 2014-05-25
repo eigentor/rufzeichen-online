@@ -108,14 +108,14 @@
     +legacy-pie-clearfix
     .views-row   
       text-align: center
-      margin-bottom: 35px
+      margin-bottom: 40px
       img 
         max-width: 100%
         height: auto!important
     .view-header
       margin-bottom: 22px
     h4
-      font-size: 1.3em
+      +x-rem(font-size, 1.15)
       margin-top: 3px
       padding-left: 2px 
 
@@ -591,6 +591,8 @@ body
           margin: 0 20px 25px 0
           .views-field-field-project-images
             margin-right: 30px
+        h4
+          +x-rem(font-size, 1)
     
     /* Project full node Desktop */
     &.node-type-projekt
