@@ -318,13 +318,12 @@ h2.comment-form
       color: #eee
       margin-top: -17px
       margin-bottom: 20px
-      font-size: 1.3em
+      +x-rem(font-size, 1.4)
       padding: 16px 15px 16px
-      // border-bottom: 1px solid #c5c5c5
-      // border-top: 1px solid #bbb
-      // line-height: 1.5
+      line-height: 1.5
       span 
-        //display: block
+        display: none
+        // +x-rem(font-size, 1.35)
   p
     margin-bottom: 7px
 
@@ -492,6 +491,15 @@ img.lykia-detail-desktop
   display: block
   margin: auto
 
+/*--------------------------------*/
+/*--------------------------------*/
+/*Layout Medium Smartphone (360px)*/
+/*--------------------------------*/
+/*--------------------------------*/
+
+body
+  +at-breakpoint($breakpoint-medium-smartphone)
+
 
 /*--------------------------------*/
 /*--------------------------------*/
@@ -515,7 +523,7 @@ body
     &.front
       #front-main-text 
         h2
-          font-size: 1.8em 
+          +x-rem(font-size, 1.8)
           text-align: center
           background: none
           border: none
@@ -524,6 +532,7 @@ body
           color: $headline-color
           span 
             display: inline
+            +x-rem(font-size, 1.8)
 
 /*--------------------------------*/
 /*--------------------------------*/
