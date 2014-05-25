@@ -11,3 +11,5 @@ sites/*/private
 *.sublime-project
 *.sublime-workspace
 
+run.exe.stackdump
+
