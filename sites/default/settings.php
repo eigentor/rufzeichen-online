@@ -182,9 +182,9 @@ $databases = array (
   array (
     'default' => 
     array (
-      'database' => 'db11006110-rufzeichen',
-      'username' => 'db11006110-yoman',
-      'password' => 'wassup-44',
+      'database' => 'd01cb20e',
+      'username' => 'd01cb20e',
+      'password' => '167-Jomeinee',
       'host' => 'localhost',
       'port' => '',
       'driver' => 'mysql',
