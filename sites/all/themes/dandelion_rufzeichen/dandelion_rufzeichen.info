@@ -29,3 +29,4 @@ regions[page_bottom] = Page bottom
 ;scripts[] = js/ie-cleartype.js
 scripts[] = js/rufzeichen-custom.js
 
+
