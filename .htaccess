@@ -2,6 +2,8 @@
 # Apache/PHP/Drupal settings:
 #
 
+AddHandler php53-cgi .php
+
 # Protect files and directories from prying eyes.
 <FilesMatch "\.(engine|inc|info|install|make|module|profile|test|po|sh|.*sql|theme|tpl(\.php)?|xtmpl)$|^(\..*|Entries.*|Repository|Root|Tag|Template)$">
   Order allow,deny
