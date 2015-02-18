@@ -1,0 +1,8 @@
+name = rufzeichen Google Analytics Event Tracking 
+description = Track rufzeichen site events with Google Analytics
+core = 7.x
+package = Statistics
+dependencies[] = googleanalytics
+dependencies[] = google_analytics_et
+
+
