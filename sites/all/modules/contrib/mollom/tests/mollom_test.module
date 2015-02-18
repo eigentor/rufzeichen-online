@@ -51,6 +51,12 @@ function mollom_test_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
+  $items['mollom-test/pong'] = array(
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('mollom_test_pong_form'),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -85,11 +91,10 @@ function mollom_test_mollom_form_list() {
     'title' => 'Mollom basic elements test form',
   );
   // Same as mollom_test_form, but supports an entity delete callback.
-  // @todo Test mollom/moderate endpoint with entity delete callback.
   $forms['mollom_entity_test_form'] = array(
     'title' => 'Mollom entity test form',
     'entity' => 'mollom_test',
-    'entity delete multiple callback' => 'mollom_test_delete_multiple',
+    'entity delete callback' => 'mollom_test_delete',
   );
   return $forms;
 }
@@ -314,21 +319,18 @@ function mollom_test_save($record) {
 }
 
 /**
- * Deletes multiple stored {mollom_test} data records.
+ * Deletes a {mollom_test} data record.
  *
- * @param $mids
- *   The mids to delete.
+ * @param int $mid
+ *   The mid to delete.
  */
-function mollom_test_delete_multiple(array $mids) {
-  foreach ($mids as $mid) {
-    $record = mollom_test_load($mid);
-    if ($record) {
-      module_invoke_all('entity_delete', $record, 'mollom_test');
-    }
+function mollom_test_delete($mid) {
+  $record = mollom_test_load($mid);
+  if ($record) {
+    module_invoke_all('entity_delete', $record, 'mollom_test');
   }
-
   db_delete('mollom_test')
-    ->condition('mid', $mids)
+    ->condition('mid', $mid)
     ->execute();
 }
 
@@ -349,7 +351,21 @@ function mollom_test_delete_form($form, &$form_state, $record) {
  * Form submission handler for mollom_test_delete_form().
  */
 function mollom_test_delete_form_submit($form, &$form_state) {
-  mollom_test_delete_multiple(array($form_state['values']['mid']));
+  mollom_test_delete($form_state['values']['mid']);
   drupal_set_message('The record has been deleted.');
   $form_state['redirect'] = 'mollom-test/form';
+}
+
+/**
+ * Provides a form to test the mollom pong callback.  The callback must be
+ * called as a POST request and so just using a straight-forward test directly
+ * fails as these are all GET requests.
+ */
+function mollom_test_pong_form($form, &$form_state) {
+  $form['#action'] = url("mollom/pong");
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  return $form;
 }
