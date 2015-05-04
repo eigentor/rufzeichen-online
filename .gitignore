@@ -13,3 +13,5 @@ sites/*/private
 
 *.exe.stackdump
 
+.idea/
+
