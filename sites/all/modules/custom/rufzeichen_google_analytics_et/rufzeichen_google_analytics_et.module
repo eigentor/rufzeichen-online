@@ -37,51 +37,72 @@ function rufzeichen_google_analytics_et_settings_info() {
  * Internal function returns the example selectors array.
  */
 function _rufzeichen_google_analytics_et_set_selectors_array() {
+
+  $url = current_path();
+
   $selectors = array();
 
   $selectors = array(
+//    array(
+//      'event' => 'mousedown',
+//      'selector' => 'a',
+//      'category' => 'main navigation',
+//      'action' => 'click',
+//      'label' => '!test',
+//      'value' => 0,
+//      'noninteraction' => TRUE,
+//    ),
+//    array(
+//      'event' => 'mousedown',
+//      'selector' => '#page-title',
+//      'category' => 'main navigation',
+//      'action' => 'click',
+//      'label' => '!test',
+//      'value' => 0,
+//      'noninteraction' => TRUE,
+//    ),
+//    array(
+//      'event' => 'mousedown',
+//      'selector' => 'a.logo',
+//      'category' => 'Home Link',
+//      'action' => 'click',
+//      'label' => 'Logo',
+//      'value' => 0,
+//      'noninteraction' => TRUE,
+//    ),
+//    array(
+//      'event' => 'mousedown',
+//      'selector' => 'div',
+//      'category' => 'Home Link',
+//      'action' => '[site:name]',
+//      'label' => 'test',
+//      'value' => 0,
+//      'noninteraction' => TRUE,
+//    ),
+//    array(
+//      'event' => 'blur',
+//      'selector' => '#edit-name',
+//      'category' => '[TEST] blurred from the user login username/email input field.',
+//      'action' => 'BLUR',
+//      'label' => '!test', // !test token causes the the output to be alerted to the screen.
+//      'value' => 0,
+//      'noninteraction' => TRUE,
+//    ),
+//    array(
+//      'event' => 'click',
+//      'selector' => '#front-main-text h2',
+//      'category' => 'Seitenelemente',
+//      'action' => 'current_path()',
+//      'label' => 'Ueberschrift angeklickt',
+//      'value' => 0,
+//      'noninteraction' => TRUE,
+//    ),
     array(
       'event' => 'mousedown',
-      'selector' => 'a',
-      'category' => 'main navigation',
-      'action' => 'click',
-      'label' => '!test',
-      'value' => 0,
-      'noninteraction' => TRUE,
-    ),
-    array(
-      'event' => 'mousedown',
-      'selector' => '#page-title',
-      'category' => 'main navigation',
-      'action' => 'click',
-      'label' => '!test',
-      'value' => 0,
-      'noninteraction' => TRUE,
-    ),
-    array(
-      'event' => 'mousedown',
-      'selector' => 'a.logo',
-      'category' => 'Home Link',
-      'action' => 'click',
-      'label' => 'Logo',
-      'value' => 0,
-      'noninteraction' => TRUE,
-    ),
-    array(
-      'event' => 'mousedown',
-      'selector' => 'div',
-      'category' => 'Home Link',
-      'action' => '[site:name]',
-      'label' => 'test',
-      'value' => 0,
-      'noninteraction' => TRUE,
-    ),
-    array(
-      'event' => 'blur',
-      'selector' => '#edit-name',
-      'category' => '[TEST] blurred from the user login username/email input field.',
-      'action' => 'BLUR',
-      'label' => '!test', // !test token causes the the output to be alerted to the screen.
+      'selector' => '.front #slideshow-projects-front .flex-direction-nav .flex-prev',
+      'category' => 'Slideshow',
+      'action' => '$url',
+      'label' => 'Slideshow nach links navigiert',
       'value' => 0,
       'noninteraction' => TRUE,
     ),
