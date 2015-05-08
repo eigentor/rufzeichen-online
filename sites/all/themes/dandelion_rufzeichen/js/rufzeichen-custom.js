@@ -18,26 +18,32 @@ function(){
  * From: https://www.commercialprogression.com/post/google-analytics-events-drupal
  */
 
-//function ga_event(params) {
-//  params.splice(0, 0, "_trackEvent");
-//  if (typeof _gaq === "object") {
-//    _gaq.push(params);
-//  }
-//};
+function ga_event(params) {
+  params.splice(0, 0, "_trackEvent");
+  if (typeof _gaq === "object") {
+    _gaq.push(params);
+  }
+};
 //
-//// Capture Next and Prev events in Slideshow
-//$(".front .flex-direction-nav a").bind('click', function(e){
-//  if ($(this).hasClass("flex-prev")) {
-//    ga_event(['FP Slideshow', 'Arrow Right']);
-//    _gaq.push(['_trackEvent', 'Slider', 'Navigation', 'Slide back']);
-//  }
-//  else {
-//    ga_event(['FP Slideshow', 'Arrow Left']);
-//  }
-//});
+// Capture Next and Prev events in Slideshow
+$(".front .flex-direction-nav a").bind('click', function(e){
+  if ($(this).hasClass("flex-prev")) {
+    ga_event(['FP Slideshow', 'Arrow Left']);
+    _gaq.push(['_trackEvent', 'Slider', 'Navigation', 'Slide back']);
+  }
+  else {
+    ga_event(['FP Slideshow', 'Arrow Right']);
+  }
+});
 
-$('#front-main-text h2').click(function(){
-  _gaq.push(['_trackEvent', 'Inhalt', 'Ueberschrift', 'Seitenueberschrift angeklickt']);
+$('a.flex-prev').mouseover(function(){
+  //_gaq.push(['_trackEvent', 'Inhalt', 'Ueberschrift', 'Klick mal was']);
+  ga_event(['Slideshow-Zaehler', 'Zahl']);
+});
+
+$('#front-main-text h2').mouseover(function(){
+  //_gaq.push(['_trackEvent', 'Inhalt', 'Ueberschrift', 'Klick mal was']);
+  ga_event(['Ueberschrift', 'Hover']);
 });
 
 
