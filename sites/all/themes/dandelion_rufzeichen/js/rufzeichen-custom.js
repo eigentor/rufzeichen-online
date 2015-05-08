@@ -26,22 +26,18 @@ function ga_event(params) {
 };
 //
 // Capture Next and Prev events in Slideshow
-$(".front .flex-direction-nav a").bind('click', function(e){
-  if ($(this).hasClass("flex-prev")) {
-    ga_event(['FP Slideshow', 'Arrow Left']);
-    _gaq.push(['_trackEvent', 'Slider', 'Navigation', 'Slide back']);
-  }
-  else {
-    ga_event(['FP Slideshow', 'Arrow Right']);
-  }
-});
+//$(".front .flex-direction-nav a").bind('click', function(e){
+//  if ($(this).hasClass("flex-prev")) {
+//    ga_event(['FP Slideshow', 'Arrow Left']);
+//    _gaq.push(['_trackEvent', 'Slider', 'Navigation', 'Slide back']);
+//  }
+//  else {
+//    ga_event(['FP Slideshow', 'Arrow Right']);
+//  }
+//});
 
-$('a.flex-prev').mouseover(function(){
-  //_gaq.push(['_trackEvent', 'Inhalt', 'Ueberschrift', 'Klick mal was']);
-  ga_event(['Slideshow-Zaehler', 'Zahl']);
-});
 
-$('#front-main-text h2').mouseover(function(){
+$('#front-main-text h2').click(function(){
   //_gaq.push(['_trackEvent', 'Inhalt', 'Ueberschrift', 'Klick mal was']);
   ga_event(['Ueberschrift', 'Hover']);
 });
