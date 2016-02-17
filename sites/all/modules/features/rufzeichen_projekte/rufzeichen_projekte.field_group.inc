@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function rufzeichen_projekte_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -32,17 +32,22 @@ function rufzeichen_projekte_field_group_info() {
     'format_settings' => array(
       'label' => 'Properties with Icons',
       'instance_settings' => array(
-        'classes' => '',
+        'classes' => ' group-properties-icons field-group-div',
         'description' => '',
         'show_label' => '0',
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
+        'id' => 'node_projekt_full_group_properties_icons',
       ),
       'formatter' => 'open',
     ),
   );
-  $export['group_properties_icons|node|projekt|full'] = $field_group;
+  $field_groups['group_properties_icons|node|projekt|full'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Properties with Icons');
+
+  return $field_groups;
 }

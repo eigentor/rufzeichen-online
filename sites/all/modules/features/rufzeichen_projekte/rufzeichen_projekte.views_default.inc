@@ -485,10 +485,7 @@ function rufzeichen_projekte_views_default_views() {
   /* Display: Slideshow Startseite Flexslider */
   $handler = $view->new_display('block', 'Slideshow Startseite Flexslider', 'block_3');
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'flexslider';
-  $handler->display->display_options['style_options']['optionset'] = 'projects_front';
-  $handler->display->display_options['style_options']['captionfield'] = 'field_pr_short_description';
-  $handler->display->display_options['style_options']['id'] = 'front_flex_slideshow';
+  $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';

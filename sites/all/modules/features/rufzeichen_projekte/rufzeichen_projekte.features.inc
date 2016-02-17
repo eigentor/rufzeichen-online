@@ -112,6 +112,7 @@ function rufzeichen_projekte_image_default_styles() {
         'weight' => -8,
       ),
     ),
+    'label' => 'project-big',
   );
 
   // Exported image style: project-overview-thumb.
@@ -151,6 +152,7 @@ function rufzeichen_projekte_image_default_styles() {
         'weight' => 2,
       ),
     ),
+    'label' => 'project-overview-thumb',
   );
 
   // Exported image style: project-page.
@@ -173,6 +175,7 @@ function rufzeichen_projekte_image_default_styles() {
         'weight' => 1,
       ),
     ),
+    'label' => 'project-page',
   );
 
   // Exported image style: project-slideshow.
@@ -212,6 +215,7 @@ function rufzeichen_projekte_image_default_styles() {
         'weight' => 2,
       ),
     ),
+    'label' => 'project-slideshow',
   );
 
   // Exported image style: project-thumb.
@@ -251,6 +255,7 @@ function rufzeichen_projekte_image_default_styles() {
         'weight' => 2,
       ),
     ),
+    'label' => 'project-thumb',
   );
 
   // Exported image style: project-tooltip.
@@ -290,11 +295,13 @@ function rufzeichen_projekte_image_default_styles() {
         'weight' => 2,
       ),
     ),
+    'label' => 'project-tooltip',
   );
 
   // Exported image style: projekt-overview.
   $styles['projekt-overview'] = array(
     'name' => 'projekt-overview',
+    'label' => 'projekt-overview',
     'effects' => array(
       14 => array(
         'label' => 'Scale and crop',
