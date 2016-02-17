@@ -4,6 +4,9 @@
 /*-------------------------------- */
 /*-------------------------------- */
 
+ body.front #content-area .view-projekte-overview {
+  padding-top: 20px;
+}
 body.front .view-projekte-overview .views-row {
   margin: 0;
 }
@@ -47,6 +50,7 @@ body.front .view-projekte-overview .slick-next:before {
 @media (min-width: 480px) {
   body.front #content-area .view-projekte-overview {
   max-width: 380px;
+  padding-top: 0;
 }
   body.front #content-area .view-projekte-overview .views-field-field-project-images img {
     background: white;
