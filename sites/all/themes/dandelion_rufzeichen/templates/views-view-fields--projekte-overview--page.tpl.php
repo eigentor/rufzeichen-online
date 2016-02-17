@@ -48,9 +48,16 @@ $short_description = strip_tags(render($row->field_body));
 if (preg_match('/^.{1,120}\b/s', $short_description, $match))
 {
     $short_description = $match[0] . '...';
-}   
- 
-$beautytip_content = render($row->field_field_project_images_1);
+}
+
+// Create an image from the $row data
+$image_attributes = array(
+  'style_name' => 'project-tooltip',
+  'path' => $row->field_field_project_images_1[0]['raw']['uri'],
+);
+$beautytip_image = theme_image_style($image_attributes);
+
+$beautytip_content = $beautytip_image;
 $beautytip_content .= '<h3>' . $row->node_title . '</h3>';
 $beautytip_content .= $short_description; 
 

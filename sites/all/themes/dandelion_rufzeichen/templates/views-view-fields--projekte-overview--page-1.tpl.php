@@ -42,7 +42,14 @@ $options['bt_rufzeichen_projects_page_terms'] = array(
     );
     beautytips_add_beautytips($options);    
  
-$beautytip_content = render($row->field_field_project_images);
+// Create an image from the $row data
+$image_attributes = array(
+  'style_name' => 'project-tooltip',
+  'path' => $row->field_field_project_images[0]['raw']['uri'],
+);
+$beautytip_image = theme_image_style($image_attributes);
+
+$beautytip_content = $beautytip_image;
 $beautytip_content .= '<h3>' . $row->node_title . '</h3>'; 
  
 ?>
