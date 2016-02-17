@@ -1,0 +1,74 @@
+/*-------------------------------- */
+/*-------------------------------- */
+/*------ Layout all Devices ------ */
+/*-------------------------------- */
+/*-------------------------------- */
+
+body.front .view-projekte-overview .views-row {
+  margin: 0;
+}
+body.front .view-projekte-overview .slick-slider {
+  margin-bottom: 0;
+}
+body.front .view-projekte-overview .views-field-field-project-images a {
+  display: block;
+}
+body.front .view-projekte-overview .views-field-field-project-images img {
+  margin: auto;
+  max-width: 100%;
+  height: auto;
+  background: none;
+  border: none;
+  padding: 0;
+}
+body.front .view-projekte-overview .views-field-field-project-images,
+body.front .view-projekte-overview .views-field-title {
+  text-align: center;
+}
+.front .view-projekte-overview .slick-prev,
+body.front .view-projekte-overview .slick-next {
+  height: 30px;
+  width: 30px;
+  margin-top: -35px;
+}
+.front .view-projekte-overview .slick-prev {
+  left: -30px;
+}
+.front .view-projekte-overview .slick-next {
+  right: -30px;
+}
+.front .view-projekte-overview .slick-prev:before,
+body.front .view-projekte-overview .slick-next:before {
+  color: #aaa;
+  font-size: 26px;
+}
+
+/*-------------------------------- */
+/*-------------------------------- */
+/*-------- Layout Tablet --------- */
+/*-------------------------------- */
+/*-------------------------------- */
+@media (min-width: 480px) {
+  body.front #content-area .view-projekte-overview {
+  max-width: 380px;
+}
+  body.front .view-projekte-overview .views-field-field-project-images img {
+    background: white;
+    border: 1px solid #cccccc;
+    padding: 4px;
+}
+
+} /* Ende Media Query Tablet */
+
+
+/*-------------------------------- */
+/*-------------------------------- */
+/*-------- Layout Desktop -------- */
+/*-------------------------------- */
+/*-------------------------------- */
+@media (min-width: 750px) {
+  body.front #content-area .view-projekte-overview {
+    margin-left: 25px;
+  }
+
+} /* Ende Media Query Desktop */

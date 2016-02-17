@@ -11,6 +11,7 @@ stylesheets[all][] = css/layout.css
 stylesheets[all][] = css/views.css
 stylesheets[all][] = css/block.css
 stylesheets[all][] = css/node.css
+stylesheets[all][] = css/new.css
 
 regions[page_top] = Page top
 regions[mobile_menu_controls] = Mobile Menu Controls

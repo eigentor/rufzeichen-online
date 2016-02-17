@@ -9,3 +9,29 @@ function rufzeichen_custom_preprocess_page(&$variables) {
   // add multi-purpose Javascript
   drupal_add_js($base . '/js/multipurpose.js'); 
 }
+
+/*
+ * Load scripts and the matching jquery versions on certain pages
+ */
+
+function rufzeichen_custom_init() {
+
+  $module_path = drupal_get_path('module', 'rufzeichen_custom');
+
+// load the slick script and jquery 1.11 on the front page
+
+// load the diplayed path. This is necessary for paths that are just aliases
+// It also works for system paths and thus is more reliable than arg(x)
+  $path = drupal_get_path_alias($_GET['q']);
+  $path_array = explode('/', $path);
+
+  if (drupal_is_front_page()) {
+    drupal_add_js(libraries_get_path('jquery-1.11.x') . '/jquery-1.11.1.min.js');
+    drupal_add_css(libraries_get_path('slick') . '/slick.css');
+    drupal_add_js(libraries_get_path('slick') . '/slick.min.js');
+    drupal_add_js('var jq111 = jQuery; jQuery.noConflict(true);',
+      array('type' => 'inline', 'scope' => 'header'));
+    drupal_add_js($module_path . '/js/rufzeichen_slick_slider.js');
+  }
+
+}
