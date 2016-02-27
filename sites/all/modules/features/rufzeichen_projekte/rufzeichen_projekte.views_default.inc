@@ -482,8 +482,8 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['filters']['promote']['field'] = 'promote';
   $handler->display->display_options['filters']['promote']['value'] = '1';
 
-  /* Display: Slideshow Startseite Flexslider */
-  $handler = $view->new_display('block', 'Slideshow Startseite Flexslider', 'block_3');
+  /* Display: Kleine Slideshow Startseite */
+  $handler = $view->new_display('block', 'Kleine Slideshow Startseite', 'block_3');
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -491,6 +491,18 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['header'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Nodequeue: Queue */
+  $handler->display->display_options['relationships']['nodequeue_rel_1']['id'] = 'nodequeue_rel_1';
+  $handler->display->display_options['relationships']['nodequeue_rel_1']['table'] = 'node';
+  $handler->display->display_options['relationships']['nodequeue_rel_1']['field'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel_1']['label'] = 'Nodequeue Startseite';
+  $handler->display->display_options['relationships']['nodequeue_rel_1']['limit'] = 1;
+  $handler->display->display_options['relationships']['nodequeue_rel_1']['names'] = array(
+    'queue_startseite' => 'queue_startseite',
+    'projekte_queue' => 0,
+    'header_slider_front' => 0,
+  );
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Feld: Inhalt: Bilder */
   $handler->display->display_options['fields']['field_project_images']['id'] = 'field_project_images';
@@ -531,11 +543,12 @@ function rufzeichen_projekte_views_default_views() {
   $handler->display->display_options['filters']['status_extra']['id'] = 'status_extra';
   $handler->display->display_options['filters']['status_extra']['table'] = 'node';
   $handler->display->display_options['filters']['status_extra']['field'] = 'status_extra';
-  /* Filter criterion: Inhalt: Auf der Startseite */
-  $handler->display->display_options['filters']['promote']['id'] = 'promote';
-  $handler->display->display_options['filters']['promote']['table'] = 'node';
-  $handler->display->display_options['filters']['promote']['field'] = 'promote';
-  $handler->display->display_options['filters']['promote']['value'] = '1';
+  /* Filter criterion: Nodequeue: In queue */
+  $handler->display->display_options['filters']['in_queue']['id'] = 'in_queue';
+  $handler->display->display_options['filters']['in_queue']['table'] = 'nodequeue_nodes';
+  $handler->display->display_options['filters']['in_queue']['field'] = 'in_queue';
+  $handler->display->display_options['filters']['in_queue']['relationship'] = 'nodequeue_rel_1';
+  $handler->display->display_options['filters']['in_queue']['value'] = '1';
   $translatables['projekte_overview'] = array(
     t('Master'),
     t('Projekte Übersicht'),
@@ -561,7 +574,8 @@ function rufzeichen_projekte_views_default_views() {
     t('View mit Arguments'),
     t('[field_project_images-title]'),
     t('Slideshow Startseite'),
-    t('Slideshow Startseite Flexslider'),
+    t('Kleine Slideshow Startseite'),
+    t('Nodequeue Startseite'),
   );
   $export['projekte_overview'] = $view;
 
