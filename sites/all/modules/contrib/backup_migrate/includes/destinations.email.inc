@@ -12,7 +12,7 @@
  * @ingroup backup_migrate_destinations
  */
 class backup_migrate_destination_email extends backup_migrate_destination {
-  var $supported_ops = array('scheduled backup', 'manual backup', 'configure');
+  var $supported_ops = array('scheduled backup', 'manual backup', 'remote backup', 'configure');
 
   /**
    * Save to (ie. email the file) to the email destination.
@@ -93,7 +93,7 @@ class mime_mail {
   var $subject;
   var $body;
 
-  function mime_mail() {
+  function __construct() {
     $this->parts   = array();
     $this->to      = "";
     $this->from    = "";
@@ -135,6 +135,6 @@ class mime_mail {
     if (!empty($this->headers)) $mime .= $this->headers ."\n";
     if (!empty($this->body)) $this->add_attachment($this->body, "", "text/plain");
     $mime .= "MIME-Version: 1.0\n". $this->build_multipart();
-    mail($this->to, $this->subject, "", $mime);
+    mail(trim($this->to), $this->subject, "", $mime);
   }
 }
