@@ -42,6 +42,14 @@ body.front .view-projekte-overview .slick-next:before {
   font-size: 26px;
 }
 
+.views-slideshow-pager-fields > div {
+  padding-left: 0;
+}
+.node-type-projekt .view-images-project .views-slideshow-pager-fields img {
+  max-width: none;
+  max-height: none;
+}
+
 /*-------------------------------- */
 /*-------------------------------- */
 /*-------- Layout Tablet --------- */
@@ -73,5 +81,21 @@ body.front .view-projekte-overview .slick-next:before {
   body.front #content-area .view-projekte-overview {
     margin-left: 25px;
   }
+  .node-type-projekt .view-images-project .views-slideshow-pager-fields div {
+    display: block;
+  }
+  .node-type-projekt .view-images-project {
+    zoom: 1;
+    min-height: 480px!important;
+  }
+  .node-type-projekt .view-images-project:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+  }
+}
 
 } /* Ende Media Query Desktop */
