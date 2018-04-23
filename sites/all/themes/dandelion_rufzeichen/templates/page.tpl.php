@@ -123,7 +123,7 @@
   <div id="footer-bottom" class="clearfix">
   <div class="footer-bottom-inner" class="clearfix">
     <div id="footer-left">
-    	<span class="rufzeichen-copyright">&copy; rufzeichen <?php print date("Y");?></span><span class="thanks-theme"> Danke für das Dandelion Theme an <a href="http://themeforest.net/user/pexeto" target="_blank">Pexeto</a></span>
+    	<span class="rufzeichen-copyright">&copy; rufzeichen <?php print date("Y");?></span><span class="thanks-theme"> Danke für das Dandelion Theme an <a href="https://themeforest.net/user/pexeto" target="_blank">Pexeto</a></span>
     </div>
    <div id="footer-bottom-region">
    	  <?php print render($page['footer_bottom']); ?>
