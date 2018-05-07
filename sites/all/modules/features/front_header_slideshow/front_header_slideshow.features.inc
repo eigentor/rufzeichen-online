@@ -7,12 +7,10 @@
 /**
  * Implements hook_ctools_plugin_api().
  */
-function front_header_slideshow_ctools_plugin_api() {
-  list($module, $api) = func_get_args();
+function front_header_slideshow_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "ds" && $api == "ds") {
     return array("version" => "1");
   }
-  list($module, $api) = func_get_args();
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -21,7 +19,7 @@ function front_header_slideshow_ctools_plugin_api() {
 /**
  * Implements hook_views_api().
  */
-function front_header_slideshow_views_api() {
+function front_header_slideshow_views_api($module = NULL, $api = NULL) {
   return array("api" => "3.0");
 }
 
@@ -47,6 +45,7 @@ function front_header_slideshow_fe_nodequeue_export_fields() {
     'reference' => 0,
     'reverse' => 0,
     'i18n' => 0,
+    'insert_at_front' => 0,
     'subqueues' => 1,
     'types' => array(
       0 => 'slideshow_header_front',
@@ -66,16 +65,8 @@ function front_header_slideshow_image_default_styles() {
 
   // Exported image style: front_header_slider.
   $styles['front_header_slider'] = array(
-    'name' => 'front_header_slider',
     'effects' => array(
       15 => array(
-        'label' => 'Scale',
-        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
-        'effect callback' => 'image_scale_effect',
-        'dimensions callback' => 'image_scale_dimensions',
-        'form callback' => 'image_scale_form',
-        'summary theme' => 'image_scale_summary',
-        'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
           'width' => 480,
@@ -85,6 +76,7 @@ function front_header_slideshow_image_default_styles() {
         'weight' => 1,
       ),
     ),
+    'label' => 'front_header_slider',
   );
 
   return $styles;
@@ -104,5 +96,6 @@ function front_header_slideshow_node_info() {
       'help' => '',
     ),
   );
+  drupal_alter('node_info', $items);
   return $items;
 }

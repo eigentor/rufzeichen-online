@@ -10,7 +10,7 @@
 function front_header_slideshow_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-slideshow_header_front-body'
+  // Exported field_instance: 'node-slideshow_header_front-body'.
   $field_instances['node-slideshow_header_front-body'] = array(
     'bundle' => 'slideshow_header_front',
     'default_value' => NULL,
@@ -68,7 +68,8 @@ function front_header_slideshow_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-slideshow_header_front-field_front_image_header_slider'
+  // Exported field_instance:
+  // 'node-slideshow_header_front-field_front_image_header_slider'.
   $field_instances['node-slideshow_header_front-field_front_image_header_slider'] = array(
     'bundle' => 'slideshow_header_front',
     'deleted' => 0,
@@ -85,10 +86,13 @@ function front_header_slideshow_field_default_field_instances() {
         'module' => 'colorbox',
         'settings' => array(
           'colorbox_caption' => 'auto',
+          'colorbox_caption_custom' => '',
           'colorbox_gallery' => 'post',
           'colorbox_gallery_custom' => '',
           'colorbox_image_style' => '',
+          'colorbox_multivalue_index' => NULL,
           'colorbox_node_style' => '',
+          'colorbox_node_style_first' => '',
         ),
         'type' => 'colorbox',
         'weight' => 0,
@@ -98,10 +102,13 @@ function front_header_slideshow_field_default_field_instances() {
         'module' => 'colorbox',
         'settings' => array(
           'colorbox_caption' => 'auto',
+          'colorbox_caption_custom' => '',
           'colorbox_gallery' => 'post',
           'colorbox_gallery_custom' => '',
           'colorbox_image_style' => '',
+          'colorbox_multivalue_index' => NULL,
           'colorbox_node_style' => '',
+          'colorbox_node_style_first' => '',
         ),
         'type' => 'colorbox',
         'weight' => 0,
@@ -143,6 +150,7 @@ function front_header_slideshow_field_default_field_instances() {
           'image' => 'image',
           'video' => 0,
         ),
+        'browser_plugins' => array(),
         'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
@@ -150,7 +158,7 @@ function front_header_slideshow_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-slideshow_header_front-field_link_manual'
+  // Exported field_instance: 'node-slideshow_header_front-field_link_manual'.
   $field_instances['node-slideshow_header_front-field_link_manual'] = array(
     'bundle' => 'slideshow_header_front',
     'default_value' => NULL,
