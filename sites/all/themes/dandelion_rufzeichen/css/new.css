@@ -101,14 +101,14 @@ body.front .view-projekte-overview .slick-next:before {
     min-height: 20px;
   }
 
-  .front .view-front-header-slider .views-field-field_front_image_header_slider span.node-251 img {
+  .front .view-front-header-slider .views-field-field_front_image_header_slider span.node-252 img {
     right: 0;
   }
-  .front .view-front-header-slider .views-field-title span.node-251 {
+  .front .view-front-header-slider .views-field-title span.node-252 {
     padding-top: 15px;
   }
-  .front .view-front-header-slider .views-field-title span.node-251,
-  .front .view-front-header-slider .views-field-body span.node-251 {
+  .front .view-front-header-slider .views-field-title span.node-252,
+  .front .view-front-header-slider .views-field-body span.node-252 {
     display: block;
     padding-left: 50px;
   }
