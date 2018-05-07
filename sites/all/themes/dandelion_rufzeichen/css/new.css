@@ -96,6 +96,21 @@ body.front .view-projekte-overview .slick-next:before {
     overflow: hidden;
     visibility: hidden;
   }
-}
+
+  .front .view-front-header-slider .ds-2col .group-left {
+    min-height: 20px;
+  }
+
+  .front .view-front-header-slider .views-field-field_front_image_header_slider span.node-251 img {
+    right: 0;
+  }
+  .front .view-front-header-slider .views-field-title span.node-251 {
+    padding-top: 15px;
+  }
+  .front .view-front-header-slider .views-field-title span.node-251,
+  .front .view-front-header-slider .views-field-body span.node-251 {
+    display: block;
+    padding-left: 50px;
+  }
 
 } /* Ende Media Query Desktop */
