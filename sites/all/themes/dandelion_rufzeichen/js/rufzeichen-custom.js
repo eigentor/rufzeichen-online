@@ -10,18 +10,6 @@ function(){
   $('#main-menu-mobile').slideUp('slow');
 });
 
-/**
- * Wrapper function for Google Analytics events
- * From: https://www.commercialprogression.com/post/google-analytics-events-drupal
- */
-
-function ga_event(params) {
-  params.splice(0, 0, "_trackEvent");
-  if (typeof _gaq === "object") {
-    _gaq.push(params);
-  }
-};
-
 $('#front-main-text h2').click(function(){
   //_gaq.push(['_trackEvent', 'Inhalt', 'Ueberschrift', 'Klick mal was']);
   ga_event(['Ueberschrift', 'Hover']);
