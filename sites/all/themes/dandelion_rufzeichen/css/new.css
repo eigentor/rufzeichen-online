@@ -50,6 +50,32 @@ body.front .view-projekte-overview .slick-next:before {
   max-height: none;
 }
 
+/** Cookie Banner **/
+#sliding-popup.sliding-popup-top {
+  background: #999;
+  background: #ed8137;
+}
+#sliding-popup .popup-content #popup-text p {
+  font-weight: normal;
+  margin-top: 0.8em;
+}
+#sliding-popup .popup-content #popup-text a {
+  color: #000;
+}
+#sliding-popup .popup-content #popup-buttons {
+  margin-top: 0.5em;
+}
+#sliding-popup .popup-content #popup-buttons button {
+  text-shadow: none;
+  box-shadow: none;
+  background: #333;
+  color: white;
+  border: none;
+}
+#sliding-popup .popup-content #popup-buttons button:hover {
+  background: #666;
+}
+
 /*-------------------------------- */
 /*-------------------------------- */
 /*-------- Layout Tablet --------- */
