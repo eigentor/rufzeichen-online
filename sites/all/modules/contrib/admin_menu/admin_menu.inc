@@ -97,7 +97,7 @@ function admin_menu_tree_dynamic(array $expand_map) {
   $db_or = db_or();
   foreach ($plids as $path_plids) {
     $db_and = db_and();
-    // plids with value 0 may be ignored.
+    // Plids with value 0 may be ignored.
     foreach (array_filter($path_plids) as $column => $plid) {
       $db_and->condition($column, $plid);
     }
@@ -204,7 +204,7 @@ function admin_menu_merge_tree(array &$tree, array $tree_dynamic, array $expand_
         foreach ($load_functions as $index => $function) {
           if ($function) {
             if (is_array($function)) {
-              list($function,) = each($function);
+              $function = key($function);
             }
             // Add the loader function name minus "_load".
             $placeholder = '%' . substr($function, 0, -5);
@@ -269,7 +269,7 @@ function admin_menu_translate($router_item, $map) {
     // replace any other.
     // @todo Doing this instead leads to plenty of duplicate links below
     //   admin/structure/menu; likely a hidden recursion problem.
-    // $router_item['mlid'] = $router_item['href'] . $router_item['mlid'];
+    // $router_item['mlid'] = $router_item['href'] . $router_item['mlid'];.
     $router_item['mlid'] = $router_item['href'];
     // Turn menu callbacks into regular menu items to make them visible.
     if ($router_item['type'] == MENU_CALLBACK) {
@@ -278,10 +278,12 @@ function admin_menu_translate($router_item, $map) {
 
     // @see _menu_tree_check_access()
     $key = (50000 + $router_item['weight']) . ' ' . $router_item['title'] . ' ' . $router_item['mlid'];
-    return array($key => array(
-      'link' => $router_item,
-      'below' => array(),
-    ));
+    return array(
+      $key => array(
+        'link' => $router_item,
+        'below' => array(),
+      ),
+    );
   }
 
   return array();
@@ -425,6 +427,7 @@ function admin_menu_links_icon() {
 
   $links = array(
     '#theme' => 'admin_menu_links',
+    '#wrapper_attributes' => array('id' => 'admin-menu-icon'),
     '#weight' => -100,
   );
   $links['icon'] = array(
@@ -460,20 +463,22 @@ function admin_menu_links_icon() {
     '#access' => user_access('display drupal links'),
     '#href' => 'http://drupal.org',
   );
-  // Add links to project issue queues.
-  foreach (module_list(FALSE, TRUE) as $module) {
-    $info = drupal_parse_info_file(drupal_get_path('module', $module) . '/' . $module . '.info');
-    if (!isset($info['project']) || isset($links['icon']['drupal.org'][$info['project']])) {
-      continue;
+  if (variable_get('admin_menu_issue_queues', TRUE)) {
+    // Add links to project issue queues.
+    foreach (module_list(FALSE, TRUE) as $module) {
+      $info = drupal_parse_info_file(drupal_get_path('module', $module) . '/' . $module . '.info');
+      if (!isset($info['project']) || isset($links['icon']['drupal.org'][$info['project']])) {
+        continue;
+      }
+      $links['icon']['drupal.org'][$info['project']] = array(
+        '#title' => t('@project issue queue', array('@project' => $info['name'])),
+        '#weight' => ($info['project'] == 'drupal' ? -10 : 0),
+        '#href' => 'http://drupal.org/project/issues/' . $info['project'],
+        '#options' => array(
+          'query' => array('version' => (isset($info['core']) ? $info['core'] : 'All')),
+        ),
+      );
     }
-    $links['icon']['drupal.org'][$info['project']] = array(
-      '#title' => t('@project issue queue', array('@project' => $info['name'])),
-      '#weight' => ($info['project'] == 'drupal' ? -10 : 0),
-      '#href' => 'http://drupal.org/project/issues/' . $info['project'],
-      '#options' => array(
-        'query' => array('version' => (isset($info['core']) ? $info['core'] : 'All')),
-      ),
-    );
   }
   // Add items to flush caches.
   $links['icon']['flush-cache'] = array(
@@ -495,52 +500,35 @@ function admin_menu_links_icon() {
       ),
     );
   }
-  // Add link to toggle developer modules (performance).
-  $saved_state = variable_get('admin_menu_devel_modules_enabled', NULL);
-  $links['icon']['toggle-modules'] = array(
-    '#title' => isset($saved_state) ? t('Enable developer modules') : t('Disable developer modules'),
-    '#weight' => 88,
-    '#access' => user_access('administer site configuration'),
-    '#href' => 'admin_menu/toggle-modules',
-    '#options' => array(
-      'query' => $destination + array('token' => drupal_get_token('admin_menu/toggle-modules')),
-    ),
-  );
 
-  // Add Devel module links.
+  // Add Devel module menu links.
   if (module_exists('devel')) {
-    // Add variable editor.
-    $links['icon']['devel-variables'] = array(
-      '#title' => t('Variable editor'),
-      '#weight' => 20,
-      '#access' => user_access('access devel information'),
-      '#href' => 'devel/variable',
-    );
+    $devel_tree = menu_build_tree('devel');
+    $devel_links = admin_menu_links_menu($devel_tree);
+    if (element_get_visible_children($devel_links)) {
+      $links['icon']['devel'] = array(
+        '#title' => t('Development'),
+        '#weight' => 30,
+      ) + $devel_links;
+    }
   }
 
   return $links;
 }
 
 /**
- * Build user/action links; mostly account information and links.
+ * Builds the account links.
  *
  * @see theme_admin_menu_links()
  */
-function admin_menu_links_user() {
+function admin_menu_links_account() {
   $links = array(
     '#theme' => 'admin_menu_links',
+    '#wrapper_attributes' => array('id' => 'admin-menu-account'),
     '#weight' => 100,
   );
-  // Add link to show current authenticated/anonymous users.
-  $links['user-counter'] = array(
-    '#title' => admin_menu_get_user_count(),
-    '#description' => t('Current anonymous / authenticated users'),
-    '#weight' => -90,
-    '#attributes' => array('class' => array('admin-menu-action', 'admin-menu-users')),
-    '#href' => (user_access('administer users') ? 'admin/people/people' : 'user'),
-  );
   $links['account'] = array(
-    '#title' => $GLOBALS['user']->name,
+    '#title' => format_username($GLOBALS['user']),
     '#weight' => -99,
     '#attributes' => array('class' => array('admin-menu-action', 'admin-menu-account')),
     '#href' => 'user/' . $GLOBALS['user']->uid,
@@ -551,7 +539,6 @@ function admin_menu_links_user() {
     '#attributes' => array('class' => array('admin-menu-action')),
     '#href' => 'user/logout',
   );
-
   // Add Devel module switch user links.
   $switch_links = module_invoke('devel', 'switch_user_list');
   if (!empty($switch_links) && count($switch_links) > 1) {
@@ -567,7 +554,51 @@ function admin_menu_links_user() {
       );
     }
   }
+  return $links;
+}
 
+/**
+ * Builds user counter.
+ *
+ * @see theme_admin_menu_links()
+ */
+function admin_menu_links_users() {
+  $links = array(
+    '#theme' => 'admin_menu_links',
+    '#wrapper_attributes' => array('id' => 'admin-menu-users'),
+    '#weight' => 150,
+  );
+  // Add link to show current authenticated/anonymous users.
+  $links['user-counter'] = array(
+    '#title' => admin_menu_get_user_count(),
+    '#description' => t('Current anonymous / authenticated users'),
+    '#weight' => -90,
+    '#attributes' => array('class' => array('admin-menu-action', 'admin-menu-users')),
+    '#href' => (user_access('administer users') ? 'admin/people' : 'user'),
+  );
+  return $links;
+}
+
+/**
+ * Build search widget.
+ *
+ * @see theme_admin_menu_links()
+ */
+function admin_menu_links_search() {
+  $links = array(
+    '#theme' => 'admin_menu_links',
+    '#wrapper_attributes' => array('id' => 'admin-menu-search'),
+    '#weight' => 180,
+  );
+  $links['search'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Search'),
+    '#title_display' => 'attribute',
+    '#attributes' => array(
+      'placeholder' => t('Search'),
+      'class' => array('admin-menu-search'),
+    ),
+  );
   return $links;
 }
 
@@ -584,20 +615,43 @@ function admin_menu_theme_settings() {
   $form['admin_menu_position_fixed'] = array(
     '#type' => 'checkbox',
     '#title' => t('Keep menu at top of page'),
-    '#default_value' => variable_get('admin_menu_position_fixed', 0),
+    '#default_value' => variable_get('admin_menu_position_fixed', 1),
     '#description' => t('Displays the administration menu always at the top of the browser viewport (even when scrolling the page).'),
   );
   // @todo Re-confirm this with latest browser versions.
   $form['admin_menu_position_fixed']['#description'] .= '<br /><strong>' . t('In some browsers, this setting may result in a malformed page, an invisible cursor, non-selectable elements in forms, or other issues.') . '</strong>';
-  $form['admin_menu_cache_client'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Cache menu in client-side browser'),
-    '#default_value' => variable_get('admin_menu_cache_client', 1),
+
+  $form['advanced'] = array(
+    '#type' => 'vertical_tabs',
+    '#title' => t('Advanced settings'),
   );
+
+  $form['plugins'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Plugins'),
+    '#group' => 'advanced',
+  );
+  $form['plugins']['admin_menu_components'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('Enabled components'),
+    '#options' => array(
+      'admin_menu.icon' => t('Icon menu'),
+      'admin_menu.menu' => t('Administration menu'),
+      'admin_menu.search' => t('Search bar'),
+      'admin_menu.users' => t('User counts'),
+      'admin_menu.account' => t('Account links'),
+    ),
+  );
+  $form['plugins']['admin_menu_components']['#default_value'] = array_keys(array_filter(variable_get('admin_menu_components', $form['plugins']['admin_menu_components']['#options'])));
+
+  $process = element_info_property('checkboxes', '#process', array());
+  $form['plugins']['admin_menu_components']['#process'] = array_merge(array('admin_menu_settings_process_components'), $process);
+  $form['#attached']['js'][] = drupal_get_path('module', 'admin_menu') . '/admin_menu.admin.js';
 
   $form['tweaks'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Advanced settings'),
+    '#title' => t('System tweaks'),
+    '#group' => 'advanced',
   );
   $form['tweaks']['admin_menu_tweak_modules'] = array(
     '#type' => 'checkbox',
@@ -608,7 +662,7 @@ function admin_menu_theme_settings() {
     '#default_value' => variable_get('admin_menu_tweak_modules', 0),
   );
   if (module_exists('util')) {
-    $form['tweaks']['admin_menu_tweak_modules']['#description'] .= '<br /><strong>' . t('If the Utility module was installed for this purpose, it can be safely disabled and uninstalled.') . '</strong>';
+    $form['tweaks']['admin_menu_tweak_modules']['#description'] = '<br /><strong>' . t('If the Utility module was installed for this purpose, it can be safely disabled and uninstalled.') . '</strong>';
   }
   $form['tweaks']['admin_menu_tweak_permissions'] = array(
     '#type' => 'checkbox',
@@ -625,31 +679,49 @@ function admin_menu_theme_settings() {
     '#description' => t('Moves the tabs on all pages into the administration menu. Only possible for themes using the CSS classes <code>tabs primary</code> and <code>tabs secondary</code>.'),
   );
 
-  // Fetch all available modules manually, since module_list() only returns
-  // currently enabled modules, which makes this setting pointless if developer
-  // modules are currently disabled.
-  $all_modules = array();
-  $result = db_query("SELECT name, filename, info FROM {system} WHERE type = 'module' ORDER BY name ASC");
-  foreach ($result as $module) {
-    if (file_exists($module->filename)) {
-      $info = unserialize($module->info);
-      $all_modules[$module->name] = $info['name'];
-    }
-  }
-  $devel_modules = variable_get('admin_menu_devel_modules', _admin_menu_developer_modules());
-  $devel_modules = array_intersect_key($all_modules, array_flip($devel_modules));
-  $form['tweaks']['admin_menu_devel_modules_skip'] = array(
-    '#type' => 'checkboxes',
-    '#title' => t('Developer modules to keep enabled'),
-    '#default_value' => variable_get('admin_menu_devel_modules_skip', array()),
-    '#options' => $devel_modules,
-    '#access' => !empty($devel_modules),
-    '#description' => t('The selected modules will not be disabled when the link %disable-developer-modules below the icon in the menu is invoked.', array(
-      '%disable-developer-modules' => t('Disable developer modules'),
-    )),
+  $form['performance'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Performance'),
+    '#group' => 'advanced',
+  );
+  $form['performance']['admin_menu_cache_client'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Cache menu in client-side browser'),
+    '#default_value' => variable_get('admin_menu_cache_client', 1),
+  );
+  $form['performance']['admin_menu_issue_queues'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show Issue Queue links in icon menu'),
+    '#default_value' => variable_get('admin_menu_issue_queues', 1),
   );
 
   return system_settings_form($form);
+}
+
+/**
+ * #process callback for component plugin form element in admin_menu_theme_settings().
+ */
+function admin_menu_settings_process_components($element) {
+  // Assign 'rel' attributes to all options to achieve a live preview.
+  // Unfortunately, #states relies on wrapping .form-wrapper classes, so it
+  // cannot be used here.
+  foreach ($element['#options'] as $key => $label) {
+    if (!isset($element[$key]['#attributes']['rel'])) {
+      $id = preg_replace('/[^a-z]/', '-', $key);
+      $element[$key]['#attributes']['rel'] = '#' . $id;
+    }
+  }
+  return $element;
+}
+
+/**
+ * Form validation handler for admin_menu_theme_settings().
+ */
+function admin_menu_theme_settings_validate(&$form, &$form_state) {
+  // Change the configured components to Boolean values.
+  foreach ($form_state['values']['admin_menu_components'] as $component => &$enabled) {
+    $enabled = (bool) $enabled;
+  }
 }
 
 /**
@@ -686,94 +758,6 @@ function _admin_menu_form_devel_admin_settings_alter(&$form, $form_state) {
 }
 
 /**
- * Menu callback; Enable/disable developer modules.
- *
- * This can save up to 150ms on each uncached page request.
- */
-function admin_menu_toggle_modules() {
-  if (!isset($_GET['token']) || !drupal_valid_token($_GET['token'], current_path())) {
-    return MENU_ACCESS_DENIED;
-  }
-
-  $rebuild = FALSE;
-  $saved_state = variable_get('admin_menu_devel_modules_enabled', NULL);
-  if (isset($saved_state)) {
-    // Re-enable modules that were enabled before.
-    module_enable($saved_state);
-    variable_del('admin_menu_devel_modules_enabled');
-    drupal_set_message(t('Enabled these modules: !module-list.', array('!module-list' => implode(', ', $saved_state))));
-    $rebuild = TRUE;
-  }
-  else {
-    // Allow site admins to override this variable via settings.php.
-    $devel_modules = variable_get('admin_menu_devel_modules', _admin_menu_developer_modules());
-    // Store currently enabled modules in a variable.
-    $devel_modules = array_intersect(module_list(FALSE, FALSE), $devel_modules);
-    $devel_modules = array_diff($devel_modules, variable_get('admin_menu_devel_modules_skip', array()));
-    if (!empty($devel_modules)) {
-      variable_set('admin_menu_devel_modules_enabled', $devel_modules);
-      // Disable developer modules.
-      module_disable($devel_modules);
-      drupal_set_message(t('Disabled these modules: !module-list.', array('!module-list' => implode(', ', $devel_modules))));
-      $rebuild = TRUE;
-    }
-    else {
-      drupal_set_message(t('No developer modules are enabled.'));
-    }
-  }
-  if ($rebuild) {
-    // Make sure everything is rebuilt, basically a combination of the calls
-    // from system_modules() and system_modules_submit().
-    drupal_theme_rebuild();
-    menu_rebuild();
-    cache_clear_all('schema', 'cache');
-    cache_clear_all();
-    drupal_clear_css_cache();
-    drupal_clear_js_cache();
-    // Synchronize to catch any actions that were added or removed.
-    actions_synchronize();
-    // Finally, flush admin_menu's cache.
-    admin_menu_flush_caches();
-  }
-  drupal_goto();
-}
-
-/**
- * Helper function to return a default list of developer modules.
- */
-function _admin_menu_developer_modules() {
-  return array(
-    'admin_devel',
-    'cache_disable',
-    'coder',
-    'content_copy',
-    'context_ui',
-    'debug',
-    'delete_all',
-    'demo',
-    'devel',
-    'devel_node_access',
-    'devel_themer',
-    'field_ui',
-    'fontyourface_ui',
-    'form_controller',
-    'imagecache_ui',
-    'journal',
-    'l10n_client',
-    'l10n_update',
-    'macro',
-    'rules_admin',
-    'stringoverrides',
-    'trace',
-    'upgrade_status',
-    'user_display_ui',
-    'util',
-    'views_ui',
-    'views_theme_wizard',
-  );
-}
-
-/**
  * Flush all caches or a specific one.
  *
  * @param $name
@@ -788,18 +772,20 @@ function admin_menu_flush_cache($name = NULL) {
     if (!isset($caches[$name])) {
       return MENU_NOT_FOUND;
     }
+    $message = t('@title cache cleared.', array('@title' => $caches[$name]['title']));
   }
   else {
     $caches[$name] = array(
       'title' => t('Every'),
       'callback' => 'drupal_flush_all_caches',
     );
+    $message = t('All caches cleared.');
   }
   // Pass the cache to flush forward to the callback.
   $function = $caches[$name]['callback'];
   $function($name);
 
-  drupal_set_message(t('!title cache cleared.', array('!title' => $caches[$name]['title'])));
+  drupal_set_message($message);
 
   // The JavaScript injects a destination request parameter pointing to the
   // originating page, so the user is redirected back to that page. Without
@@ -932,4 +918,3 @@ function template_preprocess_admin_menu_icon(&$variables) {
 function theme_admin_menu_icon($variables) {
   return '<img class="admin-menu-icon" src="' . $variables['src'] . '" width="16" height="16" alt="' . $variables['alt'] . '" />';
 }
-

@@ -1,4 +1,22 @@
-(function($) {
+/**
+ * @file
+ */
+
+(function ($) {
+
+/**
+ * Live preview of Administration menu components.
+ */
+Drupal.behaviors.adminMenuLivePreview = {
+  attach: function (context, settings) {
+    $('input[name^="admin_menu_components"]', context).once('admin-menu-live-preview')
+      .change(function () {
+        var target = $(this).attr('rel');
+        $(target).toggle(this.checked);
+      })
+      .trigger('change');
+  }
+};
 
 /**
  * Automatically enables required permissions on demand.
@@ -31,9 +49,9 @@ Drupal.behaviors.adminMenuPermissionsSetupHelp = {
               // Figure out which is the other, check whether it still disabled,
               // and if so, ask whether to auto-enable it.
               var other = (this == $admin[index] ? $menu[index] : $admin[index]);
-              if (!other.checked && confirm(Drupal.t('Also allow !name role to !permission?', {
-                '!name': $roles[index].textContent,
-                '!permission': (this == $admin[index] ? menuPermission : adminPermission)
+              if (!other.checked && confirm(Drupal.t('Also allow @name role to @permission?', {
+                '@name': $roles[index].textContent,
+                '@permission': (this == $admin[index] ? menuPermission : adminPermission)
               }))) {
                 other.checked = 'checked';
               }
