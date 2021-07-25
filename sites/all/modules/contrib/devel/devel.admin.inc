@@ -1,6 +1,18 @@
 <?php
 
+/**
+ * @file
+ * Functions for Devel administrative pages.
+ */
+
+/**
+ * Form constructor for the settings form.
+ *
+ * @ingroup forms
+ */
 function devel_admin_settings() {
+  _devel_display_block_help_message();
+
   $form['queries'] = array('#type' => 'fieldset', '#title' => t('Query log'));
 
   $description = t('Display a log of the database queries needed to generate the current page, and the execution time for each. Also, queries which are repeated during a single page view are summed in the # column, and printed in red since they are candidates for caching.');
@@ -22,6 +34,12 @@ function devel_admin_settings() {
         ),
       ),
   );
+  $form['queries']['settings']['devel_show_query_args_first'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show query arguments'),
+    '#default_value' => variable_get('devel_show_query_args_first', FALSE),
+    '#description' => t('Show arguments rather than the query placeholders in the logged query.'),
+  );
   $form['queries']['settings']['devel_query_sort'] = array('#type' => 'radios',
     '#title' => t('Sort query log'),
     '#default_value' =>   variable_get('devel_query_sort', DEVEL_QUERY_SORT_BY_SOURCE),
@@ -36,63 +54,19 @@ function devel_admin_settings() {
     '#description' => t('Enter an integer in milliseconds. Any query which takes longer than this many milliseconds will be highlighted in the query log. This indicates a possibly inefficient query, or a candidate for caching.'),
   );
 
-  $form['xhprof'] = array(
-    '#type' => 'fieldset',
-    '#title' => 'XHProf',
-    '#description' => t('XHProf is a php extension which is essential for profiling your Drupal site. It pinpoints slow functions, and also memory hogging functions.'),
-  );
-  $description = extension_loaded('xhprof') ? t('Profile requests with the xhprof php extension.') : '<span class="warning">' . t('You must enable the <a href="!url">xhprof php extension</a> to use this feature.', array('!url' => url('http://techportal.ibuildings.com/2009/12/01/profiling-with-xhprof/'))) . '</span>';
-  $form['xhprof']['devel_xhprof_enabled'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Enable profiling of all page views and <a href="!drush">drush</a> requests.', array('!drush' => url('http://drush.ws'))),
-    '#default_value' => variable_get('devel_xhprof_enabled', FALSE),
-    '#description' => $description,
-    '#disabled' => !extension_loaded('xhprof'),
-  );
-  $form['xhprof']['settings'] = array(
-    '#type' => 'container',
-    '#states' => array(
-      'invisible' => array(
-        'input[name="devel_xhprof_enabled"]' => array('checked' => FALSE),
-      ),
-    ),
-  );
-  $form['xhprof']['settings']['devel_xhprof_directory'] = array(
-    '#type' => 'textfield',
-    '#title' => 'xhprof directory',
-    '#description' => t('Location of the xhprof source code on your system, usually somewhere in /usr/local/share or /usr/share, include the leading forward slash.'),
-    '#default_value' => variable_get('devel_xhprof_directory', ''),
-    '#states' => array(
-      'invisible' => array(
-        'input[name="devel_xhprof_enabled"]' => array('checked' => FALSE),
-      ),
-    ),
-  );
-  $form['xhprof']['settings']['devel_xhprof_url'] = array(
-    '#type' => 'textfield',
-    '#title' => 'XHProf URL',
-    '#description' => t('Path to the publically accessible xhprof_html - required to display profiler reports. You will need to set this up outside Drupal, for example at http://xhprof.localhost/xhprof_html'),
-    '#default_value' => variable_get('devel_xhprof_url', ''),
-    '#states' => array(
-      'invisible' => array(
-        'input[name="devel_xhprof_enabled"]' => array('checked' => FALSE),
-      ),
-    ),
-  );
-
   $form['devel_api_url'] = array('#type' => 'textfield',
     '#title' => t('API Site'),
     '#default_value' => variable_get('devel_api_url', 'api.drupal.org'),
     '#description' => t('The base URL for your developer documentation links. You might change this if you run <a href="!url">api.module</a> locally.', array('!url' => url('http://drupal.org/project/api'))));
-  $form['dev_timer'] = array('#type' => 'checkbox',
+  $form['devel_timer'] = array('#type' => 'checkbox',
     '#title' => t('Display page timer'),
-    '#default_value' => variable_get('dev_timer', 0),
+    '#default_value' => variable_get('devel_timer', 0),
     '#description' => t('Display page execution time in the query log box.'),
   );
 
-  $form['dev_mem'] = array('#type' => 'checkbox',
+  $form['devel_memory'] = array('#type' => 'checkbox',
     '#title' => t('Display memory usage'),
-    '#default_value' => variable_get('dev_mem', 0),
+    '#default_value' => variable_get('devel_memory', 0),
     '#description' => t('Display how much memory is used to generate the current page. This will show memory usage when devel_init() is called and when devel_exit() is called.'),
   );
   $form['devel_redirect_page'] = array('#type' => 'checkbox',
@@ -105,14 +79,34 @@ function devel_admin_settings() {
     '#default_value' => variable_get('devel_page_alter', FALSE),
     '#description' => t('Display $page array from <a href="http://api.drupal.org/api/function/hook_page_alter/7">hook_page_alter()</a> in the messages area of each page.'),
   );
-  $form['devel_error_handler'] = array('#type' => 'radios',
-    '#title' => t('Error handler'),
-    '#default_value' => variable_get('devel_error_handler', DEVEL_ERROR_HANDLER_STANDARD),
-    '#options' => array(DEVEL_ERROR_HANDLER_NONE => t('None'), DEVEL_ERROR_HANDLER_STANDARD => t('Standard drupal')),
-    '#description' => t('Choose an error handler for your site. <em>Backtrace</em> prints nice debug information when an error is noticed, and you <a href="@choose">choose to show errors on screen</a>. <strong>Backtrace requires the <a href="@krumo">krumo library</a></strong>. <em>None</em> is a good option when stepping through the site in your debugger.', array('@krumo' => url('http://krumo.sourceforge.net'), '@choose' => url('admin/config/development/logging'))),
+  $form['devel_raw_names'] = array('#type' => 'checkbox',
+    '#title' => t('Display machine names of permissions and modules'),
+    '#default_value' => variable_get('devel_raw_names', FALSE),
+    '#description' => t('Display the language-independent machine names of the permissions in mouse-over hints on the !Permissions page and the module base file names on the @Permissions and !Modules pages.', array('!Permissions' => l(t('Permissions'), 'admin/people/permissions'), '@Permissions' => t('Permissions'), '!Modules' => l(t('Modules'), 'admin/modules'))),
   );
-  if (has_krumo()) {
-    $form['devel_error_handler']['#options'][DEVEL_ERROR_HANDLER_BACKTRACE] = t('Backtrace');
+
+  $error_handlers = devel_get_handlers();
+  $form['devel_error_handlers'] = array(
+    '#type' => 'select',
+    '#title' => t('Error handlers'),
+    '#options' => array(
+      DEVEL_ERROR_HANDLER_NONE => t('None'),
+      DEVEL_ERROR_HANDLER_STANDARD => t('Standard Drupal'),
+      DEVEL_ERROR_HANDLER_BACKTRACE_DPM => t('Krumo backtrace in the message area'),
+      DEVEL_ERROR_HANDLER_BACKTRACE_KRUMO => t('Krumo backtrace above the rendered page'),
+    ),
+    '#multiple' => TRUE,
+    '#default_value' => empty($error_handlers) ? DEVEL_ERROR_HANDLER_NONE : $error_handlers,
+    '#description' => t('Select the error handler(s) to use, in case you <a href="@choose">choose to show errors on screen</a>.', array('@choose' => url('admin/config/development/logging'))) . '<ul>' .
+                      '<li>' . t('<em>None</em> is a good option when stepping through the site in your debugger.') . '</li>' .
+                      '<li>' . t('<em>Standard Drupal</em> does not display all the information that is often needed to resolve an issue.') . '</li>' .
+                      '<li>' . t('<em>Krumo backtrace</em> displays nice debug information when any type of error is noticed, but only to users with the %perm permission.', array('%perm' => t('Access developer information'))) . '</li></ul>' .
+                      t('Depending on the situation, the theme, the size of the call stack and the arguments, etc., some handlers may not display their messages, or display them on the subsequent page. Select <em>Standard Drupal</em> <strong>and</strong> <em>Krumo backtrace above the rendered page</em> to maximize your chances of not missing any messages.') . '<br />' .
+                      t('Demonstrate the current error handler(s):') . ' ' . l('notice+warning', $_GET['q'], array('query' => array('demo' => 'warning'))) . ', ' . l('notice+warning+error', $_GET['q'], array('query' => array('demo' => 'error'))) . ' ' . t('(The presentation of the @error is determined by PHP.)', array('@error' => 'error')),
+  );
+  $form['devel_error_handlers']['#size'] = count($form['devel_error_handlers']['#options']);
+  if (empty($_POST) && !empty($_GET['demo'])) {
+    devel_demonstrate_error_handlers($_GET['demo']);
   }
 
   $options = drupal_map_assoc(array('default', 'blue', 'green', 'orange', 'white', 'disabled'));
@@ -139,4 +133,57 @@ function devel_admin_settings() {
   );
 
   return system_settings_form($form);
+}
+
+/**
+ * Displays a helpful message if Menu module is not installed.
+ */
+function _devel_display_block_help_message() {
+  if (!module_exists('menu')) {
+    $devel_block_alert = t('Devel block alert: The Devel block requires the Core Menu module. The Devel block will become available once you <a href="!url">enable Menu</a>.',
+      array('!url' => url('admin/modules'))
+    );
+    $variables = array(
+      '!admin_menu_url' => url('https://drupal.org/project/admin_menu', array('external' => TRUE)),
+      '!admin_menu_name' => 'Administration Menu',
+      '!admin_menu_config_url' => url('admin/config/administration/admin_menu'),
+      '!icon_menu' => t('Icon menu'),
+    );
+    if (!module_exists('admin_menu')) {
+      $devel_block_alert .= '<br />' . t('Alternatively, you can install <a href="!admin_menu_url">!admin_menu_name</a> which supports displaying the Devel menu items in its !icon_menu.', $variables);
+    }
+    else {
+      $admin_menu_components = variable_get('admin_menu_components', array());
+      if (empty($admin_menu_components['admin_menu.icon']) || !user_access('access administration menu')) {
+        $devel_block_alert .= '<br />' . t("Alternatively, if you <a href='!admin_menu_config_url'>enable !admin_menu_name's !icon_menu</a> you will find the Devel menu items there.", $variables);
+      } else {
+        // Don't bother with a message in the 'normal' case.
+        return;
+      }
+    }
+    drupal_set_message($devel_block_alert, 'warning');
+  }
+}
+
+/**
+ * Demonstrates the active error handler.
+ *
+ * Generates some warnings or errors so that the reaction of the current error
+ * handler can be observed.
+ *
+ * @param $severity
+ *   The severity level that the error handler should demonstrate.
+ */
+function devel_demonstrate_error_handlers($severity) {
+  switch ($severity) {
+    case 'warning':
+      $undefined = $undefined;
+      1/0;
+      break;
+    case 'error':
+      $undefined = $undefined;
+      1/0;
+      devel_undefined_function();
+      break;
+  }
 }

@@ -14,21 +14,38 @@ function _file_devel_generate($object, $field, $instance, $bundle) {
 
   if (empty($file)) {
     if ($path = devel_generate_textfile()) {
-      $source->uri = $path;
-      $source->uid = 1; // TODO: randomize? use case specific.
-      $source->filemime = 'text/plain';
-      $destination = $field['settings']['uri_scheme'] . '://' . $instance['settings']['file_directory'] . '/' . basename($path);
-      $file = file_move($source, $destination);
+      $destination_dir = $field['settings']['uri_scheme'] . '://' . $instance['settings']['file_directory'];
+      file_prepare_directory($destination_dir, FILE_CREATE_DIRECTORY);
+      if ($uri = file_unmanaged_move($path, $destination_dir)) {
+        $file = new stdClass();
+        $file->fid = NULL;
+        $file->uri = $uri;
+        $file->filename = drupal_basename($uri);
+        $file->filemime = file_get_mimetype($file->uri);
+        // @todo Randomize file owner.
+        $file->uid = 1;
+        $file->devel_generate = TRUE;
+        $file = file_save($file);
+      }
+      else {
+        return FALSE;
+      }
     }
     else {
       return FALSE;
     }
   }
-  $object_field['fid'] = $file->fid;
-  $object_field['display'] = $field['settings']['display_default'];
-  $object_field['description'] = devel_create_greeking(10);
+  if (!$file) {
+    // In case a previous file operation failed or no file is set, return FALSE
+    return FALSE;
+  }
+  else {
+    $object_field['fid'] = $file->fid;
+    $object_field['display'] = $field['settings']['display_default'];
+    $object_field['description'] = devel_create_greeking(10);
 
-  return $object_field;
+    return $object_field;
+  }
 }
 
 /**
