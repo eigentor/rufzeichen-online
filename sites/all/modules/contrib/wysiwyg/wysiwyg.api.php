@@ -53,6 +53,8 @@ function hook_wysiwyg_plugin($editor, $version) {
             // A list of buttons provided by this native plugin. The key has to
             // match the corresponding JavaScript implementation. The value is
             // is displayed on the editor configuration form only.
+            // CKEditor-specific note: The internal button name/key is
+            // capitalized, i.e. Img_assist.
             'buttons' => array(
               'img_assist' => t('Image Assist'),
             ),
@@ -75,7 +77,7 @@ function hook_wysiwyg_plugin($editor, $version) {
             // Most plugins should define TRUE here.
             'load' => TRUE,
             // Boolean whether this plugin is a native plugin, i.e. shipped with
-            // the editor. Definition must be ommitted for plugins provided by
+            // the editor. Definition must be omitted for plugins provided by
             // other modules. TRUE means 'path' and 'filename' above are ignored
             // and the plugin is instead loaded from the editor's plugin folder.
             'internal' => TRUE,
@@ -173,6 +175,125 @@ function hook_INCLUDE_plugin() {
 }
 
 /**
+ * Alter plugin definitions before loading and further processing.
+ *
+ * @param array $info
+ *   The plugin definitions to alter.
+ * @param string $hook
+ *   The plugin type being loaded. Can be 'editor' or 'plugin'.
+ */
+function hook_wysiwyg_load_includes_alter(&$info, $hook) {
+  if ($hook == 'editor' && isset($info['ckeditor'])) {
+    $info['ckeditor']['version callback'] = 'my_own_version_callback';
+  }
+  elseif ($hook == 'plugin' && isset($info['break'])) {
+    $info['break']['title'] = t('Summary delimiter');
+  }
+}
+
+/**
+ * Define a Wysiwyg editor library.
+ *
+ * @todo Complete this documentation.
+ */
+function hook_INCLUDE_editor() {
+  $editor['ckeditor'] = array(
+    // The official, human-readable label of the editor library.
+    'title' => 'CKEditor',
+    // The URL to the library's homepage.
+    'vendor url' => 'http://ckeditor.com',
+    // The URL to the library's download page.
+    'download url' => 'http://ckeditor.com/download',
+    // A definition of available variants for the editor library.
+    // The first defined is used by default.
+    'libraries' => array(
+      '' => array(
+        'title' => 'Default',
+        'files' => array(
+          'ckeditor.js' => array('preprocess' => FALSE),
+        ),
+      ),
+      'src' => array(
+        'title' => 'Source',
+        'files' => array(
+          'ckeditor_source.js' => array('preprocess' => FALSE),
+        ),
+      ),
+    ),
+    // (optional) A callback to invoke to return additional notes for installing
+    // the editor library in the administrative list/overview.
+    'install note callback' => 'wysiwyg_ckeditor_install_note',
+    // The minimum and maximum versions the implementation has been tested with.
+    // Users will be notified if installing a version not within this range.
+    'verified version range' => array('1.2.3', '3.4.5'),
+    // (optional) A callback to perform migrations of the settings stored in a
+    // profile when a library change has been detected. Takes a reference to a
+    // settings object, the processed editor definition, the profile version and
+    // the installed library version. Migrations should be performed in the
+    // order changes were introduced by library versions, and the last version
+    // migrated to should be returned, or FALSE if no migration was possible.
+    // The returned version should be less than or equal to the highest version
+    // ( and >= the lowest version) defined in 'verified version range' and
+    // be as close as possible to, without passing, the installed version.
+    'migrate settings callback' => 'wysiwyg_ckeditor_migrate_settings',
+    // A callback to determine the library's version.
+    'version callback' => 'wysiwyg_ckeditor_version',
+    // A callback to return available themes/skins for the editor library.
+    'themes callback' => 'wysiwyg_ckeditor_themes',
+    // (optional) A callback to perform editor-specific adjustments or
+    // enhancements for the administrative editor profile settings form.
+    'settings form callback' => 'wysiwyg_ckeditor_settings_form',
+    // (optional) A callback to return an initialization JavaScript snippet for
+    // this editor library, loaded before the actual library files. The returned
+    // JavaScript is executed as inline script in a primitive environment,
+    // before the DOM is loaded; typically used to prime a base path and other
+    // global window variables for the editor library before it is loaded.
+    // All implementations should verbosely document what they are doing and
+    // why that is required.
+    'init callback' => 'wysiwyg_ckeditor_init',
+    // A callback to convert administrative profile/editor settings into
+    // JavaScript settings.
+    'settings callback' => 'wysiwyg_ckeditor_settings',
+    // A callback to supply definitions of available editor plugins.
+    'plugin callback' => 'wysiwyg_ckeditor_plugins',
+    // A callback to supply global metadata for a single native external plugin.
+    'plugin meta callback' => 'wysiwyg_ckeditor_plugin_meta',
+    // A callback to convert administrative plugin settings for an editor
+    // profile into JavaScript settings per profile.
+    'plugin settings callback' => 'wysiwyg_ckeditor_plugin_settings',
+    // (optional) Defines the proxy plugin that handles plugins provided by
+    // Drupal modules, which work in all editors that support proxy plugins.
+    'proxy plugin' => array(
+      'drupal' => array(
+        'load' => TRUE,
+        'proxy' => TRUE,
+      ),
+    ),
+    // (optional) A callback to convert proxy plugin settings into JavaScript
+    // settings.
+    'proxy plugin settings callback' => 'wysiwyg_ckeditor_proxy_plugin_settings',
+    // Defines the list of supported (minimum) versions of the editor library,
+    // and the respective Drupal integration files to load.
+    'versions' => array(
+      '3.0.0.3665' => array(
+        'js files' => array('ckeditor-3.0.js'),
+      ),
+    ),
+  );
+  return $editor;
+}
+
+/**
+ * Alter editor definitions defined by other modules.
+ *
+ * @param array $editors
+ *   The Editors to alter.
+ */
+function hook_wysiwyg_editor_alter(&$editors) {
+  $editors['editor']['version callback'] = 'my_own_version_callback';
+}
+
+/**
  * Act on editor profile settings.
  *
  * This hook is invoked from wysiwyg_get_editor_config() after the JavaScript
@@ -202,5 +323,107 @@ function hook_wysiwyg_editor_settings_alter(&$settings, $context) {
   if ($context['profile']->editor == 'tinymce') {
     // Supported values to JSON data types.
     $settings['cleanup_on_startup'] = TRUE;
+    // Function references (callbacks) need special care.
+    // @see wysiwyg_wrap_js_callback()
+    $settings['file_browser_callback'] = wysiwyg_wrap_js_callback('myFileBrowserCallback');
+    // Regular Expressions need special care.
+    // @see wysiwyg_wrap_js_regexp()
+    $settings['stylesheetParser_skipSelectors'] = wysiwyg_wrap_js_regexp('(^body\.|^caption\.|\.high|^\.)', 'i');
   }
+}
+
+/**
+ * Act on stylesheets used in WYSIWYG mode.
+ *
+ * This hook acts like a pre-render callback to the style element normally
+ * output in the document header. It is invoked before Core has
+ * sorted/grouped/aggregated stylesheets and changes made here will only have
+ * an effect on the stylesheets used in an editor's WYSIWYG mode.
+ * Wysiwyg will only keep items if their type is 'file' or 'inline' and only if
+ * they are in the group CSS_THEME.
+ *
+ * This hook may be invoked several times in a row with slightly different or
+ * altered stylesheets if something like Color module is used by a theme.
+ * Wysiwyg will cache the final list of stylesheets so this hook will only be
+ * called while the cache is being rebuilt.
+ *
+ * Messages set in this hook will not be displayed because the processing is
+ * done in an internal HTTP request and the page output is ignored.
+ *
+ * @param $elements
+ *   The style element which will be rendered. Added stylesheets are found in
+ *   $element['#items']['path/to/stylesheet.css'].
+ * @param $context
+ *   An array with the following keys:
+ *   - theme: The name of the theme which was used when the list of stylesheets
+ *     was generated.
+ */
+function hook_wysiwyg_editor_styles_alter(&$element, $context) {
+  if ($context['theme'] == 'alpha') {
+    unset($element['#items']['sites/all/themes/omega/alpha/css/alpha-debug.css']);
+  }
+}
+
+// The hooks below follow the pattern established by CKEditor module for dealing
+// with XSS filtering of user content upon loading a WYSIWYG editor.
+// Wysiwyg will try to use information presented to either module via the hooks.
+// If a module already supports CKEditor module there is no need for it to
+// also implement the corresponding hooks from Wysiwyg module unless it intends
+// to present other data only to Wysiwyg module.
+
+/**
+ * Hook to register Wysiwyg security filters.
+ *
+ * They would appear in the security filters list on the profile setting page.
+ *
+ * If a module does not implement this hook, Wysiwyg will attempt to invoke
+ * hook_ckeditor_security_filter() for that module instead.
+ */
+function hook_wysiwyg_security_filter() {
+  return array(
+    'security_filter_name' => array(
+      // Title of the security filter - it would be displayed in the security
+      // filters section of profile settings.
+      'title' => t('Security filter title'),
+      // Description of the security filter - it would be displayed in the
+      // security filters section of profile settings.
+      'description' => t('Security filter description'),
+    ),
+  );
+}
+
+/**
+ * Hook to alter Wysiwyg security filters.
+ *
+ * Wysiwyg will also invoke hook_ckeditor_security_filter_alter() before this
+ * hook, with the same parameters, allowing modules to implement either or both
+ * hooks while knowing which module is active.
+ *
+ * @param $security_filters
+ *   The list of security filters to alter.
+ * @param $reserved
+ *   Reserved in case ckeditor.module needs it later. Wysiwyg sets this to NULL.
+ *   CKEditor module does not currently pass this argument to
+ *   hook_ckeditor_security_filter_alter().
+ * @param $context
+ *   An array with a 'caller' key which can be used to tell which module is
+ *   invoking the hook. Wysiwyg sets 'caller' to 'wysiwyg'. CKEditor module does
+ *   not currently pass this argument to hook_ckeditor_security_filter_alter().
+ */
+function hook_wysiwyg_security_filter_alter(&$security_filters, $reserved = NULL, $context = array()) {
+  // Modify a security_filter.
+}
+
+/**
+ * Hook to extend the allowed tags list for the "Limit allowed tags" filter.
+ *
+ * This hook is invoked from wysiwyg_filter_xss() where text is filtered from
+ * potentially insecure tags.
+ *
+ * If a module does not implement this hook, Wysiwyg will attempt to invoke
+ * hook_ckeditor_security_filter() for that module instead.
+ */
+function hook_wysiwyg_filter_xss_allowed_tags() {
+  // Return an array of additional allowed tags.
+  return array('embed');
 }
