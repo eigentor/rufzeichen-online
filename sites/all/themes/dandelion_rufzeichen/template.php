@@ -4,7 +4,7 @@
  * Here we override the default HTML output of drupal.
  * refer to http://drupal.org/node/550722
  */
- 
+
 // Auto-rebuild the theme registry during theme development.
 if (theme_get_setting('clear_registry')) {
   // Rebuild .info data.
@@ -19,13 +19,13 @@ if (theme_get_setting('dandelion_rufzeichen_tabs')) {
 
 function dandelion_rufzeichen_preprocess_html(&$vars) {
   if ($node = menu_get_object()) {
-    // Add the field value for Border or no border in News content type 
-    // into body classes 
+    // Add the field value for Border or no border in News content type
+    // into body classes
     if($node->type == 'news') {
-      $field_values = field_get_items('node', $node, 'field_news_imagefield_border');   
+      $field_values = field_get_items('node', $node, 'field_news_imagefield_border');
       if (isset($field_values[0])) {
-        $vars['classes_array'][] = ($field_values[0]['value'] == 0) 
-          ? 'image-border-none' 
+        $vars['classes_array'][] = ($field_values[0]['value'] == 0)
+          ? 'image-border-none'
           : 'image-border';
       }
     }
@@ -71,10 +71,10 @@ function dandelion_rufzeichen_preprocess_node(&$vars) {
   // Merge first/last class (from dandelion_rufzeichen_preprocess_page) into classes array of current node object.
   $node = $vars['node'];
   if($node->type == 'news') {
-      $field_values = field_get_items('node', $node, 'field_news_imagefield_border');   
+      $field_values = field_get_items('node', $node, 'field_news_imagefield_border');
       if (isset($field_values[0])) {
-        $vars['classes_array'][] = ($field_values[0]['value'] == 0) 
-          ? 'image-border-none' 
+        $vars['classes_array'][] = ($field_values[0]['value'] == 0)
+          ? 'image-border-none'
           : 'image-border';
       }
     }
@@ -169,12 +169,12 @@ function dandelion_rufzeichen_breadcrumb($variables) {
  * 	The string
  * @return
  * 	The converted string
- */	
+ */
 function dandelion_rufzeichen_id_safe($string) {
   // Replace with dashes anything that isn't A-Z, numbers, dashes, or underscores.
   $string = strtolower(preg_replace('/[^a-zA-Z0-9_-]+/', '-', $string));
   // If the first character is not a-z, add 'n' in front.
-  if (!ctype_lower($string{0})) { // Don't use ctype_alpha since its locale aware.
+  if (!ctype_lower($string[0])) { // Don't use ctype_alpha since its locale aware.
     $string = 'id'. $string;
   }
   return $string;
@@ -191,7 +191,7 @@ function dandelion_rufzeichen_id_safe($string) {
  *  A themed HTML string.
  *
  * @ingroup themeable
- * 
+ *
  */
 function dandelion_rufzeichen_menu_link(array $variables) {
   $element = $variables['element'];
@@ -226,7 +226,7 @@ function dandelion_rufzeichen_preprocess_menu_local_task(&$variables) {
 /**
  * Duplicate of theme_menu_local_tasks() but adds clearfix to tabs.
  */
-function dandelion_rufzeichen_menu_local_tasks(&$variables) {  
+function dandelion_rufzeichen_menu_local_tasks(&$variables) {
   $output = '';
 
   if (!empty($variables['primary'])) {

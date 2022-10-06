@@ -4,7 +4,7 @@
  * Here we override the default HTML output of drupal.
  * refer to http://drupal.org/node/550722
  */
- 
+
 // Auto-rebuild the theme registry during theme development.
 if (theme_get_setting('clear_registry')) {
   // Rebuild .info data.
@@ -145,12 +145,12 @@ function basic_breadcrumb($variables) {
  * 	The string
  * @return
  * 	The converted string
- */	
+ */
 function basic_id_safe($string) {
   // Replace with dashes anything that isn't A-Z, numbers, dashes, or underscores.
   $string = strtolower(preg_replace('/[^a-zA-Z0-9_-]+/', '-', $string));
   // If the first character is not a-z, add 'n' in front.
-  if (!ctype_lower($string{0})) { // Don't use ctype_alpha since its locale aware.
+  if (!ctype_lower($string[0])) { // Don't use ctype_alpha since its locale aware.
     $string = 'id'. $string;
   }
   return $string;
@@ -167,7 +167,7 @@ function basic_id_safe($string) {
  *  A themed HTML string.
  *
  * @ingroup themeable
- * 
+ *
  */
 function basic_menu_link(array $variables) {
   $element = $variables['element'];
@@ -202,7 +202,7 @@ function basic_preprocess_menu_local_task(&$variables) {
 /**
  * Duplicate of theme_menu_local_tasks() but adds clearfix to tabs.
  */
-function basic_menu_local_tasks(&$variables) {  
+function basic_menu_local_tasks(&$variables) {
   $output = '';
 
   if (!empty($variables['primary'])) {
