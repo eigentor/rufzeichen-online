@@ -1,23 +1,23 @@
 <?php
 
 function beautytips_drupal_help_admin_info() {
-  $form['beautytips_help'] = array(
+  $form['beautytips_help'] = [
     '#type' => 'fieldset',
     '#title' => 'Help Link Tooltips',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
-  );
-  $form['beautytips_help']['beautytips_drupal_help'] = array(
+  ];
+  $form['beautytips_help']['beautytips_drupal_help'] = [
     '#type' => 'checkbox',
     '#title' => 'Display Help link popups',
     '#default_value' => variable_get('beautytips_drupal_help', FALSE),
-  );
+  ];
   if (module_exists('advanced_help')) {
-    $form['beautytips_help']['beautytips_advanced_help'] = array(
+    $form['beautytips_help']['beautytips_advanced_help'] = [
       '#type' => 'checkbox',
       '#title' => 'Display Advanced Help link popups',
       '#default_value' => variable_get('beautytips_advanced_help', FALSE),
-    );
+    ];
   }
   return $form;
 }
@@ -40,12 +40,12 @@ function beautytips_drupal_help_menu_change(&$items) {
 function beautytips_drupal_help_main() {
   require_once drupal_get_path('module', 'help') . '/help.admin.inc';
   //  Add in beautytips on page - admin/help
-  $options['bt_drupal_help_page'] = array(
+  $options['bt_drupal_help_page'] = [
     'cssSelect' => '.help-items li a',
-    'ajaxPath' => array("$(this).attr('href')", '.content'),
-    'trigger' => array('mouseover', 'click'),
+    'ajaxPath' => ["$(this).attr('href')", '.content'],
+    'trigger' => ['mouseover', 'click'],
     'width' => 350,
-  );
+  ];
   beautytips_add_beautytips($options);
   return help_main();
 }
@@ -70,16 +70,16 @@ function beautytips_drupal_help_theme_change(&$theme_registry) {
  * Returns code that emits the 'more help'-link.
  * Overrides theme_more_help_link
  */
-function theme_beautytips_drupal_help_more_help_link($url) {
-  $options = array();
-  $options['bt_drupal_help'] = array(
+function theme_beautytips_drupal_help_more_help_link($variables) {
+  $options = [];
+  $options['bt_drupal_help'] = [
     'cssSelect' => '.more-help-link a',
-    'ajaxPath' => array(0 => "$(this).attr('href')", 1 => '.clear-block p'),
-    'trigger' => array(0 => 'mouseover', 1 => 'click'),
-    'width' => 350,
-  );
+    'ajaxPath' => ["$(this).attr('href')", '#content'],
+    'trigger' => [0 => 'mouseover', 1 => 'click'],
+    'width' => 600,
+  ];
   beautytips_add_beautytips($options);
-  return theme_drupal_help_more_help_link($url);
+  return theme_more_help_link($variables);
 }
 
 /**
@@ -96,12 +96,15 @@ function theme_beautytips_drupal_help_more_help_link($url) {
  */
 function theme_beautytips_advanced_help_topic(&$variables) {
   // Add bt to advanced-help links
-  $options['bt_advanced_help'] = array(
+  $options['bt_advanced_help'] = [
     'cssSelect' => 'a.advanced-help-link',
-    'ajaxPath' => array("$(this).attr('href')", '#content-content:not(#content-content.help-navigation)'),
-    'trigger' => array('mouseover', 'click'),
+    'ajaxPath' => [
+      "$(this).attr('href')",
+      '#content-content:not(#content-content.help-navigation)',
+    ],
+    'trigger' => ['mouseover', 'click'],
     'width' => 380,
-  );
+  ];
   beautytips_add_beautytips($options);
   return theme_advanced_help_topic($variables);
 }

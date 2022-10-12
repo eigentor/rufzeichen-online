@@ -35,13 +35,21 @@ function entity_path_ctools_export_ui_form(&$form, &$form_state) {
 
   $item = $form_state['item'];
 
+  // Get the instance from the form state (e.g. ajax) or the default object.
+  $instance = (isset($form_state['values']['instance'])) ? $form_state['values']['instance'] : $item->instance;
+
   $form['info']['instance'] = array(
     '#type' => 'select',
     '#title' => t('Instance'),
-    '#options' => _entity_path_instance_options(TRUE, $item->instance, FALSE),
-    '#default_value' => $item->instance,
+    '#options' => _entity_path_instance_options(TRUE, $instance, FALSE),
+    '#default_value' => $instance,
     '#required' => TRUE,
     '#description' => t('Select the entity type or bundle to build this configuration for.'),
+    '#ajax' => array(
+      'callback' => 'entity_path_ctools_export_ui_form_ajax_replacement',
+      'wrapper' => 'replacement-patterns',
+      'method' => 'replace',
+    ),
   );
   $form['path_pattern'] = array(
     '#type' => 'textfield',
@@ -66,22 +74,44 @@ function entity_path_ctools_export_ui_form(&$form, &$form_state) {
     '#required' => FALSE,
     '#description' => t('Attach a fragment to the path defined above, like <code>nid-[node:nid]</code>.'),
   );
+
+  // Replacement pattern help.
   $form['replacement'] = array(
     '#type' => 'fieldset',
     '#title' => t('Replacement patterns'),
+    '#attributes' => array(
+      'id' => 'replacement-patterns',
+    ),
   );
-  if (empty($item->instance)) {
-    $form['replacement']['token_empty'] = array(
+  if (module_exists(('token'))) {
+    if (empty($instance)) {
+      $form['replacement']['token_empty'] = array(
+        '#prefix' => '<span class="description warning">',
+        '#markup' => t('Please select an instance first to view replacement patterns.'),
+        '#suffix' => '</span>',
+      );
+    }
+    $form['replacement']['token_help'] = array(
+      '#theme' => 'token_tree',
+      '#token_types' => array(_entity_path_get_token_type($instance)),
+      '#global_types' => FALSE,
+    );
+  }
+  else {
+    $form['replacement']['token_missing'] = array(
       '#prefix' => '<span class="description warning">',
-      '#markup' => t('Token replacement patterns will appear, after you saved the configuration.'),
+      '#markup' => t('The !token module is needed for a preview of replacement patterns. It also would provide some additional tokens.', array('!token' => l('Token', 'http://drupal.org/project/token'))),
       '#suffix' => '</span>',
     );
   }
-  $form['replacement']['token_help'] = array(
-    '#theme' => 'token_tree',
-    '#token_types' => array(_entity_path_get_token_type($item->instance)),
-    '#global_types' => FALSE,
-  );
+  // Notice for entity_token module.
+  if (module_exists(('entity')) && !module_exists('entity_token')) {
+    $form['replacement']['token_entity'] = array(
+      '#prefix' => '<span class="description notice">',
+      '#markup' => t('As you have enabled the Entity API, you also might enable the Entity Token module for providing token support for additional properties.'),
+      '#suffix' => '</span>',
+    );
+  }
 
   // Additional configuration.
   $form['config'] = array(
@@ -182,4 +212,14 @@ function _entity_path_instance_options($exclude = TRUE, $include = NULL, $flat =
  */
 function entity_path_ctools_export_ui_form_submit(&$form, &$form_state) {
   entity_info_cache_clear();
+}
+
+/**
+ * Ajax helper callback for the replacement pattern fieldset.
+ * @param array $form
+ * @param array $form_state
+ * @return array
+ */
+function entity_path_ctools_export_ui_form_ajax_replacement($form, $form_state) {
+  return $form['replacement'];
 }
