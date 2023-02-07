@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * Implements hook_permission().
+ */
+function ruf_test_permission() {
+  return [
+    'access ruf test page' => [
+      'title' => t('Access Ruf Test Page'),
+      'description' => t('The Ruf Test page'),
+    ]
+  ];
+}
+
+function ruf_test_menu() {
+  $items['admin/structure/ruf_test'] = [
+    'title' => 'Test Form hier jetzt',
+    'page_callback' => 'drupal_get_form',
+    'page_arguments' => ['ruf_test_form'],
+    'access arguments' => ['access ruf test page'],
+    'file' => 'system.admin.inc',
+    'file path' => drupal_get_path('module', 'system'),
+  ];
+  return $items;
+}
+
+
+function ruf_test_form($form, &$form_state) {
+  $form['information'] = [
+    '#type' => 'textfield',
+    '#title' => t('Subject'),
+  ];
+  $form['submit'] = [
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  ];
+
+  return $form;
+}

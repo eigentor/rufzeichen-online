@@ -1,0 +1,4 @@
+name = Rufzeichen Menu Test
+description = "Test Menu Items"
+core = 7.x
+package = rufzeichen
