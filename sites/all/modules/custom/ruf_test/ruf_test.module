@@ -13,13 +13,18 @@ function ruf_test_permission() {
 }
 
 function ruf_test_menu() {
-  $items['admin/structure/ruf_test'] = [
+  $items['ruf/default'] = array(
+    'title' => 'Overview page',
+    'page callback' => 'ruf_test_intro',
+    'access callback' => TRUE,
+    'expanded' => TRUE,
+  );
+  $items['ruf/default/form'] = [
     'title' => 'Test Form hier jetzt',
     'page_callback' => 'drupal_get_form',
-    'page_arguments' => ['ruf_test_form'],
-    'access arguments' => ['access ruf test page'],
-    'file' => 'system.admin.inc',
-    'file path' => drupal_get_path('module', 'system'),
+    'page_arguments' => array('ruf_test_form'),
+    'access callback' => TRUE,
+    'expanded' => TRUE,
   ];
   return $items;
 }
@@ -36,4 +41,9 @@ function ruf_test_form($form, &$form_state) {
   ];
 
   return $form;
+}
+
+function ruf_test_intro() {
+  $markup = t('Ein bisschen Text, damit man was sieht.');
+  return array('#markup' => $markup);
 }
