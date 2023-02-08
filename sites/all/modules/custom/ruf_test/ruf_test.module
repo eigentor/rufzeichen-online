@@ -19,26 +19,69 @@ function ruf_test_menu() {
     'access callback' => TRUE,
     'expanded' => TRUE,
   );
-  $items['ruf/default/form'] = [
-    'title' => 'Test Form hier jetzt',
-    'page_callback' => 'drupal_get_form',
-    'page_arguments' => array('ruf_test_form'),
+  $items['holdmybeer'] = array(
+    'title' => 'Beer Form',
+    'description' => 'Get a beer',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('simple_form'),
     'access callback' => TRUE,
-    'expanded' => TRUE,
-  ];
+  );
+  $items['wherewego'] = array(
+    'title' => 'Why not',
+    'description' => 'Test my form',
+    'page_callback' => 'drupal_get_form',
+    'page_arguments' => array('simple_form'),
+    'access callback' => TRUE,
+  );
+  $items['mycustom-form'] = array(
+    'title' => 'My Custom Form',
+    'description' => 'My first custom form',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('mycustom_form'),
+    'access callback' => TRUE,
+  );
   return $items;
 }
 
 
-function ruf_test_form($form, &$form_state) {
+function simple_form($form, &$form_state) {
+  $form['description'] = [
+    '#type' => 'item',
+    '#title' => t('Vibecession biodiesel lomo listicle. Big mood sustainable poutine truffaut, hexagon crucifix selfies synth praxis '),
+  ];
   $form['information'] = [
     '#type' => 'textfield',
-    '#title' => t('Subject'),
+    '#title' => 'Here we go',
   ];
   $form['submit'] = [
     '#type' => 'submit',
     '#value' => t('Submit'),
   ];
+
+  return $form;
+}
+
+function beer_form($form, &$form_state) {
+  return $form;
+}
+
+/**
+ * Custom function to return the form
+ *
+ */
+function mycustom_form($form, &$form_state) {
+
+  $form['name'] = array(
+    '#type' => 'textfield', // text input field
+    '#title' => 'Your good name please?', // label value
+    '#maxlength' => 25, // maximum allowed length
+    '#required' => TRUE, // to make this field required
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
 
   return $form;
 }
