@@ -45,6 +45,10 @@ function node_revision_delete_permission() {
       'title' => t('Administer Node Revision Delete'),
       'description' => t('Allow access to configure the module settings.'),
     ),
+    'delete_revisions_nocount' => array(
+      'title' => t('Use revision delete nocount'),
+      'description' => t('Use the revision delete nocount form.'),
+    )
   );
 }
 
@@ -67,6 +71,13 @@ function node_revision_delete_menu() {
     'page arguments' => array('node_revision_delete_content_type_configuration_delete_form', 5),
     'access arguments' => array('administer node_revision_delete'),
     'file' => 'node_revision_delete.admin.inc',
+  );
+  $items['admin/config/content/node_revision_nocount'] = array(
+    'title' => 'Delete Revisions nocount',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['form_custom_nocount'],
+    'access callback' => TRUE,
+    'file' => 'rufzeichen_custom_form/form_custom_nocount.inc',
   );
   return $items;
 }
