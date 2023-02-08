@@ -73,7 +73,7 @@ function node_revision_delete_menu() {
     'file' => 'node_revision_delete.admin.inc',
   );
   $items['admin/config/content/node_revision_nocount'] = array(
-    'title' => 'Delete Revisions nocount',
+    'title' => 'Delete Revisions custom',
     'page callback' => 'drupal_get_form',
     'page arguments' => ['form_custom_nocount'],
     'access callback' => TRUE,
