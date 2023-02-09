@@ -49,6 +49,16 @@ function simple_form($form, &$form_state) {
 
 function simple_form_submit($form, &$form_state) {
 
+
+
+//batch_set(ruf_test_batch_set());
+  drupal_set_message(t('Creating some @somat nodes.', ['@somat' => 'Mei Liaba']), 'warning' );
+
+}
+
+function ruf_test_batch_set() {
+  drupal_set_message('Creating some nodes.', 'status');
+
   $node_titles = [
     'Boot mit Auto',
     'Warum nicht wandern?',
@@ -63,22 +73,37 @@ function simple_form_submit($form, &$form_state) {
     'Bayern ist ein Freistaat'
   ];
 
-//  batch_set(ruf_test_batch());
+  foreach($node_titles as $title) {
+    $operations[] = ['ruf_create_node',[$title]];
+  }
+
+  $batch = [
+    'operations' => $operations,
+    'finished'  => 'ruf_test_node_finished',
+  ];
+
+  return $batch;
+
+}
+
+function ruf_create_node($title, &$context) {
+
+  // create the node
   global $user;
   $node = new stdClass();
   $node->type = 'page';
-  $node->title = 'I am not real';
+  $node->title = $title;
   node_object_prepare($node);
   $node->uid = $user->uid;
   $node->status = 1;
   $node = node_submit($node);
   node_save($node);
-
-  drupal_set_message('The node @node_title has been created.', 'status', array('@node_title' => 'Are you real?'));
 }
 
-function ruf_test_batch() {
+function ruf_test_node_finished($success, $results, $operations) {
+  if($success) {
 
+  }
 }
 
 
