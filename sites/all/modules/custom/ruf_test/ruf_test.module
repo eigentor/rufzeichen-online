@@ -8,24 +8,24 @@ function ruf_test_permission() {
     'access ruf test page' => [
       'title' => t('Access Ruf Test Page'),
       'description' => t('The Ruf Test page'),
-    ]
+    ],
   ];
 }
 
 function ruf_test_menu() {
-  $items['ruf/default'] = array(
+  $items['ruf/default'] = [
     'title' => 'Overview page',
     'page callback' => 'ruf_test_intro',
     'access callback' => TRUE,
     'expanded' => TRUE,
-  );
-  $items['wherewego'] = array(
+  ];
+  $items['wherewego'] = [
     'title' => 'Why not',
     'description' => 'Test my form',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('simple_form'),
+    'page arguments' => ['simple_form'],
     'access callback' => TRUE,
-  );
+  ];
   return $items;
 }
 
@@ -33,12 +33,12 @@ function ruf_test_menu() {
 function simple_form($form, &$form_state) {
   $form['description'] = [
     '#type' => 'item',
-    '#title' => t('Vibecession biodiesel lomo listicle. Big mood sustainable poutine truffaut, hexagon crucifix selfies synth praxis '),
+    '#title' => t('Create some nodes as a batch.'),
   ];
-  $form['information'] = [
-    '#type' => 'textfield',
-    '#title' => 'Here we go',
-  ];
+//  $form['information'] = [
+//    '#type' => 'textfield',
+//    '#title' => 'Here we go',
+//  ];
   $form['submit'] = [
     '#type' => 'submit',
     '#value' => t('Submit'),
@@ -48,12 +48,7 @@ function simple_form($form, &$form_state) {
 }
 
 function simple_form_submit($form, &$form_state) {
-
-
-
-//batch_set(ruf_test_batch_set());
-  drupal_set_message(t('Creating some @somat nodes.', ['@somat' => 'Mei Liaba']), 'warning' );
-
+  batch_set(ruf_test_batch_set());
 }
 
 function ruf_test_batch_set() {
@@ -70,16 +65,16 @@ function ruf_test_batch_set() {
     'Lasst uns in die Mensa gehen',
     'Freitag ist frei',
     'Fussball kann anstrengend sein',
-    'Bayern ist ein Freistaat'
+    'Bayern ist ein Freistaat',
   ];
 
-  foreach($node_titles as $title) {
-    $operations[] = ['ruf_create_node',[$title]];
+  foreach ($node_titles as $title) {
+    $operations[] = ['ruf_create_node', [$title]];
   }
 
   $batch = [
     'operations' => $operations,
-    'finished'  => 'ruf_test_node_finished',
+    'finished' => 'ruf_test_node_finished',
   ];
 
   return $batch;
@@ -87,6 +82,10 @@ function ruf_test_batch_set() {
 }
 
 function ruf_create_node($title, &$context) {
+
+  $context['results'][] = $title;
+  // Optional message displayed under the progressbar.
+  $context['message'] = t('Processing node "@title"', array('@title' => $title));
 
   // create the node
   global $user;
@@ -101,7 +100,11 @@ function ruf_create_node($title, &$context) {
 }
 
 function ruf_test_node_finished($success, $results, $operations) {
-  if($success) {
+  if ($success) {
+    drupal_set_message((t('@count nodes created.', ['@count' => count($results)])));
+  } else {
+    $error_operation = reset($operations);
+    drupal_set_message(t('An error occurred while processing @operation with arguments : @args', array('@operation' => $error_operation[0], '@args' => print_r($error_operation[0], TRUE))), 'error');
 
   }
 }
@@ -109,5 +112,5 @@ function ruf_test_node_finished($success, $results, $operations) {
 
 function ruf_test_intro() {
   $markup = t('Ein bisschen Text, damit man was sieht.');
-  return array('#markup' => $markup);
+  return ['#markup' => $markup];
 }
