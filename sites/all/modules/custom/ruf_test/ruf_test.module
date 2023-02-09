@@ -83,6 +83,9 @@ function ruf_test_batch_set() {
 
 function ruf_create_node($title, &$context) {
 
+  // Slow down the execution on purpose, so we can watch what happens with the progressbar.
+  sleep(2);
+
   $context['results'][] = $title;
   // Optional message displayed under the progressbar.
   $context['message'] = t('Processing node "@title"', array('@title' => $title));
