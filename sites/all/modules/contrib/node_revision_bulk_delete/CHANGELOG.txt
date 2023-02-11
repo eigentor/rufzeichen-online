@@ -1,0 +1,28 @@
+Node Revision Bulk Delete 7.x-1.1, 2019-08-20
+---------------------------------------------
+Changes since 7.x-1.0:
+
+- #3076130 by adriancid: Add an option to delete the actual revision in the
+  prior delete revision drush command.
+- #3075915 by adriancid: Create a drush command to delete the prior revisions of
+  a node.
+- #3075181 by adriancid: Add the Node module as a dependency.
+- #3075080 by adriancid: Redirect to the node view page only if the node
+  revision delete was successful.
+- #3075065 by adriancid: Add the docblock for the batch functions.
+- #3074883 by adriancid: When all the prior revisions are deleted a wrong number
+  is shown.
+- #3074412 by adriancid: Create the module help page.
+- #3074406 by adriancid: Put the helper functions in a .helpers.inc file.
+- #3074381 by adriancid: Use the README.txt template.
+- #3074353 by adriancid: Fix the function description for the custom submit
+  handler.
+- #3073356 by adriancid: Convert the revision id to a link.
+- #3073312 by adriancid: Hide the title and revision date on mobile devices.
+- #3073106 by adriancid: Improve the information shown in the batch process.
+- #3073104 by adriancid: Fix coding standard issues.
+- #3073105 by adriancid: Create a CHANGELOG.txt file.
+
+Node Revision Bulk Delete 7.x-1.0, 2013-09-29
+---------------------------------------------
+- Initial release.

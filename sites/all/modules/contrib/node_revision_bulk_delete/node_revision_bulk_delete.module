@@ -1,0 +1,140 @@
+<?php
+
+/**
+ * @file
+ * A module which allows deleting more revisions at once.
+ *
+ * More specifiably whenever a user is deleting a revision,
+ * the system will provide a checkbox to delete all prior revisions as well.
+ */
+
+require_once dirname(__FILE__) . '/node_revision_bulk_delete.helpers.inc';
+
+/**
+ * Implements hook_help().
+ */
+function node_revision_bulk_delete_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#node_revision_bulk_delete':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('The Node Revision Bulk Delete module gives you an extra feature to delete manually all revisions of a specific node prior a selected one.') . '</p>';
+      $output .= '<h3>' . t('Uses') . '</h3>';
+      $output .= '<dl>';
+      $output .= '<dt>' . t('Deleting prior revisions') . '</dt>';
+      $output .= '<dd>' . t('When you are deleting a revision of a node, a new checkbox will appear in a fieldset saying: "Also delete X revisions prior to this one."; if you check it, all the prior revisions will be deleted as well for the given node. If you are deleting the oldest revision, the checkbox will not appear as no prior revisions are available') . '</dd>';
+      $output .= '</dl>';
+
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function node_revision_bulk_delete_form_node_revision_delete_confirm_alter(&$form, &$form_state, $form_id) {
+  $revisions = _node_revision_bulk_delete_get_previous_revisions($form['#node_revision']->nid, $form['#node_revision']->vid);
+  $revisions_number = count($revisions);
+
+  if ($revisions_number > 0) {
+    $form['revision_list'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Delete prior revisions'),
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+    );
+    $form['revision_list']['delete_prior_revisions'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Also delete %revs_no revisions prior to this one.', array('%revs_no' => $revisions_number)),
+    );
+
+    // Read more about the empty class attribute in HTML at:
+    // https://stackoverflow.com/q/30748847/3653989 .
+    $class = array();
+    if (module_exists('responsive_tables')) {
+      $class[] = RESPONSIVE_PRIORITY_MEDIUM;
+    }
+    // The table header.
+    $header = array(
+      array(
+        'data' => t('Revision'),
+        // Hiding the title on narrow width devices.
+        'class' => $class,
+      ),
+      t('Revision ID'),
+    );
+
+    foreach ($revisions as $revision) {
+      $rows[] = [
+        t('!date by !username', [
+          '!date' => l(format_date($revision->timestamp, 'short'), "node/{$form['#node_revision']->nid}/revisions/$revision->vid/view"),
+          '!username' => theme('username', ['account' => $revision]),
+        ])
+        . (($revision->log != '') ? '<p class="revision-log">' . filter_xss($revision->log) . '</p>' : ''),
+        $revision->vid,
+      ];
+    }
+
+    $form['revision_list']['table_markup'] = array(
+      '#theme' => 'table',
+      '#rows' => $rows,
+      '#header' => $header,
+    );
+
+    $form['#submit'][] = '_node_revision_bulk_delete_node_revision_delete_confirm_submit';
+  }
+}
+
+/**
+ * Custom submit handler for the revision deletion form.
+ *
+ * @param array $form
+ *   The form element.
+ * @param array $form_state
+ *   The form state.
+ */
+function _node_revision_bulk_delete_node_revision_delete_confirm_submit(array &$form, array &$form_state) {
+  if ($form_state['values']['delete_prior_revisions'] == 1) {
+    // Getting the node id.
+    $nid = $form['#node_revision']->nid;
+    // Getting the revisions.
+    $revisions_before = _node_revision_bulk_delete_get_previous_revisions($nid, $form['#node_revision']->vid);
+
+    batch_set(_node_revision_bulk_delete__batch_op($nid, array_keys($revisions_before)));
+  }
+}
+
+/**
+ * Batch operation definition: deleting prior revisions.
+ *
+ * @param int $nid
+ *   The node id.
+ * @param array $revisions
+ *   The revisions vids.
+ *
+ * @return array
+ *   An array with the batch definition.
+ */
+function _node_revision_bulk_delete__batch_op($nid, array $revisions) {
+  $operations = [];
+
+  foreach ($revisions as $revision) {
+    $operations[] = array(
+      'node_revision_bulk_delete_batch_delete_prior_revisions',
+      array($nid, $revision),
+    );
+  }
+
+  $batch = array(
+    'title' => t('Deleting revisions'),
+    'operations' => $operations,
+    'init_message' => t('Starting to delete revisions.'),
+    'file' => drupal_get_path('module', 'node_revision_bulk_delete') . '/node_revision_bulk_delete.batch.inc',
+    'progress_message' => t('Deleted @current out of @total (@percentage%). Estimated time: @estimate.'),
+    'error_message' => t('Error deleting revisions.'),
+    'finished' => 'node_revision_bulk_delete_batch_delete_prior_revisions_finished',
+
+  );
+
+  return $batch;
+}

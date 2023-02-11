@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * Implements hook_permission().
+ */
+function rufzeichen_revision_delete_permission() {
+  return [
+    'access_revision_delete_form' => [
+      'title' => t('Access revision delete form'),
+      'description' => t('Access the custom form for revision deletion'),
+    ],
+  ];
+}
+
+function rufzeichen_revision_delete_menu() {
+  $items['admin/config/content/node_revision_nocount'] = array(
+    'title' => 'Rufzeichen revision delete',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['access_revision_delete_form'],
+    'access callback' => TRUE,
+  );
+  return $items;
+}
