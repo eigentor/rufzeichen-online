@@ -13,11 +13,35 @@ function rufzeichen_revision_delete_permission() {
 }
 
 function rufzeichen_revision_delete_menu() {
-  $items['admin/config/content/node_revision_nocount'] = array(
+  $items['admin/config/content/rufzeichen_revision_delete'] = array(
     'title' => 'Rufzeichen revision delete',
     'page callback' => 'drupal_get_form',
-    'page arguments' => ['access_revision_delete_form'],
-    'access callback' => TRUE,
+    'page arguments' => ['rufzeichen_revision_delete_form'],
+    'access arguments' => array('access_revision_delete_form'),
   );
   return $items;
+}
+
+
+function rufzeichen_revision_delete_form($form, &$form_state) {
+  $node_revision = node_load(null, 19376);
+
+  $form['description'] = array(
+    '#type' => 'item',
+    '#title' => t('Delete old revisions that are no longer needed'),
+  );
+  $form['select_active'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Delete Revisions now'),
+  );
+  $form['submit'] = [
+    '#type' => 'submit',
+    '#value' => t('Start deleting'),
+  ];
+  return $form;
+}
+
+function rufzeichen_revision_delete_form_submit($form, &$form_state) {
+//  batch_set(delete_revision_batch_set());
+  node_revision_delete(1937);
 }
