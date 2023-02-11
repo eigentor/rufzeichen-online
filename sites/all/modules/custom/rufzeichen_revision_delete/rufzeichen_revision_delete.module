@@ -24,8 +24,6 @@ function rufzeichen_revision_delete_menu() {
 
 
 function rufzeichen_revision_delete_form($form, &$form_state) {
-  $node_revision = node_load(null, 19376);
-
   $form['description'] = array(
     '#type' => 'item',
     '#title' => t('Delete old revisions that are no longer needed'),
@@ -42,6 +40,6 @@ function rufzeichen_revision_delete_form($form, &$form_state) {
 }
 
 function rufzeichen_revision_delete_form_submit($form, &$form_state) {
-//  batch_set(delete_revision_batch_set());
-  node_revision_delete(1937);
+  batch_set(delete_revision_batch_set());
+//  node_revision_delete(1937);
 }
