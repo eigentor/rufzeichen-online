@@ -54,6 +54,23 @@ function rufzeichen_revision_delete_batch_set() {
 
   //  @TODO: Create query to get revisions to delete.
 
+  $name_node_revision_table = 'node_revision';
+
+//  $result = db_query("SELECT vid from {node_revision} WHERE bundle = news");
+
+  $result = db_query('SELECT nr.nid, nr.vid
+    FROM {node_revision} nr
+    INNER JOIN {node} n ON n.nid = nr.nid and n.vid <> nr.vid
+    WHERE n.type = :content_type
+    ORDER BY nid ASC', array(
+    ':content_type' => $content_type,
+  ));
+
+  $candidates = array();
+  foreach ($result as $row) {
+    $candidates[] = (array) $row;
+  }
+
   $revisions = [19378, 19379, 19380];
 
   foreach ($revisions as $revision) {
