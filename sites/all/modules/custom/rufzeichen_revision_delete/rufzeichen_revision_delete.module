@@ -13,25 +13,25 @@ function rufzeichen_revision_delete_permission() {
 }
 
 function rufzeichen_revision_delete_menu() {
-  $items['admin/config/content/rufzeichen_revision_delete'] = array(
+  $items['admin/config/content/rufzeichen_revision_delete'] = [
     'title' => 'Rufzeichen revision delete',
     'page callback' => 'drupal_get_form',
     'page arguments' => ['rufzeichen_revision_delete_form'],
-    'access arguments' => array('access_revision_delete_form'),
-  );
+    'access arguments' => ['access_revision_delete_form'],
+  ];
   return $items;
 }
 
 
 function rufzeichen_revision_delete_form($form, &$form_state) {
-  $form['description'] = array(
+  $form['description'] = [
     '#type' => 'item',
     '#title' => t('Delete old revisions that are no longer needed'),
-  );
-  $form['select_active'] = array(
+  ];
+  $form['select_active'] = [
     '#type' => 'checkbox',
     '#title' => t('Delete Revisions now'),
-  );
+  ];
   $form['submit'] = [
     '#type' => 'submit',
     '#value' => t('Start deleting'),
@@ -40,6 +40,55 @@ function rufzeichen_revision_delete_form($form, &$form_state) {
 }
 
 function rufzeichen_revision_delete_form_submit($form, &$form_state) {
-  batch_set(delete_revision_batch_set());
-//  node_revision_delete(1937);
+  if ($form_state['values']['select_active'] == 1) {
+    batch_set(rufzeichen_revision_delete_batch_set());
+  } else {
+    drupal_set_message('You have to select the checkbox "Delete Revisions now" to start deleting.');
+  }
+}
+
+function rufzeichen_revision_delete_batch_set() {
+  $content_type = 'news';
+
+  drupal_set_message(t('Starting to delete revisions for content type news.', ['@content_type' => $content_type]), 'status');
+
+  //  @TODO: Create query to get revisions to delete.
+
+  $revisions = [19378, 19379, 19380];
+
+  foreach ($revisions as $revision) {
+    $operations[] = ['rufzeichen_revisions_do_delete', [$revision]];
+  }
+
+  $batch = [
+    'operations' => $operations,
+    'finished' => 'rufzeichen_rev_delete_finished',
+  ];
+
+  return $batch;
+}
+
+function rufzeichen_revisions_do_delete($revision, &$context) {
+  // @TODO: Remove this when making the module production-ready
+  // Slow down the execution on purpose, so we can watch what happens with the progressbar.
+  sleep(2);
+
+  $context['results'][] = $revision;
+  // Optional message displayed under the progressbar.
+  $context['message'] = t('Processing revision no "@revision"', ['@revision' => $revision]);
+
+  node_revision_delete($revision);
+}
+
+function rufzeichen_rev_delete_finished($success, $results, $operations) {
+  if ($success) {
+    drupal_set_message((t('@count revisions deleted.', ['@count' => count($results)])));
+  }
+  else {
+    $error_operation = reset($operations);
+    drupal_set_message(t('An error occurred while processing @operation with arguments : @args', [
+      '@operation' => $error_operation[0],
+      '@args' => print_r($error_operation[0], TRUE),
+    ]), 'error');
+  }
 }
