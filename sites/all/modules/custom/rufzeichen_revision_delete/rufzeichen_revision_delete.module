@@ -62,7 +62,7 @@ function rufzeichen_revision_delete_batch_set() {
     FROM {node_revision} nr
     INNER JOIN {node} n ON n.nid = nr.nid and n.vid <> nr.vid
     WHERE n.type = :content_type
-    ORDER BY nr.timestamp DESC
+    ORDER BY nr.timestamp ASC
     LIMIT 500', array(
     ':content_type' => $content_type,
   ))
