@@ -19,6 +19,11 @@ function rufzeichen_revision_delete_menu() {
     'page arguments' => ['rufzeichen_revision_delete_form'],
     'access arguments' => ['access_revision_delete_form'],
   ];
+  $items['admin/config/content/rufzeichen_revision_delete/showquery'] = [
+    'title' => 'Debug Query for revision deleten',
+    'page callback' => 'rufzeichen_rev_show_query',
+    'access arguments' => ['access_revision_delete_form'],
+  ];
   return $items;
 }
 
@@ -73,7 +78,7 @@ function rufzeichen_revision_delete_batch_set() {
     $candidates[] = (array) $row;
   }
 
-  $revisions = [19378, 19379, 19380];
+  $revisions = [];
 
   foreach ($revisions as $revision) {
     $operations[] = ['rufzeichen_revisions_do_delete', [$revision]];
@@ -111,4 +116,29 @@ function rufzeichen_rev_delete_finished($success, $results, $operations) {
       '@args' => print_r($error_operation[0], TRUE),
     ]), 'error');
   }
+}
+
+function rufzeichen_rev_show_query() {
+  $content_type = 'news';
+
+  $result = db_query('SELECT nr.nid, nr.vid, nr.timestamp
+    FROM {node_revision} nr
+    INNER JOIN {node} n ON n.nid = nr.nid and n.vid <> nr.vid
+    WHERE n.type = :content_type
+    ORDER BY nr.timestamp DESC
+    LIMIT 500', array(
+    ':content_type' => $content_type,
+  ))
+  ;
+
+  $candidates = array();
+  foreach ($result as $row) {
+    $candidates[] = (array) $row;
+  }
+
+  $peter = 2;
+
+  return [
+    '#markup' => t('@count results found.',['@count' =>count($candidates)]),
+  ];
 }
