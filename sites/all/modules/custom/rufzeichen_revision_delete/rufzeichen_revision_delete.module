@@ -58,13 +58,15 @@ function rufzeichen_revision_delete_batch_set() {
 
 //  $result = db_query("SELECT vid from {node_revision} WHERE bundle = news");
 
-  $result = db_query('SELECT nr.nid, nr.vid
+  $result = db_query('SELECT nr.nid, nr.vid, nr.timestamp
     FROM {node_revision} nr
     INNER JOIN {node} n ON n.nid = nr.nid and n.vid <> nr.vid
     WHERE n.type = :content_type
-    ORDER BY nid ASC', array(
+    ORDER BY nr.timestamp DESC
+    LIMIT 500', array(
     ':content_type' => $content_type,
-  ));
+  ))
+  ;
 
   $candidates = array();
   foreach ($result as $row) {
