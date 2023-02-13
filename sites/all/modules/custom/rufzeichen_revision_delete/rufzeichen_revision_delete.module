@@ -101,6 +101,7 @@ function rufzeichen_revisions_do_delete($revision, &$context) {
 
 function rufzeichen_rev_delete_finished($success, $results, $operations) {
   if ($success) {
+    // @TODO: Add log message for every node ID that had revisions deleted.
     drupal_set_message((t('@count revisions deleted.', ['@count' => count($results)])));
   }
   else {
