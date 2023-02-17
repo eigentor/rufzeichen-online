@@ -47,7 +47,8 @@ function rufzeichen_revision_delete_form($form, &$form_state) {
 function rufzeichen_revision_delete_form_submit($form, &$form_state) {
   if ($form_state['values']['select_active'] == 1) {
     batch_set(rufzeichen_revision_delete_batch_set());
-  } else {
+  }
+  else {
     drupal_set_message('You have to select the checkbox "Delete Revisions now" to start deleting.');
   }
 }
@@ -61,19 +62,18 @@ function rufzeichen_revision_delete_batch_set() {
 
   $name_node_revision_table = 'node_revision';
 
-//  $result = db_query("SELECT vid from {node_revision} WHERE bundle = news");
+  //  $result = db_query("SELECT vid from {node_revision} WHERE bundle = news");
 
   $result = db_query('SELECT nr.nid, nr.vid, nr.timestamp
     FROM {node_revision} nr
     INNER JOIN {node} n ON n.nid = nr.nid and n.vid <> nr.vid
     WHERE n.type = :content_type
     ORDER BY nr.timestamp ASC
-    LIMIT 500', array(
+    LIMIT 500', [
     ':content_type' => $content_type,
-  ))
-  ;
+  ]);
 
-  $candidates = array();
+  $candidates = [];
   foreach ($result as $row) {
     $candidates[] = (array) $row;
   }
@@ -121,26 +121,37 @@ function rufzeichen_rev_delete_finished($success, $results, $operations) {
 function rufzeichen_rev_show_query() {
   $content_type = 'news';
 
-//  $result = db_query('SELECT nr.nid, nr.vid, nr.timestamp
-//    FROM {node_revision} nr
-//    INNER JOIN {node} n ON n.nid = nr.nid and n.vid <> nr.vid
-//    WHERE n.type = :content_type
-//    ORDER BY nr.timestamp DESC
-//    LIMIT 500', array(
-//    ':content_type' => $content_type,
-//  ))
-//  ;
+  //  $result = db_query('SELECT nr.nid, nr.vid, nr.timestamp
+  //    FROM {node_revision} nr
+  //    INNER JOIN {node} n ON n.nid = nr.nid and n.vid <> nr.vid
+  //    WHERE n.type = :content_type
+  //    ORDER BY nr.timestamp DESC
+  //    LIMIT 500', array(
+  //    ':content_type' => $content_type,
+  //  ))
+  //  ;
 
-  $result = db_query(
-    "SELECT sub.title
-    FROM ( SELECT n.title, n.vid, n.type
-    FROM {node} n
-         ) AS sub
-    WHERE sub.type = 'news'
-    "
-  );
+  $result = db_query('SELECT sub.nid, sub.vid, sub.timestamp FROM
+    (SELECT nr.nid, nr.vid, nr.timestamp
+      FROM {node_revision} nr
+    LIMIT 500
+    ) AS sub
+      INNER JOIN {node} n ON n.nid = sub.nid and n.vid <> sub.vid
+      WHERE n.type = :content_type', [
+    ':content_type' => $content_type,
+  ]);
 
-  $candidates = array();
+//    $result = db_query(
+//      "SELECT sub.title
+//      FROM ( SELECT n.title, n.vid, n.type
+//      FROM {node} n
+//      LIMIT 500
+//           ) AS sub
+//      WHERE sub.type = :content_type",
+//      [':content_type' => $content_type,]
+//    );
+
+  $candidates = [];
   foreach ($result as $row) {
     $candidates[] = (array) $row;
   }
@@ -148,6 +159,6 @@ function rufzeichen_rev_show_query() {
   $peter = 2;
 
   return [
-    '#markup' => t('@count results found.',['@count' =>count($candidates)]),
+    '#markup' => t('@count results found.', ['@count' => count($candidates)]),
   ];
 }
