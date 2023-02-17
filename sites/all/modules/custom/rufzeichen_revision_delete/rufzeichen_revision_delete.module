@@ -151,10 +151,20 @@ function rufzeichen_rev_show_query() {
 //      [':content_type' => $content_type,]
 //    );
 
-  $candidates = [];
-  foreach ($result as $row) {
-    $candidates[] = (array) $row;
+//  $candidates = [];
+//  foreach ($result as $row) {
+//    $candidates[] =  $row->vid;
+//  }$candidates = [];
+//  foreach ($result as $row) {
+//    $candidates[] =  $row->vid;
+//  }
+
+  $revisions = [];
+  foreach($result as $row) {
+    $revisions[] = $row->vid;
   }
+
+  dpm($revisions);
 
   $peter = 2;
 
