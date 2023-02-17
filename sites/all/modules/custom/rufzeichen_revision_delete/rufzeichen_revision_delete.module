@@ -121,15 +121,24 @@ function rufzeichen_rev_delete_finished($success, $results, $operations) {
 function rufzeichen_rev_show_query() {
   $content_type = 'news';
 
-  $result = db_query('SELECT nr.nid, nr.vid, nr.timestamp
-    FROM {node_revision} nr
-    INNER JOIN {node} n ON n.nid = nr.nid and n.vid <> nr.vid
-    WHERE n.type = :content_type
-    ORDER BY nr.timestamp DESC
-    LIMIT 500', array(
-    ':content_type' => $content_type,
-  ))
-  ;
+//  $result = db_query('SELECT nr.nid, nr.vid, nr.timestamp
+//    FROM {node_revision} nr
+//    INNER JOIN {node} n ON n.nid = nr.nid and n.vid <> nr.vid
+//    WHERE n.type = :content_type
+//    ORDER BY nr.timestamp DESC
+//    LIMIT 500', array(
+//    ':content_type' => $content_type,
+//  ))
+//  ;
+
+  $result = db_query(
+    "SELECT sub.title
+    FROM ( SELECT n.title, n.vid, n.type
+    FROM {node} n
+         ) AS sub
+    WHERE sub.type = 'news'
+    "
+  );
 
   $candidates = array();
   foreach ($result as $row) {
