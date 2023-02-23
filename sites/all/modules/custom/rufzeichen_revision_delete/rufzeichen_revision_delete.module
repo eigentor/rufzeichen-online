@@ -164,7 +164,6 @@ function rufzeichen_rev_show_query() {
     $revisions[] = $row->vid;
   }
 
-  dpm($revisions);
 
   $peter = 2;
 

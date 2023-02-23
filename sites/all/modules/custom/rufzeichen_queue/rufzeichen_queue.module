@@ -1,5 +1,46 @@
 <?php
 
+
+function rufzeichen_queue_menu() {
+  $items['admin/config/content/rufzeichen_queue/showquery'] = [
+    'title' => 'Debug Query for queue',
+    'page callback' => 'rufzeichen_queue_show_query',
+    'access callback' => TRUE,
+    'expanded' => TRUE,
+  ];
+  return $items;
+}
+
+function rufzeichen_queue_show_query() {
+  $content_type = 'news';
+
+
+  $result = db_query('
+    SELECT nr.vid FROM
+    (SELECT n.nid, n.vid
+    FROM {node} n
+    WHERE n.type = :content_type) AS sub
+    INNER JOIN {node_revision} nr ON sub.nid = nr.nid and sub.vid <> nr.vid
+    ORDER BY nr.vid ASC
+    LIMIT 100
+
+    ', [
+    ':content_type' => $content_type,
+  ]);
+
+  $revision_ids = [];
+  foreach ($result as $row) {
+    $revision_ids[] = $row->vid;
+  }
+
+  $olli = 25;
+
+  return [
+    '#markup' => t('@count results found.', ['@count' => count($revision_ids)]),
+  ];
+
+}
+
 function rufzeichen_queue_cronapi($op, $job = NULL) {
   $items = [];
   $items['revision_delete_queue_main'] = [
@@ -17,5 +58,33 @@ function rq_collect_revision_vids($count) {
   if(empty($start)) {
     $start = 0;
   }
+  $content_type = 'news';
+
+  $result = db_query('
+    SELECT nr.vid FROM
+    (SELECT n.nid, n.vid
+    FROM {node} n
+    WHERE n.type = :content_type) AS sub
+    INNER JOIN {node_revision} nr ON sub.nid = nr.nid and sub.vid <> nr.vid
+    ORDER BY nr.vid ASC
+    LIMIT 100
+
+    ', [
+    ':content_type' => $content_type,
+  ]);
+
   $revision_ids = [];
+
+  if(count($revision_ids) !== 0) {
+    $start += $count;
+    $queue = DrupalQueue::get('revision_delete_queue_main');
+    $count = $queue->numberOfItems();
+    $queue->createQueue();
+    $queue->createItem($revision_ids);
+    $queue->claimItem($start + (60 * 5));
+    rq_collect_revision_vids($count);
+  }
+  else {
+    return;
+  }
 }
