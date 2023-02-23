@@ -1,0 +1,21 @@
+<?php
+
+function rufzeichen_queue_cronapi($op, $job = NULL) {
+  $items = [];
+  $items['revision_delete_queue_main'] = [
+    'description' => 'Collect revisions to delete',
+    'rule' => '*/15 * * * *', // every 15 minutes
+    'arguments' => [100],
+    'callback' => 'rq_collect_revision_vids',
+  ];
+
+  return $items;
+}
+
+function rq_collect_revision_vids($count) {
+  static $start;
+  if(empty($start)) {
+    $start = 0;
+  }
+  $revision_ids = [];
+}

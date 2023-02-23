@@ -1,0 +1,4 @@
+name = Rufzeichen Queue Demo
+description = Trying out Queue Workers
+core = 7.x
+package = rufzeichen
