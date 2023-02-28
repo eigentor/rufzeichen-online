@@ -22,8 +22,6 @@ function rufzeichen_queue_show_query() {
     WHERE n.type = :content_type) AS sub
     INNER JOIN {node_revision} nr ON sub.nid = nr.nid and sub.vid <> nr.vid
     ORDER BY nr.vid ASC
-    LIMIT 100
-
     ', [
     ':content_type' => $content_type,
   ]);
@@ -31,6 +29,21 @@ function rufzeichen_queue_show_query() {
   $revision_ids = [];
   foreach ($result as $row) {
     $revision_ids[] = $row->vid;
+  }
+
+  $revision_ids_chunked = (array_chunk($revision_ids, 100));
+
+  foreach ($revision_ids_chunked as $chunk) {
+
+    if (count($chunk) !== 0) {
+      //    $start += $count/100;
+      $queue = DrupalQueue::get('rufzeichen_queue_main');
+      $count = $queue->numberOfItems();
+      $queue->createQueue();
+      $queue->createItem($chunk);
+      //    $queue->claimItem($start + (60 * 5));
+      //    rq_collect_revision_vids($count);
+    }
   }
 
   $olli = 25;
@@ -41,21 +54,21 @@ function rufzeichen_queue_show_query() {
 
 }
 
-function rufzeichen_queue_cronapi($op, $job = NULL) {
-  $items = [];
-  $items['revision_delete_queue_main'] = [
-    'description' => 'Collect revisions to delete',
-    'rule' => '*/15 * * * *', // every 15 minutes
-    'arguments' => [100],
-    'callback' => 'rq_collect_revision_vids',
-  ];
-
-  return $items;
-}
+//function rufzeichen_queue_cronapi($op, $job = NULL) {
+//  $items = [];
+//  $items['revision_delete_queue_main'] = [
+//    'description' => 'Collect revisions to delete',
+//    'rule' => '*/15 * * * *', // every 15 minutes
+//    'arguments' => [100],
+//    'callback' => 'rq_collect_revision_vids',
+//  ];
+//
+//  return $items;
+//}
 
 function rq_collect_revision_vids($count) {
   static $start;
-  if(empty($start)) {
+  if (empty($start)) {
     $start = 0;
   }
   $content_type = 'news';
@@ -74,14 +87,20 @@ function rq_collect_revision_vids($count) {
   ]);
 
   $revision_ids = [];
+  foreach ($result as $row) {
+    $revision_ids[] = $row->vid;
+  }
 
-  if(count($revision_ids) !== 0) {
-    $start += $count;
+  $oppa = 'Parkbank';
+
+  if (count($revision_ids) !== 0) {
+    $start += $count / 100;
     $queue = DrupalQueue::get('revision_delete_queue_main');
     $count = $queue->numberOfItems();
     $queue->createQueue();
     $queue->createItem($revision_ids);
     $queue->claimItem($start + (60 * 5));
+    $samma = 'wuppi';
     rq_collect_revision_vids($count);
   }
   else {
