@@ -33,6 +33,38 @@ function rufzeichen_queue_show_query() {
 
   $revision_ids_chunked = (array_chunk($revision_ids, 100));
 
+  // Create the directory for the Excel export
+  $destination = 'sites/default/files/asin-export';
+
+  if (!file_exists($destination)) {
+    mkdir($destination, 0755, true);
+  }
+
+  $filename = 'allmydata.txt';
+  $file = $destination . '/' . $filename;
+
+  $addstring = 'Blackbird spyplane quinoa bodega boys bespoke knausgaard, lumbersexual vibecession street art seitan synth humblebrag intelligentsia listicle pok pok. Artisan tonx gentrify humblebrag wolf.';
+
+  if(file_exists($file)) {
+
+  $current = file_get_contents($file);
+
+    $current .= $addstring;
+    file_put_contents($file, $current);
+  } else {
+    file_put_contents($file, $addstring);
+  }
+
+
+
+  //Filter out any unwanted quotes and other chars that might confuse excel from the array before export
+  function filterData(&$str){
+    $str = preg_replace("/\t/", "\\t", $str);
+    $str = preg_replace("/\r?\n/", "\\n", $str);
+    if(strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"';
+  }
+
+  // Write the nids into the queue
   foreach ($revision_ids_chunked as $chunk) {
 
     if (count($chunk) !== 0) {
