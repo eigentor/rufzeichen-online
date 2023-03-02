@@ -40,20 +40,46 @@ function rufzeichen_queue_show_query() {
     mkdir($destination, 0755, true);
   }
 
-  $filename = 'allmydata.txt';
+  $filename = 'asins.txt';
   $file = $destination . '/' . $filename;
 
-  $addstring = 'Blackbird spyplane quinoa bodega boys bespoke knausgaard, lumbersexual vibecession street art seitan synth humblebrag intelligentsia listicle pok pok. Artisan tonx gentrify humblebrag wolf.';
+//  $addstring = 'Blackbird spyplane quinoa bodega boys bespoke knausgaard, lumbersexual vibecession street art seitan synth humblebrag intelligentsia listicle pok pok. Artisan tonx gentrify humblebrag wolf.';
+//
+//  if(file_exists($file)) {
+//  $current = file_get_contents($file);
+//    $current .= $addstring;
+//    file_put_contents($file, $current);
+//  } else {
+//    file_put_contents($file, $addstring);
+//  }
 
-  if(file_exists($file)) {
+  foreach($nid_vid_chunked as $chunk) {
 
-  $current = file_get_contents($file);
+    $data_chunk = '';
 
-    $current .= $addstring;
-    file_put_contents($file, $current);
-  } else {
-    file_put_contents($file, $addstring);
+    // Bei unseren Daten: Was, wenn asin_changes leer ist?
+    foreach($chunk as $item) {
+      $data_chunk .= '"' . $item['nid'] . '"';
+      $data_chunk .= ';';
+      $data_chunk .= '"' . $item['vid'] . '"';
+      $data_chunk .=  '\r\n';
+    }
+
+    if(file_exists($file)) {
+      $current = file_get_contents($file);
+      $current .= $data_chunk;
+      file_put_contents($file, $current);
+    } else {
+      $header = '"' . 'NID' . '"';
+      $header .= ';';
+      $header = '"' . 'VID' . '"';
+      $header .=  '\n';
+      $data_chunk_with_header = $header . $data_chunk;
+      file_put_contents($file, $data_chunk_with_header);
+    }
+
   }
+
 
 
 
@@ -63,7 +89,7 @@ function rufzeichen_queue_show_query() {
     return $string;
   }
 
-  // Write the nids into the queue
+ /* // Write the nids into the queue
   foreach ($nid_vid_chunked as $chunk) {
 
     if (count($chunk) !== 0) {
@@ -75,7 +101,7 @@ function rufzeichen_queue_show_query() {
       //    $queue->claimItem($start + (60 * 5));
       //    rq_collect_revision_vids($count);
     }
-  }
+  }*/
 
   $olli = 25;
 
