@@ -40,7 +40,7 @@ function rufzeichen_queue_show_query() {
     mkdir($destination, 0755, true);
   }
 
-  $filename = 'asins.txt';
+  $filename = 'asins.csv';
   $file = $destination . '/' . $filename;
 
 //  $addstring = 'Blackbird spyplane quinoa bodega boys bespoke knausgaard, lumbersexual vibecession street art seitan synth humblebrag intelligentsia listicle pok pok. Artisan tonx gentrify humblebrag wolf.';
@@ -62,7 +62,7 @@ function rufzeichen_queue_show_query() {
       $data_chunk .= '"' . $item['nid'] . '"';
       $data_chunk .= ';';
       $data_chunk .= '"' . $item['vid'] . '"';
-      $data_chunk .=  '\r\n';
+      $data_chunk .=  "\n";
     }
 
     if(file_exists($file)) {
@@ -72,8 +72,8 @@ function rufzeichen_queue_show_query() {
     } else {
       $header = '"' . 'NID' . '"';
       $header .= ';';
-      $header = '"' . 'VID' . '"';
-      $header .=  '\n';
+      $header .= '"' . 'VID' . '"';
+      $header .=  "\n";
       $data_chunk_with_header = $header . $data_chunk;
       file_put_contents($file, $data_chunk_with_header);
     }
