@@ -85,7 +85,7 @@ function rufzeichen_queue_show_query() {
 
   //Filter out Quotes and double quotes and other chars that might confuse excel from the array before export
   function filterData(&$string){
-    $string = str_replace('"', "", str_replace("'", "", $string));
+    $string = str_replace(['"', "'", "\n", "\r\n"], "", $string);
     return $string;
   }
 
