@@ -57,11 +57,10 @@ function rufzeichen_queue_show_query() {
 
 
 
-  //Filter out any unwanted quotes and other chars that might confuse excel from the array before export
-  function filterData(&$str){
-    $str = preg_replace("/\t/", "\\t", $str);
-    $str = preg_replace("/\r?\n/", "\\n", $str);
-    if(strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"';
+  //Filter out Quotes and double quotes and other chars that might confuse excel from the array before export
+  function filterData(&$string){
+    $string = str_replace('"', "", str_replace("'", "", $string));
+    return $string;
   }
 
   // Write the nids into the queue
