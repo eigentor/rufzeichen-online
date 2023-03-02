@@ -16,7 +16,7 @@ function rufzeichen_queue_show_query() {
 
 
   $result = db_query('
-    SELECT nr.vid FROM
+    SELECT nr.vid, sub.nid FROM
     (SELECT n.nid, n.vid
     FROM {node} n
     WHERE n.type = :content_type) AS sub
@@ -26,12 +26,12 @@ function rufzeichen_queue_show_query() {
     ':content_type' => $content_type,
   ]);
 
-  $revision_ids = [];
+  $nid_vid = [];
   foreach ($result as $row) {
-    $revision_ids[] = $row->vid;
+    $nid_vid[] = ['nid' => $row->nid, 'vid' => $row->vid];
   }
 
-  $revision_ids_chunked = (array_chunk($revision_ids, 100));
+  $nid_vid_chunked = (array_chunk($nid_vid, 100));
 
   // Create the directory for the Excel export
   $destination = 'sites/default/files/asin-export';
@@ -65,7 +65,7 @@ function rufzeichen_queue_show_query() {
   }
 
   // Write the nids into the queue
-  foreach ($revision_ids_chunked as $chunk) {
+  foreach ($nid_vid_chunked as $chunk) {
 
     if (count($chunk) !== 0) {
       //    $start += $count/100;
@@ -81,7 +81,7 @@ function rufzeichen_queue_show_query() {
   $olli = 25;
 
   return [
-    '#markup' => t('@count results found.', ['@count' => count($revision_ids)]),
+    '#markup' => t('@count results found.', ['@count' => count($nid_vid)]),
   ];
 
 }
