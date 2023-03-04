@@ -33,8 +33,50 @@ function rufzeichen_queue_show_query() {
 
   $nid_vid_chunked = (array_chunk($nid_vid, 100));
 
+
+  // Save the CSV file to the server.
+  rq_save_asin_csv($nid_vid_chunked);
+
+
+
+  //Filter out Quotes and double quotes and other chars that might confuse excel from the array before export
+  function filterData(&$string){
+    $string = str_replace(['"', "'", "\n", "\r\n"], "", $string);
+    return $string;
+  }
+
+
+
+  $olli = 25;
+
+  return [
+    '#markup' => t('@count results found.', ['@count' => count($nid_vid)]),
+  ];
+}
+
+/*
+ * Write the nids and vids to the queue so we can later process them.
+ */
+function rq_fill_queue($nid_vid_chunked) {
+   // Write the nids into the queue
+  foreach ($nid_vid_chunked as $chunk) {
+
+    if (count($chunk) !== 0) {
+      //    $start += $count/100;
+      $queue = DrupalQueue::get('rufzeichen_queue_main');
+//      $count = $queue->numberOfItems();
+      $queue->createQueue();
+      $queue->createItem($chunk);
+      //    $queue->claimItem($start + (60 * 5));
+      //    rq_collect_revision_vids($count);
+    }
+  }
+}
+
+function rq_save_asin_csv($nid_vid_chunked) {
   // Create the directory for the Excel export
   $destination = 'sites/default/files/asin-export';
+
 
   if (!file_exists($destination)) {
     mkdir($destination, 0755, true);
@@ -42,16 +84,6 @@ function rufzeichen_queue_show_query() {
 
   $filename = 'asins.csv';
   $file = $destination . '/' . $filename;
-
-//  $addstring = 'Blackbird spyplane quinoa bodega boys bespoke knausgaard, lumbersexual vibecession street art seitan synth humblebrag intelligentsia listicle pok pok. Artisan tonx gentrify humblebrag wolf.';
-//
-//  if(file_exists($file)) {
-//  $current = file_get_contents($file);
-//    $current .= $addstring;
-//    file_put_contents($file, $current);
-//  } else {
-//    file_put_contents($file, $addstring);
-//  }
 
   foreach($nid_vid_chunked as $chunk) {
 
@@ -79,36 +111,23 @@ function rufzeichen_queue_show_query() {
     }
 
   }
+}
 
-
-
-
-  //Filter out Quotes and double quotes and other chars that might confuse excel from the array before export
-  function filterData(&$string){
-    $string = str_replace(['"', "'", "\n", "\r\n"], "", $string);
-    return $string;
-  }
-
- /* // Write the nids into the queue
-  foreach ($nid_vid_chunked as $chunk) {
-
-    if (count($chunk) !== 0) {
-      //    $start += $count/100;
-      $queue = DrupalQueue::get('rufzeichen_queue_main');
-      $count = $queue->numberOfItems();
-      $queue->createQueue();
-      $queue->createItem($chunk);
-      //    $queue->claimItem($start + (60 * 5));
-      //    rq_collect_revision_vids($count);
-    }
-  }*/
-
-  $olli = 25;
-
-  return [
-    '#markup' => t('@count results found.', ['@count' => count($nid_vid)]),
-  ];
-
+/**
+ * Implements hook_cron_queue_info().
+ * This hook calls the queue worker. "Time" defines how long
+ * the worker can claim a chunk of work, before it has to give it back
+ * (if it is not finished).
+ */
+function rufzeichen_cron_cron_queue_info() {
+  $queues = array();
+  $queues['rufzeichen_queue_main'] = array(
+    // Queue worker function.
+    'worker callback' => 'rq_save_asin_csv',
+    // The function will be work 10 seconds.
+    'time' => 10,
+  );
+  return $queues;
 }
 
 //function rufzeichen_queue_cronapi($op, $job = NULL) {
