@@ -101,8 +101,7 @@ function rq_fill_queue() {
 //      $count = $queue->numberOfItems();
       $queue->createQueue();
       $queue->createItem($chunk);
-      $count = $queue->numberOfItems();
-//      $queue->claimItem($start + (10));
+      $queue->claimItem($start + (10));
     }
   }
 }
@@ -167,11 +166,10 @@ function rufzeichen_queue_cronapi($op, $job = NULL) {
   $items = [];
   $items['revision_delete_queue_main'] = [
     'description' => 'Save nids and vids to Queue',
-    'rule' => ' 0 3 * * *', // every 15 minutes
+    'rule' => ' 0 3 * * *', // At 3 o'clock in the night
     'arguments' => [100],
     'callback' => 'rq_fill_queue',
   ];
-
   return $items;
 }
 
