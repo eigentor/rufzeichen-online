@@ -12,8 +12,53 @@ function rufzeichen_queue_menu() {
 }
 
 function rufzeichen_queue_show_query() {
-  $content_type = 'news';
 
+
+
+
+  $nid_vid_chunked = rq_get_nid_vid();
+
+
+  // Save the CSV file to the server.
+//  rq_save_asin_csv($nid_vid_chunked);
+
+  // Write the nids into the queue
+  foreach ($nid_vid_chunked as $chunk) {
+
+    if (count($chunk) !== 0) {
+      //      $start += $count;
+      $queue = DrupalQueue::get('rufzeichen_queue_main');
+      //      $count = $queue->numberOfItems();
+      if(!isset($queue)) {
+        $queue->createQueue();
+      }
+
+      $queue->createItem($chunk);
+      $count = $queue->numberOfItems();
+      //      $queue->claimItem($start + (10));
+    }
+  }
+
+
+
+  //Filter out Quotes and double quotes and other chars that might confuse excel from the array before export
+  function filterData(&$string){
+    $string = str_replace(['"', "'", "\n", "\r\n"], "", $string);
+    return $string;
+  }
+
+
+
+  $olli = 25;
+
+  return [
+    '#markup' => t('@count results found.', ['@count' => count($nid_vid)]),
+  ];
+}
+
+function rq_get_nid_vid() {
+
+  $content_type = 'news';
 
   $result = db_query('
     SELECT nr.vid, sub.nid FROM
@@ -33,55 +78,59 @@ function rufzeichen_queue_show_query() {
 
   $nid_vid_chunked = (array_chunk($nid_vid, 100));
 
-
-  // Save the CSV file to the server.
-  rq_save_asin_csv($nid_vid_chunked);
-
-
-
-  //Filter out Quotes and double quotes and other chars that might confuse excel from the array before export
-  function filterData(&$string){
-    $string = str_replace(['"', "'", "\n", "\r\n"], "", $string);
-    return $string;
-  }
-
-
-
-  $olli = 25;
-
-  return [
-    '#markup' => t('@count results found.', ['@count' => count($nid_vid)]),
-  ];
+  return $nid_vid_chunked;
 }
 
 /*
  * Write the nids and vids to the queue so we can later process them.
  */
-function rq_fill_queue($nid_vid_chunked) {
+function rq_fill_queue() {
+
+  $nid_vid_chunked = rq_get_nid_vid();
+
+  static $start;
+  if (empty($start)) {
+    $start = 0;
+  }
    // Write the nids into the queue
   foreach ($nid_vid_chunked as $chunk) {
 
     if (count($chunk) !== 0) {
-      //    $start += $count/100;
+//      $start += $count;
       $queue = DrupalQueue::get('rufzeichen_queue_main');
 //      $count = $queue->numberOfItems();
       $queue->createQueue();
       $queue->createItem($chunk);
-      //    $queue->claimItem($start + (60 * 5));
-      //    rq_collect_revision_vids($count);
+      $count = $queue->numberOfItems();
+//      $queue->claimItem($start + (10));
     }
   }
+}
+
+/**
+ * Implements hook_cron_queue_info().
+ * This hook calls the queue worker. "Time" defines how long
+ * the worker can claim a chunk of work, before it has to give it back
+ * (if it is not finished).
+ */
+function rufzeichen_cron_cron_queue_info() {
+  $queues = array();
+  $queues['rufzeichen_queue_main'] = array(
+    // Queue worker function.
+    'worker callback' => 'rq_save_asin_csv',
+    // The function will be work 10 seconds.
+    'time' => 30,
+  );
+  return $queues;
 }
 
 function rq_save_asin_csv($nid_vid_chunked) {
   // Create the directory for the Excel export
   $destination = 'sites/default/files/asin-export';
 
-
   if (!file_exists($destination)) {
     mkdir($destination, 0755, true);
   }
-
   $filename = 'asins.csv';
   $file = $destination . '/' . $filename;
 
@@ -113,34 +162,18 @@ function rq_save_asin_csv($nid_vid_chunked) {
   }
 }
 
-/**
- * Implements hook_cron_queue_info().
- * This hook calls the queue worker. "Time" defines how long
- * the worker can claim a chunk of work, before it has to give it back
- * (if it is not finished).
- */
-function rufzeichen_cron_cron_queue_info() {
-  $queues = array();
-  $queues['rufzeichen_queue_main'] = array(
-    // Queue worker function.
-    'worker callback' => 'rq_save_asin_csv',
-    // The function will be work 10 seconds.
-    'time' => 10,
-  );
-  return $queues;
-}
 
-//function rufzeichen_queue_cronapi($op, $job = NULL) {
-//  $items = [];
-//  $items['revision_delete_queue_main'] = [
-//    'description' => 'Collect revisions to delete',
-//    'rule' => '*/15 * * * *', // every 15 minutes
-//    'arguments' => [100],
-//    'callback' => 'rq_collect_revision_vids',
-//  ];
-//
-//  return $items;
-//}
+function rufzeichen_queue_cronapi($op, $job = NULL) {
+  $items = [];
+  $items['revision_delete_queue_main'] = [
+    'description' => 'Save nids and vids to Queue',
+    'rule' => ' 0 3 * * *', // every 15 minutes
+    'arguments' => [100],
+    'callback' => 'rq_fill_queue',
+  ];
+
+  return $items;
+}
 
 function rq_collect_revision_vids($count) {
   static $start;
