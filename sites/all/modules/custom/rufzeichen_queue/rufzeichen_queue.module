@@ -14,13 +14,11 @@ function rufzeichen_queue_menu() {
 function rufzeichen_queue_show_query() {
 
 
-
-
   $nid_vid_chunked = rq_get_nid_vid();
 
 
   // Save the CSV file to the server.
-//  rq_save_asin_csv($nid_vid_chunked);
+  //  rq_save_asin_csv($nid_vid_chunked);
 
   // Write the nids into the queue
   foreach ($nid_vid_chunked as $chunk) {
@@ -29,7 +27,7 @@ function rufzeichen_queue_show_query() {
       //      $start += $count;
       $queue = DrupalQueue::get('rufzeichen_queue_main');
       //      $count = $queue->numberOfItems();
-      if(!isset($queue)) {
+      if (!isset($queue)) {
         $queue->createQueue();
       }
 
@@ -40,13 +38,11 @@ function rufzeichen_queue_show_query() {
   }
 
 
-
   //Filter out Quotes and double quotes and other chars that might confuse excel from the array before export
-  function filterData(&$string){
+  function filterData(&$string) {
     $string = str_replace(['"', "'", "\n", "\r\n"], "", $string);
     return $string;
   }
-
 
 
   $olli = 25;
@@ -92,13 +88,13 @@ function rq_fill_queue() {
   if (empty($start)) {
     $start = 0;
   }
-   // Write the nids into the queue
+  // Write the nids into the queue
   foreach ($nid_vid_chunked as $chunk) {
 
     if (count($chunk) !== 0) {
-//      $start += $count;
+      //      $start += $count;
       $queue = DrupalQueue::get('rufzeichen_queue_main');
-//      $count = $queue->numberOfItems();
+      //      $count = $queue->numberOfItems();
       $queue->createQueue();
       $queue->createItem($chunk);
       $queue->claimItem($start + (10));
@@ -113,13 +109,13 @@ function rq_fill_queue() {
  * (if it is not finished).
  */
 function rufzeichen_cron_cron_queue_info() {
-  $queues = array();
-  $queues['rufzeichen_queue_main'] = array(
+  $queues = [];
+  $queues['rufzeichen_queue_main'] = [
     // Queue worker function.
     'worker callback' => 'rq_save_asin_csv',
     // The function will be work 10 seconds.
     'time' => 30,
-  );
+  ];
   return $queues;
 }
 
@@ -128,32 +124,33 @@ function rq_save_asin_csv($nid_vid_chunked) {
   $destination = 'sites/default/files/asin-export';
 
   if (!file_exists($destination)) {
-    mkdir($destination, 0755, true);
+    mkdir($destination, 0755, TRUE);
   }
   $filename = 'asins.csv';
   $file = $destination . '/' . $filename;
 
-  foreach($nid_vid_chunked as $chunk) {
+  foreach ($nid_vid_chunked as $chunk) {
 
     $data_chunk = '';
 
     // Bei unseren Daten: Was, wenn asin_changes leer ist?
-    foreach($chunk as $item) {
+    foreach ($chunk as $item) {
       $data_chunk .= '"' . $item['nid'] . '"';
       $data_chunk .= ';';
       $data_chunk .= '"' . $item['vid'] . '"';
-      $data_chunk .=  "\n";
+      $data_chunk .= "\n";
     }
 
-    if(file_exists($file)) {
+    if (file_exists($file)) {
       $current = file_get_contents($file);
       $current .= $data_chunk;
       file_put_contents($file, $current);
-    } else {
+    }
+    else {
       $header = '"' . 'NID' . '"';
       $header .= ';';
       $header .= '"' . 'VID' . '"';
-      $header .=  "\n";
+      $header .= "\n";
       $data_chunk_with_header = $header . $data_chunk;
       file_put_contents($file, $data_chunk_with_header);
     }

@@ -1,0 +1,4 @@
+name = HF Remind
+description = Test for hook_cron_queue_info()
+core = 7.x
+package = rufzeichen

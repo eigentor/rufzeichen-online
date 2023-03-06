@@ -1,0 +1,37 @@
+<?php
+/*
+ * Implements hook_cron().
+ */
+function hf_remind_cron(){
+  $result = db_query(
+    "SELECT n.title, n.nid
+            FROM {node} n
+            WHERE n.type = 'page'");
+  $queue = DrupalQueue::get('send_emails');
+  $queue->createQueue();
+
+  foreach ($result as $hf_info) {
+    $queue->createItem($hf_info);
+  }
+  $supi = 'Nicht so supi';
+}
+
+/*
+ * Implements hook_cron_queue_info().
+ */
+function hf_remind_cron_queue_info(){
+  $queues['send_emails'] = array(
+    'worker callback' => 'hf_sender',
+    'time' => 120,
+  );
+  return $queues;
+}
+
+function hf_sender($data){
+  $nid = $data->nid;
+  $node = node_load($nid);
+  $node_wrapper = entity_metadata_wrapper('node', $node);
+  $node_wrapper->title->set($data->title . '-ABC');
+  $node_wrapper->save();
+  $sowas = 'huch';
+}
