@@ -113,7 +113,7 @@ function rufzeichen_queue_cron_queue_info() {
   return $queues;
 }
 
-function rq_save_asin_csv($nid_vid_chunked) {
+function rq_save_asin_csv($chunk) {
   // Create the directory for the Excel export
   $destination = 'sites/default/files/asin-export';
 
@@ -124,11 +124,10 @@ function rq_save_asin_csv($nid_vid_chunked) {
   $filename = 'asins.csv';
   $file = $destination . '/' . $filename;
 
-  foreach ($nid_vid_chunked as $chunk) {
 
+    // Initialize our data_chunk as empty string, so it is always set.
     $data_chunk = '';
 
-    // Bei unseren Daten: Was, wenn asin_changes leer ist?
     foreach ($chunk as $item) {
       $data_chunk .= '"' . $item['nid'] . '"';
       $data_chunk .= ';';
@@ -149,25 +148,23 @@ function rq_save_asin_csv($nid_vid_chunked) {
       $data_chunk_with_header = $header . $data_chunk;
       file_put_contents($file, $data_chunk_with_header);
     }
-
-  }
 }
 
-function rufzeichen_queue_cron(){
-  rq_fill_queue();
-}
-
-
-//function rufzeichen_queue_cronapi($op, $job = NULL) {
-//  $items = [];
-//  $items['revision_delete_queue_main'] = [
-//    'description' => 'Save nids and vids to Queue',
-//    'rule' => ' 0 3 * * *', // At 3 o'clock in the night
-//    'arguments' => [100],
-//    'callback' => 'rq_fill_queue',
-//  ];
-//  return $items;
+//function rufzeichen_queue_cron(){
+//  rq_fill_queue();
 //}
+
+
+function rufzeichen_queue_cronapi($op, $job = NULL) {
+  $items['rufzeichen_fill_queue'] = [
+    'description' => 'Save nids and vids to Queue',
+    'rule' => ' 50 2 * * *', // At 3 o'clock in the night
+    'callback' => 'rq_fill_queue',
+  ];
+  return $items;
+}
+
+
 
 function rq_collect_revision_vids($count) {
   static $start;
