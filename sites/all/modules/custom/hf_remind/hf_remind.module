@@ -13,7 +13,6 @@ function hf_remind_cron(){
   foreach ($result as $hf_info) {
     $queue->createItem($hf_info);
   }
-  $supi = 'Nicht so supi';
 }
 
 /*

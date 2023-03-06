@@ -84,10 +84,6 @@ function rq_fill_queue() {
 
   $nid_vid_chunked = rq_get_nid_vid();
 
-  static $start;
-  if (empty($start)) {
-    $start = 0;
-  }
   // Write the nids into the queue
   foreach ($nid_vid_chunked as $chunk) {
 
@@ -97,7 +93,7 @@ function rq_fill_queue() {
       //      $count = $queue->numberOfItems();
       $queue->createQueue();
       $queue->createItem($chunk);
-      $queue->claimItem($start + (10));
+//      $queue->claimItem($start + (10));
     }
   }
 }
@@ -105,16 +101,14 @@ function rq_fill_queue() {
 /**
  * Implements hook_cron_queue_info().
  * This hook calls the queue worker. "Time" defines how long
- * the worker can claim a chunk of work, before it has to give it back
- * (if it is not finished).
+ * the process runs during cron.
  */
-function rufzeichen_cron_cron_queue_info() {
-  $queues = [];
+function rufzeichen_queue_cron_queue_info() {
   $queues['rufzeichen_queue_main'] = [
     // Queue worker function.
     'worker callback' => 'rq_save_asin_csv',
     // The function will be work 10 seconds.
-    'time' => 30,
+    'time' => 60,
   ];
   return $queues;
 }
@@ -126,6 +120,7 @@ function rq_save_asin_csv($nid_vid_chunked) {
   if (!file_exists($destination)) {
     mkdir($destination, 0755, TRUE);
   }
+  $follo = 'los gehts';
   $filename = 'asins.csv';
   $file = $destination . '/' . $filename;
 
@@ -158,17 +153,21 @@ function rq_save_asin_csv($nid_vid_chunked) {
   }
 }
 
-
-function rufzeichen_queue_cronapi($op, $job = NULL) {
-  $items = [];
-  $items['revision_delete_queue_main'] = [
-    'description' => 'Save nids and vids to Queue',
-    'rule' => ' 0 3 * * *', // At 3 o'clock in the night
-    'arguments' => [100],
-    'callback' => 'rq_fill_queue',
-  ];
-  return $items;
+function rufzeichen_queue_cron(){
+  rq_fill_queue();
 }
+
+
+//function rufzeichen_queue_cronapi($op, $job = NULL) {
+//  $items = [];
+//  $items['revision_delete_queue_main'] = [
+//    'description' => 'Save nids and vids to Queue',
+//    'rule' => ' 0 3 * * *', // At 3 o'clock in the night
+//    'arguments' => [100],
+//    'callback' => 'rq_fill_queue',
+//  ];
+//  return $items;
+//}
 
 function rq_collect_revision_vids($count) {
   static $start;
