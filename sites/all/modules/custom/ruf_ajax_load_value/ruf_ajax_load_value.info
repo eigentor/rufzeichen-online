@@ -1,0 +1,6 @@
+name = Rufzeichen Ajax load value
+description = Test loading field values in form by Ajax
+core = 7.x
+package = Rufzeichen
+
+dependencies[] = entityreference
