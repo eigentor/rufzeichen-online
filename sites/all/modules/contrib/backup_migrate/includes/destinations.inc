@@ -795,6 +795,10 @@ class backup_migrate_destination extends backup_migrate_location {
   public $weight = 0;
   public $destination_type = '';
   public $supported_ops = array();
+  public $settings = array();
+  public $name = '';
+  public $location = '';
+  public $machine_name = '';
 
   /**
    * 24 hours, i.e. 24 * 60 * 60 seconds.

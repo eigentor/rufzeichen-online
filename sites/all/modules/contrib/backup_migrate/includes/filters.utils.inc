@@ -13,6 +13,8 @@
 class backup_migrate_filter_utils extends backup_migrate_filter {
   public $op_weights = array('pre_backup' => -1000, 'post_backup' => 1000);
   public $saved_devel_query = NULL;
+  public $saved_site_offline = NULL;
+  public $saved_site_offline_message = NULL;
 
   /**
    * Get the default backup settings for this filter.

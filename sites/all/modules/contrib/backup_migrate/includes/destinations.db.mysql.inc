@@ -81,7 +81,9 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db 
           $url = 'mysql://';
           $url .= urlencode($info['username']) . ':' . urlencode($info['password']);
           $url .= '@';
-          $url .= urlencode($info['host']);
+          if (!empty($info['host'])) {
+            $url .= urlencode($info['host']);
+          }
           if (!empty($info['port'])) {
             $url .= ':' . $info['port'];
           }

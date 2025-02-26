@@ -1,3 +1,18 @@
+Backup and Migrate 7.x-3.x-dev, 2024-xx-xx
+------------------------------------------
+#3350436 by Anybody, jacob.embree, danrod, Krizalys, DamienMcKenna, BrankoC,
+  awasson: Deprecation messages with PHP 8: Creation of dynamic property.
+#3305432 by BrankoC, quimic, thor10, DamienMcKenna: FTP error with php 8.0.
+#3411232 by BrankoC, keshavv, DamienMcKenna: Deprecated functions explode()
+  and boolean cast after introduction PHP 8.
+#3440866 by DamienMcKenna: Deprecated function: urlencode(): Passing null to
+  parameter #1 ($string) of type string is deprecated in
+  backup_migrate_source_db_mysql->sources().
+#3322166 by DamienMcKenna, jacob.embree: Deprecated function: urldecode():
+  Passing null to parameter #1 ($string) of type string is deprecated in
+  backup_migrate_location->set_url().
+
+
 Backup and Migrate 7.x-3.10, 2022-01-09
 ---------------------------------------
 #3160105 by ron_s: Adjust README to match changes to default performance

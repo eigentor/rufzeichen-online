@@ -56,8 +56,11 @@ class backup_migrate_destination_ftp extends backup_migrate_destination_remote {
     $files = array();
     $this->ftp_object();
     $ftp_files = (array) drupal_ftp_file_list('.', $this->ftp);
+
     foreach ($ftp_files as $file) {
-      $files[$file['filename']] = new backup_file($file);
+      if (isset($file['filename'])) {
+        $files[$file['filename']] = new backup_file($file);
+      }
     }
     return $files;
   }
@@ -197,7 +200,7 @@ function drupal_ftp_connected(&$ftp) {
     return FALSE;
   }
 
-  if (!@ftp_systype($ftp->__conn)) {
+  if (!isset($ftp->__conn) || !ftp_systype($ftp->__conn)) {
     // The connection is dead.
     return FALSE;
   }
@@ -285,7 +288,7 @@ function drupal_ftp_change_directory($directory, &$ftp) {
   $chdir = ftp_chdir($ftp->__conn, $directory);
 
   if (!$chdir) {
-    _backup_migrate_message('FTP Error: Couldn\'t change into directory: @directory', array('@directory', $directory), 'error');
+    _backup_migrate_message('FTP Error: Couldn\'t change into directory: \'@directory\'.', array('@directory' => $directory), 'error');
     return FALSE;
   }
   else {

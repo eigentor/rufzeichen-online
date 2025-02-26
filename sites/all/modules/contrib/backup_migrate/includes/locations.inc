@@ -422,11 +422,10 @@ class backup_migrate_location extends backup_migrate_item {
    * Break a URL into it's component parts.
    */
   public function set_url($url) {
-    $parts          = (array) parse_url($url);
-    $parts['user']  = urldecode(@$parts['user']);
-    $parts['pass']  = urldecode(@$parts['pass']);
-    $parts['path']  = urldecode(@$parts['path']);
-    $parts['path']  = ltrim(@$parts['path'], "/");
+    $parts = (array) parse_url($url);
+    $parts['user'] = !empty($parts['user']) ? urldecode($parts['user']) : '';
+    $parts['pass'] = !empty($parts['pass']) ? urldecode($parts['pass']) : '';
+    $parts['path'] = !empty($parts['path']) ? ltrim(urldecode($parts['path']), '/') : '';
     $this->dest_url = $parts;
   }
 

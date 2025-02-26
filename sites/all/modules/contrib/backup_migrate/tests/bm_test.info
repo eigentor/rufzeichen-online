@@ -6,8 +6,8 @@ hidden = TRUE
 dependencies[] = simpletest
 dependencies[] = backup_migrate
 
-; Information added by Drupal.org packaging script on 2022-01-09
-version = "7.x-3.10"
+; Information added by Drupal.org packaging script on 2024-04-14
+version = "7.x-3.10+6-dev"
 core = "7.x"
 project = "backup_migrate"
-datestamp = "1641732924"
+datestamp = "1713093464"

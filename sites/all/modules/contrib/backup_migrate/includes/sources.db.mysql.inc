@@ -88,7 +88,9 @@ class backup_migrate_source_db_mysql extends backup_migrate_source_db {
           $url = 'mysql://';
           $url .= urlencode($info['username']) . ':' . urlencode($info['password']);
           $url .= '@';
-          $url .= urlencode($info['host']);
+          if (!empty($info['host'])) {
+            $url .= urlencode($info['host']);
+          }
           if (!empty($info['port'])) {
             $url .= ':' . $info['port'];
           }

@@ -125,11 +125,11 @@ DirectoryIndex index.php index.html index.htm
   RewriteRule (suchet-und-ihr-werdet-was-erleben-welche-suchausdrücke-leute-auf-meine-seite-führen) http://thomas-moseler.local/suchet-und-ihr-werdet-was-erleben-welche-suchausdruecke-leute-auf-meine-seite-führen [R=301,NC,L]
   RewriteRule (barcamp-braunschweig-folien-von-vortrag-über-sass-und-compass) http://thomas-moseler.local/barcamp-braunschweig-folien-von-vortrag-ueber-sass-und-compass [R=301,NC,L]
   RewriteRule (endlich-generische-user-profile-für-drupal-7) http://thomas-moseler.local/endlich-generische-user-profile-fuer-drupal-7 [R=301,NC,L]
-  RewriteRule (projekt/intranet-für-gründerzentren) http://thomas-moseler.local/projekt/hannoverimpuls-gruenderzentren [R=301,NC,L]
-  RewriteRule (projekt/nobila-grußkarten-online-shop) http://thomas-moseler.local/projekt/nobila-grusskarten-online-shop [R=301,NC,L]
   RewriteRule (ueber-uns) http://thomas-moseler.local/thomas-moseler [R=301,NC,L]
   RewriteRule (datenschutzerklärung) http://thomas-moseler.local/datenschutzerklaerung [R=301,NC,L]
   RewriteRule (rufzeichen-leistungen-für-sie) http://thomas-moseler.local [R=301,NC,L]
+  RewriteRule (projekt/intranet-für-gründerzentren) http://thomas-moseler.local/projekt/hannoverimpuls-gruenderzentren [R=301,NC,L]
+  RewriteRule (projekt/nobila-grußkarten-online-shop) http://thomas-moseler.local/projekt/nobila-grusskarten-online-shop [R=301,NC,L]
 
   #RewriteRule (.*) http://thomas-moseler.local/$1 [R=301,NC,L]
 
