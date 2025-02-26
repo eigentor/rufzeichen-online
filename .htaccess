@@ -114,10 +114,25 @@ DirectoryIndex index.php index.html index.htm
   # uncomment the following line:
   # RewriteBase /
 
+  ############### Redirect to thomas-moseler.de ##############
   RewriteCond %{HTTP_HOST} ^rufzeichen-online\.local.*$
 
   RewriteRule (drupalvm-eine-web-entwicklungsumgebung-nicht-nur-für-drupal-teil-1) http://thomas-moseler.local/drupalvm-eine-web-entwicklungsumgebung-nicht-nur-fuer-drupal-teil-1 [R=301,NC,L]
   RewriteRule (tue-gutes-und-rede-darüber-d8rules) http://thomas-moseler.local/tue-gutes-und-rede-darueber-d8rules [R=301,NC,L]
+  RewriteRule (welches-cms-wofür-gerrit-van-aaaken-interviewt-sich-selbst) http://thomas-moseler.local/welches-cms-wofuer-gerrit-van-aaaken-interviewt-sich-selbst [R=301,NC,L]
+  RewriteRule (rufzeichen-webdesign-veröffentlicht-freies-drupal-theme-chrono) http://thomas-moseler.local/rufzeichen-webdesign-veroeffentlicht-freies-drupal-theme-chrono [R=301,NC,L]
+  RewriteRule (eine-sanfte-einführung-die-drupal-programmierung-addison-berry-vortrag) http://thomas-moseler.local/eine-sanfte-einfuehrung-die-drupal-programmierung-addison-berry-vortrag [R=301,NC,L]
+  RewriteRule (suchet-und-ihr-werdet-was-erleben-welche-suchausdrücke-leute-auf-meine-seite-führen) http://thomas-moseler.local/suchet-und-ihr-werdet-was-erleben-welche-suchausdruecke-leute-auf-meine-seite-führen [R=301,NC,L]
+  RewriteRule (barcamp-braunschweig-folien-von-vortrag-über-sass-und-compass) http://thomas-moseler.local/barcamp-braunschweig-folien-von-vortrag-ueber-sass-und-compass [R=301,NC,L]
+  RewriteRule (endlich-generische-user-profile-für-drupal-7) http://thomas-moseler.local/endlich-generische-user-profile-fuer-drupal-7 [R=301,NC,L]
+  RewriteRule (projekt/intranet-für-gründerzentren) http://thomas-moseler.local/projekt/hannoverimpuls-gruenderzentren [R=301,NC,L]
+  RewriteRule (projekt/nobila-grußkarten-online-shop) http://thomas-moseler.local/projekt/nobila-grusskarten-online-shop [R=301,NC,L]
+  RewriteRule (ueber-uns) http://thomas-moseler.local/thomas-moseler [R=301,NC,L]
+  RewriteRule (datenschutzerklärung) http://thomas-moseler.local/datenschutzerklaerung [R=301,NC,L]
+  RewriteRule (rufzeichen-leistungen-für-sie) http://thomas-moseler.local [R=301,NC,L]
+
+  #RewriteRule (.*) http://thomas-moseler.local/$1 [R=301,NC,L]
+
 
   # Pass all requests not referring directly to files in the filesystem to
   # index.php. Clean URLs are handled in drupal_environment_initialize().
